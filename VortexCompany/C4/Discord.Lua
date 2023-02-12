@@ -1,7 +1,7 @@
 local cmds = {}
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
-local _GuiService = game:GetService("GuiService")
+local GuiService = game:GetService("GuiService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local COREGUI = game:GetService("CoreGui")
@@ -292,7 +292,7 @@ var = v.Name
 end
 end
 
-_GuiService:CloseInspectMenu()
+GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[var].UserId)
 end
 if cmd == "bring" then
@@ -521,7 +521,6 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-Notify("Spying '" .. Players[var].Name .. "'",3)
 end
 if cmd == "spy" then
 if viewing ~= nil then
@@ -532,7 +531,6 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
-Notify("Spy turned off",3)
 end
 if cmd == "stare" then
 local var = string.sub(msg,space+1)
