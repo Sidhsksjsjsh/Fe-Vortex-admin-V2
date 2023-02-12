@@ -12,6 +12,14 @@ local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
 
+function remgui()
+    for _,v in pairs(speaker.PlayerGui:GetChildren()) do
+        if v.Name == "Modeshow" then
+            v:remove()
+        end
+    end
+end
+
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
 		return true
@@ -623,7 +631,7 @@ local var = string.sub(msg,space+1)
 local function jmp()
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
 end
-    Loopjmp = RunService.RenderStepped:Connect(spd)
+    Loopjmp = RunService.RenderStepped:Connect(jmp)
 end
 if cmd == "unloopjump" then
 if Loopjmp then
