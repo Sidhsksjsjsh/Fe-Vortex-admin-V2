@@ -94,7 +94,7 @@ end
 _GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[var].UserId)
 end
-if cmd == "inspect" then
+if cmd == "bring" then
 local player = game.Players.LocalPlayer
 for i,v in pairs(game.Players:GetChildren()) do
 if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
@@ -143,6 +143,18 @@ end
 end
 end)
 
+cmds[#cmds + 1] = {Text = "[1] /print [text]",Title = "useless"}
+cmds[#cmds + 1] = {Text = "[2] /unrotate",Title = "disable view"}
+cmds[#cmds + 1] = {Text = "[3] /rotate",Title = "enable view"}
+cmds[#cmds + 1] = {Text = "[4] /stun",Title = "enable PlatformStand"}
+cmds[#cmds + 1] = {Text = "[5] /unstun",Title = "disable PlatformStand"}
+cmds[#cmds + 1] = {Text = "[6] /kill [username]",Title = "kill nigga🤑😍😍"}
+cmds[#cmds + 1] = {Text = "[7] /inspect [username]",Title = "view item"}
+cmds[#cmds + 1] = {Text = "[8] /bring [username]",Title = "bring nigga to ur position"}
+
+for i = 1,#Cmd do
+       warn(tostring(cmds[i].Text) .. " (" .. tostring(cmds[i].Title) .. ")")
+end
 
 function GetPlayer(String)
     local plr
