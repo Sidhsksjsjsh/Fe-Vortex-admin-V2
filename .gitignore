@@ -317,7 +317,7 @@ cmds[#cmds + 1] = {Text = "[12] /clip",Title = "everyone: Happymod LOL🤡"}
 cmds[#cmds + 1] = {Text = "[13] /bang [username]",Title = "make bitches pregnant"}
 cmds[#cmds + 1] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
 
-for i = 1,#cmds do
+for i = 1, cmds do
        warn(tostring(cmds[i].Text) .. " (" .. tostring(cmds[i].Title) .. ")")
 end
 
