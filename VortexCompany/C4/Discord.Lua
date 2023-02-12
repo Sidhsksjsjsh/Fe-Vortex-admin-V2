@@ -567,9 +567,6 @@ local var = string.sub(msg,space+1)
 NOFLY()
 	wait()
 	sFLY()
-	if var and isNumber(var) then
-		iyflyspeed = var
-	end
 end
 if cmd == "unfly" then
 NOFLY()
@@ -581,30 +578,6 @@ end
 if cmd == "jump" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
-end
-if cmd == "loopspeed" then
-local var = string.sub(msg,space+1)
-local function spd()
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var
-end
-    Loopspd = RunService.RenderStepped:Connect(spd)
-end
-if cmd == "unloopspeed" then
-if Loopspd then
-		Loopspd:Disconnect()
-	end
-end
-if cmd == "loopjump" then
-local var = string.sub(msg,space+1)
-local function jmp()
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
-end
-    Loopjmp = RunService.RenderStepped:Connect(jmp)
-end
-if cmd == "unloopjump" then
-if Loopjmp then
-		Loopjmp:Disconnect()
-	end
 end
 -- limits
 end
