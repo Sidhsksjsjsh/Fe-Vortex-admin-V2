@@ -131,9 +131,6 @@ function NOFLY()
 	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
 end
 
-function Notify(text, delay)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "", Text = text, Button1 = "", Duration = delay, })
-end
 
 function ESP(plr)
 	task.spawn(function()
@@ -546,7 +543,7 @@ if stareLoop then
 		end
 		if not Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and Players[var].Character:FindFirstChild("HumanoidRootPart") then return end
 		local function stareFunc()
-			if Players.LocalPlayer.Character.PrimaryPart and Players:FindFirstChild(v) and Players[var].Character ~= nil and Players[var].Character:FindFirstChild("HumanoidRootPart") then
+			if Players.LocalPlayer.Character.PrimaryPart and Players:FindFirstChild(var) and Players[var].Character ~= nil and Players[var].Character:FindFirstChild("HumanoidRootPart") then
 				local chrPos=Players.LocalPlayer.Character.PrimaryPart.Position
 				local tPos=Players[var].Character:FindFirstChild("HumanoidRootPart").Position
 				local modTPos=Vector3.new(tPos.X,chrPos.Y,tPos.Z)
@@ -670,5 +667,3 @@ function GetPlayer(String)
         end
     return plr
 end
-
-Notify("Loaded | Commands list in console",3)
