@@ -287,7 +287,7 @@ Anim = Instance.new("Animation")
 Anim.AnimationId = "rbxassetid://148840371"
 track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
 track:Play()
-track:AddJustSpeed(10)
+track:AdjustSpeed(10)
 local function Looptp()
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
 end
@@ -299,6 +299,104 @@ if RapeStart then
                 track:Stop()
 		Anim:Destroy()
 	end
+end
+if cmd == "follow" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local function Loopwalk()
+speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
+end
+    Follow = RunService.Stepped:Connect(Loopwalk)
+end
+if cmd == "loopgoto" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local function Looptp()
+speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+end
+    Loopgoto = RunService.Stepped:Connect(Looptp)
+end
+if cmd == "looptween" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local function TweenTo()
+local TweenService = game:GetService("TweenService")
+local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+
+
+{CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
+end
+    LoopTween = RunService.Stepped:Connect(TweenTo)
+end
+if cmd == "goto" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+end
+if cmd == "tweento" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local TweenService = game:GetService("TweenService")
+local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
+
+
+{CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
+end
+if cmd == "walkto" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
+end
+if cmd == "unfollow" then
+if Follow then
+		Follow:Disconnect()
+end
+end
+if cmd == "unloopgoto" then
+if Loopgoto then
+		Loopgoto:Disconnect()
+end
+end
+if cmd == "unlooptween" then
+if LoopTween then
+		LoopTween:Disconnect()
+end
 end
 -- limits
 end
@@ -318,6 +416,15 @@ cmds[#cmds + 1] = {Text = "[11] /noclip",Title = "everyone: Happymod LOL🤡"}
 cmds[#cmds + 1] = {Text = "[12] /clip",Title = "everyone: Happymod LOL🤡"}
 cmds[#cmds + 1] = {Text = "[13] /bang [username]",Title = "make bitches pregnant"}
 cmds[#cmds + 1] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
+cmds[#cmds + 1] = {Text = "[14] /follow [username]",Title = "follow nigga or bitches"}
+cmds[#cmds + 1] = {Text = "[15] /loopgoto [username",Title = "loop tp to nigga or bitches"}
+cmds[#cmds + 1] = {Text = "[16] /looptween [username]",Title = "loop tween to bitches or nigga"}
+cmds[#cmds + 1] = {Text = "[17] /goto",Title = "tp to nigga"}
+cmds[#cmds + 1] = {Text = "[18] /walkto",Title = "moving to nigga"}
+cmds[#cmds + 1] = {Text = "[19] /tweento",Title = "tween to nigga"}
+cmds[#cmds + 1] = {Text = "[20] /unloopgoto",Title = "stop teleporting"}
+cmds[#cmds + 1] = {Text = "[21] /unfollow",Title = "stop following"}
+cmds[#cmds + 1] = {Text = "[22] /unlooptween",Title = "stop tweening"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
