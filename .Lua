@@ -301,25 +301,25 @@ end
 -- limits
 end
 end)
-
-cmds[#cmds + 1] = {Text = "[1] /print [text]",Title = "useless"}
-cmds[#cmds + 1] = {Text = "[2] /unrotate",Title = "disable view"}
-cmds[#cmds + 1] = {Text = "[3] /rotate",Title = "enable view"}
-cmds[#cmds + 1] = {Text = "[4] /stun",Title = "enable PlatformStand"}
-cmds[#cmds + 1] = {Text = "[5] /unstun",Title = "disable PlatformStand"}
-cmds[#cmds + 1] = {Text = "[6] /kill [username]",Title = "kill nigga🤑😍😍"}
-cmds[#cmds + 1] = {Text = "[7] /inspect [username]",Title = "view item"}
-cmds[#cmds + 1] = {Text = "[8] /bring [username]",Title = "bring nigga to ur position"}
-cmds[#cmds + 1] = {Text = "[9] /esp",Title = "know where a nigga hide"}
-cmds[#cmds + 1] = {Text = "[10] /unesp",Title = "know where a nigga hide"}
-cmds[#cmds + 1] = {Text = "[11] /noclip",Title = "everyone: Happymod LOL🤡"}
-cmds[#cmds + 1] = {Text = "[12] /clip",Title = "everyone: Happymod LOL🤡"}
-cmds[#cmds + 1] = {Text = "[13] /bang [username]",Title = "make bitches pregnant"}
-cmds[#cmds + 1] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
+-- + 1
+cmds[#cmds] = {Text = "[1] /print [text]",Title = "useless"}
+cmds[#cmds] = {Text = "[2] /unrotate",Title = "disable view"}
+cmds[#cmds] = {Text = "[3] /rotate",Title = "enable view"}
+cmds[#cmds] = {Text = "[4] /stun",Title = "enable PlatformStand"}
+cmds[#cmds] = {Text = "[5] /unstun",Title = "disable PlatformStand"}
+cmds[#cmds] = {Text = "[6] /kill [username]",Title = "kill nigga🤑😍😍"}
+cmds[#cmds] = {Text = "[7] /inspect [username]",Title = "view item"}
+cmds[#cmds] = {Text = "[8] /bring [username]",Title = "bring nigga to ur position"}
+cmds[#cmds] = {Text = "[9] /esp",Title = "know where a nigga hide"}
+cmds[#cmds] = {Text = "[10] /unesp",Title = "know where a nigga hide"}
+cmds[#cmds] = {Text = "[11] /noclip",Title = "everyone: Happymod LOL🤡"}
+cmds[#cmds] = {Text = "[12] /clip",Title = "everyone: Happymod LOL🤡"}
+cmds[#cmds] = {Text = "[13] /bang [username]",Title = "make bitches pregnant"}
+cmds[#cmds] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
 
 -- for i = 1, #cmds do
-for i,v in next, #cmds do
-       warn(tostring(cmds[i].Text) .. " (" .. tostring(cmds[i].Title) .. ")")
+for _,v in next, #cmds do
+       warn(tostring(cmds[v].Text) .. " (" .. tostring(cmds[v].Title) .. ")")
 end
 
 function GetPlayer(String)
