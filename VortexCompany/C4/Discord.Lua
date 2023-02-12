@@ -7,29 +7,10 @@ local RunService = game:GetService("RunService")
 local COREGUI = game:GetService("CoreGui")
 local ESPenabled = false
 local Mouse = speaker:GetMouse()
-
-function Notify(text,delay)
-    remgui()
-    local sc = Instance.new("ScreenGui")
-    sc.Parent = speaker.PlayerGui
-    sc.Name = "Modeshow"
-    local bak = Instance.new("Frame",sc)
-    bak.BackgroundColor3 = Color3.new(1,1,1)
-    bak.Size = UDim2.new(0.94,0,0.1,0)
-    bak.Position = UDim2.new(0.03,0,0.037,0)
-    bak.BorderSizePixel = 0
-    local gi = Instance.new("TextLabel",sc)
-    gi.Size = UDim2.new(0.92,0,0.09,0)
-    gi.BackgroundColor3 = Color3.new(0,0,0)
-    gi.Position = UDim2.new(0.04,0,0.042,0)
-    gi.TextColor3 = Color3.new(1,1,1)
-    gi.FontSize = "Size14"
-    gi.Text = text
-    coroutine.resume(coroutine.create(function()
-        wait(delay)
-        sc:remove()
-    end))
-end
+local FLYING = false
+local QEfly = true
+local iyflyspeed = 1
+local vehicleflyspeed = 1
 
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
@@ -54,6 +35,123 @@ end
 function round(num, numDecimalPlaces)
 	local mult = 10^(numDecimalPlaces or 0)
 	return math.floor(num * mult + 0.5) / mult
+end
+
+function sFLY(vfly)
+	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+	repeat wait() until Mouse
+	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+
+	local T = getRoot(Players.LocalPlayer.Character)
+	local CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+	local SPEED = 0
+
+	local function FLY()
+		FLYING = true
+		local BG = Instance.new('BodyGyro')
+		local BV = Instance.new('BodyVelocity')
+		BG.P = 9e4
+		BG.Parent = T
+		BV.Parent = T
+		BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+		BG.cframe = T.CFrame
+		BV.velocity = Vector3.new(0, 0, 0)
+		BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+		task.spawn(function()
+			repeat wait()
+				if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+					Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+				end
+				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
+					SPEED = 50
+				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0) and SPEED ~= 0 then
+					SPEED = 0
+				end
+				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 or (CONTROL.Q + CONTROL.E) ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and (CONTROL.Q + CONTROL.E) == 0 and SPEED ~= 0 then
+					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B + CONTROL.Q + CONTROL.E) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+				else
+					BV.velocity = Vector3.new(0, 0, 0)
+				end
+				BG.cframe = workspace.CurrentCamera.CoordinateFrame
+			until not FLYING
+			CONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			lCONTROL = {F = 0, B = 0, L = 0, R = 0, Q = 0, E = 0}
+			SPEED = 0
+			BG:Destroy()
+			BV:Destroy()
+			if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+				Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+			end
+		end)
+	end
+	flyKeyDown = Mouse.KeyDown:Connect(function(KEY)
+		if KEY:lower() == 'w' then
+			CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 's' then
+			CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 'a' then
+			CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+		elseif KEY:lower() == 'd' then 
+			CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+		elseif QEfly and KEY:lower() == 'e' then
+			CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+		elseif QEfly and KEY:lower() == 'q' then
+			CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+		end
+		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
+	end)
+	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
+		if KEY:lower() == 'w' then
+			CONTROL.F = 0
+		elseif KEY:lower() == 's' then
+			CONTROL.B = 0
+		elseif KEY:lower() == 'a' then
+			CONTROL.L = 0
+		elseif KEY:lower() == 'd' then
+			CONTROL.R = 0
+		elseif KEY:lower() == 'e' then
+			CONTROL.Q = 0
+		elseif KEY:lower() == 'q' then
+			CONTROL.E = 0
+		end
+	end)
+	FLY()
+end
+
+function NOFLY()
+	FLYING = false
+	if flyKeyDown or flyKeyUp then flyKeyDown:Disconnect() flyKeyUp:Disconnect() end
+	if Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+		Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+	end
+	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
+end
+
+function Notify(text,delay)
+    remgui()
+    local sc = Instance.new("ScreenGui")
+    sc.Parent = speaker.PlayerGui
+    sc.Name = "Modeshow"
+    local bak = Instance.new("Frame",sc)
+    bak.BackgroundColor3 = Color3.new(1,1,1)
+    bak.Size = UDim2.new(0.94,0,0.1,0)
+    bak.Position = UDim2.new(0.03,0,0.037,0)
+    bak.BorderSizePixel = 0
+    local gi = Instance.new("TextLabel",sc)
+    gi.Size = UDim2.new(0.92,0,0.09,0)
+    gi.BackgroundColor3 = Color3.new(0,0,0)
+    gi.Position = UDim2.new(0.04,0,0.042,0)
+    gi.TextColor3 = Color3.new(1,1,1)
+    gi.FontSize = "Size14"
+    gi.Text = text
+    coroutine.resume(coroutine.create(function()
+        wait(delay)
+        sc:remove()
+    end))
 end
 
 function ESP(plr)
@@ -488,6 +586,50 @@ if stareLoop then
 		stareLoop:Disconnect()
 	end
 end
+if cmd == "fly" then
+local var = string.sub(msg,space+1)
+NOFLY()
+	wait()
+	sFLY()
+	if var and isNumber(var) then
+		iyflyspeed = var
+	end
+end
+if cmd == "unfly" then
+NOFLY()
+end
+if cmd == "speed" then
+local var = string.sub(msg,space+1)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var
+end
+if cmd == "jump" then
+local var = string.sub(msg,space+1)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
+end
+if cmd == "loopspeed" then
+local var = string.sub(msg,space+1)
+local function spd()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var
+end
+    Loopspd = RunService.RenderStepped:Connect(spd)
+end
+if cmd == "unloopspeed" then
+if Loopspd then
+		Loopspd:Disconnect()
+	end
+end
+if cmd == "loopjump" then
+local var = string.sub(msg,space+1)
+local function jmp()
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
+end
+    Loopjmp = RunService.RenderStepped:Connect(spd)
+end
+if cmd == "unloopjump" then
+if Loopjmp then
+		Loopjmp:Disconnect()
+	end
+end
 -- limits
 end
 end)
@@ -519,6 +661,14 @@ cmds[#cmds + 1] = {Text = "[23] /spy [username]",Title = "spy nigga"}
 cmds[#cmds + 1] = {Text = "[24] /unspy",Title = "stop spying"}
 cmds[#cmds + 1] = {Text = "[25] /stare [username]",Title = "stare."}
 cmds[#cmds + 1] = {Text = "[26] /unstare",Title = "stop staring"}
+cmds[#cmds + 1] = {Text = "[27] /fly [speed]",Title = "Fly! WOHOO"}
+cmds[#cmds + 1] = {Text = "[28] /unfly",Title = "stop flying"}
+cmds[#cmds + 1] = {Text = "[29] /speed [speed]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[30] /jump [jump]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[31] /loopspeed [speed]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[32] /unloopspeed",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[31] /loopjump [jump]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[32] /unloopjump",Title = "no text"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
