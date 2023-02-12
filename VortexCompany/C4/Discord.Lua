@@ -11,6 +11,7 @@ local FLYING = false
 local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
+local flinging = false
 
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
@@ -499,7 +500,6 @@ if LoopTween then
 end
 end
 if cmd == "fly" then
-local var = string.sub(msg,space+1)
 NOFLY()
 	wait()
 	sFLY()
@@ -514,6 +514,76 @@ end
 if cmd == "jump" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
+end
+if cmd == "fling" then
+flinging = false
+	for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child:IsA("BasePart") then
+			child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
+		end
+	end
+	Clip = false
+	wait(0.1)
+	local function V()
+		if Clip == false and speaker.Character ~= nil then
+			for _, child in pairs(speaker.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	XV = RunService.Stepped:Connect(V)
+	wait(.1)
+	local bambam = Instance.new("BodyAngularVelocity")
+	bambam.Name = randomString()
+	bambam.Parent = getRoot(speaker.Character)
+	bambam.AngularVelocity = Vector3.new(0,99999,0)
+	bambam.MaxTorque = Vector3.new(0,math.huge,0)
+	bambam.P = math.huge
+	local Char = speaker.Character:GetChildren()
+	for i, v in next, Char do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+			v.Massless = true
+			v.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+	flinging = true
+	local function flingDiedF()
+		execCmd('unfling')
+	end
+	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
+	repeat
+		bambam.AngularVelocity = Vector3.new(0,99999,0)
+		wait(.2)
+		bambam.AngularVelocity = Vector3.new(0,0,0)
+		wait(.1)
+	until flinging == false
+end
+if cmd == "unfling" then
+if XV then
+        	XV:Disconnect()
+	end
+	Clip = true
+end
+	if flingDied then
+		flingDied:Disconnect()
+	end
+	flinging = false
+	wait(.1)
+	local speakerChar = speaker.Character
+	if not speakerChar or not getRoot(speakerChar) then return end
+	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
+		if v.ClassName == 'BodyAngularVelocity' then
+			v:Destroy()
+		end
+	end
+	for _, child in pairs(speakerChar:GetDescendants()) do
+		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
+			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+		end
+	end
 end
 -- limits
 end
@@ -554,6 +624,8 @@ cmds[#cmds + 1] = {Text = "[31] /loopspeed [speed]",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[32] /unloopspeed",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[31] /loopjump [jump]",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[32] /unloopjump",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[33] /fling",Title = "Troll"}
+cmds[#cmds + 1] = {Text = "[33] /unfling",Title = "stop flinging"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
