@@ -1,41 +1,162 @@
-# Compiled Lua sources
-luac.out
+local cmds = {}
+local speaker = game.Players.LocalPlayer
+local Players = game.Players
+local _GuiService = game:GetService("GuiService")
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local COREGUI = game:GetService("CoreGui")
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+function isNumber(str)
+	if tonumber(str) ~= nil or str == 'inf' then
+		return true
+	end
+end
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+function randomString()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1, length do
+		array[i] = string.char(math.random(32, 126))
+	end
+	return table.concat(array)
+end
 
-# Precompiled Headers
-*.gch
-*.pch
+function round(num, numDecimalPlaces)
+	local mult = 10^(numDecimalPlaces or 0)
+	return math.floor(num * mult + 0.5) / mult
+end
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+local prefix = "/"
+local LPlayer = game.Players.LocalPlayer
+LPlayer.Chatted:Connect(function(msg)
+msg = msg:lower()
+if string.sub(msg,1,3) == "/e " then
+msg = string.sub(msg,4)
+end
+if string.sub(msg,1,1) == prefix then
+local cmd
+local space = string.find(msg," ")
+if space then
+cmd = string.sub(msg,2,space-1)
+else
+cmd = string.sub(msg,2)
+end
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+if cmd == "print" then
+local var = string.sub(msg,space+1)
+print(var)
+end
+if cmd == "reset" then
+game.Players.LocalPlayer.Character:BreakJoints()
+end
+if cmd == "unrotate" then
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
+end
+if cmd == "rotate" then
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
+end
+if cmd == "stun" then
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+end
+if cmd == "unstun" then
+game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+end
+if cmd == "kill" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+speaker.Character.Humanoid:UnequipTools()
+local Humanoid = speaker.Character.Humanoid:Clone()
+local Target = var
+local Tool = speaker.Backpack:FindFirstChildOfClass("Tool")
+ 
+speaker.Character.Animate.Disabled = true
+speaker.Character.Humanoid:Destroy()
+Humanoid.Parent = speaker.Character
+Tool.Parent = speaker.Character
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+end
+if cmd == "inspect" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
 
+_GuiService:CloseInspectMenu()
+		GuiService:InspectPlayerFromUserId(Players[var].UserId)
+end
+if cmd == "inspect" then
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+Target = var
+
+NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.Humanoid.Name = 1
+local l = game.Players.LocalPlayer.Character["1"]:Clone()
+l.Parent = game.Players.LocalPlayer.Character
+l.Name = "Humanoid"
+wait()
+game.Players.LocalPlayer.Character["1"]:Destroy()
+game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+wait()
+game.Players.LocalPlayer.Character.Animate.Disabled = false
+game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+local function tp(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1.HumanoidRootPart.CFrame = char2.HumanoidRootPart.CFrame
+end
+end
+local function getout(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1:MoveTo(char2.Head.Position)
+end
+end
+tp(game.Players[Target], game.Players.LocalPlayer)
+wait()
+tp(game.Players[Target], game.Players.LocalPlayer)
+wait()
+getout(game.Players.LocalPlayer, game.Players[Target])
+wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
+end
+-- limits
+end
+end)
+
+
+function GetPlayer(String)
+    local plr
+    local strl = String:lower()
+        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Name:lower():sub(1, #String) == String:lower() then
+                plr = v
+            end 
+        end
+        if String == "me" then
+                plr = game.Players.LocalPlayer
+            end
+        if String == "" or String == " " then
+           plr = nil
+        end
+    return plr
+end
