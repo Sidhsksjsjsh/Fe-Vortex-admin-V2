@@ -8,6 +8,29 @@ local COREGUI = game:GetService("CoreGui")
 local ESPenabled = false
 local Mouse = speaker:GetMouse()
 
+function Notify(text,delay)
+    remgui()
+    local sc = Instance.new("ScreenGui")
+    sc.Parent = me.PlayerGui
+    sc.Name = "Modeshow"
+    local bak = Instance.new("Frame",sc)
+    bak.BackgroundColor3 = Color3.new(1,1,1)
+    bak.Size = UDim2.new(0.94,0,0.1,0)
+    bak.Position = UDim2.new(0.03,0,0.037,0)
+    bak.BorderSizePixel = 0
+    local gi = Instance.new("TextLabel",sc)
+    gi.Size = UDim2.new(0.92,0,0.09,0)
+    gi.BackgroundColor3 = Color3.new(0,0,0)
+    gi.Position = UDim2.new(0.04,0,0.042,0)
+    gi.TextColor3 = Color3.new(1,1,1)
+    gi.FontSize = "Size14"
+    gi.Text = text
+    coroutine.resume(coroutine.create(function()
+        wait(delay)
+        sc:remove()
+    end))
+end
+
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
 		return true
@@ -399,6 +422,72 @@ if LoopTween then
 		LoopTween:Disconnect()
 end
 end
+if cmd == "spy" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+viewing = Players[var]
+		workspace.CurrentCamera.CameraSubject = viewing.Character
+		local function viewDiedFunc()
+			repeat wait() until Players[var].Character ~= nil and getRoot(Players[var].Character)
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewDied = Players[var].CharacterAdded:Connect(viewDiedFunc)
+		local function viewChangedFunc()
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
+Notify("Spying '" .. Players[var].Name .. "'",3)
+end
+if cmd == "spy" then
+if viewing ~= nil then
+		viewing = nil
+	end
+	if viewDied then
+		viewDied:Disconnect()
+		viewChanged:Disconnect()
+	end
+	workspace.CurrentCamera.CameraSubject = speaker.Character
+Notify("Spy turned off",3)
+end
+if cmd == "stare" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+if stareLoop then
+			stareLoop:Disconnect()
+		end
+		if not Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and Players[var].Character:FindFirstChild("HumanoidRootPart") then return end
+		local function stareFunc()
+			if Players.LocalPlayer.Character.PrimaryPart and Players:FindFirstChild(v) and Players[var].Character ~= nil and Players[var].Character:FindFirstChild("HumanoidRootPart") then
+				local chrPos=Players.LocalPlayer.Character.PrimaryPart.Position
+				local tPos=Players[var].Character:FindFirstChild("HumanoidRootPart").Position
+				local modTPos=Vector3.new(tPos.X,chrPos.Y,tPos.Z)
+				local newCF=CFrame.new(chrPos,modTPos)
+				Players.LocalPlayer.Character:SetPrimaryPartCFrame(newCF)
+			elseif not Players:FindFirstChild(var) then
+				stareLoop:Disconnect()
+			end
+		end
+
+		stareLoop = RunService.RenderStepped:Connect(stareFunc)
+	end
+end
+if cmd == "unstare" then
+if stareLoop then
+		stareLoop:Disconnect()
+	end
+end
 -- limits
 end
 end)
@@ -426,6 +515,10 @@ cmds[#cmds + 1] = {Text = "[19] /tweento",Title = "tween to nigga"}
 cmds[#cmds + 1] = {Text = "[20] /unloopgoto",Title = "stop teleporting"}
 cmds[#cmds + 1] = {Text = "[21] /unfollow",Title = "stop following"}
 cmds[#cmds + 1] = {Text = "[22] /unlooptween",Title = "stop tweening"}
+cmds[#cmds + 1] = {Text = "[23] /spy [username]",Title = "spy nigga"}
+cmds[#cmds + 1] = {Text = "[24] /unspy",Title = "stop spying"}
+cmds[#cmds + 1] = {Text = "[25] /stare [username]",Title = "stare."}
+cmds[#cmds + 1] = {Text = "[26] /unstare",Title = "stop staring"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -448,3 +541,5 @@ function GetPlayer(String)
         end
     return plr
 end
+
+Notify("Loaded | Commands list in console",3)
