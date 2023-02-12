@@ -648,3 +648,6 @@ function GetPlayer(String)
         end
     return plr
 end
+
+local vim = game:service("VirtualInputManager")
+vim:SendKeyEvent(true, "F9", false, game)
