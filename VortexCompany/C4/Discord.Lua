@@ -12,14 +12,6 @@ local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
 
-function remgui()
-    for _,v in pairs(speaker.PlayerGui:GetChildren()) do
-        if v.Name == "Modeshow" then
-            v:remove()
-        end
-    end
-end
-
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
 		return true
@@ -139,27 +131,8 @@ function NOFLY()
 	pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Custom end)
 end
 
-function Notify(text,delay)
-    remgui()
-    local sc = Instance.new("ScreenGui")
-    sc.Parent = speaker.PlayerGui
-    sc.Name = "Modeshow"
-    local bak = Instance.new("Frame",sc)
-    bak.BackgroundColor3 = Color3.new(1,1,1)
-    bak.Size = UDim2.new(0.94,0,0.1,0)
-    bak.Position = UDim2.new(0.03,0,0.037,0)
-    bak.BorderSizePixel = 0
-    local gi = Instance.new("TextLabel",sc)
-    gi.Size = UDim2.new(0.92,0,0.09,0)
-    gi.BackgroundColor3 = Color3.new(0,0,0)
-    gi.Position = UDim2.new(0.04,0,0.042,0)
-    gi.TextColor3 = Color3.new(1,1,1)
-    gi.FontSize = "Size14"
-    gi.Text = text
-    coroutine.resume(coroutine.create(function()
-        wait(delay)
-        sc:remove()
-    end))
+function Notify(text, delay)
+game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "", Text = text, Button1 = "", Duration = delay, })
 end
 
 function ESP(plr)
