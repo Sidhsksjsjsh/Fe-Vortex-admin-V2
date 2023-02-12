@@ -318,7 +318,7 @@ cmds[#cmds + 1] = {Text = "[13] /bang [username]",Title = "make bitches pregnant
 cmds[#cmds + 1] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
 
 -- for i = 1, #cmds do
-for i,v in next, cmds do
+for i,v in next, #cmds do
        warn(tostring(cmds[i].Text) .. " (" .. tostring(cmds[i].Title) .. ")")
 end
 
