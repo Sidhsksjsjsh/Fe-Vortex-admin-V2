@@ -241,10 +241,11 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
 end
 if cmd == "esp" then
 ESPenabled = true
-if ESPenabled then
-		repeat wait(1) until plr.Character and getRoot(plr.Character)
-		ESP(plr)
-	end
+		for i,v in pairs(Players:GetChildren()) do
+			if v.ClassName == "Player" and v.Name ~= speaker.Name then
+				ESP(v)
+			end
+		end
 end
 if cmd == "unesp" then
 ESPenabled = false
