@@ -240,6 +240,7 @@ wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
 end
 if cmd == "esp" then
+ESPenabled = true
 if ESPenabled then
 		repeat wait(1) until plr.Character and getRoot(plr.Character)
 		ESP(plr)
@@ -286,6 +287,7 @@ Anim = Instance.new("Animation")
 Anim.AnimationId = "rbxassetid://148840371"
 track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
 track:Play()
+track:AddJustSpeed(10)
 local function Looptp()
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
 end
