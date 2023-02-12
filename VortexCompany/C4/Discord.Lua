@@ -11,7 +11,7 @@ local Mouse = speaker:GetMouse()
 function Notify(text,delay)
     remgui()
     local sc = Instance.new("ScreenGui")
-    sc.Parent = me.PlayerGui
+    sc.Parent = speaker.PlayerGui
     sc.Name = "Modeshow"
     local bak = Instance.new("Frame",sc)
     bak.BackgroundColor3 = Color3.new(1,1,1)
