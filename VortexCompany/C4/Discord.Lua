@@ -798,6 +798,20 @@ end
 if cmd == "cmds" then
 SourceUITemplate.Visible = true
 end
+if cmd == "nosit" then
+local function DISABLESIT()
+      game.Players.LocalPlayer.Character.Humanoid.Sit = false
+end
+    NositCmd = RunService.Stepped:Connect(DISABLESIT)
+end
+if cmd == "unnosit" then
+if NositCmd then
+     NositCmd:Disconnect()
+end
+end
+if cmd == "sit" then
+game.Players.LocalPlayer.Character.Humanoid.Sit = true
+end
 -- limits
 end
 end)
@@ -840,10 +854,13 @@ cmds[#cmds + 1] = {Text = "[32] /unloopjump",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[33] /fling",Title = "Troll"}
 cmds[#cmds + 1] = {Text = "[33] /unfling",Title = "stop flinging"}
 cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga head🤡🤙"}
+cmds[#cmds + 1] = {Text = "[35] /nosit",Title = "disable sit"}
+cmds[#cmds + 1] = {Text = "[36] /unnosit",Title = "enable sit"}
+cmds[#cmds + 1] = {Text = "[37] /sit",Title = "sit"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
-       warn(tostring(cmds[v].Text) .. " (" .. tostring(cmds[v].Title) .. ")")
+       warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
        local PosV = 0
 List.Parent = Content_2
 List.AnchorPoint = Vector2.new(0.5, 0.5)
