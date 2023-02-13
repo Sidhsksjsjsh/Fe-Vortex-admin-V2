@@ -859,7 +859,20 @@ cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga headð
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " (" .. tostring(cmds[v].Title) .. ")")
-       List.Text = tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. ""
+       local PosV = 0
+List.Parent = Content_2
+List.AnchorPoint = Vector2.new(0.5, 0.5)
+List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+List.BackgroundTransparency = 1.000
+List.Position = UDim2.new(0, 1, 1, PosV + 10)
+List.Size = UDim2.new(1, 0, 0, 18)
+List.Font = Enum.Font.GothamBlack
+List.Text = tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. ""
+List.TextColor3 = Color3.fromRGB(255, 255, 255)
+List.TextScaled = true
+List.TextSize = 14.000
+List.TextTransparency = 0.500
+List.TextWrapped = true
 end
 
 function GetPlayer(String)
