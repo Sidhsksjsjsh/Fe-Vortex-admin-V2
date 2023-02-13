@@ -551,7 +551,28 @@ flinging = false
 	end
 	flinging = true
 	local function flingDiedF()
-		execCmd('unfling')
+		if XV then
+        	XV:Disconnect()
+	end
+	Clip = true
+end
+	if flingDied then
+		flingDied:Disconnect()
+	end
+	flinging = false
+	wait(.1)
+	local speakerChar = speaker.Character
+	if not speakerChar or not getRoot(speakerChar) then return end
+	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
+		if v.ClassName == 'BodyAngularVelocity' then
+			v:Destroy()
+		end
+	end
+	for _, child in pairs(speakerChar:GetDescendants()) do
+		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
+			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+		end
+	end
 	end
 	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
 	repeat
@@ -566,7 +587,6 @@ if XV then
         	XV:Disconnect()
 	end
 	Clip = true
-end
 	if flingDied then
 		flingDied:Disconnect()
 	end
