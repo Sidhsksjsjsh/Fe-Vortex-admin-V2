@@ -299,7 +299,7 @@ end)
 
 
 end)
-else
+elseif mode == "none" then
 if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 spawn(function()
 local speaker = game.Players.LocalPlayer
@@ -389,6 +389,93 @@ end)
 
 
 end)
+elseif mode == "swim" then
+if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://27432686"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+
+Workspace.Gravity = 0
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+end)
+else
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://507776043"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+local hi = Instance.new("Sound")
+hi.Name = "Sound"
+hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.Volume = 2
+hi.Looped = true
+hi.archivable = false
+hi.Parent = game.Workspace
+hi:Play()
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+
+end)    
+end
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local u = game.Players.LocalPlayer
+local urchar = u.Character
+
+task.spawn(function()
+
+
+qUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'q' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight - 3
+end
+end)
+eUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'e' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight + 3
+end
+end)
+
+
+end)
+end
+end
 end
 end
 
@@ -1073,7 +1160,7 @@ cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga head�
 cmds[#cmds + 1] = {Text = "[35] /nosit",Title = "disable sit"}
 cmds[#cmds + 1] = {Text = "[36] /unnosit",Title = "enable sit"}
 cmds[#cmds + 1] = {Text = "[37] /sit",Title = "sit"}
-cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling]",Title = "become a helicopter and destroy 2 tower😍👌"}
+cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling or swim]",Title = "become a helicopter and destroy 2 towers😍👌"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
