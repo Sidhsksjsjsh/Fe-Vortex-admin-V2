@@ -179,6 +179,220 @@ end)
 end
 coroutine.wrap(drag)()
 
+function Helicopter(mode)
+         if mode == "fling" then
+         if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://27432686"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+
+flinging = false
+	for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child:IsA("BasePart") then
+			child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
+		end
+	end
+	Clip = false
+	wait(0.1)
+	local function V()
+		if Clip == false and speaker.Character ~= nil then
+			for _, child in pairs(speaker.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	XV = RunService.Stepped:Connect(V)
+	wait(.1)
+	local bambam = Instance.new("BodyAngularVelocity")
+	bambam.Name = randomString()
+	bambam.Parent = getRoot(speaker.Character)
+	bambam.AngularVelocity = Vector3.new(0,99999,0)
+	bambam.MaxTorque = Vector3.new(0,math.huge,0)
+	bambam.P = math.huge
+	local Char = speaker.Character:GetChildren()
+	for i, v in next, Char do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+			v.Massless = true
+			v.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+	flinging = true
+	local function flingDiedF()
+		if XV then
+        	XV:Disconnect()
+	end
+	Clip = true
+end
+	if flingDied then
+		flingDied:Disconnect()
+	end
+	flinging = false
+	wait(.1)
+	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
+	repeat
+		bambam.AngularVelocity = Vector3.new(0,99999,0)
+		wait(.2)
+		bambam.AngularVelocity = Vector3.new(0,0,0)
+		wait(.1)
+	until flinging == false
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+end)
+else
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://507776043"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+local hi = Instance.new("Sound")
+hi.Name = "Sound"
+hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.Volume = 2
+hi.Looped = true
+hi.archivable = false
+hi.Parent = game.Workspace
+hi:Play()
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+
+end)    
+end
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local u = game.Players.LocalPlayer
+local urchar = u.Character
+
+task.spawn(function()
+
+
+qUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'q' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight - 3
+end
+end)
+eUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'e' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight + 3
+end
+end)
+
+
+end)
+else
+if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://27432686"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+local hi = Instance.new("Sound")
+
+if XV then
+        	XV:Disconnect()
+	end
+	Clip = true
+	if flingDied then
+		flingDied:Disconnect()
+	end
+	flinging = false
+	wait(.1)
+	local speakerChar = speaker.Character
+	if not speakerChar or not getRoot(speakerChar) then return end
+	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
+		if v.ClassName == 'BodyAngularVelocity' then
+			v:Destroy()
+		end
+	end
+	for _, child in pairs(speakerChar:GetDescendants()) do
+		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
+			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+		end
+	end
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+end)
+else
+spawn(function()
+local speaker = game.Players.LocalPlayer
+local Anim = Instance.new("Animation")
+     Anim.AnimationId = "rbxassetid://507776043"
+     local bruh = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+bruh:Play()
+bruh:AdjustSpeed(0)
+speaker.Character.Animate.Disabled = true
+local hi = Instance.new("Sound")
+hi.Name = "Sound"
+hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.Volume = 2
+hi.Looped = true
+hi.archivable = false
+hi.Parent = game.Workspace
+hi:Play()
+
+local spinSpeed = 40
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,spinSpeed,0)
+
+
+end)    
+end
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local u = game.Players.LocalPlayer
+local urchar = u.Character
+
+task.spawn(function()
+
+
+qUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'q' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight - 3
+end
+end)
+eUp = Mouse.KeyUp:Connect(function(KEY)
+if KEY == 'e' then
+urchar.Humanoid.HipHeight = urchar.Humanoid.HipHeight + 3
+end
+end)
+
+
+end)
+end
+end
+
 function sFLY(vfly)
 	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
 	repeat wait() until Mouse
@@ -812,6 +1026,10 @@ end
 if cmd == "sit" then
 game.Players.LocalPlayer.Character.Humanoid.Sit = true
 end
+if cmd == "helicopter" then
+local var = string.sub(msg,space+1)
+Helicopter(var)
+end
 -- limits
 end
 end)
@@ -857,6 +1075,7 @@ cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga head�
 cmds[#cmds + 1] = {Text = "[35] /nosit",Title = "disable sit"}
 cmds[#cmds + 1] = {Text = "[36] /unnosit",Title = "enable sit"}
 cmds[#cmds + 1] = {Text = "[37] /sit",Title = "sit"}
+cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling]",Title = "become a helicopter and destroy 2 tower😍👌"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
