@@ -299,7 +299,8 @@ end)
 
 
 end)
-elseif mode == "none" then
+end
+if mode == "none" then
 if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 spawn(function()
 local speaker = game.Players.LocalPlayer
@@ -389,7 +390,8 @@ end)
 
 
 end)
-elseif mode == "swim" then
+end
+if mode == "swim" then
 if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
 spawn(function()
 local speaker = game.Players.LocalPlayer
@@ -400,7 +402,6 @@ bruh:Play()
 bruh:AdjustSpeed(0)
 speaker.Character.Animate.Disabled = true
 
-Workspace.Gravity = 0
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
@@ -474,8 +475,6 @@ end)
 
 
 end)
-end
-end
 end
 end
 
