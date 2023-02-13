@@ -38,9 +38,88 @@ function round(num, numDecimalPlaces)
 	return math.floor(num * mult + 0.5) / mult
 end
 
+function tools(plr)
+	if plr:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass('Tool') or plr.Character:FindFirstChildOfClass('Tool') then
+		return true
+	end
+end
+
+function notify(title, text, button_1, button_2, ButtonString)
+local NotificationBindable = Instance.new("BindableFunction")
+local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
+game.StarterGui:SetCore("SendNotification", {
+Title = Title;
+Text = Text;
+Icon = "";
+Duration = Duration;
+Button1 = Button1Text;
+Button2 = Button2Text;
+Callback = NotificationBindable;
+})
+end
 
 
 
+
+NotificationBindable.OnInvoke = function(result)
+if result == ButtonString then
+        -- string()
+   end
+end
+Msgreq("title,text,5,button_1,button_2)
+end
+
+function attach(client,target)
+	if tools(speaker) then
+		local char = speaker.Character
+		local tchar = target.Character
+		local hum = speaker.Character:FindFirstChildOfClass("Humanoid")
+		local hrp = getRoot(speaker.Character)
+		local hrp2 = getRoot(target.Character)
+		hum.Name = "1"
+		local newHum = hum:Clone()
+		newHum.Parent = char
+		newHum.Name = "Humanoid"
+		wait()
+		hum:Destroy()
+		workspace.CurrentCamera.CameraSubject = char
+		newHum.DisplayDistanceType = "None"
+		local tool = speaker:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass("Tool") or speaker.Character:FindFirstChildOfClass("Tool")
+		tool.Parent = char
+		hrp.CFrame = hrp2.CFrame * CFrame.new(0, 0, 0) * CFrame.new(math.random(-100, 100)/200,math.random(-100, 100)/200,math.random(-100, 100)/200)
+		local n = 0
+		repeat
+			wait(.1)
+			n = n + 1
+			hrp.CFrame = hrp2.CFrame
+		until (tool.Parent ~= char or not hrp or not hrp2 or not hrp.Parent or not hrp2.Parent or n > 250) and n > 2
+	else
+		notify("Tool Required","You need to have an item in your inventory to use this command","Yes","No","")
+	end
+end
+
+function kill(client,target,fast)
+	if tools(speaker) then
+		if target ~= nil then
+			local NormPos = getRoot(speaker.Character).CFrame
+			if not fast then
+				refresh(client)
+				wait()
+				repeat wait() until speaker.Character ~= nil and getRoot(speaker.Character)
+				wait(0.3)
+			end
+			local hrp = getRoot(speaker.Character)
+			attach(client,target)
+			repeat
+				wait()
+				hrp.CFrame = CFrame.new(999999, workspace.FallenPartsDestroyHeight + 5,999999)
+			until not getRoot(target.Character) or not getRoot(speaker.Character)
+			speaker.CharacterAdded:Wait():WaitForChild("HumanoidRootPart").CFrame = NormPos
+		end
+	else
+		notify("Tool Required","You need to have an item in your inventory to use this command","Yes","No","")
+	end
+end
 
 
 
@@ -709,17 +788,7 @@ var = v.Name
 end
 end
 
-speaker.Character.Humanoid:UnequipTools()
-local Humanoid = speaker.Character.Humanoid:Clone()
-local Target = var
-local Tool = speaker.Backpack:FindFirstChildOfClass("Tool")
- 
-speaker.Character.Animate.Disabled = true
-speaker.Character.Humanoid:Destroy()
-Humanoid.Parent = speaker.Character
-Tool.Parent = speaker.Character
-    game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
-firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+kill(speaker,Players[var])
 end
 if cmd == "inspect" then
 local var = string.sub(msg,space+1)
@@ -1114,6 +1183,33 @@ if cmd == "helicopter" then
 local var = string.sub(msg,space+1)
 Helicopter(var)
 end
+if cmd == "attach" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+attach(speaker,Players[var])
+end
+if cmd == "enablestate" then
+local var = string.sub(msg,space+1)
+local x = var
+	if not tonumber(x) then
+		local x = Enum.HumanoidStateType[var]
+	end
+	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, true)
+end
+if cmd == "disablestate" then
+local var = string.sub(msg,space+1)
+local x = var
+	if not tonumber(x) then
+		local x = Enum.HumanoidStateType[var]
+	end
+	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, false)
+end
 -- limits
 end
 end)
@@ -1160,6 +1256,9 @@ cmds[#cmds + 1] = {Text = "[35] /nosit",Title = "disable sit"}
 cmds[#cmds + 1] = {Text = "[36] /unnosit",Title = "enable sit"}
 cmds[#cmds + 1] = {Text = "[37] /sit",Title = "sit"}
 cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling or swim]",Title = "become a helicopter and destroy 2 towers😍👌"}
+cmds[#cmds + 1] = {Text = "[39] /attach [username]",Title = "attach."}
+cmds[#cmds + 1] = {Text = "[40] /enablestate [state type]",Title = "enable state like 15 (tonumber)"}
+cmds[#cmds + 1] = {Text = "[41] /disablestate [state type]",Title = "disable state like 15 (tonumber)"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
