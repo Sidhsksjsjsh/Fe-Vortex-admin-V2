@@ -66,7 +66,7 @@ if result == ButtonString then
         -- string()
    end
 end
-Msgreq("title,text,5,button_1,button_2)
+Msgreq(title,text,5,button_1,button_2)
 end
 
 function attach(client,target)
