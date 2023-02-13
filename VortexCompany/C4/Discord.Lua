@@ -604,6 +604,56 @@ if XV then
 		end
 	end
 end
+if cmd == "headsit" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+if headSit then headSit:Disconnect() end
+		game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit = true
+		headSit = RunService.Heartbeat:Connect(function()
+			if game.Players:FindFirstChild(game.Players[var].Name) and game.Players[var].Character ~= nil and getRoot(game.Players[var].Character) and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit == true then
+				getRoot(game.Players.LocalPlayer.Character).CFrame = getRoot(game.Players[var].Character).CFrame * CFrame.Angles(0,math.rad(0),0)* CFrame.new(0,1.6,0.4)
+			else
+				headSit:Disconnect()
+			end
+		end)
+end
+if cmd == "spy" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+viewing = Players[var]
+		workspace.CurrentCamera.CameraSubject = viewing.Character
+		local function viewDiedFunc()
+			repeat wait() until Players[var].Character ~= nil and getRoot(Players[var].Character)
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewDied = Players[var].CharacterAdded:Connect(viewDiedFunc)
+		local function viewChangedFunc()
+			workspace.CurrentCamera.CameraSubject = viewing.Character
+		end
+		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
+end
+if cmd == "unspy" then
+if viewing ~= nil then
+		viewing = nil
+	end
+	if viewDied then
+		viewDied:Disconnect()
+		viewChanged:Disconnect()
+	end
+	workspace.CurrentCamera.CameraSubject = speaker.Character
+end
 -- limits
 end
 end)
@@ -645,6 +695,7 @@ cmds[#cmds + 1] = {Text = "[31] /loopjump [jump]",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[32] /unloopjump",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[33] /fling",Title = "Troll"}
 cmds[#cmds + 1] = {Text = "[33] /unfling",Title = "stop flinging"}
+cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga head🤡🤙"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
