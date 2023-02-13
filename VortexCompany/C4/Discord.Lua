@@ -98,21 +98,6 @@ Title.TextWrapped = true
 Title.TextXAlignment = Enum.TextXAlignment.Left
 Title.TextYAlignment = Enum.TextYAlignment.Top
 
-local PosV = 0
-List.Parent = Content_2
-List.AnchorPoint = Vector2.new(0.5, 0.5)
-List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-List.BackgroundTransparency = 1.000
-List.Position = UDim2.new(0, 1, 1, PosV + 10)
-List.Size = UDim2.new(1, 0, 0, 18)
-List.Font = Enum.Font.GothamBlack
-List.Text = "</>"
-List.TextColor3 = Color3.fromRGB(255, 255, 255)
-List.TextScaled = true
-List.TextSize = 14.000
-List.TextTransparency = 0.500
-List.TextWrapped = true
-
 Close.Name = "Close"
 Close.Parent = Content
 Close.AnchorPoint = Vector2.new(1, 0)
