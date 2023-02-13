@@ -234,7 +234,6 @@ end
 	if flingDied then
 		flingDied:Disconnect()
 	end
-	flinging = false
 	wait(.1)
 	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
 	repeat
@@ -914,7 +913,6 @@ end
 	if flingDied then
 		flingDied:Disconnect()
 	end
-	flinging = false
 	wait(.1)
 	local speakerChar = speaker.Character
 	if not speakerChar or not getRoot(speakerChar) then return end
