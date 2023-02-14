@@ -1250,6 +1250,31 @@ end
 if cmd == "rejoin" then
 RejoinServer()
 end
+if cmd == "delete" then
+local var = string.sub(msg,space+1)
+local RightArm = "Right Arm"
+local LeftArm = "Left Arm"
+local LeftLeg = "Left Leg"
+local RightLeg = "Right Leg"
+local torso_R6 = "Torso"
+local UpperTorso_R15 = "Upper Torso"
+local LowerTorso_R15 = "Lower Torso"
+local Head = "Head"
+
+local BodyPart = {
+         ["ra"] = RightArm;
+         ["la"] = LeftArm;
+         ["ll"] = LeftLeg;
+         ["rl"] = RightLeg;
+         ["torso"] = torso_R6;
+         ["utorso"] = UpperTorso_R15;
+         ["ltorso"] = LowerTorso_R15;
+         ["head"] = Head;
+         ["nolimbs"] = RightArm and LeftArm and LeftLeg and RightLeg;
+    }
+
+speaker.Character[BodyPart[var]]:Destroy()
+end
 -- limits
 end
 end)
@@ -1300,6 +1325,7 @@ cmds[#cmds + 1] = {Text = "[39] /attach [username]",Title = "attach."}
 cmds[#cmds + 1] = {Text = "[40] /enablestate [state type]",Title = "enable state like 15 (tonumber)"}
 cmds[#cmds + 1] = {Text = "[41] /disablestate [state type]",Title = "disable state like 15 (tonumber)"}
 cmds[#cmds + 1] = {Text = "[42] /rejoin",Title = "rejoin server"}
+cmds[#cmds + 1] = {Text = "[43] /delete [ra, la, rl, ll, and nolimbs]",Title = "being a person without limbs😍🤫😜"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
