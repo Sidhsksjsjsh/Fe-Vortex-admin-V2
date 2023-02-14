@@ -1275,6 +1275,10 @@ local BodyPart = {
 
 speaker.Character[BodyPart[var]]:Destroy()
 end
+if cmd == "swim" then
+Workspace.Gravity = 0
+speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+end
 -- limits
 end
 end)
