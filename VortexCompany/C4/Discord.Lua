@@ -1277,6 +1277,12 @@ speaker.Character[BodyPart[var]]:Destroy()
 end
 if cmd == "swim" then
 Workspace.Gravity = 0
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+end
+if cmd == "unswim" then
+Workspace.Gravity = 198
+speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
 speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
 end
 -- limits
