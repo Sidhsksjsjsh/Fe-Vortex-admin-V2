@@ -12,6 +12,17 @@ local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
 local flinging = false
+local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+
+        function RejoinServer()
+    if #game.Players:GetPlayers() <= 1 then
+        game.Players.LocalPlayer:Kick("\nRejoining...")
+        wait()
+        game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
+    else
+        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+    end
+end
 
 function isNumber(str)
 	if tonumber(str) ~= nil or str == 'inf' then
@@ -1236,6 +1247,9 @@ local x = var
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, false)
 end
+if cmd == "rejoin" then
+RejoinServer()
+end
 -- limits
 end
 end)
@@ -1285,6 +1299,7 @@ cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling or swim]",Title = "be
 cmds[#cmds + 1] = {Text = "[39] /attach [username]",Title = "attach."}
 cmds[#cmds + 1] = {Text = "[40] /enablestate [state type]",Title = "enable state like 15 (tonumber)"}
 cmds[#cmds + 1] = {Text = "[41] /disablestate [state type]",Title = "disable state like 15 (tonumber)"}
+cmds[#cmds + 1] = {Text = "[42] /rejoin",Title = "rejoin server"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
