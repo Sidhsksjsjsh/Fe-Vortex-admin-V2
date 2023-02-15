@@ -215,7 +215,7 @@ Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1.000
 Title.Size = UDim2.new(1, 0, 0, 18)
 Title.Font = Enum.Font.SourceSansBold
-Title.Text = "Vortext V2 | Commands list"
+Title.Text = "Vortext V:{2} | {ContentError}:{1}"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextScaled = true
 Title.TextSize = 14.000
@@ -1369,7 +1369,7 @@ List.BackgroundTransparency = 1.000
 List.Position = UDim2.new(0, 1, 1, PosV + 10)
 List.Size = UDim2.new(1, 0, 0, 18)
 List.Font = Enum.Font.GothamBlack
-List.Text = tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. ""
+List.Text = ""
 List.TextColor3 = Color3.fromRGB(255, 255, 255)
 List.TextScaled = true
 List.TextSize = 14.000
@@ -1393,6 +1393,33 @@ function GetPlayer(String)
         end
     return plr
 end
+
+local Developer = {
+      Title = "Developer:";
+      Rivanda_Cheater = "Rivanda_Cheater (C4#4172)";
+      CookieProgamming = "CookieProgamming (alt)";
+}
+
+local friend = {
+      Title = "My friend who uses my script admin:";
+      Daffy = " (Daffy.man#0820)";
+      anikazila = "anikazila (vilson#9959)";
+      vilobatir = "vilobatir (vilobatir#4720)";
+}
+
+local partner = {
+      Title = "Vortex Partner (4/5)";
+      _A = "i forgor💀#4109 -> Gui/UI";
+      _B = "Riri#0337 -> Admin/Command string";
+      _C = "[dE]Jepin#0478 -> Idea/Script";
+      _D = "XxkillerboyxX#5706 -> cmds display";
+}
+
+local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n\n" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
+
+local ContentCmds = "The command list is in the console."
+
+Title.Text = "Vortext V2 | Credit \n\n" .. content_credit .. "\n\n" .. ContentCmds
 
 local vim = game:service("VirtualInputManager")
 vim:SendKeyEvent(true, "F9", false, game)
