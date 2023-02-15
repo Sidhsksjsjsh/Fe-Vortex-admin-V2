@@ -1301,11 +1301,8 @@ speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
 end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
-local id = "rbxasset://" .. var
-
-local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 music(var)
-notify("now playing",var .. " (" .. tostring(Asset.Name) .. ")","close","","")
+notify("now playing",var .. " (" .. tostring(MusicName) .. ")","close","","")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
