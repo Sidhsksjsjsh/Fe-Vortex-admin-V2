@@ -1295,7 +1295,7 @@ speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
 end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
-local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
+local id = "rbxasset://" .. var
 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 music(var)
@@ -1355,6 +1355,8 @@ cmds[#cmds + 1] = {Text = "[40] /enablestate [state type]",Title = "enable state
 cmds[#cmds + 1] = {Text = "[41] /disablestate [state type]",Title = "disable state like 15 (tonumber)"}
 cmds[#cmds + 1] = {Text = "[42] /rejoin",Title = "rejoin server"}
 cmds[#cmds + 1] = {Text = "[43] /delete [ra, la, rl, ll, and nolimbs]",Title = "being a person without limbs😍🤫😜"}
+cmds[#cmds + 1] = {Text = "[44] /music [id]",Title = "play music"}
+cmds[#cmds + 1] = {Text = "[45] /nomusic",Title = "stop music"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
