@@ -55,6 +55,15 @@ function tools(plr)
 	end
 end
 
+function music(idmusic)
+sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://" .. idmusic
+sound.Volume = 1
+sound.Parent = game:GetService("SoundService")
+sound.Looped = true
+sound:Play()
+end
+
 function notify(title, text, button_1, button_2, ButtonString)
 local NotificationBindable = Instance.new("BindableFunction")
 local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
@@ -1283,7 +1292,17 @@ end
 if cmd == "unswim" then
 Workspace.Gravity = 198
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
-speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+end
+if cmd == "music" then
+local var = string.sub(msg,space+1)
+local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
+
+local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+music(var)
+notify("now playing",var .. " (" .. tostring(Asset.Name) .. ")","close","","")
+end
+if cmd == "nomusic" then
+sound.Volume = 0
 end
 -- limits
 end
