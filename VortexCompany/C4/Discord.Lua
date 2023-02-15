@@ -55,6 +55,7 @@ function tools(plr)
 	end
 end
 
+local MusicName = ""
 function music(idmusic)
 sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://" .. idmusic
@@ -62,6 +63,11 @@ sound.Volume = 1
 sound.Parent = game:GetService("SoundService")
 sound.Looped = true
 sound:Play()
+local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
+
+Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+
+MusicName = Asset.Name
 end
 
 function notify(title, text, button_1, button_2, ButtonString)
@@ -1419,7 +1425,19 @@ local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "
 
 local ContentCmds = "The command list is in the console."
 
-Title.Text = "Vortext V2 | Credit \n\n" .. content_credit .. "\n\n" .. ContentCmds
+List.Parent = Content_2
+List.AnchorPoint = Vector2.new(0.5, 0.5)
+List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+List.BackgroundTransparency = 1.000
+List.Position = UDim2.new(0, 1, 1, 0)
+List.Size = UDim2.new(1, 0, 0, 18)
+List.Font = Enum.Font.GothamBlack
+List.Text = content_credit .. "\n\n" .. ContentCmds
+List.TextColor3 = Color3.fromRGB(255, 255, 255)
+List.TextScaled = true
+List.TextSize = 14.000
+List.TextTransparency = 0.500
+List.TextWrapped = true
 
 local vim = game:service("VirtualInputManager")
 vim:SendKeyEvent(true, "F9", false, game)
