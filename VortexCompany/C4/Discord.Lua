@@ -70,6 +70,20 @@ Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 MusicName = Asset.Name
 end
 
+local _AnimName = ""
+function _Anims(id)
+AnimService = Instance.new("Animation")
+AnimService.AnimationId = "rbxassetid://" .. id
+ServiceStart = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimService)
+ServiceStart:Play()
+ServiceStart:AdjustSpeed(1)
+local id = string.match(AnimService.AnimationId, "rbxasset://sounds.+") or string.match(AnimService.AnimationId, "&hash=.+") or string.match(AnimService.AnimationId, "%d+")
+
+Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+
+_AnimName = Asset.Name
+end
+
 function notify(title, text, button_1, button_2, ButtonString)
 local NotificationBindable = Instance.new("BindableFunction")
 local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
@@ -1307,6 +1321,15 @@ end
 if cmd == "nomusic" then
 sound.Volume = 0
 end
+if cmd == "anim" then
+local var = string.sub(msg,space+1)
+_Anims(var)
+notify("now playing animation",var .. " (" .. tostring(_AnimName) .. ")","close","","")
+end
+if cmd == "noanim" then
+AnimService:Stop()
+ServiceStart:Destroy()
+end
 -- limits
 end
 end)
@@ -1360,6 +1383,8 @@ cmds[#cmds + 1] = {Text = "[42] /rejoin",Title = "rejoin server"}
 cmds[#cmds + 1] = {Text = "[43] /delete [ra, la, rl, ll, and nolimbs]",Title = "being a person without limbs😍🤫😜"}
 cmds[#cmds + 1] = {Text = "[44] /music [id]",Title = "play music"}
 cmds[#cmds + 1] = {Text = "[45] /nomusic",Title = "stop music"}
+cmds[#cmds + 1] = {Text = "[46] /anim [id]",Title = "use ur animation"}
+cmds[#cmds + 1] = {Text = "[47] /noanim",Title = "stop ur animation"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
