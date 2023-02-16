@@ -35,6 +35,11 @@ function getRoot(char)
 	return rootPart
 end
 
+function getTorso(x)
+	x = x or Players.LocalPlayer.Character
+	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
+end
+
 function randomString()
 	local length = math.random(10,20)
 	local array = {}
@@ -965,7 +970,9 @@ track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
 track:Play()
 track:AdjustSpeed(10)
 local function Looptp()
-speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+local bangOffet = CFrame.new(0, 0, 1.1)
+local otherRoot = getTorso(Players[var].Character)
+				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
 end
