@@ -14,6 +14,7 @@ local vehicleflyspeed = 1
 local flinging = false
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
+function Vortex()
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
@@ -1396,21 +1397,7 @@ cmds[#cmds + 1] = {Text = "[47] /noanim",Title = "stop ur animation"}
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
-       local PosV = 0
-List.Parent = Content_2
-List.AnchorPoint = Vector2.new(0.5, 0.5)
-List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-List.BackgroundTransparency = 1.000
-List.Position = UDim2.new(0, 1, 1, PosV + 10)
-List.Size = UDim2.new(1, 0, 0, 18)
-List.Font = Enum.Font.GothamBlack
-List.Text = ""
-List.TextColor3 = Color3.fromRGB(255, 255, 255)
-List.TextScaled = true
-List.TextSize = 14.000
-List.TextTransparency = 0.500
-List.TextWrapped = true
-end
+       end
 
 function GetPlayer(String)
     local plr
@@ -1436,10 +1423,23 @@ local Developer = {
 }
 
 local friend = {
-      Title = "My friend who uses my script admin:";
+      Title = "My friend who uses my admin script:";
       Daffy = " (Daffy.man#0820)";
       anikazila = "anikazila (vilson#9959)";
       vilobatir = "vilobatir (vilobatir#4720)";
+}
+
+local staff = {
+      _staff_Title = "staff:";
+      _staff_1 = "i forgor💀#4109";
+      _staff_2 = "Riri#0337";
+      _staff_3 = "";
+      _staff_4 = "";
+}
+
+local moderator = {
+      _mod_title = "moderator:";
+      _mod_1 = "i forgor💀#4109";    
 }
 
 local partner = {
@@ -1450,9 +1450,13 @@ local partner = {
       _D = "XxkillerboyxX#5706 -> cmds display";
 }
 
-local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n\n" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
+local CrV = staff._staff_Title .. "\n" .. staff._staff_1 .. "\n" .. staff._staff_2 .. "\n\n" .. moderator._mod_title .. "\n" .. moderator._mod_1 .. "\n\n"
+
+local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n\n" .. CrV .. "" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
 
 local ContentCmds = "The command list is in the console."
+
+warn(content_credit)
 
 List.Parent = Content_2
 List.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -1461,7 +1465,7 @@ List.BackgroundTransparency = 1.000
 List.Position = UDim2.new(0, 1, 1, 0)
 List.Size = UDim2.new(1, 0, 0, 18)
 List.Font = Enum.Font.GothamBlack
-List.Text = content_credit .. "\n\n" .. ContentCmds
+List.Text = "The command list is in the console. {!}:{}"
 List.TextColor3 = Color3.fromRGB(255, 255, 255)
 List.TextScaled = true
 List.TextSize = 14.000
@@ -1470,3 +1474,17 @@ List.TextWrapped = true
 
 local vim = game:service("VirtualInputManager")
 vim:SendKeyEvent(true, "F9", false, game)
+end
+
+local whitelist = {
+      "anikazila",
+      "Rivanda_Cheater",
+      "CookieProgamming",
+      ""
+}
+
+if whitelist == speaker.Name or speaker.Name == whitelist then
+Vortex()
+else
+speaker:Kick("you are not on whitelist, have you bought this admin?")
+end
