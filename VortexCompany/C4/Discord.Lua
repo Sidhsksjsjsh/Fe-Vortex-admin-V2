@@ -14,7 +14,6 @@ local vehicleflyspeed = 1
 local flinging = false
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
-function Vortex()
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
@@ -1474,17 +1473,3 @@ List.TextWrapped = true
 
 local vim = game:service("VirtualInputManager")
 vim:SendKeyEvent(true, "F9", false, game)
-end
-
-local whitelist = {
-      "anikazila",
-      "Rivanda_Cheater",
-      "CookieProgamming",
-      ""
-}
-
-if whitelist == speaker.Name or speaker.Name == whitelist then
-Vortex()
-else
-speaker:Kick("you are not on whitelist, have you bought this admin?")
-end
