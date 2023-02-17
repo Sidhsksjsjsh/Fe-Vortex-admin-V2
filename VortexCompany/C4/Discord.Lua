@@ -14,6 +14,108 @@ local vehicleflyspeed = 1
 local flinging = false
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 
+local Domain = {
+                    Domain = Instance.new("ScreenGui"),
+                    UITextSizeConstraint_13 = Instance.new("UITextSizeConstraint"),
+                    FriendJoined = Instance.new("Frame"),
+                    UICorner_66 = Instance.new("UICorner"),
+                    UICorner_67 = Instance.new("UICorner"),
+                    Textjoin = Instance.new("TextLabel"),
+                    Other = Instance.new("Frame"),
+                    Avatarjoin = Instance.new("ImageLabel")
+}
+
+Domain.Domain.Name = "Domain"
+Domain.Domain.Parent = game:GetService("CoreGui")
+Domain.Domain.ResetOnSpawn = false
+
+Domain.Other.Name = "Other"
+Domain.Other.Parent = Domain.Domain
+Domain.Other.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Domain.Other.BackgroundTransparency = 1.000
+Domain.Other.BorderSizePixel = 0
+Domain.Other.Position = UDim2.new(0.966000021, 0, 0.261999995, 0)
+Domain.Other.Size = UDim2.new(0.0430000015, 0, 0.474999994, 0)
+
+Domain.FriendJoined.Name = "FriendJoined"
+Domain.FriendJoined.Parent = Domain.Other
+Domain.FriendJoined.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Domain.FriendJoined.BorderSizePixel = 0
+Domain.FriendJoined.Position = UDim2.new(-4.58847857, 0, 1.30335116, 0)
+Domain.FriendJoined.Size = UDim2.new(4.92762661, 0, 0.195112452, 0)
+Domain.FriendJoined.Visible = false
+ 
+Domain.UICorner_66.CornerRadius = UDim.new(0, 10)
+Domain.UICorner_66.Parent = Domain.FriendJoined
+ 
+Domain.Textjoin.Name = "Textjoin"
+Domain.Textjoin.Parent = Domain.FriendJoined
+Domain.Textjoin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Domain.Textjoin.BackgroundTransparency = 1.000
+Domain.Textjoin.BorderSizePixel = 0
+Domain.Textjoin.Position = UDim2.new(0.26033023, 0, 0.25, 0)
+Domain.Textjoin.Size = UDim2.new(0.685603261, 0, 0.5, 0)
+Domain.Textjoin.Font = Enum.Font.GothamBold
+Domain.Textjoin.Text = "Your friend, usernameusername has joined the server"
+Domain.Textjoin.TextColor3 = Color3.fromRGB(255, 255, 255)
+Domain.Textjoin.TextScaled = true
+Domain.Textjoin.TextSize = 14.000
+Domain.Textjoin.TextWrapped = true
+Domain.Textjoin.TextXAlignment = Enum.TextXAlignment.Left
+ 
+Domain.UITextSizeConstraint_13.Parent = Domain.Textjoin
+Domain.UITextSizeConstraint_13.MaxTextSize = 20
+ 
+Domain.Avatarjoin.Name = "Avatarjoin"
+Domain.Avatarjoin.Parent = Domain.FriendJoined
+Domain.Avatarjoin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Domain.Avatarjoin.BackgroundTransparency = 1.000
+Domain.Avatarjoin.BorderSizePixel = 0
+Domain.Avatarjoin.Position = UDim2.new(0.0651319921, 0, 0.189999998, 0)
+Domain.Avatarjoin.Size = UDim2.new(0.150188312, 0, 0.606190205, 0)
+Domain.Avatarjoin.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+Domain.Avatarjoin.Visible = false
+
+Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
+Domain.UICorner_67.Parent = Domain.Avatarjoin
+
+function notify(A1)
+Domain.FriendJoined.Visible = true
+    Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
+    Domain.FriendJoined.Textjoin.Text = A1
+    Domain.FriendJoined.Textjoin.TextTransparency = 1
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
+    tween:Play()
+    wait(0.5)
+    local transitionInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {BackgroundTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.45, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Textjoin, transitionInfo, {TextTransparency = 0})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.45, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {ImageTransparency = 0})
+    tween:Play()
+    wait(4)
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Textjoin, transitionInfo, {TextTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {ImageTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {BackgroundTransparency = 1})
+    tween:Play()
+    wait(0.5)
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0, 0)})
+    tween:Play()
+end
+
+notify("hello," .. speaker.DisplayName)
+
+
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
@@ -89,30 +191,6 @@ Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 _AnimName = Asset.Name
 end
 
-function notify(title, text, button_1, button_2, ButtonString)
-local NotificationBindable = Instance.new("BindableFunction")
-local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
-game.StarterGui:SetCore("SendNotification", {
-Title = Title;
-Text = Text;
-Icon = "";
-Duration = Duration;
-Button1 = Button1Text;
-Button2 = Button2Text;
-Callback = NotificationBindable;
-})
-end
-
-
-
-
-NotificationBindable.OnInvoke = function(result)
-if result == ButtonString then
-        -- string()
-   end
-end
-Msgreq(title,text,5,button_1,button_2)
-end
 
 function respawn(plr)
 	if invisRunning then TurnVisible() end
@@ -975,6 +1053,7 @@ local otherRoot = getTorso(Players[var].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
+notify("Banging: " .. var)
 end
 if cmd == "unbang" then
 if RapeStart then
@@ -996,6 +1075,7 @@ local function Loopwalk()
 speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
 end
     Follow = RunService.Stepped:Connect(Loopwalk)
+notify("Following " .. var)
 end
 if cmd == "loopgoto" then
 local var = string.sub(msg,space+1)
@@ -1010,6 +1090,7 @@ local function Looptp()
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
 end
     Loopgoto = RunService.Stepped:Connect(Looptp)
+notify("loop go to " .. var)
 end
 if cmd == "looptween" then
 local var = string.sub(msg,space+1)
@@ -1028,6 +1109,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 {CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
+notify("Loop tweening to " .. var)
 end
 if cmd == "goto" then
 local var = string.sub(msg,space+1)
@@ -1039,6 +1121,7 @@ end
 end
 
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+notify("teleporting to " .. var)
 end
 if cmd == "tweento" then
 local var = string.sub(msg,space+1)
@@ -1054,6 +1137,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 
 
 {CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
+notify("tweening to " .. var)
 end
 if cmd == "walkto" then
 local var = string.sub(msg,space+1)
@@ -1065,6 +1149,7 @@ end
 end
 
 speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
+notify("walk to " .. var)
 end
 if cmd == "unfollow" then
 if Follow then
@@ -1092,10 +1177,12 @@ end
 if cmd == "speed" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var
+notify("Current speed: " .. var)
 end
 if cmd == "jump" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
+notify("Current jump: " .. var)
 end
 if cmd == "fling" then
 flinging = false
@@ -1161,6 +1248,7 @@ end
 		bambam.AngularVelocity = Vector3.new(0,0,0)
 		wait(.1)
 	until flinging == false
+notify("fling enabled")
 end
 if cmd == "unfling" then
 if XV then
@@ -1184,6 +1272,7 @@ if XV then
 			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
 		end
 	end
+notify("fling disabled")
 end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
@@ -1203,6 +1292,7 @@ if headSit then headSit:Disconnect() end
 				headSit:Disconnect()
 			end
 		end)
+notify("sitting on the " .. var .. " head")
 end
 if cmd == "spy" then
 local var = string.sub(msg,space+1)
@@ -1224,6 +1314,7 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
+notify("Spying " .. var)
 end
 if cmd == "unspy" then
 if viewing ~= nil then
@@ -1234,6 +1325,7 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
+notify("Spying turned off")
 end
 if cmd == "cmds" then
 SourceUITemplate.Visible = true
@@ -1243,18 +1335,22 @@ local function DISABLESIT()
       game.Players.LocalPlayer.Character.Humanoid.Sit = false
 end
     NositCmd = RunService.Stepped:Connect(DISABLESIT)
+notify("sit disabled")
 end
 if cmd == "unnosit" then
 if NositCmd then
      NositCmd:Disconnect()
 end
+notify("sit enabled")
 end
 if cmd == "sit" then
 game.Players.LocalPlayer.Character.Humanoid.Sit = true
+notify("sit XD")
 end
 if cmd == "helicopter" then
 local var = string.sub(msg,space+1)
 Helicopter(var)
+notify("Helicopter mode: " .. var)
 end
 if cmd == "attach" then
 local var = string.sub(msg,space+1)
@@ -1266,6 +1362,7 @@ end
 end
 
 attach(speaker,Players[var])
+notify("attached: " .. var)
 end
 if cmd == "enablestate" then
 local var = string.sub(msg,space+1)
@@ -1274,6 +1371,7 @@ local x = var
 		local x = Enum.HumanoidStateType[var]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, true)
+notify("state enabled, current state: " .. var)
 end
 if cmd == "disablestate" then
 local var = string.sub(msg,space+1)
@@ -1282,8 +1380,11 @@ local x = var
 		local x = Enum.HumanoidStateType[var]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, false)
+notify("state disabled")
 end
 if cmd == "rejoin" then
+notify("Rejoining...")
+wait(1)
 RejoinServer()
 end
 if cmd == "delete" then
@@ -1310,32 +1411,37 @@ local BodyPart = {
     }
 
 speaker.Character[BodyPart[var]]:Destroy()
+notify("Deleting parts: " .. var)
 end
 if cmd == "swim" then
 Workspace.Gravity = 0
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
 speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+notify("swimming enabled")
 end
 if cmd == "unswim" then
 Workspace.Gravity = 198
 speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+notify("swimming disabled")
 end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
 music(var)
-notify("now playing",var .. " (" .. tostring(MusicName) .. ")","close","","")
+notify("now playing " .. var .. " (" .. tostring(MusicName) .. ")")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
+notify("music disabled")
 end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
 _Anims(var)
-notify("now playing animation",var .. " (" .. tostring(_AnimName) .. ")","close","","")
+notify("now playing animation " .. var .. " (" .. tostring(_AnimName) .. ")")
 end
 if cmd == "noanim" then
 AnimService:Stop()
 ServiceStart:Destroy()
+notify("animation disabled")
 end
 -- limits
 end
