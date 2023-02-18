@@ -1603,29 +1603,6 @@ if not hookmetamethod then
 
 	notify("Client anti teleport is now active (only effective on localscript teleport)")
 end
-if cmd == "support" then
-if copy then
-		copy("https://discord.com/invite/dYHag43eeU")
-		notify("Copied to clipboard!\ndiscord.gg/dYHag43eeU")
-	else
-		notify("discord.gg/dYHag43eeU")
-	end
-	if httprequest then
-		httprequest({
-			Url = 'http://127.0.0.1:6463/rpc?v=1',
-			Method = 'POST',
-			Headers = {
-				['Content-Type'] = 'application/json',
-				Origin = 'https://discord.com'
-			},
-			Body = HttpService:JSONEncode({
-				cmd = 'INVITE_BROWSER',
-				nonce = HttpService:GenerateGUID(false),
-				args = {code = 'dYHag43eeU'}
-			})
-		})
-	end
-end
 -- limits
 end
 end)
