@@ -15,6 +15,8 @@ local flinging = false
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local oofing = false
 local TeleportService = game:GetService("TeleportService")
+local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
+
 
 function copy(txt)
        setclipboard(txt)
