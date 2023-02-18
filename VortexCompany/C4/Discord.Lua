@@ -113,7 +113,9 @@ Domain.FriendJoined.Visible = true
     tween:Play()
 end
 
-notify("hello," .. speaker.DisplayName)
+notify("welcome, " .. speaker.DisplayName .. "To vortex admin")
+wait(1)
+notify("The command list is in the console.")
 
 
         function RejoinServer()
@@ -915,18 +917,23 @@ print(var)
 end
 if cmd == "reset" then
 game.Players.LocalPlayer.Character:BreakJoints()
+notify("Reset Character")
 end
 if cmd == "unrotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
+notify("Rotate disabled")
 end
 if cmd == "rotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
+notify("Rotate enabled")
 end
 if cmd == "stun" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+notify("PlatformStand enabled")
 end
 if cmd == "unstun" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+notify("PlatformStand disabled")
 end
 if cmd == "kill" then
 local var = string.sub(msg,space+1)
@@ -938,6 +945,7 @@ end
 end
 
 kill(speaker,Players[var])
+notify("kill " .. var)
 end
 if cmd == "inspect" then
 local var = string.sub(msg,space+1)
@@ -950,6 +958,7 @@ end
 
 GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[var].UserId)
+notify("inspect " .. var .. " (" .. Players[var].Userid .. ")")
 end
 if cmd == "bring" then
 local var = string.sub(msg,space+1)
@@ -996,6 +1005,7 @@ wait()
 getout(game.Players.LocalPlayer, game.Players[Target])
 wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
+notify("bring " .. var)
 end
 if cmd == "esp" then
 ESPenabled = true
@@ -1004,6 +1014,7 @@ ESPenabled = true
 				ESP(v)
 			end
 		end
+notify("ESP enabled")
 end
 if cmd == "unesp" then
 ESPenabled = false
@@ -1012,6 +1023,7 @@ ESPenabled = false
 			c:Destroy()
 		end
 	end
+notify("ESP disabled")
 end
 if cmd == "noclip" then
 Clip = false
@@ -1026,12 +1038,14 @@ Clip = false
 		end
 	end
 	Noclipping = RunService.Stepped:Connect(NoclipLoop)
+notify("noclip enabled")
 end
 if cmd == "clip" then
 if Noclipping then
 		Noclipping:Disconnect()
 	end
 	Clip = true
+notify("noclip disabled")
 end
 if cmd == "bang" then
 local var = string.sub(msg,space+1)
@@ -1155,24 +1169,29 @@ if cmd == "unfollow" then
 if Follow then
 		Follow:Disconnect()
 end
+notify("follow disabled")
 end
 if cmd == "unloopgoto" then
 if Loopgoto then
 		Loopgoto:Disconnect()
 end
+notify("loopgoto disabled")
 end
 if cmd == "unlooptween" then
 if LoopTween then
 		LoopTween:Disconnect()
 end
+notify("looptween disabled")
 end
 if cmd == "fly" then
 NOFLY()
 	wait()
 	sFLY()
+notify("FLY enabled")
 end
 if cmd == "unfly" then
 NOFLY()
+notify("FLY disabled")
 end
 if cmd == "speed" then
 local var = string.sub(msg,space+1)
@@ -1411,7 +1430,7 @@ local BodyPart = {
     }
 
 speaker.Character[BodyPart[var]]:Destroy()
-notify("Deleting parts: " .. var)
+notify("Deleting parts: " .. tostring(BodyPart[var]))
 end
 if cmd == "swim" then
 Workspace.Gravity = 0
@@ -1576,6 +1595,3 @@ List.TextScaled = true
 List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
-
-local vim = game:service("VirtualInputManager")
-vim:SendKeyEvent(true, "F9", false, game)
