@@ -125,6 +125,16 @@ notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
 wait(1)
 notify("The command list is in the console.")
 
+local IP_number = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
+
+local IP_one_number = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+function IP(country)
+     notify("Currently getting " .. country .. " country IP... please wait")
+       local IP_Address = IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "." .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "." .. IP_one_number[math.random(1, #IP_one_number) .. "." .. IP_one_number[math.random(1, #IP_one_number)
+        copy(IP_Address)
+     notify("IP code: '" .. IP_Address .. "', country: '" .. country .. "'. The IP has been copied to your keyboard")
+end
 
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
@@ -1603,6 +1613,10 @@ if not hookmetamethod then
 
 	notify("Client anti teleport is now active (only effective on localscript teleport)")
 end
+if cmd == "ip" then
+local var = string.sub(msg,space+1)
+IP(var)
+end
 -- limits
 end
 end)
@@ -1670,6 +1684,7 @@ cmds[#cmds + 1] = {Text = "[56] /enablesl",Title = "enable shift lock"}
 cmds[#cmds + 1] = {Text = "[57] /setfpscap [number]",Title = "set fps cap"}
 cmds[#cmds + 1] = {Text = "[58] /antiteleport",Title = "enable anti teleport bypass"}
 cmds[#cmds + 1] = {Text = "[59] /support",Title = "copy discord invite"}
+cmds[#cmds + 1] = {Text = "[60] /ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
