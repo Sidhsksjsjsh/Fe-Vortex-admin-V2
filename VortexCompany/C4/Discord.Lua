@@ -131,7 +131,7 @@ local IP_one_number = {"1", "2", "3", "4", "5", "6", "7", "8", "9"}
 
 function IP(country)
      notify("Currently getting " .. country .. " country IP... please wait")
-       local IP_Address = IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "." .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "" .. IP_number[math.random(1, #IP_number) .. "." .. IP_one_number[math.random(1, #IP_one_number) .. "." .. IP_one_number[math.random(1, #IP_one_number)
+       local IP_Address = IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "." .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "." .. IP_one_number[math.random(1, #IP_one_number)] .. "." .. IP_one_number[math.random(1, #IP_one_number)]
         copy(IP_Address)
      notify("IP code: '" .. IP_Address .. "', country: '" .. country .. "'. The IP has been copied to your keyboard")
 end
