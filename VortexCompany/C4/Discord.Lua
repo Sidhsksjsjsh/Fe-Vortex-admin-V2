@@ -121,7 +121,7 @@ Domain.FriendJoined.Visible = true
     tween:Play()
 end
 
-notify("welcome, " .. speaker.DisplayName .. "To vortex admin")
+notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
 wait(1)
 notify("The command list is in the console.")
 
