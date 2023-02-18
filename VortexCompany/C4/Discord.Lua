@@ -13,6 +13,12 @@ local iyflyspeed = 1
 local vehicleflyspeed = 1
 local flinging = false
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
+local oofing = false
+local TeleportService = game:GetService("TeleportService")
+
+function copy(txt)
+       setclipboard(txt)
+end
 
 local Domain = {
                     Domain = Instance.new("ScreenGui"),
@@ -1462,6 +1468,162 @@ AnimService:Stop()
 ServiceStart:Destroy()
 notify("animation disabled")
 end
+if cmd == "joindate" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local dates = {}
+	notify("Hold on a sec")
+		local user = game:HttpGet("https://users.roblox.com/v1/users/"..Players[var].UserId)
+		local json = HttpService:JSONDecode(user)
+		local date = json["created"]:sub(1,10)
+		local splitDates = string.split(date,"-")
+		table.insert(dates,Players[v].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
+	local chatString = table.concat(dates, ', ')
+	notify(chatString)
+end
+if cmd == "blockhats" then
+for _,v in pairs(speaker.Character:FindFirstChildOfClass('Humanoid'):GetAccessories()) do
+		for i,c in pairs(v:GetDescendants()) do
+			if c:IsA("SpecialMesh") then
+				c:Destroy()
+			end
+		end
+	end
+end
+if cmd == "blocktools" then
+for _,v in pairs(speaker.Character:GetChildren()) do
+		if v:IsA("Tool") or v:IsA("HopperBin") then
+			for i,c in pairs(v:GetDescendants()) do
+				if c:IsA("SpecialMesh") then
+					c:Destroy()
+				end
+			end
+		end
+	end
+end
+if cmd == "faceless" then
+for i,v in pairs(speaker.Character:GetDescendants()) do
+		if v:IsA("Decal") and v.Name == 'face' then
+			v:Destroy()
+		end
+	end
+end
+if cmd == "grabtools" then
+local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+	for _, child in ipairs(workspace:GetChildren()) do
+		if speaker.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") then
+			humanoid:EquipTool(child)
+		end
+	end
+
+	if grabtoolsFunc then 
+		grabtoolsFunc:Disconnect() 
+	end
+
+	grabtoolsFunc = workspace.ChildAdded:Connect(function(child)
+		if speaker.Character and child:IsA("BackpackItem") and child:FindFirstChild("Handle") then
+			humanoid:EquipTool(child)
+		end
+	end)
+
+	notify("Picking up any dropped tools")
+end
+if cmd == "ungrabtools" then
+if grabtoolsFunc then 
+		grabtoolsFunc:Disconnect() 
+	end
+
+	notify("Grabtools has been disabled")
+end
+if cmd == "loopoof" then
+oofing = true
+	repeat wait(0.1)
+		for i,v in pairs(Players:GetPlayers()) do
+			if v.Character ~= nil and v.Character:FindFirstChild'Head' then
+				for _,x in pairs(v.Character.Head:GetChildren()) do
+					if x:IsA'Sound' then x.Playing = true end
+				end
+			end
+		end
+	until oofing == false
+end
+if cmd == "unloopoof" then
+oofing = false
+end
+if cmd == "enablesl" then
+speaker.DevEnableMouseLock = true
+	notify("Shift lock is now available")
+end
+if cmd == "setfpscap" then
+local var = string.sub(msg,space+1)
+if setfpscap then
+		local num = var or 1e6
+		if num == 'none' then
+			return setfpscap(1e6)
+		elseif num > 0 then
+			return setfpscap(num)
+		else
+			return notify("Please provide a number above 0 or 'none'.")
+		end
+	else
+		return notify("Your exploit does not support this command (missing setfpscap)")
+	end
+end
+if cmd == "antiteleport" then
+if not hookmetamethod then 
+		return notify("Your exploit does not support this command (missing hookmetamethod)")
+	end
+	local TeleportService = TeleportService
+	local oldhmmi
+	local oldhmmnc
+	oldhmmi = hookmetamethod(game, "__index", function(self, method)
+		if self == TeleportService then
+			if method:lower() == "teleport" then
+				return error("Expected ':' not '.' calling member function Kick", 2)
+			elseif method == "TeleportToPlaceInstance" then
+				return error("Expected ':' not '.' calling member function TeleportToPlaceInstance", 2)
+			end
+		end
+		return oldhmmi(self, method)
+	end)
+	oldhmmnc = hookmetamethod(game, "__namecall", function(self, ...)
+		if self == TeleportService and getnamecallmethod():lower() == "teleport" or getnamecallmethod() == "TeleportToPlaceInstance" then
+			return
+		end
+		return oldhmmnc(self, ...)
+	end)
+
+	notify("Client anti teleport is now active (only effective on localscript teleport)")
+end
+if cmd == "support" then
+if copy then
+		copy("https://discord.com/invite/dYHag43eeU")
+		notify("Copied to clipboard!\ndiscord.gg/dYHag43eeU")
+	else
+		notify("discord.gg/dYHag43eeU")
+	end
+	if httprequest then
+		httprequest({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = HttpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = HttpService:GenerateGUID(false),
+				args = {code = 'dYHag43eeU'}
+			})
+		})
+	end
+end
 -- limits
 end
 end)
@@ -1517,6 +1679,18 @@ cmds[#cmds + 1] = {Text = "[44] /music [id]",Title = "play music"}
 cmds[#cmds + 1] = {Text = "[45] /nomusic",Title = "stop music"}
 cmds[#cmds + 1] = {Text = "[46] /anim [id]",Title = "use ur animation"}
 cmds[#cmds + 1] = {Text = "[47] /noanim",Title = "stop ur animation"}
+cmds[#cmds + 1] = {Text = "[48] /joindate [username]",Title = "join date"}
+cmds[#cmds + 1] = {Text = "[49] /blockhats",Title = "turn all your hats and hair into squares"}
+cmds[#cmds + 1] = {Text = "[50] /blocktools",Title = "turn all your tools into squares"}
+cmds[#cmds + 1] = {Text = "[51] /faceless",Title = "remove ur face"}
+cmds[#cmds + 1] = {Text = "[52] /grabtools",Title = "Picking up any dropped tools"}
+cmds[#cmds + 1] = {Text = "[53] /ungrabtools",Title = "Picking up any dropped tools"}
+cmds[#cmds + 1] = {Text = "[54] /loopoof",Title = "spamming oof sound"}
+cmds[#cmds + 1] = {Text = "[55] /unloopoof",Title = "unspamming oof sound"}
+cmds[#cmds + 1] = {Text = "[56] /enablesl",Title = "enable shift lock"}
+cmds[#cmds + 1] = {Text = "[57] /setfpscap [number]",Title = "set fps cap"}
+cmds[#cmds + 1] = {Text = "[58] /antiteleport",Title = "enable anti teleport bypass"}
+cmds[#cmds + 1] = {Text = "[59] /support",Title = "copy discord invite"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
