@@ -1485,7 +1485,7 @@ local dates = {}
 		local json = HttpService:JSONDecode(user)
 		local date = json["created"]:sub(1,10)
 		local splitDates = string.split(date,"-")
-		table.insert(dates,Players[v].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
+		table.insert(dates,Players[var].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
 	notify(chatString)
 end
