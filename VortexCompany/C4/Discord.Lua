@@ -26,8 +26,8 @@ function ProtocolSave(FileName, Config)
          writefile(FileName,Config)
 end
 
-function ProtocolRead(FileName, Config)
-        readfile(FileName,Config)
+function ProtocolRead(FileName)
+        readfile(FileName)
 end
 
 function ProtocolFailed(FileName, Config)
@@ -1634,7 +1634,7 @@ local var = string.sub(msg,space+1)
 prefix = var
 end
 if cmd == "saveprefix" then
-ProtocolSave("Vortex-Prefix.txt",prefix)
+ProtocolSave("Vortex-Prefix.json",prefix)
 end
 -- limits
 end
@@ -1784,7 +1784,8 @@ List.TextTransparency = 0.500
 List.TextWrapped = true
 
 if (ProtocolSave) then
-   ProtocolRead("Vortex-Prefix.txt",prefix)
+   ProtocolRead("Vortex-Prefix.json")
+   prefix = ProtocolRead("Vortex-Prefix.json")
 else
    prefix = "/"
    notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
