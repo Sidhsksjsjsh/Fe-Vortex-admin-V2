@@ -1996,5 +1996,5 @@ else
    prefix = "/"
    notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
 end
-
+wait(1)
 notify("last update: 20/02/2023")
