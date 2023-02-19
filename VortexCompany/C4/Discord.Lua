@@ -180,6 +180,18 @@ function getRoot(char)
 	return rootPart
 end
 
+function CameraMode(ModeType)
+       if ModeType == "fpp" then
+           speaker.CameraMode = "LockFirstPerson"
+       end
+       if ModeType == "tpp" then
+           speaker.CameraMode = "Classic"
+end
+       if not ModeType == "tpp" and ModeType == "fpp" then
+           notify("Camera mode not found, mode: " .. ModeType)
+end
+end
+
 function getTorso(x)
 	x = x or Players.LocalPlayer.Character
 	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
@@ -1753,6 +1765,23 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 			end)
 		end)
 end
+if cmd == "cammode" then
+local var = string.sub(msg,space+1)
+CameraMode(var)
+end
+if cmd == "usetool" then
+local function Tool_Service_UV75()
+   for i,v in pairs(speaker.Character:GetChildren()) do
+       v:Activate()
+      end
+end
+    loopUse = RunService.Stepped:Connect(Tool_Service_UV75)
+end
+if cmd == "unusetool" then
+if loopUse then
+       loopUse:Disconnect()
+end
+end
 -- limits
 end
 end)
@@ -1824,7 +1853,10 @@ cmds[#cmds + 1] = {Text = "[60] /ip [country]",Title = "sshhhttt, I tracked this
 cmds[#cmds + 1] = {Text = "[61] /xstr",Title = "xester"}
 cmds[#cmds + 1] = {Text = "[62] /neko",Title = "neko maid 😫❤️😍"}
 cmds[#cmds + 1] = {Text = "[63] /status",Title = "true = good, false = not good"}
-
+cmds[#cmds + 1] = {Text = "[64] /antifling",Title = "Prevents you from being hit by a fling"}
+cmds[#cmds + 1] = {Text = "[65] /cammode [tpp or fpp]",Title = "Camera mode."}
+cmds[#cmds + 1] = {Text = "[66] /usetool",Title = "hold the objects in your inventory"}
+cmds[#cmds + 1] = {Text = "[67] /unusetool",Title = "{}"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
