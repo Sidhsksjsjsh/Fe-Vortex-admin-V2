@@ -23,14 +23,14 @@ function copy(txt)
 end
 
 function ProtocolSave(FileName, Config)
-         writefile(FileName,Config)
+         writefile(FileName, Config)
 end
 
 function ProtocolRead(FileName)
         readfile(FileName)
 end
 
-function ProtocolCheck(FileName, Config)
+function ProtocolCheck(FileName)
     isfile(FileName)     
 end
 
@@ -1634,7 +1634,11 @@ local var = string.sub(msg,space+1)
 prefix = var
 end
 if cmd == "saveprefix" then
-ProtocolSave("Vortex-Prefix.json",prefix)
+if ProtocolCheck("Vortex-Prefix.json") then
+notify("file save failed because previous file already exists.")
+else
+ProtocolSave("Vortex-Prefix.json", prefix)
+end
 end
 -- limits
 end
