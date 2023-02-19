@@ -30,8 +30,8 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
-function ProtocolFailed(FileName, Config)
-    warn(FileName)     
+function ProtocolCheck(FileName, Config)
+    isfile(FileName)     
 end
 
 local Domain = {
@@ -1783,9 +1783,11 @@ List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
 
-if (ProtocolSave) then
+if ProtocolCheck("Vortex-Prefix.json") then
    ProtocolRead("Vortex-Prefix.json")
    prefix = ProtocolRead("Vortex-Prefix.json")
+    wait(1.5)
+   notify("prefix successfull loaded! Prefix: " .. prefix)
 else
    prefix = "/"
    notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
