@@ -1810,6 +1810,12 @@ local Human = speaker.Character and speaker.Character:FindFirstChildOfClass('Hum
 		v:Stop()
 	end
 end
+if cmd == "replicationlag" then
+local var = string.sub(msg,space+1)
+if tonumber(var) then
+		settings():GetService("NetworkSettings").IncomingReplicationLag = var
+	end
+end
 -- limits
 end
 end)
@@ -1890,6 +1896,7 @@ cmds[#cmds + 1] = {Text = "[69] /datalimit [number]",Title = "set data limit"}
 cmds[#cmds + 1] = {Text = "[70] /noprompt",Title = "hide all purchase prompt"}
 cmds[#cmds + 1] = {Text = "[71] /prompt",Title = "show all purchase prompt"}
 cmds[#cmds + 1] = {Text = "[72] /lay",Title = "sleep"}
+cmds[#cmds + 1] = {Text = "[73] /replicationlag",Title = "set IncomingReplicationLag"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -1989,3 +1996,5 @@ else
    prefix = "/"
    notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
 end
+
+notify("last update: 20/02/2023")
