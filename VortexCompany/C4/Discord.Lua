@@ -16,7 +16,7 @@ local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local oofing = false
 local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
-
+local CharInject = true
 
 function copy(txt)
        setclipboard(txt)
@@ -1640,6 +1640,25 @@ else
 ProtocolSave("Vortex-Prefix.json", prefix)
 end
 end
+if cmd == "xstr" then
+if CharInject == false then
+    notify("you have run another script, please reset and run this script")
+  else
+   loadstring(game:HttpGetAsync("https://pastebin.com/raw/RPwyPvEi"))()
+   notify("Control: (1st form): Q, E, R, T, Y, U, P. (2nd form): T, G, H, J, K")
+ end
+end
+if cmd == "neko" then
+if CharInject == false then
+    notify("you have run another script, please reset and run this script")
+  else
+   loadstring(game:HttpGetAsync("https://paste.ee/d/iCtCM/0"))()
+   notify("Control: Unknown")
+ end
+end
+if cmd == "status" then
+notify("Char status: " .. tostring(CharInject) .. " (true = good, false = not good)")
+end
 -- limits
 end
 end)
@@ -1708,6 +1727,10 @@ cmds[#cmds + 1] = {Text = "[57] /setfpscap [number]",Title = "set fps cap"}
 cmds[#cmds + 1] = {Text = "[58] /antiteleport",Title = "enable anti teleport bypass"}
 cmds[#cmds + 1] = {Text = "[59] /support",Title = "copy discord invite"}
 cmds[#cmds + 1] = {Text = "[60] /ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
+cmds[#cmds + 1] = {Text = "[61] /xstr",Title = "xester"}
+cmds[#cmds + 1] = {Text = "[62] /neko",Title = "neko maid 😫❤️😍"}
+cmds[#cmds + 1] = {Text = "[63] /status",Title = "true = good, false = not good"}
+
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -1786,6 +1809,17 @@ List.TextScaled = true
 List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
+
+RunService.RenderStepped:Connect(function()
+local ProtocolHealth = game.Players.LocalPlayer.Character.Humanoid.Health
+local ProtocolMaxHealth = game.Players.LocalPlayer.Character.Humanoid.MaxHealth
+
+    if ProtocolHealth < ProtocolMaxHealth then
+     CharInject = false -- not good
+        else
+     CharInject = true -- good
+    end
+end)
 
 if ProtocolCheck("Vortex-Prefix.json") then
    ProtocolRead("Vortex-Prefix.json")
