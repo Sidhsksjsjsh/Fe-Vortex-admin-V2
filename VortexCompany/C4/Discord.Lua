@@ -18,6 +18,17 @@ local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
 local CharInject = true
 
+function ForceBodyPart()
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+game:GetService("RunService").Heartbeat:connect(function()
+v.Velocity = Vector3.new(0,35,0)
+wait(0.5)
+end)
+end
+end
+end
+
 function copy(txt)
        setclipboard(txt)
 end
@@ -1644,6 +1655,8 @@ if cmd == "xstr" then
 if CharInject == false then
     notify("you have run another script, please reset and run this script")
   else
+   ForceBodyPart()
+   wait(0.5)
    loadstring(game:HttpGetAsync("https://pastebin.com/raw/RPwyPvEi"))()
    notify("Control: (1st form): Q, E, R, T, Y, U, P. (2nd form): T, G, H, J, K")
  end
@@ -1652,12 +1665,93 @@ if cmd == "neko" then
 if CharInject == false then
     notify("you have run another script, please reset and run this script")
   else
+   ForceBodyPart()
+   wait(0.5)
    loadstring(game:HttpGetAsync("https://paste.ee/d/iCtCM/0"))()
    notify("Control: Unknown")
  end
 end
 if cmd == "status" then
 notify("Char status: " .. tostring(CharInject) .. " (true = good, false = not good)")
+end
+if cmd == "antifling" then
+local Services = setmetatable({}, {__index = function(Self, Index)
+			local NewService = game.GetService(game, Index)
+			if NewService then
+				Self[Index] = NewService
+			end
+			return NewService
+		end})
+	
+		-- [ LocalPlayer ] --
+		local LocalPlayer = Services.Players.LocalPlayer
+	
+		-- // Functions \\ --
+		local function PlayerAdded(Player)
+			local Detected = false
+			local Character;
+			local PrimaryPart;
+	
+			local function CharacterAdded(NewCharacter)
+				Character = NewCharacter
+				repeat
+					wait()
+					PrimaryPart = NewCharacter:FindFirstChild("HumanoidRootPart")
+				until PrimaryPart
+				Detected = false
+			end
+	
+			CharacterAdded(Player.Character or Player.CharacterAdded:Wait())
+			Player.CharacterAdded:Connect(CharacterAdded)
+			Services.RunService.Heartbeat:Connect(function()
+				if (Character and Character:IsDescendantOf(workspace)) and (PrimaryPart and PrimaryPart:IsDescendantOf(Character)) then
+					if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
+						if Detected == false then
+							warn("be carefull!")
+							notify("Fling Exploit detected, Player: " .. tostring(Player))
+						end
+						Detected = true
+						for i,v in ipairs(Character:GetDescendants()) do
+							if v:IsA("BasePart") then
+								v.CanCollide = false
+								v.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+								v.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+								v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0)
+							end
+						end
+						PrimaryPart.CanCollide = false
+						PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+						PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+						PrimaryPart.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0)
+					end
+				end
+			end)
+		end
+	
+		-- // Event Listeners \\ --
+		for i,v in ipairs(Services.Players:GetPlayers()) do
+			if v ~= LocalPlayer then
+				PlayerAdded(v)
+			end
+		end
+		Services.Players.PlayerAdded:Connect(PlayerAdded)
+	
+		local LastPosition = nil
+		Services.RunService.Heartbeat:Connect(function()
+			pcall(function()
+				local PrimaryPart = LocalPlayer.Character.PrimaryPart
+				if PrimaryPart.AssemblyLinearVelocity.Magnitude > 250 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 250 then
+					PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+					PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+					PrimaryPart.CFrame = LastPosition
+	
+					warn("you were flung")
+					notify("You were flung. Neutralizing velocity.")
+				elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
+					LastPosition = PrimaryPart.CFrame
+				end
+			end)
+		end)
 end
 -- limits
 end
