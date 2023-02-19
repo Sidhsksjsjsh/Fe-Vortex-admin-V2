@@ -1664,29 +1664,6 @@ else
 ProtocolSave("Vortex-Prefix.json", prefix)
 end
 end
-if cmd == "xstr" then
-if CharInject == false then
-    notify("you have run another script, please reset and run this script")
-  else
-   ForceBodyPart()
-   wait(0.5)
-   loadstring(game:HttpGetAsync("https://pastebin.com/raw/RPwyPvEi"))()
-   notify("Control: (1st form): Q, E, R, T, Y, U, P. (2nd form): T, G, H, J, K")
- end
-end
-if cmd == "neko" then
-if CharInject == false then
-    notify("you have run another script, please reset and run this script")
-  else
-   ForceBodyPart()
-   wait(0.5)
-   loadstring(game:HttpGetAsync("https://paste.ee/d/iCtCM/0"))()
-   notify("Control: Unknown")
- end
-end
-if cmd == "status" then
-notify("Char status: " .. tostring(CharInject) .. " (true = good, false = not good)")
-end
 if cmd == "antifling" then
 local Services = setmetatable({}, {__index = function(Self, Index)
 			local NewService = game.GetService(game, Index)
@@ -1884,19 +1861,16 @@ cmds[#cmds + 1] = {Text = "[57] /setfpscap [number]",Title = "set fps cap"}
 cmds[#cmds + 1] = {Text = "[58] /antiteleport",Title = "enable anti teleport bypass"}
 cmds[#cmds + 1] = {Text = "[59] /support",Title = "copy discord invite"}
 cmds[#cmds + 1] = {Text = "[60] /ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
-cmds[#cmds + 1] = {Text = "[61] /xstr",Title = "xester"}
-cmds[#cmds + 1] = {Text = "[62] /neko",Title = "neko maid 😫❤️😍"}
-cmds[#cmds + 1] = {Text = "[63] /status",Title = "true = good, false = not good"}
-cmds[#cmds + 1] = {Text = "[64] /antifling",Title = "Prevents you from being hit by a fling"}
-cmds[#cmds + 1] = {Text = "[65] /cammode [tpp or fpp]",Title = "Camera mode."}
-cmds[#cmds + 1] = {Text = "[66] /usetool",Title = "hold the objects in your inventory"}
-cmds[#cmds + 1] = {Text = "[67] /unusetool",Title = "{}"}
-cmds[#cmds + 1] = {Text = "[68] /clogs",Title = "u can see all private message"}
-cmds[#cmds + 1] = {Text = "[69] /datalimit [number]",Title = "set data limit"}
-cmds[#cmds + 1] = {Text = "[70] /noprompt",Title = "hide all purchase prompt"}
-cmds[#cmds + 1] = {Text = "[71] /prompt",Title = "show all purchase prompt"}
-cmds[#cmds + 1] = {Text = "[72] /lay",Title = "sleep"}
-cmds[#cmds + 1] = {Text = "[73] /replicationlag",Title = "set IncomingReplicationLag"}
+cmds[#cmds + 1] = {Text = "[61] /antifling",Title = "Prevents you from being hit by a fling"}
+cmds[#cmds + 1] = {Text = "[62] /cammode [tpp or fpp]",Title = "Camera mode."}
+cmds[#cmds + 1] = {Text = "[63] /usetool",Title = "hold the objects in your inventory"}
+cmds[#cmds + 1] = {Text = "[64] /unusetool",Title = "{}"}
+cmds[#cmds + 1] = {Text = "[65] /clogs",Title = "u can see all private message"}
+cmds[#cmds + 1] = {Text = "[66] /datalimit [number]",Title = "set data limit"}
+cmds[#cmds + 1] = {Text = "[67] /noprompt",Title = "hide all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[68] /prompt",Title = "show all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[69] /lay",Title = "sleep"}
+cmds[#cmds + 1] = {Text = "[70] /replicationlag",Title = "set IncomingReplicationLag"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -1975,17 +1949,6 @@ List.TextScaled = true
 List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
-
-RunService.RenderStepped:Connect(function()
-local ProtocolHealth = game.Players.LocalPlayer.Character.Humanoid.Health
-local ProtocolMaxHealth = game.Players.LocalPlayer.Character.Humanoid.MaxHealth
-
-    if ProtocolHealth < ProtocolMaxHealth then
-     CharInject = false -- not good
-        else
-     CharInject = true -- good
-    end
-end)
 
 if ProtocolCheck("Vortex-Prefix.json") then
    ProtocolRead("Vortex-Prefix.json")
