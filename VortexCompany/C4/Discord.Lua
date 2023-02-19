@@ -1771,7 +1771,7 @@ CameraMode(var)
 end
 if cmd == "usetool" then
 local function Tool_Service_UV75()
-   for i,v in pairs(speaker.Character:GetChildren()) do
+   for i,v in pairs(speaker.Backpack:GetChildren()) do
        v:Activate()
       end
 end
@@ -1882,7 +1882,7 @@ end
 
 local Developer = {
       Title = "Developer:";
-      Rivanda_Cheater = "Rivanda_Cheater (C4#4172)";
+      Rivanda_Cheater = "Rivanda_Cheater (C4#4172) (YT: Entity)";
       CookieProgamming = "CookieProgamming (alt)";
 }
 
