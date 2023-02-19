@@ -22,6 +22,18 @@ function copy(txt)
        setclipboard(txt)
 end
 
+function ProtocolSave(FileName, Config)
+         writefile(FileName,Config)
+end
+
+function ProtocolRead(FileName, Config)
+        readfile(FileName,Config)
+end
+
+function ProtocolFailed(FileName, Config)
+    warn(FileName)     
+end
+
 local Domain = {
                     Domain = Instance.new("ScreenGui"),
                     UITextSizeConstraint_13 = Instance.new("UITextSizeConstraint"),
@@ -1617,6 +1629,13 @@ if cmd == "ip" then
 local var = string.sub(msg,space+1)
 IP(var)
 end
+if cmd == "prefix" then
+local var = string.sub(msg,space+1)
+prefix = var
+end
+if cmd == "saveprefix" then
+ProtocolSave("Vortex-Prefix.txt",prefix)
+end
 -- limits
 end
 end)
@@ -1763,3 +1782,10 @@ List.TextScaled = true
 List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
+
+if (ProtocolSave) then
+   ProtocolRead("Vortex-Prefix.txt",prefix)
+else
+   prefix = "/"
+   notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
+end
