@@ -1964,7 +1964,7 @@ local Developer = {
 
 local friend = {
       Title = "My friend who uses my admin script:";
-      Daffy = " (Daffy.man#0820)";
+      Daffy = "nom_boy123 (Daffy.man#0820)";
       anikazila = "anikazila (vilson#9959)";
       vilobatir = "vilobatir (vilobatir#4720)";
 }
