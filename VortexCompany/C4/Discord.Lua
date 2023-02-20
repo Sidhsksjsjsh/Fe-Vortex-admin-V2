@@ -20,6 +20,9 @@ local CharInject = true
 local NetworkClient = game:GetService("NetworkClient")
 local currentToolSize = ""
 local currentGripPos = ""
+local nameBox = nil
+local nbSelection = nil
+local PARENT = nil
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1894,6 +1897,76 @@ for i,v in pairs(speaker.Character:GetDescendants()) do
 		end
 	end
 end
+if cmd == "grippos" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(speaker.Character:GetDescendants()) do
+		if v:IsA("Tool") then
+			v.Parent = speaker:FindFirstChildOfClass("Backpack")
+			v.GripPos = Vector3.new(var)
+			v.Parent = speaker.Character
+		end
+	end
+end
+if cmd == "hovername" then
+nameBox = Instance.new("TextLabel")
+	nameBox.Name = randomString()
+	nameBox.Parent = PARENT
+	nameBox.BackgroundTransparency = 1
+	nameBox.Size = UDim2.new(0,200,0,30)
+	nameBox.Font = Enum.Font.Code
+	nameBox.TextSize = 16
+	nameBox.Text = ""
+	nameBox.TextColor3 = Color3.new(1, 1, 1)
+	nameBox.TextStrokeTransparency = 0
+	nameBox.TextXAlignment = Enum.TextXAlignment.Left
+	nameBox.ZIndex = 10
+	nbSelection = Instance.new('SelectionBox')
+	nbSelection.Name = randomString()
+	nbSelection.LineThickness = 0.03
+	nbSelection.Color3 = Color3.new(1, 1, 1)
+	local function updateNameBox()
+		local t
+		local target = Mouse.Target
+
+		if target then
+			local humanoid = target.Parent:FindFirstChildOfClass("Humanoid") or target.Parent.Parent:FindFirstChildOfClass("Humanoid")
+			if humanoid then
+				t = humanoid.Parent
+			end
+		end
+
+		if t ~= nil then
+			local x = Mouse.X
+			local y = Mouse.Y
+			local xP
+			local yP
+			if Mouse.X > 200 then
+				xP = x - 205
+				nameBox.TextXAlignment = Enum.TextXAlignment.Right
+			else
+				xP = x + 25
+				nameBox.TextXAlignment = Enum.TextXAlignment.Left
+			end
+			nameBox.Position = UDim2.new(0, xP, 0, y)
+			nameBox.Text = t.Name
+			nameBox.Visible = true
+			nbSelection.Parent = t
+			nbSelection.Adornee = t
+		else
+			nameBox.Visible = false
+			nbSelection.Parent = nil
+			nbSelection.Adornee = nil
+		end
+	end
+	nbUpdateFunc = Mouse.Move:Connect(updateNameBox)
+end
+if cmd == "unhovername" then
+if nbUpdateFunc then
+		nbUpdateFunc:Disconnect()
+		nameBox:Destroy()
+		nbSelection:Destroy()
+	end
+end
 -- limits
 end
 end)
@@ -1976,6 +2049,9 @@ cmds[#cmds + 1] = {Text = "[71] /compliment [username]",Title = "Compliment some
 cmds[#cmds + 1] = {Text = "[72] /insult [username]",Title = "insult someone you hate😡😠🤬"}
 cmds[#cmds + 1] = {Text = "[73] /reach",Title = "increase the range of your sword"}
 cmds[#cmds + 1] = {Text = "[74] /unreach",Title = "Returns the range of the sword to its original range"}
+cmds[#cmds + 1] = {Text = "[75] /grippos [Vector2]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
+cmds[#cmds + 1] = {Text = "[76] /hovername",Title = "enable player name"}
+cmds[#cmds + 1] = {Text = "[77] /unhovername",Title = "disable player name"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
