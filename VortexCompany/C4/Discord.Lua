@@ -1853,6 +1853,75 @@ end
 
 ProtocolResponse("insult",var)
 end
+if cmd == "silentaim" then
+local function GetService(Name)
+    return game:GetService(Name)
+end
+
+local Players = GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = GetService("RunService")
+local BodyPart = nil
+local Camera = workspace.CurrentCamera
+local Mouse = LocalPlayer:GetMouse()
+
+local function WTS(Object)
+    local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
+    return Vector2.new(ObjectVector.X, ObjectVector.Y)
+end
+
+local function PositionToRay(Origin, Target)
+    return Ray.new(Origin, (Target - Origin).Unit * 600)
+end
+
+local function Filter(Object)
+    if string.find(Object.Name, "Gun") then
+        return
+    end
+    if Object:IsA("Part") or Object:IsA("MeshPart") then
+        return true
+    end
+end
+
+local function MousePositionToVector2()
+    return Vector2.new(Mouse.X, Mouse.Y)
+end
+
+local function IsOnScreen(Object)
+    local IsOnScreen = Camera:WorldToScreenPoint(Object.Position)
+    return IsOnScreen
+end
+
+local function GetClosestBodyPartFromCursor()
+    local ClosestDistance = math.huge
+    for i,  v in next, Players:GetPlayers() do
+        if v ~= LocalPlayer and v.Team ~= LocalPlayer.Team and v.Character and v.Character:FindFirstChild("Humanoid") then
+            for k,  x in next, v.Character:GetChildren() do
+                if Filter(x) and IsOnScreen(x) then
+                    local Distance = (WTS(x) - MousePositionToVector2()).Magnitude
+                    if Distance < ClosestDistance then
+                        ClosestDistance = Distance
+                        BodyPart = x
+                    end
+                end
+            end
+        end
+    end
+end
+
+local OldNameCall; 
+OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+    local Method = getnamecallmethod()
+    local Args = {...}
+    if Method == "FindPartOnRayWithIgnoreList" and BodyPart ~= nil then
+        Args[1] = PositionToRay(Camera.CFrame.Position, BodyPart.Position)
+        return OldNameCall(Self, unpack(Args))
+    end
+    return OldNameCall(Self, ...)
+end)
+
+RunService:BindToRenderStep("Dynamic Silent Aim", 120, GetClosestBodyPartFromCursor)
+end
 -- limits
 end
 end)
@@ -1933,6 +2002,7 @@ cmds[#cmds + 1] = {Text = "[69] /lay",Title = "sleep"}
 cmds[#cmds + 1] = {Text = "[70] /replicationlag",Title = "set IncomingReplicationLag"}
 cmds[#cmds + 1] = {Text = "[71] /compliment [username]",Title = "Compliment someone you like😍❤️🥰"}
 cmds[#cmds + 1] = {Text = "[72] /insult [username]",Title = "insult someone you hate😡😠🤬"}
+cmds[#cmds + 1] = {Text = "[73] /silentaim",Title = "silent aim"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -2013,13 +2083,12 @@ List.TextTransparency = 0.500
 List.TextWrapped = true
 
 if ProtocolCheck("Vortex-Prefix.json") then
-   ProtocolRead("Vortex-Prefix.json")
    prefix = ProtocolRead("Vortex-Prefix.json")
     wait(1.5)
    notify("prefix successfull loaded! Prefix: " .. prefix)
 else
    prefix = "/"
-   notify("[missing ProtocolSave] You didnt save your previous prefix, prefix: '/'")
+   notify("[missing ProtocolSave] Prefix setting file not found, prefix: '/'")
 end
 wait(1)
-notify("last update: 20/02/2023")
+notify("last update: 21/02/2023")
