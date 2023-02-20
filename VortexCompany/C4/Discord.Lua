@@ -326,7 +326,45 @@ function kill(client,target,fast)
 	end
 end
 
+function ProtocolResponse(RespondType, ProtocolPlayer)
+       if RespondType == "compliment" then
+       local compliment = {
+             "i've always thought " .. ProtocolPlayer .. " have remarkably awe-inspiring buttocks",
+             "i must say: " .. ProtocolPlayer .. " have extraordinarily angelic muscles",
+             "they say " .. ProtocolPlayer .. " are pretty delightful",
+             "i reckon " .. ProtocolPlayer .. " have simply mind-blowing ideas",
+             "i think " .. ProtocolPlayer .. " are insanely ravishing",
+             "it's true, " .. ProtocolPlayer .. " are deeply divine",
+             "i can't believe " .. ProtocolPlayer .. " are totally adorable",
+             "i think " .. ProtocolPlayer .. " have extremely terrific eyebrows"
+      }
+     local textstring = {
+    [1] = compliment[math.random(1, #compliment)],
+    [2] = "All"
+}
 
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(textstring))
+end
+       if RespondType == "insult" then
+       local insult = {
+             " are as sickening as a repulsive cloud of boring smelly cockroach slime",
+             " are as ugly as a monstrous sticky ton of inferior bug assholes",
+             " are as noxious as an unsatisfactory bunch of stinky ugly rat vomit",
+             " are as naughty as a nasty pointless gross bundle of ghastly cockroach puke",
+             " are as yucky as a detrimental bucket of inferior dog poop",
+             " are as obnoxious as a dreadful puddle of vicious impertinent repellent pig spit",
+             " are as dirty as a decaying repellent inferior heap of unpleasant absurd horse assholes"
+      }
+     local textstring = {
+    [1] = ProtocolPlayer .. "" .. tostring(insult[math.random(1, #insult)]),
+    [2] = "All"
+}
+
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(textstring))
+end
+end
 
 
 
@@ -1793,6 +1831,28 @@ if tonumber(var) then
 		settings():GetService("NetworkSettings").IncomingReplicationLag = var
 	end
 end
+if cmd == "compliment" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+ProtocolResponse("compliment",var)
+end
+if cmd == "insult" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+ProtocolResponse("insult",var)
+end
 -- limits
 end
 end)
@@ -1871,6 +1931,8 @@ cmds[#cmds + 1] = {Text = "[67] /noprompt",Title = "hide all purchase prompt"}
 cmds[#cmds + 1] = {Text = "[68] /prompt",Title = "show all purchase prompt"}
 cmds[#cmds + 1] = {Text = "[69] /lay",Title = "sleep"}
 cmds[#cmds + 1] = {Text = "[70] /replicationlag",Title = "set IncomingReplicationLag"}
+cmds[#cmds + 1] = {Text = "[71] /compliment [username]",Title = "Compliment someone you like😍❤️🥰"}
+cmds[#cmds + 1] = {Text = "[72] /insult [username]",Title = "insult someone you hate😡😠🤬"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
