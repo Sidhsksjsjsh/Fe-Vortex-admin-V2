@@ -1537,17 +1537,6 @@ local BodyPart = {
 speaker.Character[BodyPart[var]]:Destroy()
 notify("Deleting parts: " .. tostring(BodyPart[var]))
 end
-if cmd == "swim" then
-Workspace.Gravity = 0
-speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
-speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
-notify("swimming enabled")
-end
-if cmd == "unswim" then
-Workspace.Gravity = 198
-speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
-notify("swimming disabled")
-end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
 music(var)
@@ -2044,7 +2033,7 @@ local char = Players[var].Character
 			return notify("Getposition Error, Missing character")
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
-		notify("Current Position" .. roundedPos)
+		notify("Current Position " .. roundedPos)
 end
 if cmd == "copypos" then
 local var = string.sub(msg,space+1)
