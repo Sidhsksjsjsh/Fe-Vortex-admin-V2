@@ -23,6 +23,9 @@ local currentGripPos = ""
 local nameBox = nil
 local nbSelection = nil
 local PARENT = nil
+local swimming = false
+local oldgrav = workspace.Gravity
+local swimbeat = nil
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1972,6 +1975,95 @@ if nbUpdateFunc then
 		nbSelection:Destroy()
 	end
 end
+if cmd == "fall" then
+if speaker and speaker.Character and speaker.Character:FindFirstChildOfClass("Humanoid") and getRoot(speaker.Character) then
+		local hum = speaker.Character:FindFirstChildOfClass("Humanoid")
+		local root = getRoot(speaker.Character)
+		hum:ChangeState(0)
+		root.Velocity = root.CFrame.LookVector * 30
+	end
+end
+if cmd == "swim" then
+if not swimming and speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
+		oldgrav = workspace.Gravity
+		workspace.Gravity = 0
+		local swimDied = function()
+			workspace.Gravity = oldgrav
+			swimming = false
+		end
+		local Humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+		gravReset = Humanoid.Died:Connect(swimDied)
+		local enums = Enum.HumanoidStateType:GetEnumItems()
+		table.remove(enums, table.find(enums, Enum.HumanoidStateType.None))
+		for i, v in pairs(enums) do
+			Humanoid:SetStateEnabled(v, false)
+		end
+		Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+		swimbeat = RunService.Heartbeat:Connect(function()
+			pcall(function()
+				speaker.Character.HumanoidRootPart.Velocity = ((Humanoid.MoveDirection ~= Vector3.new() or UserInputService:IsKeyDown(Enum.KeyCode.Space)) and speaker.Character.HumanoidRootPart.Velocity or Vector3.new())
+			end)
+		end)
+		swimming = true
+	end
+end
+if cmd == "unswim" then
+if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
+		workspace.Gravity = oldgrav
+		swimming = false
+		if gravReset then
+			gravReset:Disconnect()
+		end
+		if swimbeat ~= nil then
+			swimbeat:Disconnect()
+			swimbeat = nil
+		end
+		local Humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+		local enums = Enum.HumanoidStateType:GetEnumItems()
+		table.remove(enums, table.find(enums, Enum.HumanoidStateType.None))
+		for i, v in pairs(enums) do
+			Humanoid:SetStateEnabled(v, true)
+		end
+	end
+end
+if cmd == "getpos" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local char = Players[var].Character
+		local pos = char and (getRoot(char) or char:FindFirstChildWhichIsA("BasePart"))
+		pos = pos and pos.Position
+		if not pos then
+			return notify("Getposition Error, Missing character")
+		end
+		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
+		notify("Current Position" .. roundedPos)
+	end
+end
+if cmd == "copypos" then
+local var = string.sub(msg,space+1)
+local player = game.Players.LocalPlayer
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+local char = Players[var].Character
+		local pos = char and (getRoot(char) or char:FindFirstChildWhichIsA("BasePart"))
+		pos = pos and pos.Position
+		if not pos then
+			return notify("Getposition Error, Missing character")
+		end
+		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
+		copy(roundedPos)
+	end
+end
 -- limits
 end
 end)
@@ -2057,6 +2149,12 @@ cmds[#cmds + 1] = {Text = "[74] /unreach",Title = "Returns the range of the swor
 cmds[#cmds + 1] = {Text = "[75] /grippos [Vector2]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
 cmds[#cmds + 1] = {Text = "[76] /hovername",Title = "enable player name"}
 cmds[#cmds + 1] = {Text = "[77] /unhovername",Title = "disable player name"}
+cmds[#cmds + 1] = {Text = "[78] /fall",Title = "fall..it hurts like jumping from the top of a building"}
+cmds[#cmds + 1] = {Text = "[79] /swim",Title = "swimming like a fish😍"}
+cmds[#cmds + 1] = {Text = "[80] /unswim",Title = "disable swim"}
+cmds[#cmds + 1] = {Text = "[81] /getpos [username]",Title = "see where the position of the player"}
+cmds[#cmds + 1] = {Text = "[82] /copypos [username]",Title = "copy player position"}
+
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
