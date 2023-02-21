@@ -168,6 +168,16 @@ function IP(country)
      notify("IP code: '" .. IP_Address .. "', country: '" .. country .. "'. The IP has been copied to your keyboard")
 end
 
+function ProtocolSendChat(ProtocolChatService)
+local args = {
+    [1] = ProtocolChatService,
+    [2] = "All"
+}
+
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end
+
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
@@ -2223,10 +2233,12 @@ List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
 
+-- ProtocolSendChat()
+local ProtocolDisplayName = speaker.DisplayName
 local ProtocolReportCount = 0
 local ProtocolBlockCount = 0
-speaker.Chatted:Connect(function(ProtocolChat)
- if string.sub(ProtocolChat,1,3) == "/e " or string.sub(ProtocolChat,1,3) == "/w " then
+Players.Chatted:Connect(function(ProtocolChat)
+ if string.sub(ProtocolChat,1,3) == "/e " or string.sub(ProtocolChat,1,4) == "/w " then
 ProtocolChat = string.sub(ProtocolChat,4)
 end
         if ProtocolChat == "REPORT" or ProtocolChat == "Report" or ProtocolChat == "report" then
@@ -2236,6 +2248,14 @@ end
         if ProtocolChat == "BLOCK" or ProtocolChat == "Block" or ProtocolChat == "block" then
             ProtocolBlockCount = ProtocolBlockCount+1
             notify(ProtocolBlockCount .. " Players have blocked you.")
+        end
+        if ProtocolChat == "AYO" or ProtocolChat == "YO" or ProtocolChat == "AY" or ProtocolChat == "ayo" or ProtocolChat == "ay" or ProtocolChat == "yo" then
+            wait(1)
+            ProtocolSendChat("🤑🤑🤑")
+        end
+        if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name then -- string if they call your name using display or username
+            wait(1)
+            ProtocolSendChat("what?") -- roblox chat anti-detect
         end
     end)
 
