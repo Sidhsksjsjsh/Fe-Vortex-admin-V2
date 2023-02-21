@@ -1001,8 +1001,7 @@ function ESP(plr)
 end
 
 local prefix = "/"
-local LPlayer = game.Players.LocalPlayer
-LPlayer.Chatted:Connect(function(msg)
+speaker.Chatted:Connect(function(msg)
 msg = msg:lower()
 if string.sub(msg,1,3) == "/e " then
 msg = string.sub(msg,4)
@@ -2223,6 +2222,22 @@ List.TextScaled = true
 List.TextSize = 14.000
 List.TextTransparency = 0.500
 List.TextWrapped = true
+
+local ProtocolReportCount = 0
+local ProtocolBlockCount = 0
+speaker.Chatted:Connect(function(ProtocolChat)
+ if string.sub(ProtocolChat,1,3) == "/e " or string.sub(ProtocolChat,1,3) == "/w " then
+ProtocolChat = string.sub(ProtocolChat,4)
+end
+        if ProtocolChat == "REPORT" or ProtocolChat == "Report" or ProtocolChat == "report" then
+            ProtocolReportCount = ProtocolReportCount+1
+            notify(ProtocolReportCount .. " players have reported you. Beware of being banned!")
+        end
+        if ProtocolChat == "BLOCK" or ProtocolChat == "Block" or ProtocolChat == "block" then
+            ProtocolBlockCount = ProtocolBlockCount+1
+            notify(ProtocolBlockCount .. " Players have blocked you.")
+        end
+    end)
 
 if ProtocolCheck("Vortex-Prefix.json") then
    prefix = ProtocolRead("Vortex-Prefix.json")
