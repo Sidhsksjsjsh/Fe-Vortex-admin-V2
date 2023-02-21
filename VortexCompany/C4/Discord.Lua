@@ -2006,6 +2006,7 @@ if not swimming and speaker and speaker.Character and speaker.Character:FindFirs
 		end)
 		swimming = true
 	end
+notify("Swimming enabled")
 end
 if cmd == "unswim" then
 if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
@@ -2025,6 +2026,7 @@ if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("H
 			Humanoid:SetStateEnabled(v, true)
 		end
 	end
+notify("Swimming disabled")
 end
 if cmd == "getpos" then
 local var = string.sub(msg,space+1)
@@ -2043,7 +2045,6 @@ local char = Players[var].Character
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
 		notify("Current Position" .. roundedPos)
-	end
 end
 if cmd == "copypos" then
 local var = string.sub(msg,space+1)
@@ -2062,7 +2063,7 @@ local char = Players[var].Character
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
 		copy(roundedPos)
-	end
+                notify("copied")
 end
 -- limits
 end
