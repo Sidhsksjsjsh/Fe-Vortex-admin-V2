@@ -2274,7 +2274,9 @@ List.TextWrapped = true
 local ProtocolDisplayName = speaker.DisplayName
 local ProtocolReportCount = 0
 local ProtocolBlockCount = 0
-Players.Chatted:Connect(function(ProtocolChat)
+
+local ProtocolGetChatSystem = function(ProtocolPlayer)
+ProtocolPlayer.Chatted:Connect(function(ProtocolChat)
  if string.sub(ProtocolChat,1,3) == "/e " or string.sub(ProtocolChat,1,4) == "/w " then
 ProtocolChat = string.sub(ProtocolChat,4)
 end
@@ -2295,6 +2297,13 @@ end
             ProtocolSendChat("what?") -- roblox chat anti-detect
         end
     end)
+end
+
+for _, ProtocolPlayer in pairs(Players:GetChildren()) do
+     if ProtocolPlayer.ClassName == "Player" then
+         ProtocolGetChatSystem(ProtocolPlayer)
+     end
+end
 
 if ProtocolCheck("Vortex-Prefix.json") then
    prefix = ProtocolRead("Vortex-Prefix.json")
@@ -2305,4 +2314,4 @@ else
    notify("[missing ProtocolSave] Prefix setting file not found, prefix: '/'")
 end
 wait(1)
-notify("last update: 21/02/2023")
+notify("last update: 22/02/2023")
