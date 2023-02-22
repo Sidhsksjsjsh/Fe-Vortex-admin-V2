@@ -2224,12 +2224,13 @@ local friend = {
       Daffy = "nom_boy123 (Daffy.man#0820)";
       anikazila = "anikazila (vilson#9959)";
       vilobatir = "vilobatir (vilobatir#4720)";
+      iksan = "iDa7om & Iksanbaiksekali (exiy#1118)"
 }
 
 local staff = {
       _staff_Title = "staff:";
-      _staff_1 = "i forgor💀#4109";
-      _staff_2 = "Riri#0337";
+      _staff_1 = "demon28_luc (i forgor💀#4109)";
+      _staff_2 = "AdindaFood (Riri#0337)";
       _staff_3 = "";
       _staff_4 = "";
 }
@@ -2249,7 +2250,7 @@ local partner = {
 
 local CrV = staff._staff_Title .. "\n" .. staff._staff_1 .. "\n" .. staff._staff_2 .. "\n\n" .. moderator._mod_title .. "\n" .. moderator._mod_1 .. "\n\n"
 
-local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n\n" .. CrV .. "" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
+local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n" .. friend.iksan .. "\n\n" .. CrV .. "" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
 
 local ContentCmds = "The command list is in the console."
 
