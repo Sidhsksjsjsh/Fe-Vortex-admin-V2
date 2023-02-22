@@ -26,6 +26,8 @@ local PARENT = nil
 local swimming = false
 local oldgrav = workspace.Gravity
 local swimbeat = nil
+local ProtocolSpam = false
+local ProtocolCD = 1
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1981,6 +1983,22 @@ if speaker and speaker.Character and speaker.Character:FindFirstChildOfClass("Hu
 		root.Velocity = root.CFrame.LookVector * 30
 	end
 end
+if cmd == "loopfall" then
+local function loopFall()
+if speaker and speaker.Character and speaker.Character:FindFirstChildOfClass("Humanoid") and getRoot(speaker.Character) then
+		local hum = speaker.Character:FindFirstChildOfClass("Humanoid")
+		local root = getRoot(speaker.Character)
+		hum:ChangeState(0)
+		root.Velocity = root.CFrame.LookVector * 30
+	end
+end
+    FallingAnim = RunService.Stepped:Connect(loopFall)
+end
+if cmd == "unloopfall" then
+if FallingAnim then
+    FallingAnim:Disconnect()
+end
+end
 if cmd == "swim" then
 if not swimming and speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
 		oldgrav = workspace.Gravity
@@ -2062,6 +2080,20 @@ local char = Players[var].Character
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
 		copy(roundedPos)
                 notify("copied")
+end
+if cmd == "spam" then
+local var = string.sub(msg,space+1)
+ProtocolSpam = true
+repeat wait(ProtocolCD)
+ProtocolSendChat(var)
+until ProtocolSpam == false
+end
+if cmd == "unspam" then
+ProtocolSpam = false
+end
+if cmd == "spamspeed" then
+local var = string.sub(msg,space+1)
+ProtocolCD = var
 end
 -- limits
 end
@@ -2153,7 +2185,11 @@ cmds[#cmds + 1] = {Text = "[79] /swim",Title = "swimming like a fish😍"}
 cmds[#cmds + 1] = {Text = "[80] /unswim",Title = "disable swim"}
 cmds[#cmds + 1] = {Text = "[81] /getpos [username]",Title = "see where the position of the player"}
 cmds[#cmds + 1] = {Text = "[82] /copypos [username]",Title = "copy player position"}
-
+cmds[#cmds + 1] = {Text = "[83] /loopfall",Title = "'HAPPYMOD🤬😠😡'"}
+cmds[#cmds + 1] = {Text = "[84] /unloopfall",Title = "'HAPPYMOD🤬😠😡'"}
+cmds[#cmds + 1] = {Text = "[85] /spam [message]",Title = "annoy them by spamming messages."}
+cmds[#cmds + 1] = {Text = "[86] /unspam",Title = "stop spamming"}
+cmds[#cmds + 1] = {Text = "[87] /spamspeed [speed]",Title = "Set spam speed"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
