@@ -28,6 +28,7 @@ local oldgrav = workspace.Gravity
 local swimbeat = nil
 local ProtocolSpam = false
 local ProtocolCD = 1
+local UserInputService = game:GetService("UserInputService")
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
