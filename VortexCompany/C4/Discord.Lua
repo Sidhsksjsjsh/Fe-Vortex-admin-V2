@@ -52,6 +52,20 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+function getstring(begin)
+	local start = begin-1
+	local AA = '' for i,v in pairs(cargs) do
+		if i > start then
+			if AA ~= '' then
+				AA = AA .. ' ' .. v
+			else
+				AA = AA .. v
+			end
+		end
+	end
+	return AA
+end
+
 function ProtocolCheck(FileName)
     isfile(FileName)     
 end
@@ -2095,6 +2109,71 @@ if cmd == "spamspeed" then
 local var = string.sub(msg,space+1)
 ProtocolCD = var
 end
+if cmd == "equiptools" then
+for i,v in pairs(speaker:FindFirstChildOfClass("Backpack"):GetChildren()) do
+		if v:IsA("Tool") or v:IsA("HopperBin") then
+			v.Parent = speaker.Character
+		end
+	end
+end
+if cmd == "droptools" then
+for i,v in pairs(Players.LocalPlayer.Backpack:GetChildren()) do
+		if v:IsA("Tool") then
+			v.Parent = Players.LocalPlayer.Character
+		end
+	end
+	wait()
+	for i,v in pairs(Players.LocalPlayer.Character:GetChildren()) do
+		if v:IsA("Tool") then
+			v.Parent = workspace
+		end
+	end
+end
+if cmd == "deletehats" then
+for i,v in next, speaker.Character:GetDescendants() do
+		if v:IsA("Accessory") then
+			for i,p in next, v:GetDescendants() do
+				if p:IsA("Weld") then
+					p:Destroy()
+				end
+			end
+		end
+	end
+end
+if cmd == "drophats" then
+if speaker.Character then
+		for _,v in pairs(speaker.Character:FindFirstChildOfClass('Humanoid'):GetAccessories()) do
+			v.Parent = workspace
+		end
+	end
+end
+if cmd == "noterrain" then
+workspace:FindFirstChildOfClass('Terrain'):Clear()
+end
+if cmd == "firecd" then
+local var = string.sub(msg,space+1)
+        if var then
+            local name = var
+            for _, descendant in ipairs(workspace:GetDescendants()) do
+                if descendant:IsA("ClickDetector") and descendant.Name == name then
+                    fireclickdetector(descendant)
+                end
+            end
+        else
+            for _, descendant in ipairs(workspace:GetDescendants()) do
+                if descendant:IsA("ClickDetector") then
+                    fireclickdetector(descendant)
+                end
+            end
+        end
+end
+if cmd == "nocdlimits" then
+for i,v in ipairs(workspace:GetDescendants()) do
+		if v:IsA("ClickDetector") then
+			v.MaxActivationDistance = math.huge
+		end
+	end
+end
 -- limits
 end
 end)
@@ -2190,6 +2269,13 @@ cmds[#cmds + 1] = {Text = "[84] /unloopfall",Title = "'HAPPYMOD🤬😠😡'"}
 cmds[#cmds + 1] = {Text = "[85] /spam [message]",Title = "annoy them by spamming messages."}
 cmds[#cmds + 1] = {Text = "[86] /unspam",Title = "stop spamming"}
 cmds[#cmds + 1] = {Text = "[87] /spamspeed [speed]",Title = "Set spam speed"}
+cmds[#cmds + 1] = {Text = "[88] /equiptools",Title = "equip all tools"}
+cmds[#cmds + 1] = {Text = "[89] /droptools",Title = "drop all tools"}
+cmds[#cmds + 1] = {Text = "[90] /deletehats",Title = "delete all hats"}
+cmds[#cmds + 1] = {Text = "[91] /drophats",Title = "drop all hats"}
+cmds[#cmds + 1] = {Text = "[92] /noterrain",Title = "Remove terrain"}
+cmds[#cmds + 1] = {Text = "[93] /firecd",Title = "fire click detectors"}
+cmds[#cmds + 1] = {Text = "[94] /nocdlimits",Title = "Remove fire click detectors limits"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
