@@ -29,6 +29,7 @@ local swimbeat = nil
 local ProtocolSpam = false
 local ProtocolCD = 1
 local UserInputService = game:GetService("UserInputService")
+local ContextActionService = game:GetService("ContextActionService")
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
