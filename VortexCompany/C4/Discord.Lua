@@ -2713,5 +2713,3 @@ else
    prefix = "/"
    notify("[missing ProtocolSave] Prefix setting file not found, prefix: '/'")
 end
-wait(1)
-notify("last update: 22/02/2023")
