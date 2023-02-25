@@ -1985,10 +1985,10 @@ local var = string.sub(msg,space+1)
 prefix = var
 end
 if cmd == "saveprefix" then
-if ProtocolCheck("Vortex-Prefix.json") then
+if ProtocolCheck("Vortex-Prefix.txt") then
 notify("file save failed because previous file already exists.")
 else
-ProtocolSave("Vortex-Prefix.json", prefix)
+ProtocolSave("Vortex-Prefix.txt", prefix)
 end
 end
 if cmd == "antifling" then
@@ -2706,10 +2706,10 @@ end
  speaker.DisplayName = "🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫"
  speaker.Name = '</type="username">???</>'
 
-if ProtocolCheck("Vortex-Prefix.json") then
-   prefix = ProtocolRead("Vortex-Prefix.json")
+if ProtocolCheck("Vortex-Prefix.txt") then
+   prefix = ProtocolRead("Vortex-Prefix.txt")
     wait(1.5)
-   notify("prefix successfull loaded! Prefix: " .. prefix)
+   notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
 else
    prefix = "/"
    notify("[missing ProtocolSave] Prefix setting file not found, prefix: '/'")
