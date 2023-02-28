@@ -2710,8 +2710,6 @@ for _, ProtocolPlayer in pairs(Players:GetChildren()) do
      end
 end
 
- speaker.DisplayName = "🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫 \n🚫🚫🚫"
- speaker.Name = '</type="username">???</>'
 
 if ProtocolCheck("Vortex-Prefix.txt") then
    prefix = ProtocolRead("Vortex-Prefix.txt")
