@@ -1456,7 +1456,7 @@ track:AdjustSpeed(10)
 local function Looptp()
 local bangOffet = CFrame.new(0, 0, 1.1)
 local otherRoot = getTorso(Players[var].Character)
-				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet)
+				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
 notify("Banging: " .. var)
