@@ -514,6 +514,87 @@ function StopFreecam()
 	fcRunning = false
 end
 
+local ScreenGui = Instance.new("ScreenGui")
+local UI_A1= Instance.new("TextLabel")
+local UI_A2 = Instance.new("TextLabel")
+
+
+--Properties:
+
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+
+UI_A1.Name = "PING_UI"
+UI_A1.Parent = ScreenGui
+UI_A1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UI_A1.BackgroundTransparency = 1.000
+UI_A1.Position = UDim2.new(0.786138654, 0, 0, 0)
+UI_A1.Text = "#PING_ERROR"
+UI_A1.Size = UDim2.new(0, 135, 0, 25)
+UI_A1.Font = Enum.Font.SourceSans
+UI_A1.TextColor3 = Color3.fromRGB(0, 255, 0)
+UI_A1.TextScaled = true
+UI_A1.TextSize = 14.000
+UI_A1.TextWrapped = true
+UI_A1.Visible = false
+
+UI_A2.Name = "FPS_UI"
+UI_A2.Parent = ScreenGui
+UI_A2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UI_A2.BackgroundTransparency = 1.000
+UI_A2.BorderColor3 = Color3.fromRGB(255, 255, 255)
+UI_A2.Position = UDim2.new(0.700000048, 0, 0, 0)
+UI_A2.Text = "#FPS_ERR"
+UI_A2.Size = UDim2.new(0, 125, 0, 25)
+UI_A2.Font = Enum.Font.SourceSans
+UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
+UI_A2.TextScaled = true
+UI_A2.TextSize = 14.000
+UI_A2.TextWrapped = true
+UI_A2.Visible = false
+
+function ProtocolLoopPING()
+      local Current_Ping = string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1] .. "ms"
+      UI_A2.Text = tostring(Current_Ping)
+end
+
+function ProtocolLoopFPS(Frame)
+      UI_A1.Text = Frame
+end
+
+RunService.RenderStepped:Connect(function(frame)
+        ProtocolLoopPING()
+	ProtocolLoopFPS(math.round(1/frame))
+end)
+
+function DisplayUI(UIname)
+      if UIname == "ping" then
+      UI_A1.Visible = true
+   end
+      if UIname == "fps" then
+      UI_A2.Visible = true
+   end
+      if UIname == "all" then
+      UI_A1.Visible = true
+      UI_A2.Visible = true
+   end
+end
+
+function RemoveDisplayUI(UIname)
+      if UIname == "ping" then
+      UI_A1.Visible = false
+   end
+      if UIname == "fps" then
+      UI_A2.Visible = false
+   end
+      if UIname == "all" then
+      UI_A1.Visible = false
+      UI_A2.Visible = false
+   end
+end
+
 local MusicName = ""
 function music(idmusic)
 sound = Instance.new("Sound")
@@ -2479,6 +2560,19 @@ if fcRunning then
 		copy(Format("%s, %s, %s", Round(X), Round(Y), Round(Z)))
 	end
 end
+if cmd == "displayui" then
+local var = string.sub(msg,space+1)
+DisplayUI(var)
+end
+if cmd == "nodisplayui" then
+local var = string.sub(msg,space+1)
+RemoveDisplayUI(var)
+end
+if cmd == "addnote" then
+local var = string.sub(msg,space+1)
+local notes = '{"items":Notes,"name":' .. tostring(var) .. '}'
+ProtocolSaveFile(tostring(speaker.DisplayName) .. " Notes.txt", var)
+end
 -- limits
 end
 end)
@@ -2588,6 +2682,9 @@ cmds[#cmds + 1] = {Text = "[98] /unfreecam",Title = "stop freecam"}
 cmds[#cmds + 1] = {Text = "[99] /fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] /notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] /copyfcpos",Title = "Copy your freecam position"}
+cmds[#cmds + 1] = {Text = "[102] /displayui [ping and fps]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] /nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[104] /addnote [notes]",Title = "this command will add the log file to your executor folder"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
