@@ -2570,8 +2570,9 @@ RemoveDisplayUI(var)
 end
 if cmd == "addnote" then
 local var = string.sub(msg,space+1)
-local notes = '{"items":Notes,"name":' .. tostring(var) .. '}'
-ProtocolSaveFile(tostring(speaker.DisplayName) .. " Notes.txt", var)
+local notes = '{"items":' .. tostring(speaker.DisplayName) .. ' (' .. tostring(speaker.Name) .. ') Notes,"name":' .. tostring(var) .. '}'
+ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", var)
+notify("notes are saved to your executor folder.")
 end
 -- limits
 end
