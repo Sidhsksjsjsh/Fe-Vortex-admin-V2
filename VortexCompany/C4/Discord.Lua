@@ -557,11 +557,11 @@ UI_A2.Visible = false
 
 function ProtocolLoopPING()
       local Current_Ping = string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1] .. "ms"
-      UI_A2.Text = tostring(Current_Ping)
+      UI_A1.Text = tostring(Current_Ping)
 end
 
 function ProtocolLoopFPS(Frame)
-      UI_A1.Text = Frame
+      UI_A2.Text = Frame
 end
 
 RunService.RenderStepped:Connect(function(frame)
@@ -2570,8 +2570,10 @@ RemoveDisplayUI(var)
 end
 if cmd == "addnote" then
 local var = string.sub(msg,space+1)
-local notes = '{"items":' .. tostring(speaker.DisplayName) .. ' (' .. tostring(speaker.Name) .. ') Notes,"name":' .. tostring(var) .. '}'
-ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", var)
+local V_C1 = "╔══════════❖••❖══════════╗"
+local V_C2 = "╚══════════❖••❖══════════╝"
+local notes = V_C1 .. "\nNotes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" . .V_C2 .. "\nnotes \n" .. var
+ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
 notify("notes are saved to your executor folder.")
 end
 -- limits
