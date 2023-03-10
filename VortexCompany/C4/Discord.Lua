@@ -2570,9 +2570,9 @@ RemoveDisplayUI(var)
 end
 if cmd == "addnote" then
 local var = string.sub(msg,space+1)
-local V_C1 = "╔══════════❖••❖══════════╗"
-local V_C2 = "╚══════════❖••❖══════════╝"
-local notes = V_C1 .. "\nNotes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\nnotes \n" .. var
+local V_C1 = "╔═══════════════❖••❖══════════════╗"
+local V_C2 = "╚═══════════════❖••❖══════════════╝"
+local notes = V_C1 .. "\n  Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
 ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
 notify("notes are saved to your executor folder.")
 end
