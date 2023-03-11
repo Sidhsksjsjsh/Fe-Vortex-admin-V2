@@ -1907,8 +1907,36 @@ notify("Deleting parts: " .. tostring(BodyPart[var]))
 end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
-music(var)
-notify("now playing " .. var .. " (" .. tostring(MusicName) .. ")")
+local OfficialMusic = {
+       ["paradisefalls"] = 1837879082,
+       ["stadiumrave"] = 1846368080,
+       ["crabrave"] = 5410086218,
+       ["hijacket"] = 1842559618,
+       ["wonderfullday"] = 1843382633,
+       ["bloodpop"] = 6823597327,
+       ["sunrise"] = 1837324500
+}
+
+local T1 = "Paradise Falls"
+local T2 = "Stadium Rave"
+local T3 = "Crab Rave"
+local T4 = "Hijacket"
+local T5 = "Wonderfull Day"
+local T6 = "Blood Pop"
+local T7 = "Sunrise Workout"
+
+local MusicText = {
+       ["paradisefalls"] = T1,
+       ["stadiumrave"] = T2,
+       ["crabrave"] = T3,
+       ["hijacket"] = T4,
+       ["wonderfullday"] = T5,
+       ["bloodpop"] = T6,
+       ["sunrise"] = T7
+}
+
+music(var or OfficialMusic[var])
+notify("now playing " .. var .. " (" .. tostring(MusicName or MusicText[var]) .. ")")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
