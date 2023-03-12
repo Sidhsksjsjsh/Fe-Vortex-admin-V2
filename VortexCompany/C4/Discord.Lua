@@ -9,7 +9,7 @@ message.Text = "The Vortex admin is waiting for the game to load \n\nLoading Map
 until game:IsLoaded()
 game.Loaded:Wait()
 else
-
+message:Destroy()
 end
 
 local cmds = {}
