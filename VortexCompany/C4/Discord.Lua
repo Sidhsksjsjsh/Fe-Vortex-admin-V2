@@ -1,3 +1,14 @@
+if not game:IsLoaded() then
+local message = Instance.new("Message",workspace)
+local AssetLoaded = 0
+local LoadingScreen = ""
+repeat
+AssetLoaded = AssetLoaded + 1
+message.Text = "The Vortex admin is waiting for the game to load \n\nLoading Map Asset: " .. AssetLoaded .. "/1000"
+until game:IsLoaded()
+game.Loaded:Wait()
+end
+
 local cmds = {}
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
