@@ -30,6 +30,41 @@ local ProtocolSpam = false
 local ProtocolCD = 1
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
+local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
+local U1                         = Instance.new('TextButton', GUI_MAIN)
+local U2                         = Instance.new('TextButton', U1)
+
+
+GUI_MAIN.Name                      = "Fly_Controller"
+
+
+U1.Size                    = UDim2.new(0,200,0,30)
+U1.BackgroundTransparency  = 0.5
+U1.BackgroundColor         = BrickColor.new('Fossil')
+U1.BorderSizePixel         = 0
+U1.Position                = UDim2.new(0.5,-100,0,0)
+U1.Text                    = "W"
+U1.TextColor3              = Color3.new(1,1,1)
+U1.TextStrokeTransparency  = 1
+U1.TextWrapped             = true
+U1.FontSize                = 'Size24'
+U1.Font                    = 'SourceSansBold'
+U1.Draggable = true
+
+U2.Size                    = UDim2.new(0,200,0,30)
+U2.BackgroundTransparency  = 0.5
+U2.BackgroundColor         = BrickColor.new('Fossil')
+U2.BorderSizePixel         = 0
+U2.Position                = UDim2.new(0.5,-100,0,30)
+U2.Text                    = "S"
+U2.TextColor3              = Color3.new(1,1,1)
+U2.TextStrokeTransparency  = 1
+U2.TextWrapped             = true
+U2.FontSize                = 'Size24'
+U2.Font                    = 'SourceSansBold'
+U1.Visible = false
+U2.Visible = false
+
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1244,6 +1279,12 @@ function sFLY(vfly)
 		end
 		pcall(function() workspace.CurrentCamera.CameraType = Enum.CameraType.Track end)
 	end)
+	U1.MouseEnter:Connect(function()
+	CONTROL.F = (vfly and vehicleflyspeed or iyflyspeed)
+	end)
+	U2.MouseEnter:Connect(function()
+	CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
+	end)
 	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
@@ -1258,6 +1299,12 @@ function sFLY(vfly)
 		elseif KEY:lower() == 'q' then
 			CONTROL.E = 0
 		end
+	end)
+	U1.MouseLeave:Connect(function()
+	CONTROL.F = 0
+	end)
+	U2.MouseLeave:Connect(function()
+	CONTROL.B = 0
 	end)
 	FLY()
 end
@@ -2607,6 +2654,14 @@ end
 if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
+if cmd == "mobilectrl" then
+U1.Visible = true
+U2.Visible = true
+end
+if cmd == "unmobilectrl" then
+U1.Visible = false
+U2.Visible = false
+end
 -- limits
 end
 end)
@@ -2720,6 +2775,8 @@ cmds[#cmds + 1] = {Text = "[102] /displayui [ping and fps]",Title = "display you
 cmds[#cmds + 1] = {Text = "[103] /nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] /addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] /parttp",Title = "Beta Command"}
+cmds[#cmds + 1] = {Text = "[106] /mobilectrl",Title = "Provides control for mobile users [Requested]"}
+cmds[#cmds + 1] = {Text = "[107] /unmobilectrl",Title = "Provides control for mobile users [Requested]"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
