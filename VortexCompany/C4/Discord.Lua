@@ -21,7 +21,7 @@ function saveSettings()
 end
 function loadSettings()
     local c = game:GetService("HttpService")
-    if isfile(a .. "\\" .. b) then
+    if isfile(a .. "-" .. b) then
         _G.Settings = c:JSONDecode(readfile(a .. "-" .. b))
     end
 end
