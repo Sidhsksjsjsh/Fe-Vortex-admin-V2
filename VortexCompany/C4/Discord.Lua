@@ -2692,117 +2692,117 @@ end
 end
 end)
 -- + 1
-cmds[#cmds + 1] = {Text = "[1] /print [text]",Title = "useless"}
-cmds[#cmds + 1] = {Text = "[2] /unrotate",Title = "disable view"}
-cmds[#cmds + 1] = {Text = "[3] /rotate",Title = "enable view"}
-cmds[#cmds + 1] = {Text = "[4] /stun",Title = "enable PlatformStand"}
-cmds[#cmds + 1] = {Text = "[5] /unstun",Title = "disable PlatformStand"}
-cmds[#cmds + 1] = {Text = "[6] /kill [username]",Title = "kill nigga🤑😍😍"}
-cmds[#cmds + 1] = {Text = "[7] /inspect [username]",Title = "view item"}
-cmds[#cmds + 1] = {Text = "[8] /bring [username]",Title = "bring nigga to ur position"}
-cmds[#cmds + 1] = {Text = "[9] /esp",Title = "know where a nigga hide"}
-cmds[#cmds + 1] = {Text = "[10] /unesp",Title = "know where a nigga hide"}
-cmds[#cmds + 1] = {Text = "[11] /noclip",Title = "everyone: Happymod LOL🤡"}
-cmds[#cmds + 1] = {Text = "[12] /clip",Title = "everyone: Happymod LOL🤡"}
-cmds[#cmds + 1] = {Text = "[13] /bang [username]",Title = "make bitches pregnant"}
-cmds[#cmds + 1] = {Text = "[13] /unbang",Title = "make bitches pregnant"}
-cmds[#cmds + 1] = {Text = "[14] /follow [username]",Title = "follow nigga or bitches"}
-cmds[#cmds + 1] = {Text = "[15] /loopgoto [username",Title = "loop tp to nigga or bitches"}
-cmds[#cmds + 1] = {Text = "[16] /looptween [username]",Title = "loop tween to bitches or nigga"}
-cmds[#cmds + 1] = {Text = "[17] /goto",Title = "tp to nigga"}
-cmds[#cmds + 1] = {Text = "[18] /walkto",Title = "moving to nigga"}
-cmds[#cmds + 1] = {Text = "[19] /tweento",Title = "tween to nigga"}
-cmds[#cmds + 1] = {Text = "[20] /unloopgoto",Title = "stop teleporting"}
-cmds[#cmds + 1] = {Text = "[21] /unfollow",Title = "stop following"}
-cmds[#cmds + 1] = {Text = "[22] /unlooptween",Title = "stop tweening"}
-cmds[#cmds + 1] = {Text = "[23] /spy [username]",Title = "spy nigga"}
-cmds[#cmds + 1] = {Text = "[24] /unspy",Title = "stop spying"}
-cmds[#cmds + 1] = {Text = "[25] /stare [username]",Title = "stare."}
-cmds[#cmds + 1] = {Text = "[26] /unstare",Title = "stop staring"}
-cmds[#cmds + 1] = {Text = "[27] /fly [speed]",Title = "Fly! WOHOO"}
-cmds[#cmds + 1] = {Text = "[28] /unfly",Title = "stop flying"}
-cmds[#cmds + 1] = {Text = "[29] /speed [speed]",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[30] /jump [jump]",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[31] /loopspeed [speed]",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[32] /unloopspeed",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[31] /loopjump [jump]",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[32] /unloopjump",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[33] /fling",Title = "Troll"}
-cmds[#cmds + 1] = {Text = "[33] /unfling",Title = "stop flinging"}
-cmds[#cmds + 1] = {Text = "[34] /headsit [username]",Title = "sit at nigga head🤡🤙"}
-cmds[#cmds + 1] = {Text = "[35] /nosit",Title = "disable sit"}
-cmds[#cmds + 1] = {Text = "[36] /unnosit",Title = "enable sit"}
-cmds[#cmds + 1] = {Text = "[37] /sit",Title = "sit"}
-cmds[#cmds + 1] = {Text = "[38] /helicopter [none or fling or swim]",Title = "become a helicopter and destroy 2 towers😍👌"}
-cmds[#cmds + 1] = {Text = "[39] /attach [username]",Title = "attach."}
-cmds[#cmds + 1] = {Text = "[40] /enablestate [state type]",Title = "enable state like 15 (tonumber)"}
-cmds[#cmds + 1] = {Text = "[41] /disablestate [state type]",Title = "disable state like 15 (tonumber)"}
-cmds[#cmds + 1] = {Text = "[42] /rejoin",Title = "rejoin server"}
-cmds[#cmds + 1] = {Text = "[43] /delete [ra, la, rl, ll, and nolimbs]",Title = "being a person without limbs😍🤫😜"}
-cmds[#cmds + 1] = {Text = "[44] /music [id]",Title = "play music"}
-cmds[#cmds + 1] = {Text = "[45] /nomusic",Title = "stop music"}
-cmds[#cmds + 1] = {Text = "[46] /anim [id]",Title = "use ur animation"}
-cmds[#cmds + 1] = {Text = "[47] /noanim",Title = "stop ur animation"}
-cmds[#cmds + 1] = {Text = "[48] /joindate [username]",Title = "join date"}
-cmds[#cmds + 1] = {Text = "[49] /blockhats",Title = "turn all your hats and hair into squares"}
-cmds[#cmds + 1] = {Text = "[50] /blocktools",Title = "turn all your tools into squares"}
-cmds[#cmds + 1] = {Text = "[51] /faceless",Title = "remove ur face"}
-cmds[#cmds + 1] = {Text = "[52] /grabtools",Title = "Picking up any dropped tools"}
-cmds[#cmds + 1] = {Text = "[53] /ungrabtools",Title = "Picking up any dropped tools"}
-cmds[#cmds + 1] = {Text = "[54] /loopoof",Title = "spamming oof sound"}
-cmds[#cmds + 1] = {Text = "[55] /unloopoof",Title = "unspamming oof sound"}
-cmds[#cmds + 1] = {Text = "[56] /enablesl",Title = "enable shift lock"}
-cmds[#cmds + 1] = {Text = "[57] /setfpscap [number]",Title = "set fps cap"}
-cmds[#cmds + 1] = {Text = "[58] /antiteleport",Title = "enable anti teleport bypass"}
-cmds[#cmds + 1] = {Text = "[59] /support",Title = "copy discord invite"}
-cmds[#cmds + 1] = {Text = "[60] /ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
-cmds[#cmds + 1] = {Text = "[61] /antifling",Title = "Prevents you from being hit by a fling"}
-cmds[#cmds + 1] = {Text = "[62] /cammode [tpp or fpp]",Title = "Camera mode."}
-cmds[#cmds + 1] = {Text = "[63] /usetool",Title = "hold the objects in your inventory"}
-cmds[#cmds + 1] = {Text = "[64] /unusetool",Title = "{}"}
-cmds[#cmds + 1] = {Text = "[65] /clogs",Title = "u can see all private message"}
-cmds[#cmds + 1] = {Text = "[66] /datalimit [number]",Title = "set data limit"}
-cmds[#cmds + 1] = {Text = "[67] /noprompt",Title = "hide all purchase prompt"}
-cmds[#cmds + 1] = {Text = "[68] /prompt",Title = "show all purchase prompt"}
-cmds[#cmds + 1] = {Text = "[69] /lay",Title = "sleep"}
-cmds[#cmds + 1] = {Text = "[70] /replicationlag",Title = "set IncomingReplicationLag"}
-cmds[#cmds + 1] = {Text = "[71] /compliment [username]",Title = "Compliment someone you like😍❤️🥰"}
-cmds[#cmds + 1] = {Text = "[72] /insult [username]",Title = "insult someone you hate😡😠🤬"}
-cmds[#cmds + 1] = {Text = "[73] /reach",Title = "increase the range of your sword"}
-cmds[#cmds + 1] = {Text = "[74] /unreach",Title = "Returns the range of the sword to its original range"}
-cmds[#cmds + 1] = {Text = "[75] /grippos [Vector2]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
-cmds[#cmds + 1] = {Text = "[76] /hovername",Title = "enable player name"}
-cmds[#cmds + 1] = {Text = "[77] /unhovername",Title = "disable player name"}
-cmds[#cmds + 1] = {Text = "[78] /fall",Title = "fall..it hurts like jumping from the top of a building"}
-cmds[#cmds + 1] = {Text = "[79] /swim",Title = "swimming like a fish😍"}
-cmds[#cmds + 1] = {Text = "[80] /unswim",Title = "disable swim"}
-cmds[#cmds + 1] = {Text = "[81] /getpos [username]",Title = "see where the position of the player"}
-cmds[#cmds + 1] = {Text = "[82] /copypos [username]",Title = "copy player position"}
-cmds[#cmds + 1] = {Text = "[83] /loopfall",Title = "'HAPPYMOD🤬😠😡'"}
-cmds[#cmds + 1] = {Text = "[84] /unloopfall",Title = "'HAPPYMOD🤬😠😡'"}
-cmds[#cmds + 1] = {Text = "[85] /spam [message]",Title = "annoy them by spamming messages."}
-cmds[#cmds + 1] = {Text = "[86] /unspam",Title = "stop spamming"}
-cmds[#cmds + 1] = {Text = "[87] /spamspeed [speed]",Title = "Set spam speed"}
-cmds[#cmds + 1] = {Text = "[88] /equiptools",Title = "equip all tools"}
-cmds[#cmds + 1] = {Text = "[89] /droptools",Title = "drop all tools"}
-cmds[#cmds + 1] = {Text = "[90] /deletehats",Title = "delete all hats"}
-cmds[#cmds + 1] = {Text = "[91] /drophats",Title = "drop all hats"}
-cmds[#cmds + 1] = {Text = "[92] /noterrain",Title = "Remove terrain"}
-cmds[#cmds + 1] = {Text = "[93] /firecd",Title = "fire click detectors"}
-cmds[#cmds + 1] = {Text = "[94] /nocdlimits",Title = "Remove fire click detectors limits"}
-cmds[#cmds + 1] = {Text = "[95] /freecam",Title = "start freecam"}
-cmds[#cmds + 1] = {Text = "[96] /freecampos",Title = "set freecam position"}
-cmds[#cmds + 1] = {Text = "[97] /fcgoto [username]",Title = "freecam someone"}
-cmds[#cmds + 1] = {Text = "[98] /unfreecam",Title = "stop freecam"}
-cmds[#cmds + 1] = {Text = "[99] /fcspeed [speed]",Title = "set freecam speed"}
-cmds[#cmds + 1] = {Text = "[100] /notifyfcpos",Title = "provide notification of your freecam position"}
-cmds[#cmds + 1] = {Text = "[101] /copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] /displayui [ping and fps]",Title = "display your fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[103] /nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[104] /addnote [notes]",Title = "this command will add the log file to your executor folder"}
-cmds[#cmds + 1] = {Text = "[105] /parttp",Title = "Beta Command"}
-cmds[#cmds + 1] = {Text = "[106] /mobilectrl",Title = "Provides control for mobile users [Requested]"}
-cmds[#cmds + 1] = {Text = "[107] /unmobilectrl",Title = "Provides control for mobile users [Requested]"}
+cmds[#cmds + 1] = {Text = "[1] " .. tostring(prefix) .. "print [text]",Title = "useless"}
+cmds[#cmds + 1] = {Text = "[2] " .. tostring(prefix) .. "unrotate",Title = "disable view"}
+cmds[#cmds + 1] = {Text = "[3] " .. tostring(prefix) .. "rotate",Title = "enable view"}
+cmds[#cmds + 1] = {Text = "[4] " .. tostring(prefix) .. "stun",Title = "enable PlatformStand"}
+cmds[#cmds + 1] = {Text = "[5] " .. tostring(prefix) .. "unstun",Title = "disable PlatformStand"}
+cmds[#cmds + 1] = {Text = "[6] " .. tostring(prefix) .. "kill [username]",Title = "kill nigga🤑😍😍"}
+cmds[#cmds + 1] = {Text = "[7] " .. tostring(prefix) .. "inspect [username]",Title = "view item"}
+cmds[#cmds + 1] = {Text = "[8] " .. tostring(prefix) .. "bring [username]",Title = "bring nigga to ur position"}
+cmds[#cmds + 1] = {Text = "[9] " .. tostring(prefix) .. "esp",Title = "know where a nigga hide"}
+cmds[#cmds + 1] = {Text = "[10] " .. tostring(prefix) .. "unesp",Title = "know where a nigga hide"}
+cmds[#cmds + 1] = {Text = "[11] " .. tostring(prefix) .. "noclip",Title = "everyone: Happymod LOL🤡"}
+cmds[#cmds + 1] = {Text = "[12] " .. tostring(prefix) .. "clip",Title = "everyone: Happymod LOL🤡"}
+cmds[#cmds + 1] = {Text = "[13] " .. tostring(prefix) .. "bang [username]",Title = "make bitches pregnant"}
+cmds[#cmds + 1] = {Text = "[13] " .. tostring(prefix) .. "unbang",Title = "make bitches pregnant"}
+cmds[#cmds + 1] = {Text = "[14] " .. tostring(prefix) .. "follow [username]",Title = "follow nigga or bitches"}
+cmds[#cmds + 1] = {Text = "[15] " .. tostring(prefix) .. "loopgoto [username",Title = "loop tp to nigga or bitches"}
+cmds[#cmds + 1] = {Text = "[16] " .. tostring(prefix) .. "looptween [username]",Title = "loop tween to bitches or nigga"}
+cmds[#cmds + 1] = {Text = "[17] " .. tostring(prefix) .. "goto",Title = "tp to nigga"}
+cmds[#cmds + 1] = {Text = "[18] " .. tostring(prefix) .. "walkto",Title = "moving to nigga"}
+cmds[#cmds + 1] = {Text = "[19] " .. tostring(prefix) .. "tweento",Title = "tween to nigga"}
+cmds[#cmds + 1] = {Text = "[20] " .. tostring(prefix) .. "unloopgoto",Title = "stop teleporting"}
+cmds[#cmds + 1] = {Text = "[21] " .. tostring(prefix) .. "unfollow",Title = "stop following"}
+cmds[#cmds + 1] = {Text = "[22] " .. tostring(prefix) .. "unlooptween",Title = "stop tweening"}
+cmds[#cmds + 1] = {Text = "[23] " .. tostring(prefix) .. "spy [username]",Title = "spy nigga"}
+cmds[#cmds + 1] = {Text = "[24] " .. tostring(prefix) .. "unspy",Title = "stop spying"}
+cmds[#cmds + 1] = {Text = "[25] " .. tostring(prefix) .. "stare [username]",Title = "stare."}
+cmds[#cmds + 1] = {Text = "[26] " .. tostring(prefix) .. "unstare",Title = "stop staring"}
+cmds[#cmds + 1] = {Text = "[27] " .. tostring(prefix) .. "fly [speed]",Title = "Fly! WOHOO"}
+cmds[#cmds + 1] = {Text = "[28] " .. tostring(prefix) .. "unfly",Title = "stop flying"}
+cmds[#cmds + 1] = {Text = "[29] " .. tostring(prefix) .. "speed [speed]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[30] " .. tostring(prefix) .. "jump [jump]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[31] " .. tostring(prefix) .. "loopspeed [speed]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopspeed",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[31] " .. tostring(prefix) .. "loopjump [jump]",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopjump",Title = "no text"}
+cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "fling",Title = "Troll"}
+cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "unfling",Title = "stop flinging"}
+cmds[#cmds + 1] = {Text = "[34] " .. tostring(prefix) .. "headsit [username]",Title = "sit at nigga head🤡🤙"}
+cmds[#cmds + 1] = {Text = "[35] " .. tostring(prefix) .. "nosit",Title = "disable sit"}
+cmds[#cmds + 1] = {Text = "[36] " .. tostring(prefix) .. "unnosit",Title = "enable sit"}
+cmds[#cmds + 1] = {Text = "[37] " .. tostring(prefix) .. "sit",Title = "sit"}
+cmds[#cmds + 1] = {Text = "[38] " .. tostring(prefix) .. "helicopter [none or fling or swim]",Title = "become a helicopter and destroy 2 towers😍👌"}
+cmds[#cmds + 1] = {Text = "[39] " .. tostring(prefix) .. "attach [username]",Title = "attach."}
+cmds[#cmds + 1] = {Text = "[40] " .. tostring(prefix) .. "enablestate [state type]",Title = "enable state like 15 (tonumber)"}
+cmds[#cmds + 1] = {Text = "[41] " .. tostring(prefix) .. "disablestate [state type]",Title = "disable state like 15 (tonumber)"}
+cmds[#cmds + 1] = {Text = "[42] " .. tostring(prefix) .. "rejoin",Title = "rejoin server"}
+cmds[#cmds + 1] = {Text = "[43] " .. tostring(prefix) .. "delete [ra, la, rl, ll, and nolimbs]",Title = "being a person without limbs😍🤫😜"}
+cmds[#cmds + 1] = {Text = "[44] " .. tostring(prefix) .. "music [id]",Title = "play music"}
+cmds[#cmds + 1] = {Text = "[45] " .. tostring(prefix) .. "nomusic",Title = "stop music"}
+cmds[#cmds + 1] = {Text = "[46] " .. tostring(prefix) .. "anim [id]",Title = "use ur animation"}
+cmds[#cmds + 1] = {Text = "[47] " .. tostring(prefix) .. "noanim",Title = "stop ur animation"}
+cmds[#cmds + 1] = {Text = "[48] " .. tostring(prefix) .. "joindate [username]",Title = "join date"}
+cmds[#cmds + 1] = {Text = "[49] " .. tostring(prefix) .. "blockhats",Title = "turn all your hats and hair into squares"}
+cmds[#cmds + 1] = {Text = "[50] " .. tostring(prefix) .. "blocktools",Title = "turn all your tools into squares"}
+cmds[#cmds + 1] = {Text = "[51] " .. tostring(prefix) .. "faceless",Title = "remove ur face"}
+cmds[#cmds + 1] = {Text = "[52] " .. tostring(prefix) .. "grabtools",Title = "Picking up any dropped tools"}
+cmds[#cmds + 1] = {Text = "[53] " .. tostring(prefix) .. "ungrabtools",Title = "Picking up any dropped tools"}
+cmds[#cmds + 1] = {Text = "[54] " .. tostring(prefix) .. "loopoof",Title = "spamming oof sound"}
+cmds[#cmds + 1] = {Text = "[55] " .. tostring(prefix) .. "unloopoof",Title = "unspamming oof sound"}
+cmds[#cmds + 1] = {Text = "[56] " .. tostring(prefix) .. "enablesl",Title = "enable shift lock"}
+cmds[#cmds + 1] = {Text = "[57] " .. tostring(prefix) .. "setfpscap [number]",Title = "set fps cap"}
+cmds[#cmds + 1] = {Text = "[58] " .. tostring(prefix) .. "antiteleport",Title = "enable anti teleport bypass"}
+cmds[#cmds + 1] = {Text = "[59] " .. tostring(prefix) .. "support",Title = "copy discord invite"}
+cmds[#cmds + 1] = {Text = "[60] " .. tostring(prefix) .. "ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
+cmds[#cmds + 1] = {Text = "[61] " .. tostring(prefix) .. "antifling",Title = "Prevents you from being hit by a fling"}
+cmds[#cmds + 1] = {Text = "[62] " .. tostring(prefix) .. "cammode [tpp or fpp]",Title = "Camera mode."}
+cmds[#cmds + 1] = {Text = "[63] " .. tostring(prefix) .. "usetool",Title = "hold the objects in your inventory"}
+cmds[#cmds + 1] = {Text = "[64] " .. tostring(prefix) .. "unusetool",Title = "{}"}
+cmds[#cmds + 1] = {Text = "[65] " .. tostring(prefix) .. "clogs",Title = "u can see all private message"}
+cmds[#cmds + 1] = {Text = "[66] " .. tostring(prefix) .. "datalimit [number]",Title = "set data limit"}
+cmds[#cmds + 1] = {Text = "[67] " .. tostring(prefix) .. "noprompt",Title = "hide all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[68] " .. tostring(prefix) .. "prompt",Title = "show all purchase prompt"}
+cmds[#cmds + 1] = {Text = "[69] " .. tostring(prefix) .. "lay",Title = "sleep"}
+cmds[#cmds + 1] = {Text = "[70] " .. tostring(prefix) .. "replicationlag",Title = "set IncomingReplicationLag"}
+cmds[#cmds + 1] = {Text = "[71] " .. tostring(prefix) .. "compliment [username]",Title = "Compliment someone you like😍❤️🥰"}
+cmds[#cmds + 1] = {Text = "[72] " .. tostring(prefix) .. "insult [username]",Title = "insult someone you hate😡😠🤬"}
+cmds[#cmds + 1] = {Text = "[73] " .. tostring(prefix) .. "reach",Title = "increase the range of your sword"}
+cmds[#cmds + 1] = {Text = "[74] " .. tostring(prefix) .. "unreach",Title = "Returns the range of the sword to its original range"}
+cmds[#cmds + 1] = {Text = "[75] " .. tostring(prefix) .. "grippos [Vector2]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
+cmds[#cmds + 1] = {Text = "[76] " .. tostring(prefix) .. "hovername",Title = "enable player name"}
+cmds[#cmds + 1] = {Text = "[77] " .. tostring(prefix) .. "unhovername",Title = "disable player name"}
+cmds[#cmds + 1] = {Text = "[78] " .. tostring(prefix) .. "fall",Title = "fall..it hurts like jumping from the top of a building"}
+cmds[#cmds + 1] = {Text = "[79] " .. tostring(prefix) .. "swim",Title = "swimming like a fish😍"}
+cmds[#cmds + 1] = {Text = "[80] " .. tostring(prefix) .. "unswim",Title = "disable swim"}
+cmds[#cmds + 1] = {Text = "[81] " .. tostring(prefix) .. "getpos [username]",Title = "see where the position of the player"}
+cmds[#cmds + 1] = {Text = "[82] " .. tostring(prefix) .. "copypos [username]",Title = "copy player position"}
+cmds[#cmds + 1] = {Text = "[83] " .. tostring(prefix) .. "loopfall",Title = "'HAPPYMOD🤬😠😡'"}
+cmds[#cmds + 1] = {Text = "[84] " .. tostring(prefix) .. "unloopfall",Title = "'HAPPYMOD🤬😠😡'"}
+cmds[#cmds + 1] = {Text = "[85] " .. tostring(prefix) .. "spam [message]",Title = "annoy them by spamming messages."}
+cmds[#cmds + 1] = {Text = "[86] " .. tostring(prefix) .. "unspam",Title = "stop spamming"}
+cmds[#cmds + 1] = {Text = "[87] " .. tostring(prefix) .. "spamspeed [speed]",Title = "Set spam speed"}
+cmds[#cmds + 1] = {Text = "[88] " .. tostring(prefix) .. "equiptools",Title = "equip all tools"}
+cmds[#cmds + 1] = {Text = "[89] " .. tostring(prefix) .. "droptools",Title = "drop all tools"}
+cmds[#cmds + 1] = {Text = "[90] " .. tostring(prefix) .. "deletehats",Title = "delete all hats"}
+cmds[#cmds + 1] = {Text = "[91] " .. tostring(prefix) .. "drophats",Title = "drop all hats"}
+cmds[#cmds + 1] = {Text = "[92] " .. tostring(prefix) .. "noterrain",Title = "Remove terrain"}
+cmds[#cmds + 1] = {Text = "[93] " .. tostring(prefix) .. "firecd",Title = "fire click detectors"}
+cmds[#cmds + 1] = {Text = "[94] " .. tostring(prefix) .. "nocdlimits",Title = "Remove fire click detectors limits"}
+cmds[#cmds + 1] = {Text = "[95] " .. tostring(prefix) .. "freecam",Title = "start freecam"}
+cmds[#cmds + 1] = {Text = "[96] " .. tostring(prefix) .. "freecampos",Title = "set freecam position"}
+cmds[#cmds + 1] = {Text = "[97] " .. tostring(prefix) .. "fcgoto [username]",Title = "freecam someone"}
+cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "stop freecam"}
+cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
+cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
+cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "displayui [ping and fps]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
+cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
+cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "mobilectrl",Title = "Provides control for mobile users [Requested]"}
+cmds[#cmds + 1] = {Text = "[107] " .. tostring(prefix) .. "unmobilectrl",Title = "Provides control for mobile users [Requested]"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
