@@ -1,16 +1,31 @@
-local message = Instance.new("Message",workspace)
+_G.Settings = {
+      prefix = ":" -- default
+}
 
 if not game:IsLoaded() then
-local AssetLoaded = 0
-local LoadingScreen = ""
-repeat wait(0.5)
-AssetLoaded = AssetLoaded + 1
-message.Text = "The Vortex admin is waiting for the game to load \n\nLoading Map Asset: " .. AssetLoaded .. "/1000"
-until game:IsLoaded()
-game.Loaded:Wait()
-else
-message:Destroy()
+    game.Loaded:Wait()
 end
+local a = "Vortex Admin"
+local b = "PrefixFile.lua"
+function saveSettings()
+    local c = game:GetService("HttpService")
+    local d = c:JSONEncode(_G.Settings)
+    if writefile then
+        if isfolder(a) then
+            writefile(a .. "-" .. b, d)
+        else
+            makefolder(a)
+            writefile(a .. "-" .. b, d)
+        end
+    end
+end
+function loadSettings()
+    local c = game:GetService("HttpService")
+    if isfile(a .. "\\" .. b) then
+        _G.Settings = c:JSONDecode(readfile(a .. "-" .. b))
+    end
+end
+loadSettings()
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -1430,7 +1445,7 @@ function ESP(plr)
 	end)
 end
 
-local prefix = "/"
+local prefix = _G.Settings.prefix
 speaker.Chatted:Connect(function(msg)
 msg = msg:lower()
 if string.sub(msg,1,3) == "/e " then
@@ -2152,14 +2167,11 @@ IP(var)
 end
 if cmd == "prefix" then
 local var = string.sub(msg,space+1)
-prefix = var
+_G.Settings.prefix = var
+prefix = _G.Settings.prefix
 end
 if cmd == "saveprefix" then
-if ProtocolCheck("Vortex-Prefix.txt") then
-notify("file save failed because previous file already exists.")
-else
-ProtocolSave("Vortex-Prefix.txt", prefix)
-end
+saveSettings()
 end
 if cmd == "antifling" then
 local Services = setmetatable({}, {__index = function(Self, Index)
@@ -2914,11 +2926,5 @@ for _, ProtocolPlayer in pairs(Players:GetChildren()) do
 end
 
 
-if ProtocolCheck("Vortex-Prefix.txt") then
-   prefix = ProtocolRead("Vortex-Prefix.txt")
-    wait(1.5)
+
    notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
-else
-   prefix = "/"
-   notify("[missing ProtocolSave] Prefix setting file not found, prefix: '/'")
-end
