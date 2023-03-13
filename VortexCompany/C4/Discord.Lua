@@ -1,5 +1,6 @@
 _G.Settings = {
-      prefix = ":" -- default
+      prefix = ":", -- default
+      music = "rbxassetid://"
 }
 
 if not game:IsLoaded() then
@@ -673,6 +674,8 @@ Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 
 MusicName = Asset.Name
 end
+
+
 
 local _AnimName = ""
 function _Anims(id)
@@ -2688,6 +2691,13 @@ if cmd == "unmobilectrl" then
 U1.Visible = false
 U2.Visible = false
 end
+if cmd == "savemusic" then
+local var = string.sub(msg,space+1)
+_G.Settings.music = "rbxassetid://" .. var
+music("rbxassetid://" .. var)
+saveSettings()
+notify("This music will automatically play when you serverhop or rejoin")
+end
 -- limits
 end
 end)
@@ -2903,7 +2913,7 @@ end
         end
         if ProtocolChat == "AYO" or ProtocolChat == "YO" or ProtocolChat == "AY" or ProtocolChat == "ayo" or ProtocolChat == "ay" or ProtocolChat == "yo" then
             wait(1)
-            ProtocolSendChat("🤑🤑🤑")
+            ProtocolSendChat("")
         end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name then -- string if they call your name using display or username
             wait(1)
@@ -2928,3 +2938,5 @@ end
 
 
    notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
+music(_G.Settings.music)
+notify("Now playing " .. MusicName .. "(AUTO)")
