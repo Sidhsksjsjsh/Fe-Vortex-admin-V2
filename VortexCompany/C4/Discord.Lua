@@ -121,36 +121,11 @@ U4.TextWrapped             = true
 U4.FontSize                = 'Size24'
 U4.Font                    = 'SourceSansBold'
 
-F1.Size                    = UDim2.new(0,200,0,30)
-F1.BackgroundTransparency  = 0.5
-F1.BackgroundColor         = BrickColor.new('Fossil')
-F1.BorderSizePixel         = 0
-F1.Position                = UDim2.new(0.5,-100,0,0)
-F1.Text                    = "/\"
-F1.TextColor3              = Color3.new(1,1,1)
-F1.TextStrokeTransparency  = 1
-F1.TextWrapped             = true
-F1.FontSize                = 'Size24'
-F1.Font                    = 'SourceSansBold'
-F1.Draggable = true
-
-F2.Size                    = UDim2.new(0,200,0,30)
-F2.BackgroundTransparency  = 0.5
-F2.BackgroundColor         = BrickColor.new('Fossil')
-F2.BorderSizePixel         = 0
-F2.Position                = UDim2.new(0.5,-100,0,30)
-F2.Text                    = "\/"
-F2.TextColor3              = Color3.new(1,1,1)
-F2.TextStrokeTransparency  = 1
-F2.TextWrapped             = true
-F2.FontSize                = 'Size24'
-F2.Font                    = 'SourceSansBold'
 U1.Visible = false
 U2.Visible = false
 U3.Visible = false
 U4.Visible = false
-F1.Visible = false
-F2.Visible = false
+
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1379,12 +1354,6 @@ function sFLY(vfly)
 	U4.MouseEnter:Connect(function()
 	CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
 	end)
-	F1.MouseEnter:Connect(function()
-	CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
-	end)
-	F2.MouseEnter:Connect(function()
-	CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
-	end)
 	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
@@ -1411,12 +1380,6 @@ function sFLY(vfly)
 	end)
 	U4.MouseLeave:Connect(function()
 	CONTROL.R = 0
-	end)
-	F1.MouseLeave:Connect(function()
-	CONTROL.Q = 0
-	end)
-	F2.MouseLeave:Connect(function()
-	CONTROL.E = 0
 	end)
 	FLY()
 end
