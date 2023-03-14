@@ -63,6 +63,9 @@ local ContextActionService = game:GetService("ContextActionService")
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
+local U3                         = Instance.new('TextButton', U1)
+local U4                         = Instance.new('TextButton', U1)
+-- toggle vfly:
 
 
 GUI_MAIN.Name                      = "Fly_Controller"
@@ -92,8 +95,34 @@ U2.TextStrokeTransparency  = 1
 U2.TextWrapped             = true
 U2.FontSize                = 'Size24'
 U2.Font                    = 'SourceSansBold'
+
+U3.Size                    = UDim2.new(0,200,0,30)
+U3.BackgroundTransparency  = 0.5
+U3.BackgroundColor         = BrickColor.new('Fossil')
+U3.BorderSizePixel         = 0
+U3.Position                = UDim2.new(0.5,-100,0,60)
+U3.Text                    = "A"
+U3.TextColor3              = Color3.new(1,1,1)
+U3.TextStrokeTransparency  = 1
+U3.TextWrapped             = true
+U3.FontSize                = 'Size24'
+U3.Font                    = 'SourceSansBold'
+
+U4.Size                    = UDim2.new(0,200,0,30)
+U4.BackgroundTransparency  = 0.5
+U4.BackgroundColor         = BrickColor.new('Fossil')
+U4.BorderSizePixel         = 0
+U4.Position                = UDim2.new(0.5,-100,0,90)
+U4.Text                    = "D"
+U4.TextColor3              = Color3.new(1,1,1)
+U4.TextStrokeTransparency  = 1
+U4.TextWrapped             = true
+U4.FontSize                = 'Size24'
+U4.Font                    = 'SourceSansBold'
 U1.Visible = false
 U2.Visible = false
+U3.Visible = false
+U4.Visible = false
 
 
 function ForceBodyPart()
@@ -2684,19 +2713,19 @@ if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
 if cmd == "mobilectrl" then
-U1.Visible = true
-U2.Visible = true
+U1.Visible = false
+U2.Visible = false
+U3.Visible = false
+U4.Visible = false
 end
 if cmd == "unmobilectrl" then
 U1.Visible = false
 U2.Visible = false
+U3.Visible = false
+U4.Visible = false
 end
 if cmd == "savemusic" then
-local var = string.sub(msg,space+1)
-_G.Settings.music = "rbxassetid://" .. var
-music("rbxassetid://" .. var)
-saveSettings()
-notify("This music will automatically play when you serverhop or rejoin")
+notify("Sorry, this command has been temporarily disabled and is currently being tested")
 end
 -- limits
 end
@@ -2938,5 +2967,4 @@ end
 
 
    notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
-music(_G.Settings.music)
 notify("Now playing " .. MusicName .. "(AUTO)")
