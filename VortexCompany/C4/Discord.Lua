@@ -1275,6 +1275,65 @@ end)
 end
 end
 
+function StatusBAR(A, B, C, D)
+local Character = speaker.Character
+		local newName = Instance.new("Model", speaker.Character)
+		newName.Name = ""
+		local cl = Character:WaitForChild("Head"):Clone()
+		cl.Parent = newName
+		cl:WaitForChild("face"):Destroy()
+		local hum = Instance.new("Humanoid", newName)
+		hum.Name = "NameTag"
+		hum.MaxHealth = 0
+		hum.Health = 0
+		local weld = Instance.new("Weld", cl)
+		weld.Part0 = cl
+		weld.Part1 = Character:WaitForChild("Head")
+		Character:WaitForChild("Head").Transparency = 1
+		
+        local BarNumber = 100
+         while wait(1) do
+         if speaker.Character.Humanoid.Health == 0 then break end
+         BarNumber = BarNumber + -1
+         
+       if BarNumber == 100 then
+       newName.Name = A .. " \n■■■■■■■■■■ " .. BarNumber .. "%"
+       end
+       if BarNumber == 90 then
+       newName.Name = A .. " \n■■■■■■■■■□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 80 then
+       newName.Name = A .. " \n■■■■■■■■□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 70 then
+       newName.Name = A .. " \n■■■■■■■□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 60 then
+       newName.Name = A .. " \n■■■■■■□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 50 then
+       newName.Name = A .. " \n■■■■■□□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 40 then
+       newName.Name = A .. " \n■■■■□□□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 30 then
+       newName.Name = A .. " \n■■■□□□□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 20 then
+       newName.Name = A .. " \n■■□□□□□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 10 then
+       newName.Name = A .. " \n■□□□□□□□□□ " .. BarNumber .. "%"
+       end
+       if BarNumber == 0 then
+       newName.Name = A .. " \n□□□□□□□□□□ " .. BarNumber .. "%"
+       wait(1)
+       newName:Destroy()
+       end
+   end
+end
+
 function sFLY(vfly)
 	repeat wait() until Players.LocalPlayer and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
 	repeat wait() until Mouse
@@ -2761,6 +2820,10 @@ loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
 if cmd == "savemusic" then
 notify("Sorry, this command has been temporarily disabled and is currently being tested")
+end
+if cmd == "addevent" then
+local var = string.sub(msg,space+1)
+StatusBAR(var)
 end
 -- limits
 end
