@@ -3032,6 +3032,3 @@ for _, ProtocolPlayer in pairs(Players:GetChildren()) do
 end
 
 
-
-   notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
-
