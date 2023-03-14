@@ -66,7 +66,8 @@ local U2                         = Instance.new('TextButton', U1)
 local U3                         = Instance.new('TextButton', U1)
 local U4                         = Instance.new('TextButton', U1)
 -- toggle vfly:
-
+local F1                         = Instance.new('TextButton', GUI_MAIN)
+local F2                         = Instance.new('TextButton', F1)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
@@ -119,11 +120,37 @@ U4.TextStrokeTransparency  = 1
 U4.TextWrapped             = true
 U4.FontSize                = 'Size24'
 U4.Font                    = 'SourceSansBold'
+
+F1.Size                    = UDim2.new(0,200,0,30)
+F1.BackgroundTransparency  = 0.5
+F1.BackgroundColor         = BrickColor.new('Fossil')
+F1.BorderSizePixel         = 0
+F1.Position                = UDim2.new(0.5,-100,0,0)
+F1.Text                    = "/\"
+F1.TextColor3              = Color3.new(1,1,1)
+F1.TextStrokeTransparency  = 1
+F1.TextWrapped             = true
+F1.FontSize                = 'Size24'
+F1.Font                    = 'SourceSansBold'
+F1.Draggable = true
+
+F2.Size                    = UDim2.new(0,200,0,30)
+F2.BackgroundTransparency  = 0.5
+F2.BackgroundColor         = BrickColor.new('Fossil')
+F2.BorderSizePixel         = 0
+F2.Position                = UDim2.new(0.5,-100,0,30)
+F2.Text                    = "\/"
+F2.TextColor3              = Color3.new(1,1,1)
+F2.TextStrokeTransparency  = 1
+F2.TextWrapped             = true
+F2.FontSize                = 'Size24'
+F2.Font                    = 'SourceSansBold'
 U1.Visible = false
 U2.Visible = false
 U3.Visible = false
 U4.Visible = false
-
+F1.Visible = false
+F2.Visible = false
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1346,6 +1373,18 @@ function sFLY(vfly)
 	U2.MouseEnter:Connect(function()
 	CONTROL.B = - (vfly and vehicleflyspeed or iyflyspeed)
 	end)
+	U3.MouseEnter:Connect(function()
+	CONTROL.L = - (vfly and vehicleflyspeed or iyflyspeed)
+	end)
+	U4.MouseEnter:Connect(function()
+	CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
+	end)
+	F1.MouseEnter:Connect(function()
+	CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+	end)
+	F2.MouseEnter:Connect(function()
+	CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+	end)
 	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
@@ -1366,6 +1405,18 @@ function sFLY(vfly)
 	end)
 	U2.MouseLeave:Connect(function()
 	CONTROL.B = 0
+	end)
+	U3.MouseLeave:Connect(function()
+	CONTROL.L = 0
+	end)
+	U4.MouseLeave:Connect(function()
+	CONTROL.R = 0
+	end)
+	F1.MouseLeave:Connect(function()
+	CONTROL.Q = 0
+	end)
+	F2.MouseLeave:Connect(function()
+	CONTROL.E = 0
 	end)
 	FLY()
 end
@@ -1765,10 +1816,39 @@ end
 notify("looptween disabled")
 end
 if cmd == "fly" then
-NOFLY()
+local NotificationBindable = Instance.new("BindableFunction")
+local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
+game.StarterGui:SetCore("SendNotification", {
+Title = Title;
+Text = Text;
+Icon = "";
+Duration = Duration;
+Button1 = Button1Text;
+Button2 = Button2Text;
+Callback = NotificationBindable;
+})
+end
+
+
+NotificationBindable.OnInvoke = function(result)
+if result == "Mobile" then
+        NOFLY()
+	wait()
+	U1.Visible = false
+        U2.Visible = false
+        U3.Visible = false
+        U4.Visible = false
+	sFLY()
+        notify("FLY enabled for mobile devices")
+   end
+   if result == "PC" then
+        NOFLY()
 	wait()
 	sFLY()
-notify("FLY enabled")
+        notify("FLY enabled for PC devices")
+   end
+end
+Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
 end
 if cmd == "unfly" then
 NOFLY()
@@ -2712,18 +2792,6 @@ end
 if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
-if cmd == "mobilectrl" then
-U1.Visible = false
-U2.Visible = false
-U3.Visible = false
-U4.Visible = false
-end
-if cmd == "unmobilectrl" then
-U1.Visible = false
-U2.Visible = false
-U3.Visible = false
-U4.Visible = false
-end
 if cmd == "savemusic" then
 notify("Sorry, this command has been temporarily disabled and is currently being tested")
 end
@@ -2840,8 +2908,7 @@ cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "displayui [ping and f
 cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
-cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "mobilectrl",Title = "Provides control for mobile users [Requested]"}
-cmds[#cmds + 1] = {Text = "[107] " .. tostring(prefix) .. "unmobilectrl",Title = "Provides control for mobile users [Requested]"}
+
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -2967,4 +3034,4 @@ end
 
 
    notify("prefix successfull loaded! Prefix: '" .. prefix .. "'")
-notify("Now playing " .. MusicName .. "(AUTO)")
+
