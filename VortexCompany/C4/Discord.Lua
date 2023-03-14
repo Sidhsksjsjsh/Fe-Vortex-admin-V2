@@ -1797,12 +1797,12 @@ NotificationBindable.OnInvoke = function(result)
 if result == "Mobile" then
         NOFLY()
 	wait()
-	U1.Visible = false
-        U2.Visible = false
-        U3.Visible = false
-        U4.Visible = false
 	sFLY()
-        notify("FLY enabled for mobile devices")
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+	notify("FLY enabled for mobile devices")
    end
    if result == "PC" then
         NOFLY()
@@ -1815,6 +1815,10 @@ Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
 end
 if cmd == "unfly" then
 NOFLY()
+U1.Visible = true
+U2.Visible = true
+U3.Visible = true
+U4.Visible = true
 notify("FLY disabled")
 end
 if cmd == "speed" then
