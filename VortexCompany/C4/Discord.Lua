@@ -28,6 +28,25 @@ function loadSettings()
 end
 loadSettings()
 
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+local protect = newcclosure or protect_function
+
+if not protect then
+protect = function(f) return f end
+end
+
+setreadonly(mt, false)
+mt.__namecall = protect(function(self, ...)
+local method = getnamecallmethod()
+if method == "Kick" then
+wait(9e9)
+return
+end
+return old(self, ...)
+end)
+hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
+
 local cmds = {}
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
@@ -1774,7 +1793,7 @@ local TweenService = game:GetService("TweenService")
 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 
 
-{CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
+{CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
 notify("Loop tweening to " .. var)
@@ -1804,7 +1823,7 @@ local TweenService = game:GetService("TweenService")
 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 
 
-{CFrame = CFrame.new(Players[var].Character.humanoidRootPart.Position)}):Play()
+{CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
 notify("tweening to " .. var)
 end
 if cmd == "walkto" then
@@ -1874,10 +1893,10 @@ Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
 end
 if cmd == "unfly" then
 NOFLY()
-U1.Visible = true
-U2.Visible = true
-U3.Visible = true
-U4.Visible = true
+U1.Visible = false
+U2.Visible = false
+U3.Visible = false
+U4.Visible = false
 notify("FLY disabled")
 end
 if cmd == "speed" then
