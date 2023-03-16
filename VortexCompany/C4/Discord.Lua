@@ -721,7 +721,7 @@ sound.Looped = true
 sound:Play()
 local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
 
-Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 
 MusicName = Asset.Name
 end
@@ -737,7 +737,7 @@ ServiceStart:Play()
 ServiceStart:AdjustSpeed(1)
 local id = string.match(AnimService.AnimationId, "rbxasset://sounds.+") or string.match(AnimService.AnimationId, "&hash=.+") or string.match(AnimService.AnimationId, "%d+")
 
-Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 
 _AnimName = Asset.Name
 end
@@ -1593,6 +1593,14 @@ if cmd == "reset" then
 game.Players.LocalPlayer.Character:BreakJoints()
 notify("Reset Character")
 end
+if cmd == "respawn" then
+respawn(speaker)
+notify("Respawning")
+end
+if cmd == "refresh" then
+refresh(speaker)
+notify("Refreshing")
+end
 if cmd == "unrotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
 notify("Rotate disabled")
@@ -1748,6 +1756,7 @@ if RapeStart then
 		RapeStart:Disconnect()
                 track:Stop()
 		Anim:Destroy()
+		notify("Stop Banging")
 	end
 end
 if cmd == "follow" then
@@ -1858,6 +1867,7 @@ end
 notify("looptween disabled")
 end
 if cmd == "fly" then
+if _G.Settings.device == "" then
 local NotificationBindable = Instance.new("BindableFunction")
 local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
 game.StarterGui:SetCore("SendNotification", {
@@ -1873,8 +1883,14 @@ end
 
 
 NotificationBindable.OnInvoke = function(result)
-if result == "Mobile" or _G.Settings.device == "Mobile" then
+if result == "Mobile" then
+        _G.Settings.device = "Mobi"
+        _G.Settings.device = "PC"
+        _G.Settings.device = "Mobil"
+        _G.Settings.device = "PC"
+        _G.Settings.device = "PC"
         _G.Settings.device = "Mobile"
+        _G.Settings.device = "PC"
 	saveSettings()
         NOFLY()
 	wait()
@@ -1885,7 +1901,7 @@ if result == "Mobile" or _G.Settings.device == "Mobile" then
         U4.Visible = true
 	notify("FLY enabled for mobile devices")
    end
-   if result == "PC" or _G.Settings.device == "PC" then
+   if result == "PC" then
         _G.Settings.device = "PC"
 	saveSettings()
         NOFLY()
@@ -1895,6 +1911,13 @@ if result == "Mobile" or _G.Settings.device == "Mobile" then
    end
 end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
+end
+if _G.Settings.device == "Mobile" then
+
+end
+if _G.Settings.device == "PC" then
+
+end
 end
 if cmd == "unfly" then
 NOFLY()
