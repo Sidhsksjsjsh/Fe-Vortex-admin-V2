@@ -1,6 +1,7 @@
 _G.Settings = {
       prefix = ":", -- default
-      music = "rbxassetid://"
+      music = "rbxassetid://",
+      device = ""
 }
 
 if not game:IsLoaded() then
@@ -1642,9 +1643,9 @@ var = v.Name
 end
 end
 
-Target = var
+local Target = var
 
-NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+local NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 game.Players.LocalPlayer.Character.Humanoid.Name = 1
 local l = game.Players.LocalPlayer.Character["1"]:Clone()
 l.Parent = game.Players.LocalPlayer.Character
@@ -1872,7 +1873,9 @@ end
 
 
 NotificationBindable.OnInvoke = function(result)
-if result == "Mobile" then
+if result == "Mobile" or _G.Settings.device == "Mobile" then
+        _G.Settings.device = "Mobile"
+	saveSettings()
         NOFLY()
 	wait()
 	sFLY()
@@ -1882,7 +1885,9 @@ if result == "Mobile" then
         U4.Visible = true
 	notify("FLY enabled for mobile devices")
    end
-   if result == "PC" then
+   if result == "PC" or _G.Settings.device == "PC" then
+        _G.Settings.device = "PC"
+	saveSettings()
         NOFLY()
 	wait()
 	sFLY()
