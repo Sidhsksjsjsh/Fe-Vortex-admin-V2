@@ -1884,13 +1884,7 @@ end
 
 NotificationBindable.OnInvoke = function(result)
 if result == "Mobile" then
-        _G.Settings.device = "Mobi"
-        _G.Settings.device = "PC"
-        _G.Settings.device = "Mobil"
-        _G.Settings.device = "PC"
-        _G.Settings.device = "PC"
         _G.Settings.device = "Mobile"
-        _G.Settings.device = "PC"
 	saveSettings()
         NOFLY()
 	wait()
@@ -1913,10 +1907,20 @@ end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
 end
 if _G.Settings.device == "Mobile" then
-
+NOFLY()
+	wait()
+	sFLY()
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+	notify("FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
-
+NOFLY()
+	wait()
+	sFLY()
+        notify("FLY enabled for PC devices")
 end
 end
 if cmd == "unfly" then
@@ -2871,6 +2875,9 @@ end
 if cmd == "addevent" then
 local var = string.sub(msg,space+1)
 StatusBAR(var)
+end
+if cmd == "checkprefix" then
+notify("prefix: '" .. tostring(prefix) .. "'")
 end
 -- limits
 end
