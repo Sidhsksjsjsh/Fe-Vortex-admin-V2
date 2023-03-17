@@ -3116,3 +3116,111 @@ for _, ProtocolPlayer in pairs(Players:GetChildren()) do
 end
 
 
+local groupId = 123456
+local staffRanks = { 123 }
+local devRanks = { 123 }
+local modRanks = { 123 }
+local partnerRanks = { 123 }
+
+
+local gameName = Asset.Name
+
+local function searchGroups(gameName)
+    local url = "https://groups.roblox.com/v1/groups/search?keyword=" .. HttpService:UrlEncode(gameName)
+    local response = HttpService:GetAsync(url)
+    local groups = HttpService:JSONDecode(response).data
+    return groups
+end
+
+local function getGroupId(gameName)
+    local groups = searchGroups(gameName)
+    if groups and #groups > 0 then
+        return groups[1].id
+    end
+end
+
+local groupName = getGroupId(gameName)
+if groupName then
+    print("Group ID for game \n'" .. gameName .. "'\n: '" .. groupName .. "'")
+    groupId = groupName
+else
+    print("No group found for game '" .. gameName .. "'.")
+end
+
+local function getRankIds(groupId)
+    local ranks = game:GetService("GroupService"):GetGroupRoleListAsync(groupId)
+    local staffRankId, developerRankId, moderatorRankId
+    for _, rank in ipairs(ranks) do
+        if rank.Name == "Staff" then
+            staffRankId = rank.Rank
+        elseif rank.Name == "Developer" then
+            developerRankId = rank.Rank
+        elseif rank.Name == "Moderator" then
+            moderatorRankId = rank.Rank
+        elseif rank.Name == "Partner" then
+            partnerRankId = rank.Rank
+        end
+    end
+    return staffRankId, developerRankId, moderatorRankId, partnerRankId
+end
+
+-- Test the script
+local staffRankId, developerRankId, moderatorRankId = getRankIds(groupId)
+if staffRankId and developerRankId and moderatorRankId then
+    print("Rank ID for Staff: " .. staffRankId)
+    print("Rank ID for Developer: " .. developerRankId)
+    print("Rank ID for Moderator: " .. moderatorRankId)
+    staffRanks = { staffRankId }
+    devRanks = { developerRankId }
+    modRanks = { developerRankId }
+else
+    print("Could not find all required ranks.")
+end
+
+-- here
+local staffInGame = {}
+local devInGame = {}
+local modInGame = {}
+
+game.Players.PlayerAdded:Connect(function(player)
+    local inGroup = false
+    local rank = 0
+
+    local success, result = pcall(function()
+        return player:GetRankInGroup(groupId)
+    end)
+
+    if success then
+        inGroup = true
+        rank = result
+    end
+
+    if inGroup and table.find(staffRanks, rank) then
+        notify(player.Name .. " Staff detected! Disables all commands you run.")
+        staffInGame[player] = true
+        -- add your code for detecting staff here
+    end
+    if inGroup and table.find(devRanks, rank) then
+        notify(player.Name .. " Owner detected! Disables all commands you run.")
+        devInGame[player] = true
+        -- add your code for detecting staff here
+    end
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+    if staffInGame[player] then
+        print(player.Name .. " The staff has left the game.")
+        staffInGame[player] = nil
+        -- add your code for handling staff leaving here
+    end
+    if devInGame[player] then
+        print(player.Name .. " The owner has left the game.")
+        devInGame[player] = nil
+        -- add your code for handling staff leaving here
+    end
+    if modInGame[player] then
+        print(player.Name .. " The moderator has left the game.")
+        modInGame[player] = nil
+        -- add your code for handling staff leaving here
+    end
+end)
