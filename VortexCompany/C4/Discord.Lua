@@ -3328,21 +3328,3 @@ game.Players.PlayerRemoving:Connect(function(player)
 end)
 
 local DevJoin = {"Rivanda_Cheater", "CookieProgamming"} -- Replace with the usernames of your admins
-
--- Function to check if a player is an admin
-function isAdmin(player)
-  for _,adminName in ipairs(DevJoin) do
-    if speaker.Name == adminName then
-      return true
-    end
-  end
-  return false
-end
-
-
-
-Players.PlayerAdded:Connect(function(player)
-   if isAdmin(player) then
-     notify("the developer of this admin has joined on this server")
-   end
-end)
