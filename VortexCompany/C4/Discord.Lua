@@ -87,7 +87,7 @@ local U3                         = Instance.new('TextButton', U1)
 local U4                         = Instance.new('TextButton', U1)
 -- toggle vfly:
 local U5                         = Instance.new('TextButton', GUI_MAIN)
-local U6                         = Instance.new('TextButton', F1)
+local U6                         = Instance.new('TextButton', U5)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
