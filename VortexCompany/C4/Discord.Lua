@@ -1992,8 +1992,10 @@ if result == "Mobile" then
         NOFLY()
 	wait()
 	sFLY(true)
-	U5.Visible = true
-        U6.Visible = true
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
 	notify("VEHICLE FLY enabled for mobile devices")
    end
    if result == "PC" then
@@ -2011,8 +2013,10 @@ if _G.Settings.device == "Mobile" then
 NOFLY()
 	wait()
 	sFLY(true)
-	U5.Visible = true
-        U6.Visible = true
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
         notify("VEHICLE FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
