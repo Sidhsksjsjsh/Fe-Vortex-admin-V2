@@ -97,7 +97,7 @@ U1.BackgroundTransparency  = 0.5
 U1.BackgroundColor         = BrickColor.new('Fossil')
 U1.BorderSizePixel         = 0
 U1.Position                = UDim2.new(0.5,-100,0,0)
-U1.Text                    = "W"
+U1.Text                    = "↑"
 U1.TextColor3              = Color3.new(1,1,1)
 U1.TextStrokeTransparency  = 1
 U1.TextWrapped             = true
@@ -110,7 +110,7 @@ U2.BackgroundTransparency  = 0.5
 U2.BackgroundColor         = BrickColor.new('Fossil')
 U2.BorderSizePixel         = 0
 U2.Position                = UDim2.new(0.5,-100,0,30)
-U2.Text                    = "S"
+U2.Text                    = "↓"
 U2.TextColor3              = Color3.new(1,1,1)
 U2.TextStrokeTransparency  = 1
 U2.TextWrapped             = true
@@ -122,7 +122,7 @@ U3.BackgroundTransparency  = 0.5
 U3.BackgroundColor         = BrickColor.new('Fossil')
 U3.BorderSizePixel         = 0
 U3.Position                = UDim2.new(0.5,-100,0,60)
-U3.Text                    = "A"
+U3.Text                    = "←"
 U3.TextColor3              = Color3.new(1,1,1)
 U3.TextStrokeTransparency  = 1
 U3.TextWrapped             = true
@@ -134,7 +134,7 @@ U4.BackgroundTransparency  = 0.5
 U4.BackgroundColor         = BrickColor.new('Fossil')
 U4.BorderSizePixel         = 0
 U4.Position                = UDim2.new(0.5,-100,0,90)
-U4.Text                    = "D"
+U4.Text                    = "→"
 U4.TextColor3              = Color3.new(1,1,1)
 U4.TextStrokeTransparency  = 1
 U4.TextWrapped             = true
@@ -1460,10 +1460,10 @@ function sFLY(vfly)
 	CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
 	end)
 	U5.MouseEnter:Connect(function()
-	CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+	CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)
 	end)
 	U6.MouseEnter:Connect(function()
-	CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+	CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)
 	end)
 	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
