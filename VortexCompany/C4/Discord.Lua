@@ -86,8 +86,8 @@ local U2                         = Instance.new('TextButton', U1)
 local U3                         = Instance.new('TextButton', U1)
 local U4                         = Instance.new('TextButton', U1)
 -- toggle vfly:
-local F1                         = Instance.new('TextButton', GUI_MAIN)
-local F2                         = Instance.new('TextButton', F1)
+local U5                         = Instance.new('TextButton', GUI_MAIN)
+local U6                         = Instance.new('TextButton', F1)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
@@ -141,11 +141,37 @@ U4.TextWrapped             = true
 U4.FontSize                = 'Size24'
 U4.Font                    = 'SourceSansBold'
 
+U5.Size                    = UDim2.new(0,200,0,30)
+U5.BackgroundTransparency  = 0.5
+U5.BackgroundColor         = BrickColor.new('Fossil')
+U5.BorderSizePixel         = 0
+U5.Position                = UDim2.new(0.5,-100,0,0)
+U5.Text                    = "↑"
+U5.TextColor3              = Color3.new(1,1,1)
+U5.TextStrokeTransparency  = 1
+U5.TextWrapped             = true
+U5.FontSize                = 'Size24'
+U5.Font                    = 'SourceSansBold'
+U5.Draggable = true
+
+U6.Size                    = UDim2.new(0,200,0,30)
+U6.BackgroundTransparency  = 0.5
+U6.BackgroundColor         = BrickColor.new('Fossil')
+U6.BorderSizePixel         = 0
+U6.Position                = UDim2.new(0.5,-100,0,30)
+U6.Text                    = "↓"
+U6.TextColor3              = Color3.new(1,1,1)
+U6.TextStrokeTransparency  = 1
+U6.TextWrapped             = true
+U6.FontSize                = 'Size24'
+U6.Font                    = 'SourceSansBold'
+
 U1.Visible = false
 U2.Visible = false
 U3.Visible = false
 U4.Visible = false
-
+U5.Visible = false
+U6.Visible = false
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1433,6 +1459,12 @@ function sFLY(vfly)
 	U4.MouseEnter:Connect(function()
 	CONTROL.R = (vfly and vehicleflyspeed or iyflyspeed)
 	end)
+	U5.MouseEnter:Connect(function()
+	CONTROL.Q = (vfly and vehicleflyspeed or iyflyspeed)*2
+	end)
+	U6.MouseEnter:Connect(function()
+	CONTROL.E = -(vfly and vehicleflyspeed or iyflyspeed)*2
+	end)
 	flyKeyUp = Mouse.KeyUp:Connect(function(KEY)
 		if KEY:lower() == 'w' then
 			CONTROL.F = 0
@@ -1459,6 +1491,12 @@ function sFLY(vfly)
 	end)
 	U4.MouseLeave:Connect(function()
 	CONTROL.R = 0
+	end)
+	U5.MouseLeave:Connect(function()
+	CONTROL.Q = 0
+	end)
+	U6.MouseLeave:Connect(function()
+	CONTROL.E = 0
 	end)
 	FLY()
 end
@@ -1930,6 +1968,69 @@ U2.Visible = false
 U3.Visible = false
 U4.Visible = false
 notify("FLY disabled")
+end
+if cmd == "vfly" then
+if _G.Settings.device == "" then
+local NotificationBindable = Instance.new("BindableFunction")
+local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
+game.StarterGui:SetCore("SendNotification", {
+Title = Title;
+Text = Text;
+Icon = "";
+Duration = Duration;
+Button1 = Button1Text;
+Button2 = Button2Text;
+Callback = NotificationBindable;
+})
+end
+
+
+NotificationBindable.OnInvoke = function(result)
+if result == "Mobile" then
+        _G.Settings.device = "Mobile"
+	saveSettings()
+        NOFLY()
+	wait()
+	sFLY(true)
+	U5.Visible = true
+        U6.Visible = true
+	notify("VEHICLE FLY enabled for mobile devices")
+   end
+   if result == "PC" then
+        _G.Settings.device = "PC"
+	saveSettings()
+        NOFLY()
+	wait()
+	sFLY(true)
+        notify("VEHICLE FLY enabled for PC devices [Control: Q, E]")
+   end
+end
+Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
+end
+if _G.Settings.device == "Mobile" then
+NOFLY()
+	wait()
+	sFLY(true)
+	U5.Visible = true
+        U6.Visible = true
+        notify("VEHICLE FLY enabled for mobile devices")
+end
+if _G.Settings.device == "PC" then
+NOFLY()
+	wait()
+	sFLY(true)
+        notify("VEHICLE FLY enabled for PC devices [Control' Q, E]")
+end
+end
+if cmd == "unvfly" then
+NOFLY()
+U1.Visible = false
+U2.Visible = false
+U3.Visible = false
+U4.Visible = false
+U5.Visible = false
+U6.Visible = false
+notify("VEHICLE FLY disabled")
 end
 if cmd == "speed" then
 local var = string.sub(msg,space+1)
@@ -2992,7 +3093,8 @@ cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "displayui [ping and f
 cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
-
+cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
+cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "unfly",Title = "disable vfly"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3223,4 +3325,20 @@ game.Players.PlayerRemoving:Connect(function(player)
         modInGame[player] = nil
         -- add your code for handling staff leaving here
     end
+end)
+
+local DevJoin = {"Rivanda_Cheater", "CookieProgamming"} -- Replace with the usernames of your admins
+
+-- Function to check if a player is an admin
+local function isAdmin(player)
+  for _,adminName in ipairs(Admins) do
+    if player.Name == adminName then
+      return true
+    end
+  end
+  return false
+end
+
+Players.PlayerAdded:Connect(function(player)
+
 end)
