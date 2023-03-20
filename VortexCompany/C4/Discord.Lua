@@ -3283,7 +3283,7 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 -- Start the tween
 tween:Play()
 
-if _G.Settings.music == 0 then
+if _G.Settings.music == 0 or _G.Settings.music == nil then
 	notify("You didn't add any music.")
 else
 music(tostring(_G.Settings.music))
