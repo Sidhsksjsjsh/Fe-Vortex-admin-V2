@@ -1,6 +1,6 @@
 _G.Settings = {
       prefix = ":", -- default
-      music = "rbxassetid://",
+      music = 0,
       device = ""
 }
 
@@ -2984,6 +2984,11 @@ end
 if cmd == "checkprefix" then
 notify("prefix: '" .. tostring(prefix) .. "'")
 end
+if cmd == "addplaymusic" then
+local var = string.sub(msg,space+1)
+_G.Settings.music = var
+saveSettings()
+end
 -- limits
 end
 end)
@@ -3098,7 +3103,10 @@ cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "nodisplayui [ping and
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
-cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "unfly",Title = "disable vfly"}
+cmds[#cmds + 1] = {Text = "[107] " .. tostring(prefix) .. "unvfly",Title = "disable vfly"}
+cmds[#cmds + 1] = {Text = "[108] " .. tostring(prefix) .. "addevent [Event Name]",Title = "add ur visual event"}
+cmds[#cmds + 1] = {Text = "[109] " .. tostring(prefix) .. "checkprefix",Title = "checking current refix"}
+cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "addplaymusic [music id]",Title = "added autoplay of the song"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3239,7 +3247,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: \n\n[CONTENT] \n[+] Add update notification feature \n[+] added auto translate \n\n[BALANCE] \n[-] Bug FIXED \n[-] Fixed a problem that makes translate an error or wrong translation"
+title.Text = "Vortex UPDATE LIST: [20/03/2023] \n\n[CONTENT] \n[+] Add Auto Play music \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -3274,6 +3282,13 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 
 -- Start the tween
 tween:Play()
+
+if _G.Settings.music == 0 then
+	notify("You didn't add any music.")
+else
+music("rbxassetid://" .. tostring(_G.Settings.music))
+	notify("Now playing (AUTO PLAY): " .. MusicName)
+end
 
 local groupId = 123456
 local staffRanks = { 123 }
