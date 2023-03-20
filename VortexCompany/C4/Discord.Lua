@@ -3286,7 +3286,7 @@ tween:Play()
 if _G.Settings.music == 0 then
 	notify("You didn't add any music.")
 else
-music("rbxassetid://" .. tostring(_G.Settings.music))
+music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
 
