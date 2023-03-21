@@ -1,7 +1,9 @@
 _G.Settings = {
       prefix = ":", -- default
       music = 0,
-      device = ""
+      device = "",
+      AutoExecuteLink = "",
+      AutoExecuteRawScript = ""
 }
 
 if not game:IsLoaded() then
@@ -47,6 +49,18 @@ end
 return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
+
+if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
+notify("error! We could not find your script (Error Auto Execute: 404)")
+else
+loadstring(game:HttpGet(_G.Settings.AutoExecuteLink))()
+end
+
+if _G.Settings.AutoExecuteRawScript == "" or _G.Settings.AutoExecuteRawScript == nil then
+notify("error! We could not find your script (Error Auto Execute: 404)")
+else
+loadstring(_G.Settings.AutoExecuteRawScript)()
+end
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -3107,6 +3121,7 @@ cmds[#cmds + 1] = {Text = "[107] " .. tostring(prefix) .. "unvfly",Title = "disa
 cmds[#cmds + 1] = {Text = "[108] " .. tostring(prefix) .. "addevent [Event Name]",Title = "add ur visual event"}
 cmds[#cmds + 1] = {Text = "[109] " .. tostring(prefix) .. "checkprefix",Title = "checking current refix"}
 cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "addplaymusic [music id]",Title = "added autoplay of the song"}
+cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "saveset",Title = "Save all settings"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3247,7 +3262,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [20/03/2023] \n\n[CONTENT] \n[+] Add Auto Play music \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [21/03/2023] \n\n[CONTENT] \n[+] Added Auto executre (Raw and Link) (>Your Executor folder>VortexSettings>AutoExecuteLink or AutoExecuteRawScript) \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
