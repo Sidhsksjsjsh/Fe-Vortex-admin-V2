@@ -317,13 +317,13 @@ Domain.FriendJoined.Visible = true
 end
 
 if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
-notify("error! We could not find your script (Error Auto Execute: 404)")
+print("error! We could not find your script (Error Auto Execute: 404)")
 else
 loadstring(game:HttpGet(_G.Settings.AutoExecuteLink))()
 end
 
 if _G.Settings.AutoExecuteRawScript == "" or _G.Settings.AutoExecuteRawScript == nil then
-notify("error! We could not find your script (Error Auto Execute: 404)")
+print("error! We could not find your script (Error Auto Execute: 404)")
 else
 loadstring(_G.Settings.AutoExecuteRawScript)()
 end
@@ -3298,6 +3298,8 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 
 -- Start the tween
 tween:Play()
+
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.All,true)
 
 if _G.Settings.music == 0 or _G.Settings.music == nil then
 	notify("You didn't add any music.")
