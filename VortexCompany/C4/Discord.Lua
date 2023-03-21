@@ -50,17 +50,6 @@ return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
 
-if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
-notify("error! We could not find your script (Error Auto Execute: 404)")
-else
-loadstring(game:HttpGet(_G.Settings.AutoExecuteLink))()
-end
-
-if _G.Settings.AutoExecuteRawScript == "" or _G.Settings.AutoExecuteRawScript == nil then
-notify("error! We could not find your script (Error Auto Execute: 404)")
-else
-loadstring(_G.Settings.AutoExecuteRawScript)()
-end
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
