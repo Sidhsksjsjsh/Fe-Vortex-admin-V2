@@ -316,6 +316,18 @@ Domain.FriendJoined.Visible = true
     tween:Play()
 end
 
+if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
+notify("error! We could not find your script (Error Auto Execute: 404)")
+else
+loadstring(game:HttpGet(_G.Settings.AutoExecuteLink))()
+end
+
+if _G.Settings.AutoExecuteRawScript == "" or _G.Settings.AutoExecuteRawScript == nil then
+notify("error! We could not find your script (Error Auto Execute: 404)")
+else
+loadstring(_G.Settings.AutoExecuteRawScript)()
+end
+
 notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
 wait(1)
 notify("The command list is in the console.")
