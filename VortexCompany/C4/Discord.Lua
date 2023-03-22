@@ -671,6 +671,52 @@ function StopFreecam()
 	fcRunning = false
 end
 
+
+local ServerSize_A777 = "(0/0)"
+function Serverhop()
+    local x = {}
+    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+        if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+            x[#x + 1] = v.id
+        end
+    end
+    if #x > 0 then
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+    else
+        return "Protocol:cantfind"
+    end
+end
+ 
+function CheckServers()
+    local x = {}
+    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+        if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
+            x[#x + 1] = v.id
+		ServerSize_A777 = "(" .. tostring(v.playing) .. "/" .. tostring(v.maxPlayers) .. ")"
+        end
+    end
+    if #x > 0 then
+        return "Protocol:found"
+    else
+        return "Protocol:cantfind"
+    end
+end
+
+function StartServerhop()
+	local ServerChecker = CheckServers()
+	if ServerChecker == "Protocol:cantfind" then
+	notify("We couldn't find a server")
+	end
+	if ServerChecker == "Protocol:found" then
+	notify("Joining server " .. tostring(ServerSize_A777))
+	end
+	wait(1)
+	local Check2 = Serverhop()
+	if Check2 == "Protocol:cantfind" then
+	notify("We couldn't find a server")
+	end
+end
+
 local ScreenGui = Instance.new("ScreenGui")
 local UI_A1= Instance.new("TextLabel")
 local UI_A2 = Instance.new("TextLabel")
@@ -3004,6 +3050,9 @@ local var = string.sub(msg,space+1)
 _G.Settings.music = var
 saveSettings()
 end
+if cmd == "serverhop" then
+StartServerhop()
+end
 -- limits
 end
 end)
@@ -3122,7 +3171,7 @@ cmds[#cmds + 1] = {Text = "[107] " .. tostring(prefix) .. "unvfly",Title = "disa
 cmds[#cmds + 1] = {Text = "[108] " .. tostring(prefix) .. "addevent [Event Name]",Title = "add ur visual event"}
 cmds[#cmds + 1] = {Text = "[109] " .. tostring(prefix) .. "checkprefix",Title = "checking current refix"}
 cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "addplaymusic [music id]",Title = "added autoplay of the song"}
-cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "saveset",Title = "Save all settings"}
+cmds[#cmds + 1] = {Text = "[111] " .. tostring(prefix) .. "serverhop",Title = "teleport you to another server"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3263,7 +3312,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [21/03/2023] \n\n[CONTENT] \n[+] Added Auto executre (Raw and Link) (>Your Executor folder>VortexSettings>AutoExecuteLink or AutoExecuteRawScript) \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [22/03/2023] \n\n[CONTENT] \n[+] Added serverhop command \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
