@@ -3,7 +3,9 @@ _G.Settings = {
       music = 0,
       device = "",
       AutoExecuteLink = "",
-      AutoExecuteRawScript = ""
+      AutoExecuteRawScript = "",
+      Blacklist = "",
+      BlacklistCount = 0
 }
 
 if not game:IsLoaded() then
@@ -368,6 +370,52 @@ function isNumber(str)
 		return true
 	end
 end
+
+-- Define a function to create a notification with tweening
+function _Announcement(text)
+    -- Create the notification GUI
+    local notification = Instance.new("ScreenGui")
+    notification.Name = "Notification"
+    notification.Parent = game.Players.LocalPlayer.PlayerGui
+
+    -- Create the notification frame
+    local frame = Instance.new("Frame")
+    frame.Name = "Frame"
+    frame.Size = UDim2.new(0, 200, 0.2, 50)
+    frame.Position = UDim2.new(0.5, -100, 0, -50)
+    frame.BackgroundColor3 = Color3.new(0, 0, 0)
+    frame.BackgroundTransparency = 0.5
+    frame.Parent = notification
+
+    -- Create the notification label
+    local label = Instance.new("TextLabel")
+    label.Name = "Label"
+    label.Size = UDim2.new(1, 0, 1, 0) -- 1, 0, 1, 0
+    label.Position = UDim2.new(0, 0, 0, 0)
+    label.BackgroundColor3 = Color3.new(0, 0, 0)
+    label.BackgroundTransparency = 1
+    label.Text = text
+    label.Font = Enum.Font.SourceSansBold
+    label.TextSize = 20
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.Parent = frame
+
+    -- Define the tween for the notification
+    local tweenInfo = TweenInfo.new(1, Enum.EasingStyle.Quart, Enum.EasingDirection.Out, 0, false, 0)
+    local tween_A1 = game:GetService("TweenService"):Create(frame, tweenInfo, {Position = UDim2.new(0.5, -100, 0, 100)})
+
+local tween_A2 = game:GetService("TweenService"):Create(frame, tweenInfo, {Position = UDim2.new(0.5, -100, 0, -300)})
+    
+    -- Play the tween and destroy the notification when it's finished
+    tween_A1:Play()
+    wait(2)
+    tween_A2:Play()
+    wait(1)
+    notification:Destroy()
+end
+
+-- Call the function to create a notification with a message
+
 
 function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
@@ -3053,6 +3101,29 @@ end
 if cmd == "serverhop" then
 StartServerhop()
 end
+if cmd == "blacklist" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+_G.Settings.Blacklist = var
+_G.Settings.BlacklistCount = _G.Settings.BlacklistCount + 1
+if _G.Settings.BlacklistCount > 1 then
+_G.Settings.BlacklistCount = 1
+_Announcement("You can only blacklist a player once")
+else
+_Announcement("Successfull Blacklisted!")
+saveSettings()
+end
+end
+if cmd == "clearblacklist" then
+_G.Settings.Blacklist = ""
+_G.Settings.BlacklistCount = 0
+_Announcement("Blacklist cleared!")
+end
 -- limits
 end
 end)
@@ -3172,6 +3243,8 @@ cmds[#cmds + 1] = {Text = "[108] " .. tostring(prefix) .. "addevent [Event Name]
 cmds[#cmds + 1] = {Text = "[109] " .. tostring(prefix) .. "checkprefix",Title = "checking current refix"}
 cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "addplaymusic [music id]",Title = "added autoplay of the song"}
 cmds[#cmds + 1] = {Text = "[111] " .. tostring(prefix) .. "serverhop",Title = "teleport you to another server"}
+cmds[#cmds + 1] = {Text = "[112] " .. tostring(prefix) .. "blacklist [username]",Title = "player blacklist"}
+cmds[#cmds + 1] = {Text = "[113] " .. tostring(prefix) .. "clearblacklist",Title = "clear blacklists"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3288,6 +3361,12 @@ if ESPenabled then
 	end
 end)
 
+Players.PlayerAdded:Connect(function(plr)
+if not _G.Settings.Blacklist == nil then
+_announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr))
+end
+end)
+
 for _, ProtocolPlayer in pairs(Players:GetChildren()) do
      if ProtocolPlayer.ClassName == "Player" then
          ProtocolGetChatSystem(ProtocolPlayer)
@@ -3312,7 +3391,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [22/03/2023] \n\n[CONTENT] \n[+] Added serverhop command \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [24/03/2023] \n\n[CONTENT] \n[+] Added blacklist and clearblacklist command \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
