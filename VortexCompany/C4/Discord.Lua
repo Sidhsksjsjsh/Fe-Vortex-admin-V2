@@ -3123,6 +3123,7 @@ if cmd == "clearblacklist" then
 _G.Settings.Blacklist = ""
 _G.Settings.BlacklistCount = 0
 _Announcement("Blacklist cleared!")
+saveSettings()
 end
 -- limits
 end
@@ -3362,8 +3363,8 @@ if ESPenabled then
 end)
 
 Players.PlayerAdded:Connect(function(plr)
-if not _G.Settings.Blacklist == nil then
-_announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr))
+if plr.Name == _G.Settings.Blacklist then
+_announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr.Name))
 end
 end)
 
