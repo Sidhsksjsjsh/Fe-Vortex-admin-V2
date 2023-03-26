@@ -1152,6 +1152,7 @@ end
 end)
 end
 coroutine.wrap(drag)()
+SourceUITemplate:Destroy()
 
 function Helicopter(mode)
          if mode == "fling" then
