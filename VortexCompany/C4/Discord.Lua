@@ -847,6 +847,27 @@ function RemoveDisplayUI(UIname)
    end
 end
 
+local VIPScreenGui = Instance.new("ScreenGui")
+VIPScreenGui.Parent = speaker.PlayerGui
+
+local VIPFrame = Instance.new("Frame")
+VIPFrame.Size = UDim2.new(0, 200, 0, 50)
+VIPFrame.Position = UDim2.new(0.5, -100, 0, 0) -- The -100 value is half the width of the frame
+VIPFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+VIPFrame.BorderSizePixel = 0
+VIPFrame.Parent = VIPScreenGui
+VIPFrame.Visible = false
+
+local VIPTextLabel = Instance.new("TextLabel")
+VIPTextLabel.Text = "Access Denied. Error 100"
+VIPTextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+VIPTextLabel.Size = UDim2.new(1, 0, 1, 0)
+VIPTextLabel.Parent = VIPFrame
+
+function EditFlingNotify(VIPEditText)
+	VIPTextLabel.Text = VIPEditText
+end
+
 local MusicName = ""
 function music(idmusic)
 sound = Instance.new("Sound")
@@ -2578,6 +2599,7 @@ if cmd == "saveprefix" then
 saveSettings()
 end
 if cmd == "antifling" then
+VIPFrame.Visible = true
 local Services = setmetatable({}, {__index = function(Self, Index)
 			local NewService = game.GetService(game, Index)
 			if NewService then
@@ -2611,7 +2633,7 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 					if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
 						if Detected == false then
 							warn("be carefull!")
-							notify("Fling Exploit detected, Player: " .. tostring(Player))
+							EditFlingNotify("Fling Exploit detected, Player: " .. tostring(Player))
 						end
 						Detected = true
 						for i,v in ipairs(Character:GetDescendants()) do
@@ -2649,7 +2671,7 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 					PrimaryPart.CFrame = LastPosition
 	
 					warn("you were flung")
-					notify("You were flung. Neutralizing velocity.")
+					EditFlingNotify("You were flung. Neutralizing velocity.")
 				elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
 					LastPosition = PrimaryPart.CFrame
 				end
