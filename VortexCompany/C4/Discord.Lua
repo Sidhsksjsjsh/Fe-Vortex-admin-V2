@@ -52,6 +52,7 @@ return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
 
+game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -3363,8 +3364,10 @@ if ESPenabled then
 end)
 
 Players.PlayerAdded:Connect(function(plr)
-if plr.Name == _G.Settings.Blacklist then
+for _,Blacklisted in ipairs(_G.Settings.Blacklist) do
+if plr.Name == Blacklisted then
 _announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr.Name))
+end
 end
 end)
 
@@ -3392,7 +3395,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [24/03/2023] \n\n[CONTENT] \n[+] Added blacklist and clearblacklist command \n\n[BALANCE] \n[-] Bug FIXED \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [26/03/2023] \n\n[CONTENT] \n[+] Added bypass for Gameplay Paused (Auto disable gameplay paused UI) \n\n[BALANCE] \n[-] Fix some bugs \n[-] Fix Auto detect blacklisted player while joining the game. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -3428,7 +3431,7 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 -- Start the tween
 tween:Play()
 
-game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.All,true)
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 if _G.Settings.music == 0 or _G.Settings.music == nil then
 	notify("You didn't add any music.")
