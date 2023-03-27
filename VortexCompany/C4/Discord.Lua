@@ -2154,7 +2154,7 @@ if result == "Mobile" then
 	saveSettings()
         NOFLY()
 	wait()
-	sFLY(true)
+	sFLY()
 	U1.Visible = true
         U2.Visible = true
         U3.Visible = true
@@ -2166,7 +2166,7 @@ if result == "Mobile" then
 	saveSettings()
         NOFLY()
 	wait()
-	sFLY(true)
+	sFLY()
         notify("INVISIBLE FLING enabled for PC devices")
    end
 end
@@ -3254,25 +3254,6 @@ if cmd == "cleardevice" then
 _G.Settings.device = ""
 saveSettings()
 end
-
--- [[
-if _G.Settings.device == "Mobile" then
-NOFLY()
-	wait()
-	sFLY()
-	U1.Visible = true
-        U2.Visible = true
-        U3.Visible = true
-        U4.Visible = true
-	notify("FLY enabled for mobile devices")
-end
-if _G.Settings.device == "PC" then
-NOFLY()
-	wait()
-	sFLY()
-        notify("FLY enabled for PC devices")
-end
-]]
 
 -- limits
 end
