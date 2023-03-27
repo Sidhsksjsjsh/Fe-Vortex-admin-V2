@@ -2093,6 +2093,107 @@ NOFLY()
         notify("FLY enabled for PC devices")
 end
 end
+if cmd == "invisfling" then
+local ch = speaker.Character
+	local prt = Instance.new("Model")
+	prt.Parent = speaker.Character
+	local z1 = Instance.new("Part")
+	z1.Name = "Torso"
+	z1.CanCollide = false
+	z1.Anchored = true
+	local z2 = Instance.new("Part")
+	z2.Name = "Head"
+	z2.Parent = prt
+	z2.Anchored = true
+	z2.CanCollide = false
+	local z3 = Instance.new("Humanoid")
+	z3.Name = "Humanoid"
+	z3.Parent = prt
+	z1.Position = Vector3.new(0,9999,0)
+	speaker.Character=prt
+	wait(3)
+	speaker.Character=ch
+	wait(3)
+	local Hum = Instance.new("Humanoid")
+	z2:Clone()
+	Hum.Parent = speaker.Character
+	local root =  getRoot(speaker.Character)
+	for i,v in pairs(speaker.Character:GetChildren()) do
+		if v ~= root and  v.Name ~= "Humanoid" then
+			v:Destroy()
+		end
+	end
+	root.Transparency = 0
+	root.Color = Color3.new(1, 1, 1)
+	local invisflingStepped
+	invisflingStepped = RunService.Stepped:Connect(function()
+		if speaker.Character and getRoot(speaker.Character) then
+			getRoot(speaker.Character).CanCollide = false
+		else
+			invisflingStepped:Disconnect()
+		end
+	end)
+	if _G.Settings.device == "" then
+local NotificationBindable = Instance.new("BindableFunction")
+local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
+game.StarterGui:SetCore("SendNotification", {
+Title = Title;
+Text = Text;
+Icon = "";
+Duration = Duration;
+Button1 = Button1Text;
+Button2 = Button2Text;
+Callback = NotificationBindable;
+})
+end
+
+
+NotificationBindable.OnInvoke = function(result)
+if result == "Mobile" then
+        _G.Settings.device = "Mobile"
+	saveSettings()
+        NOFLY()
+	wait()
+	sFLY(true)
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+	notify("INVISIBLE FLING enabled for mobile devices")
+   end
+   if result == "PC" then
+        _G.Settings.device = "PC"
+	saveSettings()
+        NOFLY()
+	wait()
+	sFLY(true)
+        notify("INVISIBLE FLING enabled for PC devices")
+   end
+end
+Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
+end
+	if _G.Settings.device == "Mobile" then
+NOFLY()
+	wait()
+	sFLY()
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+	notify("INVISIBLE FLING enabled for mobile devices")
+end
+if _G.Settings.device == "PC" then
+NOFLY()
+	wait()
+	sFLY()
+        notify("INVISIBLE FLING enabled for PC devices")
+end
+	workspace.CurrentCamera.CameraSubject = root
+	local bambam = Instance.new("BodyThrust")
+	bambam.Parent = getRoot(speaker.Character)
+	bambam.Force = Vector3.new(99999,99999*10,99999)
+	bambam.Location = getRoot(speaker.Character).Position
+end
 if cmd == "unfly" then
 NOFLY()
 U1.Visible = false
@@ -2136,7 +2237,7 @@ if result == "Mobile" then
         NOFLY()
 	wait()
 	sFLY(true)
-        notify("VEHICLE FLY enabled for PC devices [Control: Q, E]")
+        notify("VEHICLE FLY enabled for PC devices")
    end
 end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
@@ -3149,6 +3250,30 @@ _G.Settings.BlacklistCount = 0
 _Announcement("Blacklist cleared!")
 saveSettings()
 end
+if cmd == "cleardevice" then
+_G.Settings.device = ""
+saveSettings()
+end
+
+-- [[
+if _G.Settings.device == "Mobile" then
+NOFLY()
+	wait()
+	sFLY()
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+	notify("FLY enabled for mobile devices")
+end
+if _G.Settings.device == "PC" then
+NOFLY()
+	wait()
+	sFLY()
+        notify("FLY enabled for PC devices")
+end
+]]
+
 -- limits
 end
 end)
@@ -3270,6 +3395,8 @@ cmds[#cmds + 1] = {Text = "[110] " .. tostring(prefix) .. "addplaymusic [music i
 cmds[#cmds + 1] = {Text = "[111] " .. tostring(prefix) .. "serverhop",Title = "teleport you to another server"}
 cmds[#cmds + 1] = {Text = "[112] " .. tostring(prefix) .. "blacklist [username]",Title = "player blacklist"}
 cmds[#cmds + 1] = {Text = "[113] " .. tostring(prefix) .. "clearblacklist",Title = "clear blacklists"}
+cmds[#cmds + 1] = {Text = "[114] " .. tostring(prefix) .. "invisfling",Title = "invisible flings"}
+cmds[#cmds + 1] = {Text = "[115] " .. tostring(prefix) .. "cleardevice",Title = "Reset ur device chaptca!"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3418,7 +3545,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [26/03/2023] \n\n[CONTENT] \n[+] Added bypass for Gameplay Paused (Auto disable gameplay paused UI) \n\n[BALANCE] \n[-] Fix some bugs \n[-] Fix Auto detect blacklisted player while joining the game. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [26/03/2023] \n\n[CONTENT] \n[+] Added invisfling command! \n[+] executor Evon, Script Ware, krnl, trigon, Vega X now supported in this admin \n\n[BALANCE] \n[-] Fix some bugs \n[-] correct any typos or word errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
