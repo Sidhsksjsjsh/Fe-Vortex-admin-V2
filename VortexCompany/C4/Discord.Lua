@@ -3495,7 +3495,7 @@ if ESPenabled then
 end)
 
 Players.PlayerAdded:Connect(function(plr)
-for _,Blacklisted in ipairs(_G.Settings.Blacklist) do
+for _,Blacklisted in pairs(_G.Settings.Blacklist) do
 if plr.Name == Blacklisted then
 _announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr.Name))
 end
@@ -3526,7 +3526,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [26/03/2023] \n\n[CONTENT] \n[+] Added invisfling command! \n[+] executor Evon, Script Ware, krnl, trigon, Vega X now supported in this admin \n\n[BALANCE] \n[-] Fix some bugs \n[-] correct any typos or word errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [28/03/2023] \n\n[CONTENT] \n[+] Fixed a problem with the fling command \n\n[BALANCE] \n[-] Fix some bugs \n[-] correct any typos or word errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
