@@ -326,7 +326,7 @@ Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
     Domain.FriendJoined.Textjoin.Text = A1
     Domain.FriendJoined.Textjoin.TextTransparency = 1
-    Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://0"
+    Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://12972185585"
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
     tween:Play()
