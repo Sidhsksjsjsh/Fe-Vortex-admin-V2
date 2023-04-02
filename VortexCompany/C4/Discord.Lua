@@ -220,6 +220,9 @@ function ProtocolCheck(FileName)
     isfile(FileName)     
 end
 
+local apfo_t = {"Ricky Wicky Yield 😱", "Infinite Bread", "Egg Admino", "Amity coughed", "Where am I", "Rickity Yieldd", "walter white", "Nick Cage?!?!", "peyton real", "april fool!!"}
+local apfo_i = {"11688231017", "11339922083", "11914981726", "5783845592", "6762179979", "7846015915", "11171958623", "11308149650", "7444547410", "6093472109"}
+
 local Domain = {
                     Domain = Instance.new("ScreenGui"),
                     UITextSizeConstraint_13 = Instance.new("UITextSizeConstraint"),
@@ -286,10 +289,12 @@ Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
 Domain.UICorner_67.Parent = Domain.Avatarjoin
 
 function notify(A1)
+if os.date("%m %d") == "04 01" then
 Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
     Domain.FriendJoined.Textjoin.Text = A1
     Domain.FriendJoined.Textjoin.TextTransparency = 1
+    Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://" .. apfo_i[math.random(1, #apfo_i)]
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
     tween:Play()
@@ -317,6 +322,40 @@ Domain.FriendJoined.Visible = true
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0, 0)})
     tween:Play()
+    else
+    Domain.FriendJoined.Visible = true
+    Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
+    Domain.FriendJoined.Textjoin.Text = A1
+    Domain.FriendJoined.Textjoin.TextTransparency = 1
+    Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://0"
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
+    tween:Play()
+    wait(0.5)
+    local transitionInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {BackgroundTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.45, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Textjoin, transitionInfo, {TextTransparency = 0})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.45, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {ImageTransparency = 0})
+    tween:Play()
+    wait(4)
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Textjoin, transitionInfo, {TextTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {ImageTransparency = 1})
+    tween:Play()
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined.Avatarjoin, transitionInfo, {BackgroundTransparency = 1})
+    tween:Play()
+    wait(0.5)
+    local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
+    local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0, 0)})
+    tween:Play()
+  end
 end
 
 if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
@@ -3526,7 +3565,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [28/03/2023] \n\n[CONTENT] \n[+] Fixed a problem with the fling command \n\n[BALANCE] \n[-] Fix some bugs \n[-] correct any typos or word errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [02/04/2023] \n\n[CONTENT] \n[+] Our notifications now supports images or photos from roblox \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
