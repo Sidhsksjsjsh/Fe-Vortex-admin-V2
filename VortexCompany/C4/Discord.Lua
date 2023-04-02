@@ -294,6 +294,7 @@ Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Textjoin.Text = A1
     Domain.FriendJoined.Textjoin.TextTransparency = 1
     Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://" .. apfo_i[math.random(1, #apfo_i)]
+    Domain.FriendJoined.Avatarjoin.ImageTransparency = 1
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
     tween:Play()
@@ -327,6 +328,7 @@ Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Textjoin.Text = A1
     Domain.FriendJoined.Textjoin.TextTransparency = 1
     Domain.FriendJoined.Avatarjoin.Image = "rbxassetid://12972185585"
+    Domain.FriendJoined.Avatarjoin.ImageTransparency = 1
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
     tween:Play()
