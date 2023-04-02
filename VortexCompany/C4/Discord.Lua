@@ -283,7 +283,6 @@ Domain.Avatarjoin.BorderSizePixel = 0
 Domain.Avatarjoin.Position = UDim2.new(0.0651319921, 0, 0.189999998, 0)
 Domain.Avatarjoin.Size = UDim2.new(0.150188312, 0, 0.606190205, 0)
 Domain.Avatarjoin.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-Domain.Avatarjoin.Visible = false
 
 Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
 Domain.UICorner_67.Parent = Domain.Avatarjoin
