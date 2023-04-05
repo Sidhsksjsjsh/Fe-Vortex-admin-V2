@@ -2172,6 +2172,7 @@ local ch = speaker.Character
 			invisflingStepped:Disconnect()
 		end
 	end)
+
 	if _G.Settings.device == "" then
 local NotificationBindable = Instance.new("BindableFunction")
 local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
@@ -2198,7 +2199,7 @@ if result == "Mobile" then
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("INVISIBLE FLING enabled for mobile devices")
+	notify("INVISIBLE FLING enabled for mobile devices, RESET and type " .. prefix .. "unfly to hide controller")
    end
    if result == "PC" then
         _G.Settings.device = "PC"
@@ -2227,6 +2228,7 @@ NOFLY()
 	sFLY()
         notify("INVISIBLE FLING enabled for PC devices")
 end
+
 	workspace.CurrentCamera.CameraSubject = root
 	local bambam = Instance.new("BodyThrust")
 	bambam.Parent = getRoot(speaker.Character)
@@ -2711,9 +2713,9 @@ if not hookmetamethod then
 	oldhmmi = hookmetamethod(game, "__index", function(self, method)
 		if self == TeleportService then
 			if method:lower() == "teleport" then
-				return error("Expected ':' not '.' calling member function Kick", 2)
+				return notify("Expected ':' not '.' calling member function Kick")
 			elseif method == "TeleportToPlaceInstance" then
-				return error("Expected ':' not '.' calling member function TeleportToPlaceInstance", 2)
+				return notify("Expected ':' not '.' calling member function TeleportToPlaceInstance")
 			end
 		end
 		return oldhmmi(self, method)
@@ -3293,7 +3295,37 @@ if cmd == "cleardevice" then
 _G.Settings.device = ""
 saveSettings()
 end
+if cmd == "friend" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
 
+local playerIsAlrFriend = Players:FindFirstChild(var)
+if playerIsAlrFriend then
+    local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
+    if isFriend then
+        notify("You are already friends with " .. var)
+        return
+    end
+end
+
+Players:RequestFriendship(var)
+notify("Friend request sent to " .. var)
+end
+if cmd == "unfriend" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+Players:RevokeFriendship(var)
+notify("you are no longer friends with " .. var)
+end
 -- limits
 end
 end)
@@ -3417,6 +3449,8 @@ cmds[#cmds + 1] = {Text = "[112] " .. tostring(prefix) .. "blacklist [username]"
 cmds[#cmds + 1] = {Text = "[113] " .. tostring(prefix) .. "clearblacklist",Title = "clear blacklists"}
 cmds[#cmds + 1] = {Text = "[114] " .. tostring(prefix) .. "invisfling",Title = "invisible flings"}
 cmds[#cmds + 1] = {Text = "[115] " .. tostring(prefix) .. "cleardevice",Title = "Reset ur device chaptca!"}
+cmds[#cmds + 1] = {Text = "[116] " .. tostring(prefix) .. "friend [username]",Title = "Sent friend request"}
+cmds[#cmds + 1] = {Text = "[117] " .. tostring(prefix) .. "unfriend [username]",Title = "Revoke ur friendship!"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3565,7 +3599,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [02/04/2023] \n\n[CONTENT] \n[+] Our notifications now supports images or photos from roblox \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [05/04/2023] \n\n[CONTENT] \n[+] added friend and unfriend command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed an issue with the invisfling command \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
