@@ -9,7 +9,12 @@ _G.Settings = {
 }
 
 if not game:IsLoaded() then
+    local MessageCore = Instance.new("Message", Workspace)
+    MessageCore.Text = "Vortex is waiting for the game to load"
     game.Loaded:Wait()
+    MessageCore.Text = "game loaded successfully"
+    wait(0.5)
+    MessageCore:Destroy()
 end
 local a = "Vortex Admin"
 local b = "PrefixFile.lua"
