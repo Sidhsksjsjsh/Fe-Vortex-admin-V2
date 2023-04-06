@@ -207,9 +207,9 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
-local DebuggingLevelV = 1
+local DebuggingLevelV = 0
 function DebugPrint(DebugLevel, SynText)
-if DebugLevel <= DebuggingLevelV then
+DebuggingLevelV = DebuggingLevelV + DebugLevel
       local introGui = Instance.new("ScreenGui")
       introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -229,7 +229,7 @@ if DebugLevel <= DebuggingLevelV then
       introTitle:TweenPosition(UDim2.new(-0.5, -200, 0.4, -50), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 1, true)
       wait(1)
       introGui:Destroy()
-     end
+     DebuggingLevelV = 0
  end
 
 function getstring(begin)
