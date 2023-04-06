@@ -208,8 +208,7 @@ function ProtocolRead(FileName)
 end
 
 local DebuggingLevelV = 0
-function DebugPrint(DebugLevel, SynText)
-DebuggingLevelV = DebugLevel
+function DebugPrint(SynText)
 local introGui = Instance.new("ScreenGui")
       introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -821,7 +820,7 @@ function CheckServers()
     end)
     
     if not respon then
-    DebugPrint(7, result)
+    DebugPrint(result)
     end
 end
 
@@ -2561,7 +2560,7 @@ RejoinServer()
 end)
 
 if not respon then
-DebugPrint(7, result)
+DebugPrint(result)
 end
 end
 if cmd == "delete" then
@@ -3311,7 +3310,7 @@ StartServerhop()
 end)
 
 if not respon then
-DebugPrint(7, result)
+DebugPrint(result)
 end
 end
 if cmd == "blacklist" then
@@ -3365,7 +3364,7 @@ notify("Friend request sent to " .. var)
 end)
 
 if not respon then
-DebugPrint(7, result)
+DebugPrint(result)
 end
 end
 if cmd == "unfriend" then
@@ -3382,7 +3381,7 @@ notify("you are no longer friends with " .. var)
 end)
 
 if not respon then
-DebugPrint(7, result)
+DebugPrint(result)
 end
 end
 -- limits
@@ -3694,7 +3693,7 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 -- Start the tween
 tween:Play()
 
--- DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+-- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
@@ -3705,7 +3704,7 @@ music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
 
-DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
 local groupId = 123456
 local staffRanks = { 123 }
