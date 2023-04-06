@@ -207,12 +207,12 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
-function DebugPrint(SynText)
+function DebugPrint(DebugLevel, SynText)
 local introGui = Instance.new("ScreenGui")
       introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
       local introTitle = Instance.new("TextLabel")
-      introTitle.Text = SynText
+      introTitle.Text = "[ Debug Lv " .. DebugLevel " ] " .. SynText
       introTitle.Font = Enum.Font.SourceSansBold
       introTitle.TextSize = 25
       introTitle.TextColor3 = Color3.new(1, 1, 1)
@@ -819,7 +819,7 @@ function CheckServers()
     end)
     
     if not respon then
-    DebugPrint(result)
+    DebugPrint(7, result)
     end
 end
 
@@ -2559,7 +2559,7 @@ RejoinServer()
 end)
 
 if not respon then
-DebugPrint(result)
+DebugPrint(7, result)
 end
 end
 if cmd == "delete" then
@@ -3309,7 +3309,7 @@ StartServerhop()
 end)
 
 if not respon then
-DebugPrint(result)
+DebugPrint(7, result)
 end
 end
 if cmd == "blacklist" then
@@ -3363,7 +3363,7 @@ notify("Friend request sent to " .. var)
 end)
 
 if not respon then
-DebugPrint(result)
+DebugPrint(7, result)
 end
 end
 if cmd == "unfriend" then
@@ -3380,7 +3380,7 @@ notify("you are no longer friends with " .. var)
 end)
 
 if not respon then
-DebugPrint(result)
+DebugPrint(7, result)
 end
 end
 -- limits
