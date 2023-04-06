@@ -207,6 +207,28 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+function DebugPrint(SynText)
+local introGui = Instance.new("ScreenGui")
+      introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+      local introTitle = Instance.new("TextLabel")
+      introTitle.Text = SynText
+      introTitle.Font = Enum.Font.SourceSansBold
+      introTitle.TextSize = 25
+      introTitle.TextColor3 = Color3.new(1, 1, 1)
+      introTitle.Size = UDim2.new(0, 400, 0, 100) -- 0, 400, 0, 100
+      introTitle.Position = UDim2.new(0.5, -200, 0.4, -50)
+      introTitle.BackgroundTransparency = 100
+      introTitle.Parent = introGui
+
+      introTitle.Position = UDim2.new(1.5, -200, 0.4, -50)
+      introTitle:TweenPosition(UDim2.new(0.5, -200, 0.4, -50), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 1, true)
+      wait(4)
+      introTitle:TweenPosition(UDim2.new(-0.5, -200, 0.4, -50), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 1, true)
+      wait(1)
+      introGui:Destroy()
+   end
+
 function getstring(begin)
 	local start = begin-1
 	local AA = '' for i,v in pairs(cargs) do
@@ -781,6 +803,7 @@ function Serverhop()
 end
  
 function CheckServers()
+    local respon, result = pcall(function()
     local x = {}
     for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
         if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
@@ -792,6 +815,11 @@ function CheckServers()
         return "Protocol:found"
     else
         return "Protocol:cantfind"
+    end
+    end)
+    
+    if not respon then
+    DebugPrint(result)
     end
 end
 
@@ -2524,9 +2552,15 @@ local x = var
 notify("state disabled")
 end
 if cmd == "rejoin" then
+local respon, result = pcall(function()
 notify("Rejoining...")
-wait(1)
+wait()
 RejoinServer()
+end)
+
+if not respon then
+DebugPrint(result)
+end
 end
 if cmd == "delete" then
 local var = string.sub(msg,space+1)
@@ -3235,11 +3269,11 @@ if fcRunning then
 		copy(Format("%s, %s, %s", Round(X), Round(Y), Round(Z)))
 	end
 end
-if cmd == "displayui" then
+if cmd == "show" then -- displayui
 local var = string.sub(msg,space+1)
 DisplayUI(var)
 end
-if cmd == "nodisplayui" then
+if cmd == "unshow" then -- nodisplayui
 local var = string.sub(msg,space+1)
 RemoveDisplayUI(var)
 end
@@ -3270,7 +3304,13 @@ _G.Settings.music = var
 saveSettings()
 end
 if cmd == "serverhop" then
+local respon, result = pcall(function()
 StartServerhop()
+end)
+
+if not respon then
+DebugPrint(result)
+end
 end
 if cmd == "blacklist" then
 local var = string.sub(msg,space+1)
@@ -3308,6 +3348,7 @@ var = v.Name
 end
 end
 
+local respon, result = pcall(function()
 local playerIsAlrFriend = Players:FindFirstChild(var)
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
@@ -3319,6 +3360,11 @@ end
 
 Players:RequestFriendship(var)
 notify("Friend request sent to " .. var)
+end)
+
+if not respon then
+DebugPrint(result)
+end
 end
 if cmd == "unfriend" then
 local var = string.sub(msg,space+1)
@@ -3328,8 +3374,14 @@ var = v.Name
 end
 end
 
+local respon, result = pcall(function()
 Players:RevokeFriendship(var)
 notify("you are no longer friends with " .. var)
+end)
+
+if not respon then
+DebugPrint(result)
+end
 end
 -- limits
 end
@@ -3440,8 +3492,8 @@ cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "st
 cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "displayui [ping and fps]",Title = "display your fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "nodisplayui [ping and fps]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping and fps]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping and fps]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
@@ -3604,7 +3656,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [05/04/2023] \n\n[CONTENT] \n[+] added friend and unfriend command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed an issue with the invisfling command \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [06/04/2023] \n\n[CONTENT] \n[+] rename displayui & nodisplayui to show & unshow command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the problem with the image present in Notifications \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
