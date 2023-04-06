@@ -209,12 +209,12 @@ end
 
 local DebuggingLevelV = 0
 function DebugPrint(DebugLevel, SynText)
-DebuggingLevelV = DebuggingLevelV + DebugLevel
-      local introGui = Instance.new("ScreenGui")
+DebuggingLevelV = DebugLevel
+local introGui = Instance.new("ScreenGui")
       introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
       local introTitle = Instance.new("TextLabel")
-      introTitle.Text = "[ Debug Lv " .. DebugLevel " ] " .. SynText
+      introTitle.Text = "[ Debug Lv 7 ] " .. SynText
       introTitle.Font = Enum.Font.SourceSansBold
       introTitle.TextSize = 25
       introTitle.TextColor3 = Color3.new(1, 1, 1)
@@ -229,8 +229,7 @@ DebuggingLevelV = DebuggingLevelV + DebugLevel
       introTitle:TweenPosition(UDim2.new(-0.5, -200, 0.4, -50), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 1, true)
       wait(1)
       introGui:Destroy()
-     DebuggingLevelV = 0
- end
+    end
 
 function getstring(begin)
 	local start = begin-1
