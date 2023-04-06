@@ -207,8 +207,10 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+local DebuggingLevelV = 1
 function DebugPrint(DebugLevel, SynText)
-local introGui = Instance.new("ScreenGui")
+if DebugLevel <= DebuggingLevelV then
+      local introGui = Instance.new("ScreenGui")
       introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
       local introTitle = Instance.new("TextLabel")
@@ -227,7 +229,8 @@ local introGui = Instance.new("ScreenGui")
       introTitle:TweenPosition(UDim2.new(-0.5, -200, 0.4, -50), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 1, true)
       wait(1)
       introGui:Destroy()
-   end
+     end
+ end
 
 function getstring(begin)
 	local start = begin-1
@@ -3656,7 +3659,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [06/04/2023] \n\n[CONTENT] \n[+] rename displayui & nodisplayui to show & unshow command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the problem with the image present in Notifications \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [07/04/2023] \n\n[CONTENT] \n[+] rename displayui & nodisplayui to show & unshow \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Debug & Config UI error \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -3691,7 +3694,9 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 
 -- Start the tween
 tween:Play()
-
+-- [[
+DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+]] --
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 if _G.Settings.music == 0 or _G.Settings.music == nil then
@@ -3700,6 +3705,8 @@ else
 music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
+
+DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
 local groupId = 123456
 local staffRanks = { 123 }
