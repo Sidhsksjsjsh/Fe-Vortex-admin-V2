@@ -3694,9 +3694,9 @@ local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Pos
 
 -- Start the tween
 tween:Play()
--- [[
-DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
-]] --
+
+-- DebugPrint(7, ':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 if _G.Settings.music == 0 or _G.Settings.music == nil then
