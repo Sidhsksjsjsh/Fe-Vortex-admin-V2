@@ -184,6 +184,154 @@ U4.Visible = false
 U5.Visible = false
 U6.Visible = false
 
+function RotationData(RDataImg)
+local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
+local OBU = Instance.new('ImageLabel', DataAnimate)
+
+
+DataAnimate.Name = "><"
+
+
+OBU.Size = UDim2.new(0,150,0,150)
+OBU.BackgroundTransparency = 0.5
+OBU.BackgroundColor = BrickColor.new('Fossil')
+OBU.BorderSizePixel = 0
+OBU.Position = UDim2.new(0.5,-100,0,0)
+OBU.Image = "rbxassetid://" .. RDataImg
+OBU.BackgroundTransparency = 100
+
+local Pos = UDim2.new(0, 380, 0, 60)
+local SizeUI = UDim2.new(0, 150, 0, 150)
+local Pos2 = UDim2.new(0, 360, 0, -300)
+
+-- create the Tween
+local tweenService = game:GetService("TweenService")
+local tweenInfo = TweenInfo.new(
+    2, -- duration
+    Enum.EasingStyle.Quint, -- easing style
+    Enum.EasingDirection.Out -- easing direction
+)
+
+local RotationSTART_B1 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 360 -- 360
+}
+
+local RotationSTART_B2 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 720
+}
+
+local RotationSTART_B3 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 1080 -- 360
+}
+
+local RotationSTART_B4 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 1440
+}
+
+local RotationSTOP = {
+    Size = SizeUI,
+    Position = Pos2,
+    Rotation = 1800
+}
+
+local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
+
+local Rotation_A2 = tweenService:Create(OBU, tweenInfo, RotationSTART_B2)
+
+local Rotation_A3 = tweenService:Create(OBU, tweenInfo, RotationSTART_B3)
+
+local Rotation_A4 = tweenService:Create(OBU, tweenInfo, RotationSTART_B4)
+
+local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
+
+OBU.Visible = true
+Rotation_A1:Play()
+Rotation_A1.Completed:Wait()
+Rotation_A2:Play()
+Rotation_A2.Completed:Wait()
+Rotation_A3:Play()
+Rotation_A3.Completed:Wait()
+Rotation_A4:Play()
+Rotation_A4.Completed:Wait()
+Rotation_Stop:Play()
+Rotation_Stop.Completed:Wait()
+OBU:Destroy()
+end
+
+function ShakeData(Img)
+local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
+local OBU = Instance.new('ImageLabel', DataAnimate)
+
+
+DataAnimate.Name = "<>"
+
+
+OBU.Size = UDim2.new(0,150,0,150)
+OBU.BackgroundTransparency = 0.5
+OBU.BackgroundColor = BrickColor.new('Fossil')
+OBU.BorderSizePixel = 0
+OBU.Position = UDim2.new(0.5,-100,0,0)
+OBU.Image = "rbxassetid://" .. Img
+OBU.BackgroundTransparency = 100
+
+local Pos = UDim2.new(0, 380, 0, 60)
+local SizeUI = UDim2.new(0, 150, 0, 150)
+local Pos2 = UDim2.new(0, 360, 0, -300)
+
+-- create the Tween
+local tweenService = game:GetService("TweenService")
+local tweenInfo = TweenInfo.new(
+    2, -- duration
+    Enum.EasingStyle.Quint, -- easing style
+    Enum.EasingDirection.Out -- easing direction
+)
+
+local RotationSTART_B1 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 60 -- 360
+}
+
+local RotationSTART_B2 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 0
+}
+
+local RotationSTOP = {
+    Size = SizeUI,
+    Position = Pos2,
+    Rotation = 60
+}
+
+local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
+
+local Rotation_A2 = tweenService:Create(OBU, tweenInfo, RotationSTART_B2)
+
+local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
+
+OBU.Visible = true
+Rotation_A1:Play()
+Rotation_A1.Completed:Wait()
+Rotation_A2:Play()
+Rotation_A2.Completed:Wait()
+Rotation_A1:Play()
+Rotation_A1.Completed:Wait()
+Rotation_Stop:Play()
+Rotation_Stop.Completed:Wait()
+OBU:Destroy()
+end
+
+RotationData("13030104160")
+
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
 if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
@@ -2778,9 +2926,11 @@ if cmd == "prefix" then
 local var = string.sub(msg,space+1)
 _G.Settings.prefix = var
 prefix = _G.Settings.prefix
+ShakeData("13030062874")
 end
 if cmd == "saveprefix" then
 saveSettings()
+ShakeData("13030078632")
 end
 if cmd == "antifling" then
 VIPFrame.Visible = true
@@ -3285,6 +3435,7 @@ local V_C1 = "╔═══════════════❖••❖══
 local V_C2 = "╚═══════════════❖••❖══════════════╝"
 local notes = V_C1 .. "\n Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
 ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
+ShakeData("13030062874")
 notify("notes are saved to your executor folder.")
 end
 if cmd == "parttp" then
@@ -3304,6 +3455,7 @@ if cmd == "addplaymusic" then
 local var = string.sub(msg,space+1)
 _G.Settings.music = var
 saveSettings()
+ShakeData("13030078632")
 end
 if cmd == "serverhop" then
 local respon, result = pcall(function()
@@ -3658,7 +3810,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [07/04/2023] \n\n[CONTENT] \n[+] rename displayui & nodisplayui to show & unshow \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Debug & Config UI error \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
