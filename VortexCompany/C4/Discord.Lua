@@ -248,7 +248,7 @@ function ProtocolCheck(FileName)
     isfile(FileName)     
 end
 
-local apfo_t = {"Ricky Wicky Yield 😱", "Infinite Bread", "Egg Admino", "Amity coughed", "Where am I", "Rickity Yieldd", "walter white", "Nick Cage?!?!", "peyton real", "april fool!!"}
+local apfo_t = {"Ricky Wicky 😱", "Vortex Apple", "Egg Admino", "Amity coughed", "Where am I?", "Rickity Volcano", "walter white", "Nick Cage?!?!", "peyton real", "april fool!!"}
 local apfo_i = {"11688231017", "11339922083", "11914981726", "5783845592", "6762179979", "7846015915", "11171958623", "11308149650", "7444547410", "6093472109"}
 
 local Domain = {
@@ -293,7 +293,7 @@ Domain.Textjoin.BorderSizePixel = 0
 Domain.Textjoin.Position = UDim2.new(0.26033023, 0, 0.25, 0)
 Domain.Textjoin.Size = UDim2.new(0.685603261, 0, 0.5, 0) -- 0.685603261, 0, 0.5, 0 [0, 18, 0, 18]
 Domain.Textjoin.Font = Enum.Font.GothamBold
-Domain.Textjoin.Text = "Your friend, usernameusername has joined the server"
+Domain.Textjoin.Text = ""
 Domain.Textjoin.TextColor3 = Color3.fromRGB(255, 255, 255)
 Domain.Textjoin.TextScaled = true
 Domain.Textjoin.TextSize = 14.000
@@ -309,7 +309,7 @@ Domain.Avatarjoin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Domain.Avatarjoin.BackgroundTransparency = 1.000
 Domain.Avatarjoin.BorderSizePixel = 0
 Domain.Avatarjoin.Position = UDim2.new(0.0651319921, 0, 0.189999998, 0)
-Domain.Avatarjoin.Size = UDim2.new(0, 20, 0, 20)
+Domain.Avatarjoin.Size = UDim2.new(0, 18, 0, 18)
 Domain.Avatarjoin.Image = "rbxasset://12972185540"
 
 Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
