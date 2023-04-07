@@ -310,7 +310,7 @@ Domain.Avatarjoin.BackgroundTransparency = 1.000
 Domain.Avatarjoin.BorderSizePixel = 0
 Domain.Avatarjoin.Position = UDim2.new(0.0651319921, 0, 0.189999998, 0)
 Domain.Avatarjoin.Size = UDim2.new(0, 18, 0, 18)
-Domain.Avatarjoin.Image = "rbxasset://12972185540"
+Domain.Avatarjoin.Image = "rbxasset://13030062874"
 
 Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
 Domain.UICorner_67.Parent = Domain.Avatarjoin
@@ -355,7 +355,7 @@ Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
     Domain.FriendJoined.Textjoin.Text = A1
     Domain.FriendJoined.Textjoin.TextTransparency = 1
-    Domain.Avatarjoin.Image = "rbxasset://12972185540"
+    Domain.Avatarjoin.Image = "rbxasset://13030062874"
     Domain.FriendJoined.Avatarjoin.ImageTransparency = 1
     local transitionInfo = TweenInfo.new(0.65, Enum.EasingStyle.Quint)
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0.195, 0)})
