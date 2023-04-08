@@ -3538,7 +3538,7 @@ DebugPrint(result)
 end
 end
 if cmd == "copyid" then
-notify("Universe ID " .. tostring(game.PlaceId)
+notify("Universe ID " .. tostring(game.PlaceId))
 copy(game.PlaceId)
 ShakeData("13030062874")
 end
