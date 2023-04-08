@@ -418,6 +418,7 @@ Frame.Size = UDim2.new(0, 200, 0, 150)
 Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
 Frame.BackgroundColor3 = Color3.new(1, 1, 1)
 Frame.BorderSizePixel = 0
+Frame.Visible = false
 
 local SFrame = Instance.new("ScrollingFrame")
 SFrame.Name = "Frame"
@@ -426,6 +427,7 @@ SFrame.Size = UDim2.new(0, 200, 0, 150)
 SFrame.Position = UDim2.new(0.5, -100, 0.5, -75)
 SFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 SFrame.BorderSizePixel = 0
+SFrame.Visible = false
 
 local Output = Instance.new("TextLabel")
 Output.Name = "Output"
@@ -485,6 +487,8 @@ Input.FocusLost:Connect(function(EnterPressed)
 	Input.Visible = false
 	Output.Visible = false
 	TInput.Visible = false
+	Frame.Visible = false
+	SFrame.Visible = false
 	end
     end
 end)
@@ -3664,9 +3668,11 @@ ShakeData("13040484705")
 end
 end
 if cmd == "debug" then
-Input.Visible = false
-Output.Visible = false
-TInput.Visible = false
+Input.Visible = true
+Output.Visible = true
+TInput.Visible = true
+Frame.Visible = true
+SFrame.Visible = true
 end
 -- limits
 end
