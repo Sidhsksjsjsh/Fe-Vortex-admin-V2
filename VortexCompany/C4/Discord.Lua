@@ -303,7 +303,7 @@ local RotationSTART_B1 = {
 local RotationSTART_B2 = {
     Size = SizeUI,
     Position = Pos,
-    Rotation = 0
+    Rotation = -60
 }
 
 local RotationSTOP = {
@@ -3537,6 +3537,11 @@ if not respon then
 DebugPrint(result)
 end
 end
+if cmd == "copyid" then
+notify("Universe ID " .. tostring(game.PlaceId)
+copy(game.PlaceId)
+ShakeData("13030062874")
+end
 -- limits
 end
 end)
@@ -3662,6 +3667,7 @@ cmds[#cmds + 1] = {Text = "[114] " .. tostring(prefix) .. "invisfling",Title = "
 cmds[#cmds + 1] = {Text = "[115] " .. tostring(prefix) .. "cleardevice",Title = "Reset ur device chaptca!"}
 cmds[#cmds + 1] = {Text = "[116] " .. tostring(prefix) .. "friend [username]",Title = "Sent friend request"}
 cmds[#cmds + 1] = {Text = "[117] " .. tostring(prefix) .. "unfriend [username]",Title = "Revoke ur friendship!"}
+cmds[#cmds + 1] = {Text = "[118] " .. tostring(prefix) .. "copyid",Title = "copy game universe id"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3810,7 +3816,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n[+] added copy id command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed vibration when saving data \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
