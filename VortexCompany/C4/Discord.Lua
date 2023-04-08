@@ -453,7 +453,6 @@ Input.TextSize = 14
 Input.TextXAlignment = Enum.TextXAlignment.Left
 Input.TextYAlignment = Enum.TextYAlignment.Top
 Input.TextWrapped = true
-Input.ClearTextOnFocus = false
 Input.Text = "type 'hide' to hide Debug UI"
 Input.Visible = false
 Output.Visible = false
