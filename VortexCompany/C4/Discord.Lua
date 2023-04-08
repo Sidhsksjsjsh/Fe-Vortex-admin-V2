@@ -470,7 +470,6 @@ TInput.TextSize = 14
 TInput.TextXAlignment = Enum.TextXAlignment.Left
 TInput.TextYAlignment = Enum.TextYAlignment.Top
 TInput.TextWrapped = true
-TInput.ClearTextOnFocus = false
 TInput.Text = "DEBUG / CONSOLE UI [BETA]"
 TInput.Visible = false
 
