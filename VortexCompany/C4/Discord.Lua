@@ -407,10 +407,11 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+-- [[
 local Console = Instance.new("ScreenGui")
 Console.Name = "Console"
 Console.Parent = game.CoreGui
-Console.Visible = false
+
 
 
 local Frame = Instance.new("Frame")
@@ -495,15 +496,10 @@ Input.FocusLost:Connect(function(EnterPressed)
 	end
     end
 end)
+-- ]]
 
 function DebugPrint(SynText)
-local Script = Instance.new("Script")
-        Script.Disabled = true
-        Script.Parent = game.Workspace
-        Script.Source = Input.Text
-        Script.Disabled = false
-        Output.Text = Output.Text .. "> " .. SynText .. "\n"
-        Input.Text = "type 'hide' to hide Debug UI"
+print(SynText)
     end
 
 function getstring(begin)
