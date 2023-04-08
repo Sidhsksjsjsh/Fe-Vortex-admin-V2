@@ -407,27 +407,98 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
-local DebuggingLevelV = 0
+local Console = Instance.new("ScreenGui")
+Console.Name = "Console"
+Console.Parent = game.CoreGui
+
+local Frame = Instance.new("Frame")
+Frame.Name = "Frame"
+Frame.Parent = Console
+Frame.Size = UDim2.new(0, 200, 0, 150)
+Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BorderSizePixel = 0
+
+local SFrame = Instance.new("ScrollingFrame")
+SFrame.Name = "Frame"
+SFrame.Parent = Console
+SFrame.Size = UDim2.new(0, 200, 0, 150)
+SFrame.Position = UDim2.new(0.5, -100, 0.5, -75)
+SFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+SFrame.BorderSizePixel = 0
+
+local Output = Instance.new("TextLabel")
+Output.Name = "Output"
+Output.Parent = SFrame
+Output.Size = UDim2.new(1, 0, 0.9, 0)
+Output.Position = UDim2.new(0, 0, 0, 0)
+Output.BackgroundColor3 = Color3.new(0, 0, 0)
+Output.TextColor3 = Color3.new(1, 1, 1)
+Output.Font = Enum.Font.Code
+Output.TextSize = 14
+Output.TextXAlignment = Enum.TextXAlignment.Left
+Output.TextYAlignment = Enum.TextYAlignment.Top
+Output.TextWrapped = true
+Output.Text = ""
+
+local Input = Instance.new("TextBox")
+Input.Name = "Input"
+Input.Parent = Frame
+Input.Size = UDim2.new(1, 0, 0.1, 0)
+Input.Position = UDim2.new(0, 0, 0.9, 0)
+Input.BackgroundColor3 = Color3.new(0, 0, 0)
+Input.TextColor3 = Color3.new(1, 1, 1)
+Input.Font = Enum.Font.Code
+Input.TextSize = 14
+Input.TextXAlignment = Enum.TextXAlignment.Left
+Input.TextYAlignment = Enum.TextYAlignment.Top
+Input.TextWrapped = true
+Input.ClearTextOnFocus = false
+Input.Text = "type 'hide' to hide Debug UI"
+Input.Visible = false
+Output.Visible = false
+
+local TInput = Instance.new("TextLabel")
+TInput.Name = "Input"
+TInput.Parent = Frame
+TInput.Size = UDim2.new(1, 0, 0.1, 0)
+TInput.Position = UDim2.new(0, 0, -0.9, 0)
+TInput.BackgroundColor3 = Color3.new(0, 0, 0)
+TInput.TextColor3 = Color3.new(1, 1, 1)
+TInput.Font = Enum.Font.Code
+TInput.TextSize = 14
+TInput.TextXAlignment = Enum.TextXAlignment.Left
+TInput.TextYAlignment = Enum.TextYAlignment.Top
+TInput.TextWrapped = true
+TInput.ClearTextOnFocus = false
+TInput.Text = "DEBUG / CONSOLE UI [BETA]"
+TInput.Visible = false
+
+Input.FocusLost:Connect(function(EnterPressed)
+    if EnterPressed then
+        local Script = Instance.new("Script")
+        Script.Disabled = true
+        Script.Parent = game.Workspace
+        Script.Source = Input.Text
+        Script.Disabled = false
+        Output.Text = Output.Text .. "> " .. Input.Text .. "\n"
+        Input.Text = ""
+	if Input.Text == "hide" then
+	Input.Visible = false
+	Output.Visible = false
+	TInput.Visible = false
+	end
+    end
+end)
+
 function DebugPrint(SynText)
-local introGui = Instance.new("ScreenGui")
-      introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-      local introTitle = Instance.new("TextLabel")
-      introTitle.Text = "[ Debug Lv 7 ] " .. SynText
-      introTitle.Font = Enum.Font.SourceSansBold
-      introTitle.TextSize = 25
-      introTitle.TextColor3 = Color3.new(1, 1, 1)
-      introTitle.Size = UDim2.new(0, 400, 0, 100) -- 0, 400, 0, 100
-      introTitle.Position = UDim2.new(0.5, -200, 0.4, -50)
-      introTitle.BackgroundTransparency = 100
-      introTitle.Parent = introGui
-
-      introTitle.Position = UDim2.new(1.5, -200, 0.4, -50)
-      introTitle:TweenPosition(UDim2.new(0.5, -200, 0.4, -50), Enum.EasingDirection.Out, Enum.EasingStyle.Quint, 1, true)
-      wait(4)
-      introTitle:TweenPosition(UDim2.new(-0.5, -200, 0.4, -50), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 1, true)
-      wait(1)
-      introGui:Destroy()
+local Script = Instance.new("Script")
+        Script.Disabled = true
+        Script.Parent = game.Workspace
+        Script.Source = Input.Text
+        Script.Disabled = false
+        Output.Text = Output.Text .. "> " .. SynText .. "\n"
+        Input.Text = "type 'hide' to hide Debug UI"
     end
 
 function getstring(begin)
@@ -3594,6 +3665,11 @@ DebugPrint(result)
 ShakeData("13040484705")
 end
 end
+if cmd == "debug" then
+Input.Visible = false
+Output.Visible = false
+TInput.Visible = false
+end
 -- limits
 end
 end)
@@ -3719,6 +3795,7 @@ cmds[#cmds + 1] = {Text = "[114] " .. tostring(prefix) .. "invisfling",Title = "
 cmds[#cmds + 1] = {Text = "[115] " .. tostring(prefix) .. "cleardevice",Title = "Reset ur device chaptca!"}
 cmds[#cmds + 1] = {Text = "[116] " .. tostring(prefix) .. "friend [username]",Title = "Sent friend request"}
 cmds[#cmds + 1] = {Text = "[117] " .. tostring(prefix) .. "unfriend [username]",Title = "Revoke ur friendship!"}
+cmds[#cmds + 1] = {Text = "[118] " .. tostring(prefix) .. "debug",Title = "U can see all error here"}
 
 
 for v = 1, #cmds do
@@ -3759,7 +3836,7 @@ local friend = {
 
 local staff = {
       _staff_Title = "staff:";
-      _staff_1 = "demon28_luc (i forgor💀#4109)";
+      _staff_1 = "demon_luc28 (i forgor💀#4109)";
       _staff_2 = "AdindaFood (Riri#0337)";
       _staff_3 = "";
       _staff_4 = "";
@@ -3868,7 +3945,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed SyncAPI errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added 'debug' command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed SyncAPI errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
