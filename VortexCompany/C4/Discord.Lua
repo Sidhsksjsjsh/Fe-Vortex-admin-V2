@@ -303,13 +303,13 @@ local RotationSTART_B1 = {
 local RotationSTART_B2 = {
     Size = SizeUI,
     Position = Pos,
-    Rotation = -60
+    Rotation = 30
 }
 
 local RotationSTOP = {
     Size = SizeUI,
     Position = Pos2,
-    Rotation = 60
+    Rotation = 0
 }
 
 local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
@@ -326,6 +326,58 @@ Rotation_A2.Completed:Wait()
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
 Rotation_Stop:Play()
+Rotation_Stop.Completed:Wait()
+OBU:Destroy()
+end
+
+function AppearData(DataImgV1)
+local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
+local OBU = Instance.new('ImageLabel', DataAnimate)
+
+
+DataAnimate.Name = "SyncAppearData"
+
+
+OBU.Size = UDim2.new(0,150,0,150)
+OBU.BackgroundTransparency = 0.5
+OBU.BackgroundColor = BrickColor.new('Fossil')
+OBU.BorderSizePixel = 0
+OBU.Position = UDim2.new(0.5,-100,0,0)
+OBU.Image = "rbxassetid://" .. DataImgV1
+OBU.BackgroundTransparency = 100
+
+local Pos = UDim2.new(0, 380, 0, 60)
+local SizeUI = UDim2.new(0, 150, 0, 150)
+local Pos2 = UDim2.new(0, 360, 0, -300)
+
+-- create the Tween
+local tweenService = game:GetService("TweenService")
+local tweenInfo = TweenInfo.new(
+    2, -- duration
+    Enum.EasingStyle.Quint, -- easing style
+    Enum.EasingDirection.Out -- easing direction
+)
+
+local RotationSTART_B1 = {
+    Size = SizeUI,
+    Position = Pos,
+    Rotation = 0 -- 360
+}
+
+local RotationSTOP = {
+    Size = SizeUI,
+    Position = Pos2,
+    Rotation = 0
+}
+
+local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
+
+local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
+
+OBU.Visible = true
+Rotation_A1:Play()
+Rotation_A1.Completed:Wait()
+kRotation_Stop:Play()
 Rotation_Stop.Completed:Wait()
 OBU:Destroy()
 end
@@ -2633,6 +2685,7 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
+		AppearData("13040492999")
 notify("Spying " .. var)
 end
 if cmd == "unspy" then
@@ -2644,10 +2697,12 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
+	AppearData("13040492999")
 notify("Spying turned off")
 end
 if cmd == "cmds" then
-SourceUITemplate.Visible = true
+RotationData("13040482767")
+notify("ERROR")
 end
 if cmd == "nosit" then
 local function DISABLESIT()
@@ -3518,6 +3573,7 @@ end)
 
 if not respon then
 DebugPrint(result)
+ShakeData("13040484705")
 end
 end
 if cmd == "unfriend" then
@@ -3535,6 +3591,7 @@ end)
 
 if not respon then
 DebugPrint(result)
+ShakeData("13040484705")
 end
 end
 -- limits
@@ -3811,7 +3868,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed vibration when saving data \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added save data and CloudFlare animation by Frodan#5679 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed SyncAPI errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
