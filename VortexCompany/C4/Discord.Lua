@@ -410,6 +410,8 @@ end
 local Console = Instance.new("ScreenGui")
 Console.Name = "Console"
 Console.Parent = game.CoreGui
+Console.Visible = false
+
 
 local Frame = Instance.new("Frame")
 Frame.Name = "Frame"
@@ -489,6 +491,7 @@ Input.FocusLost:Connect(function(EnterPressed)
 	TInput.Visible = false
 	Frame.Visible = false
 	SFrame.Visible = false
+	Console.Visible = false
 	end
     end
 end)
@@ -3673,6 +3676,7 @@ Output.Visible = true
 TInput.Visible = true
 Frame.Visible = true
 SFrame.Visible = true
+Console.Visible = true
 end
 -- limits
 end
