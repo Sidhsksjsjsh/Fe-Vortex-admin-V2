@@ -377,8 +377,8 @@ local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
 OBU.Visible = true
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
-Rotation_Stop:Play()
-Rotation_Stop.Completed:Wait()
+-- Rotation_Stop:Play()
+-- Rotation_Stop.Completed:Wait()
 OBU:Destroy()
 end
 
