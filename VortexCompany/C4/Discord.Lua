@@ -130,6 +130,9 @@ BarSent.TextWrapped             = true
 BarSent.FontSize                = 'Size24'
 BarSent.Font                    = 'SourceSansBold'
 
+TextBar.Visible = false
+BarSent.Visible = false
+
 U1.Size                    = UDim2.new(0,200,0,30)
 U1.BackgroundTransparency  = 0.5
 U1.BackgroundColor         = BrickColor.new('Fossil')
@@ -434,6 +437,23 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+function FindInTable(tbl,val)
+	if tbl == nil then return false end
+	for _,v in pairs(tbl) do
+		if v == val then return true end
+	end 
+	return false
+end
+
+function GetInTable(Table, Name)
+	for i = 1, #Table do
+		if Table[i] == Name then
+			return i
+		end
+	end
+	return false
+end
+
 function SyncBypassChat(BypassWord)
 local chat = BypassWord
     local tabl = {}
@@ -478,9 +498,6 @@ end
 BarSent.MouseButton1Down:Connect(function()
      SyncBypassChat(TextBar.Text)
 end)
-
-TextBar.Visible = false
-BarSent.Visible = false
 
 local espParts = {}
 local partEspTrigger = nil
@@ -4018,7 +4035,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n[+] added function show new ui message bypass in section 'show' and 'unshow' \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n[+] added function show new ui message bypass in section 'show' and 'unshow' \n\n[BALANCE] \n[-] Fix some bugs \nfixed the UI issue i.e. it couldnt be closed \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
