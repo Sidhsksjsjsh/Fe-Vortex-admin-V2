@@ -100,9 +100,35 @@ local U4                         = Instance.new('TextButton', U1)
 -- toggle vfly:
 local U5                         = Instance.new('TextButton', GUI_MAIN)
 local U6                         = Instance.new('TextButton', U5)
+local TextBar                         = Instance.new('TextBox', GUI_MAIN)
+local BarSent                         = Instance.new('TextButton', TextBar)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
+TextBar.Size                    = UDim2.new(0,200,0,30)
+TextBar.BackgroundTransparency  = 0.5
+TextBar.BackgroundColor         = BrickColor.new('Fossil')
+TextBar.BorderSizePixel         = 0
+TextBar.Position                = UDim2.new(0.5,-100,0,0)
+TextBar.Text                    = "Text Here!"
+TextBar.TextColor3              = Color3.new(1,1,1)
+TextBar.TextStrokeTransparency  = 1
+TextBar.TextWrapped             = true
+TextBar.FontSize                = 'Size24'
+TextBar.Font                    = 'SourceSansBold'
+TextBar.Draggable = true
+
+BarSent.Size                    = UDim2.new(0,200,0,30)
+BarSent.BackgroundTransparency  = 0.5
+BarSent.BackgroundColor         = BrickColor.new('Fossil')
+BarSent.BorderSizePixel         = 0
+BarSent.Position                = UDim2.new(0.5,-100,0,0)
+BarSent.Text                    = "Sent!"
+BarSent.TextColor3              = Color3.new(1,1,1)
+BarSent.TextStrokeTransparency  = 1
+BarSent.TextWrapped             = true
+BarSent.FontSize                = 'Size24'
+BarSent.Font                    = 'SourceSansBold'
 
 U1.Size                    = UDim2.new(0,200,0,30)
 U1.BackgroundTransparency  = 0.5
@@ -407,6 +433,54 @@ end
 function ProtocolRead(FileName)
         readfile(FileName)
 end
+
+function SyncBypassChat(BypassWord)
+local chat = BypassWord
+    local tabl = {}
+    for i = 1, #chat do
+        local chara = chat:sub(i,i)
+        if string.lower(chara) == "nigga" then
+            chara = "nìggá"
+        elseif string.lower(chara) == "asshole" then
+            chara = "ásshồle"
+        elseif string.lower(chara) == "shit" then
+            chara = "shìt"
+        elseif string.lower(chara) == "fuck" then
+            chara = "fúck"
+        elseif string.lower(chara) == "bitch" then
+            chara = "bìtch"
+        elseif string.lower(chara) == "cyka blyat" then
+            chara = "cyká blyát"
+        elseif string.lower(chara) == "ass" then
+            chara = "áss"
+        elseif string.lower(chara) == "pussy" then
+            chara = "pússy"
+        elseif string.lower(chara) == "dick" then
+            chara = "dìck"
+        elseif string.lower(chara) == " " then
+            chara = " "
+        elseif string.lower(chara) == "cum" then
+            chara = "cúm"
+        elseif string.lower(chara) == "sperm" then
+            chara = "spếrm"
+	elseif string.lower(chara) == "suck" then
+            chara = "súck"
+        end
+        table.insert(tabl, chara)
+    end
+    chat = ""
+    for i,v in pairs(tabl) do
+        chat = chat..v
+    end
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat, "All")
+end
+
+BarSent.MouseButton1Down:Connect(function()
+     SyncBypassChat(TextBar.Text)
+end)
+
+TextBar.Visible = false
+BarSent.Visible = false
 
 local espParts = {}
 local partEspTrigger = nil
@@ -1109,9 +1183,15 @@ function DisplayUI(UIname)
       if UIname == "fps" then
       UI_A2.Visible = true
    end
+      if UIname == "chatbypass" then
+      TextBar.Visible = true
+      BarSent.Visible = true
+   end
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
+      TextBar.Visible = true
+      BarSent.Visible = true
    end
 end
 
@@ -1122,9 +1202,15 @@ function RemoveDisplayUI(UIname)
       if UIname == "fps" then
       UI_A2.Visible = false
    end
+      if UIname == "chatbypass" then
+      TextBar.Visible = false
+      BarSent.Visible = false
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
+      TextBar.Visible = false
+      BarSent.Visible = false
    end
 end
 
@@ -3765,8 +3851,8 @@ cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "st
 cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping and fps]",Title = "display your fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping and fps]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
@@ -3932,7 +4018,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n[+] added function show new ui message bypass in section 'show' and 'unshow' \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
