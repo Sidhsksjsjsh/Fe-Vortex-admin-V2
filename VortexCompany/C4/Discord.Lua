@@ -5,7 +5,8 @@ _G.Settings = {
       AutoExecuteLink = "",
       AutoExecuteRawScript = "",
       Blacklist = "",
-      BlacklistCount = 0
+      BlacklistCount = 0,
+      EspColor = BrickColor.new("Lime green")
 }
 
 if not game:IsLoaded() then
@@ -405,6 +406,27 @@ end
 
 function ProtocolRead(FileName)
         readfile(FileName)
+end
+
+local espParts = {}
+local partEspTrigger = nil
+function partAdded(part)
+	if #espParts > 0 then
+		if FindInTable(espParts,part.Name:lower()) then
+			local a = Instance.new("BoxHandleAdornment")
+			a.Name = part.Name:lower().."_PESP"
+			a.Parent = part
+			a.Adornee = part
+			a.AlwaysOnTop = true
+			a.ZIndex = 0
+			a.Size = part.Size
+			a.Transparency = 0.3
+			a.Color = BrickColor.new("Lime green")
+		end
+	else
+		partEspTrigger:Disconnect()
+		partEspTrigger = nil
+	end
 end
 
 -- [[
@@ -3587,6 +3609,53 @@ Frame.Visible = true
 SFrame.Visible = true
 Console.Visible = true
 end
+if cmd == "partesp" then
+local var = string.sub(msg,space+1)
+local partEspName = var
+	if not FindInTable(espParts,partEspName) then
+		table.insert(espParts,partEspName)
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") and v.Name:lower() == partEspName then
+				local a = Instance.new("BoxHandleAdornment")
+				a.Name = partEspName.."_PESP"
+				a.Parent = v
+				a.Adornee = v
+				a.AlwaysOnTop = true
+				a.ZIndex = 0
+				a.Size = v.Size
+				a.Transparency = 0.3
+				a.Color = BrickColor.new("Lime green")
+			end
+		end
+	end
+	if partEspTrigger == nil then
+		partEspTrigger = workspace.DescendantAdded:Connect(partAdded)
+	end
+end
+if cmd == "unpartesp" then
+local var = string.sub(msg,space+1)
+if var then
+		local partEspName = var
+		if FindInTable(espParts,partEspName) then
+			table.remove(espParts, GetInTable(espParts, partEspName))
+		end
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BoxHandleAdornment") and v.Name == partEspName..'_PESP' then
+				v:Destroy()
+			end
+		end
+	else
+		partEspTrigger:Disconnect()
+		partEspTrigger = nil
+		espParts = {}
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BoxHandleAdornment") and v.Name:sub(-5) == '_PESP' then
+				v:Destroy()
+			end
+		end
+	end
+end
+
 -- limits
 end
 end)
@@ -3713,7 +3782,8 @@ cmds[#cmds + 1] = {Text = "[115] " .. tostring(prefix) .. "cleardevice",Title = 
 cmds[#cmds + 1] = {Text = "[116] " .. tostring(prefix) .. "friend [username]",Title = "Sent friend request"}
 cmds[#cmds + 1] = {Text = "[117] " .. tostring(prefix) .. "unfriend [username]",Title = "Revoke ur friendship!"}
 cmds[#cmds + 1] = {Text = "[118] " .. tostring(prefix) .. "debug",Title = "U can see all error here"}
-
+cmds[#cmds + 1] = {Text = "[119] " .. tostring(prefix) .. "partesp [part name]",Title = "enable Part esp"}
+cmds[#cmds + 1] = {Text = "[120] " .. tostring(prefix) .. "unpartesp [part name] ",Title = "disable part esp"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -3862,7 +3932,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/04/2023] \n\n[CONTENT] \n[+] added 'debug' command \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed SyncAPI errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n\n[BALANCE] \n[-] Fix some bugs \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
