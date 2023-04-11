@@ -464,32 +464,22 @@ local chat = BypassWord
     local tabl = {}
     for i = 1, #chat do
         local chara = chat:sub(i,i)
-        if string.lower(chara) == "nigga" then
-            chara = "nìggá"
-        elseif string.lower(chara) == "asshole" then
-            chara = "ásshồle"
-        elseif string.lower(chara) == "shit" then
-            chara = "shìt"
-        elseif string.lower(chara) == "fuck" then
-            chara = "fúck"
-        elseif string.lower(chara) == "bitch" then
-            chara = "bìtch"
-        elseif string.lower(chara) == "cyka blyat" then
-            chara = "cyká blyát"
-        elseif string.lower(chara) == "ass" then
-            chara = "áss"
-        elseif string.lower(chara) == "pussy" then
-            chara = "pússy"
-        elseif string.lower(chara) == "dick" then
-            chara = "dìck"
-        elseif string.lower(chara) == " " then
+        if string.lower(chara) == "a" then
+            chara = "á"
+        elseif string.lower(chara) == "o" then
+            chara = "ồ"
+        elseif string.lower(chara) == "i" then
+            chara = "ì"
+        elseif string.lower(chara) == "u" then
+            chara = "ú"
+        elseif string.lower(chara) == "e" then
+            chara = "ệ"
+        elseif string.lower(chara) == "d" then
+            chara = "đ"
+        elseif string.lower(chara) == "y" then
+            chara = "ỷ"
+	elseif string.lower(chara) == " " then
             chara = " "
-        elseif string.lower(chara) == "cum" then
-            chara = "cúm"
-        elseif string.lower(chara) == "sperm" then
-            chara = "spếrm"
-	elseif string.lower(chara) == "suck" then
-            chara = "súck"
         end
         table.insert(tabl, chara)
     end
