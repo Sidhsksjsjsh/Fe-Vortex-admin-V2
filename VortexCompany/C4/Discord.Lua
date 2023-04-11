@@ -3781,7 +3781,20 @@ for i,v in pairs(workspace:GetDescendants()) do
 				wait(.1)
 			end
 			wait(gotopartDelay)
-			TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = v.CFrame}):Play()
+			TweenService:Create(getRoot(speaker.Character), TweenInfo.new(1, Enum.EasingStyle.Linear), {CFrame = v.CFrame}):Play()
+		end
+	end
+end
+if cmd == "bringpart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name:lower() == var and v:IsA("BasePart") then
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			wait(gotopartDelay)
+			v.CFrame = getRoot(speaker.Character).CFrame
 		end
 	end
 end
@@ -3925,6 +3938,7 @@ cmds[#cmds + 1] = {Text = "[120] " .. tostring(prefix) .. "unpartesp [part name]
 cmds[#cmds + 1] = {Text = "[121] " .. tostring(prefix) .. "gotopart [part name]",Title = "teleporting you to selected part"}
 cmds[#cmds + 1] = {Text = "[122] " .. tostring(prefix) .. "tweengotopart [part name]",Title = "tweening you to selected part"}
 cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number] ",Title = "goto/tween delay or cooldown"}
+cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name] ",Title = "bring selected part"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4073,7 +4087,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 'gotopart' and 'tweengotopart' and 'gotopartdelay' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed the UI issue i.e. it couldnt be closed \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 'bringpart' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed Tweeningpart Issue \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
