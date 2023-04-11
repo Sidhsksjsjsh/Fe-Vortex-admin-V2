@@ -6,7 +6,10 @@ _G.Settings = {
       AutoExecuteRawScript = "",
       Blacklist = "",
       BlacklistCount = 0,
-      EspColor = BrickColor.new("Lime green")
+      EspColor = BrickColor.new("Lime green"),
+      partname = "",
+      Added = false,
+      Removed = false
 }
 
 if not game:IsLoaded() then
@@ -93,6 +96,7 @@ local ProtocolCD = 1
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
+local TweenService = game:GetService("TweenService")
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -1268,7 +1272,31 @@ local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 MusicName = Asset.Name
 end
 
+function SyncFunction(Func)
+       return tostring(Func)
+end
 
+function onPartSpawned(part)
+      if _G.Settings.Added == true then
+    if part.Name == _G.Settings.partname then
+        print("The " .. SyncFunction(_G.Settings.partname) .. " was spawned!")
+        
+    end
+end
+end
+
+game:GetService("Workspace").DescendantAdded:Connect(onPartSpawned)
+
+function onPartGone(part)
+      if _G.Settings.Removed == true then
+    if part.Name == _G.Settings.partname then
+        print("The " .. SyncFunction(_G.Settings.partname) .. " has disappeared!")
+        
+    end
+end
+end
+
+game:GetService("Workspace").DescendantRemoved:Connect(onPartGone)
 
 local _AnimName = ""
 function _Anims(id)
@@ -3800,12 +3828,34 @@ for i,v in pairs(workspace:GetDescendants()) do
 end
 if cmd == "gotopartdelay" then
 local var = string.sub(msg,space+1)
-local gtpDelay = args[1] or 0.1
+local gtpDelay = var or 0.1
 	if isNumber(gtpDelay) then
 		gotopartDelay = gtpDelay
 	else
 		notify("Number ONLY!")
 	end
+end
+if cmd == "detectpart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name:lower() == var and v:IsA("BasePart") then
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			wait(gotopartDelay)
+			_G.Settings.partname = v
+			_G.Settings.Added = true
+			_G.Settings.Removed = true
+			saveSettings()
+		end
+	end
+end
+if cmd == "undetectpart" then
+_G.Settings.partname = ""
+_G.Settings.Added = false
+_G.Settings.Removed = false
+saveSettings()
 end
 -- limits
 end
