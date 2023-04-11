@@ -92,6 +92,7 @@ local ProtocolSpam = false
 local ProtocolCD = 1
 local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
+local gotopartDelay = 0.1
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -3758,7 +3759,41 @@ if var then
 		end
 	end
 end
-
+if cmd == "gotopart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name:lower() == var and v:IsA("BasePart") then
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			wait(gotopartDelay)
+			getRoot(speaker.Character).CFrame = v.CFrame
+		end
+	end
+end
+if cmd == "tweengotopart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(workspace:GetDescendants()) do
+		if v.Name:lower() == var and v:IsA("BasePart") then
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			wait(gotopartDelay)
+			TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = v.CFrame}):Play()
+		end
+	end
+end
+if cmd == "gotopartdelay" then
+local var = string.sub(msg,space+1)
+local gtpDelay = args[1] or 0.1
+	if isNumber(gtpDelay) then
+		gotopartDelay = gtpDelay
+	else
+		notify("Number ONLY!")
+	end
+end
 -- limits
 end
 end)
@@ -3887,6 +3922,9 @@ cmds[#cmds + 1] = {Text = "[117] " .. tostring(prefix) .. "unfriend [username]",
 cmds[#cmds + 1] = {Text = "[118] " .. tostring(prefix) .. "debug",Title = "U can see all error here"}
 cmds[#cmds + 1] = {Text = "[119] " .. tostring(prefix) .. "partesp [part name]",Title = "enable Part esp"}
 cmds[#cmds + 1] = {Text = "[120] " .. tostring(prefix) .. "unpartesp [part name] ",Title = "disable part esp"}
+cmds[#cmds + 1] = {Text = "[121] " .. tostring(prefix) .. "gotopart [part name]",Title = "teleporting you to selected part"}
+cmds[#cmds + 1] = {Text = "[122] " .. tostring(prefix) .. "tweengotopart [part name]",Title = "tweening you to selected part"}
+cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number] ",Title = "goto/tween delay or cooldown"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4035,7 +4073,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [10/04/2023] \n\n[CONTENT] \n[+] added 'partesp' and 'unpartesp' command \n[+] added function show new ui message bypass in section 'show' and 'unshow' \n\n[BALANCE] \n[-] Fix some bugs \nfixed the UI issue i.e. it couldnt be closed \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 'gotopart' and 'tweengotopart' and 'gotopartdelay' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed the UI issue i.e. it couldnt be closed \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
