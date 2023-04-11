@@ -1277,17 +1277,6 @@ end
 
 game:GetService("Workspace").DescendantAdded:Connect(onPartSpawned)
 
-function onPartGone(part)
-      if _G.Settings.Removed == true then
-    if part.Name == _G.Settings.partname then
-        print("The " .. SyncFunction(_G.Settings.partname) .. " has disappeared!")
-        
-    end
-end
-end
-
-game:GetService("Workspace").DescendantRemoved:Connect(onPartGone)
-
 local _AnimName = ""
 function _Anims(id)
 AnimService = Instance.new("Animation")
@@ -3979,6 +3968,8 @@ cmds[#cmds + 1] = {Text = "[121] " .. tostring(prefix) .. "gotopart [part name]"
 cmds[#cmds + 1] = {Text = "[122] " .. tostring(prefix) .. "tweengotopart [part name]",Title = "tweening you to selected part"}
 cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number] ",Title = "goto/tween delay or cooldown"}
 cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name] ",Title = "bring selected part"}
+cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name] ",Title = "will detect the part you selected appears"}
+cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart ",Title = "turn off ur detect part"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4127,7 +4118,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 'bringpart' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed Tweeningpart Issue \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 2 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed Tweeningpart Issue again \n[-] fixed chat bypass issue \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
