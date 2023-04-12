@@ -98,7 +98,6 @@ local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local Character = speaker.Character
-local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -545,6 +544,8 @@ end
 
 
 function Tall()
+local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+
 function rm()
 	for i,v in pairs(Character:GetDescendants()) do
 		if v:IsA("BasePart") then
@@ -595,6 +596,8 @@ Humanoid:FindFirstChild("HeadScale"):Destroy()
 end
 
 function Short()
+local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+
 local function rm()
 	for i,v in pairs(Character:GetDescendants()) do
 		if v:IsA("BasePart") then
