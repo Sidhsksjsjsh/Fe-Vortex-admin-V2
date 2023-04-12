@@ -680,6 +680,30 @@ Domain.FriendJoined.Visible = true
   end
 end
 
+function SyncMath(math_1, ProtocolMath, math_2)
+     if ProtocolMath == "+" then
+        local SyncNumber_1 = math_1
+	local SyncNumber_2 = math_2
+	local ExecuteResultPlus = 0
+	ExecuteResultPlus = SyncNumber_1 + SyncNumber_2
+	notify(SyncNumber_1 .. " + " .. SyncNumber_2 .. " = " .. ExecuteResultPlus)
+    end
+     if ProtocolMath == "*" then
+        local SyncNumber_1 = math_1
+	local SyncNumber_2 = math_2
+	local ExecuteResultMultiplication = 0
+	ExecuteResultMultiplication = SyncNumber_1 * SyncNumber_2
+	notify(SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMultiplication)
+    end
+     if ProtocolMath == "/" then
+        local SyncNumber_1 = math_1
+	local SyncNumber_2 = math_2
+	local ExecuteResultMisc = 0
+	ExecuteResultMisc = SyncNumber_1 / SyncNumber_2
+	notify(SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMisc)
+    end
+end
+
 if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
 print("error! We could not find your script (Error Auto Execute: 404)")
 else
@@ -3836,6 +3860,16 @@ _G.Settings.Added = false
 _G.Settings.Removed = false
 saveSettings()
 end
+if cmd == "math" then
+local SyncType_1 = string.sub(msg,space+1)
+local SyncType_2 = string.sub(msg,space+2)
+local SyncType_3 = string.sub(msg,space+3)
+if tonumber(SyncNumber_1) and tonumber(SyncType_3) and SyncType == "+" or "*" or "/" then
+SyncMath(SyncType_1, SyncType_2, SyncType_3)
+else
+notify("please enter the correct number and use the symbol * or + or /")
+end
+end
 -- limits
 end
 end)
@@ -3970,6 +4004,7 @@ cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number
 cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name] ",Title = "bring selected part"}
 cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name] ",Title = "will detect the part you selected appears"}
 cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart ",Title = "turn off ur detect part"}
+cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number] ",Title = "use this command if u dumb at math😂"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4118,7 +4153,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [11/04/2023] \n\n[CONTENT] \n[+] added 2 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \nfixed Tweeningpart Issue again \n[-] fixed chat bypass issue \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [12/04/2023] \n\n[CONTENT] \n[+] added 'math' new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-]fixed Tweeningpart Issue again and again (x2) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
