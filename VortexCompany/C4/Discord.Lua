@@ -97,6 +97,8 @@ local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
+local Character = speaker.Character
+local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -539,6 +541,99 @@ end
 
 function ProtocolCheck(FileName)
     isfile(FileName)     
+end
+
+
+function Tall()
+function rm()
+	for i,v in pairs(Character:GetDescendants()) do
+		if v:IsA("BasePart") then
+			if v.Name == "Handle" or v.Name == "Head" then
+				if Character.Head:FindFirstChild("OriginalSize") then
+					Character.Head.OriginalSize:Destroy()
+				end
+			else
+				for i,cav in pairs(v:GetDescendants()) do
+					if cav:IsA("Attachment") then
+						if cav:FindFirstChild("OriginalPosition") then
+							cav.OriginalPosition:Destroy()  
+						end
+					end
+				end
+				v:FindFirstChild("OriginalSize"):Destroy()
+				if v:FindFirstChild("AvatarPartScaleType") then
+					v:FindFirstChild("AvatarPartScaleType"):Destroy()
+				end
+			end
+		end
+	end
+end
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyProportionScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyHeightScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("HeadScale"):Destroy()
+end
+
+function Short()
+local function rm()
+	for i,v in pairs(Character:GetDescendants()) do
+		if v:IsA("BasePart") then
+			if v.Name ~= "Head" then
+				for i,cav in pairs(v:GetDescendants()) do
+					if cav:IsA("Attachment") then
+						if cav:FindFirstChild("OriginalPosition") then
+							cav.OriginalPosition:Destroy()
+						end
+					end
+				end
+				v:FindFirstChild("OriginalSize"):Destroy()
+				if v:FindFirstChild("AvatarPartScaleType") then
+					v:FindFirstChild("AvatarPartScaleType"):Destroy()
+				end
+			end
+		end
+	end
+end
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+wait(1)
+
+rm()
+wait(0.5)
+Humanoid:FindFirstChild("HeadScale"):Destroy()
+wait(1)
 end
 
 local apfo_t = {"Ricky Wicky 😱", "Vortex Apple", "Egg Admino", "Amity coughed", "Where am I?", "Rickity Volcano", "walter white", "Nick Cage?!?!", "peyton real", "april fool!!"}
@@ -3864,11 +3959,13 @@ if cmd == "math" then
 local SyncType_1 = string.sub(msg,space+1)
 local SyncType_2 = string.sub(msg,space+2)
 local SyncType_3 = string.sub(msg,space+3)
-if tonumber(SyncNumber_1) and tonumber(SyncType_3) and SyncType == "+" or "*" or "/" then
 SyncMath(SyncType_1, SyncType_2, SyncType_3)
-else
-notify("please enter the correct number and use the symbol * or + or /")
 end
+if cmd == "tall" then
+Tall()
+end
+if cmd == "short" then
+Short()
 end
 -- limits
 end
@@ -4005,6 +4102,8 @@ cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name]
 cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name] ",Title = "will detect the part you selected appears"}
 cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart ",Title = "turn off ur detect part"}
 cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number] ",Title = "use this command if u dumb at math😂"}
+cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall ",Title = "Taller"}
+cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short ",Title = "short"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4153,7 +4252,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [12/04/2023] \n\n[CONTENT] \n[+] added 'math' new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-]fixed Tweeningpart Issue again and again (x2) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [12/04/2023] \n\n[CONTENT] \n[+] added 'tall' and 'short' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x2) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -4193,7 +4292,7 @@ tween:Play()
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
-if _G.Settings.music == 0 or _G.Settings.music == nil then
+if _G.Settings.music == 0 or nil then
 	notify("You didn't add any music.")
 else
 music(tostring(_G.Settings.music))
