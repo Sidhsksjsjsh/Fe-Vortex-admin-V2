@@ -4054,7 +4054,8 @@ var = v.Name
 end
 end
 
-copy("" .. Players[v].UserId .. "")
+copy("" .. Players[var].UserId .. "")
+notify("Copied to clipboard")
 end
 -- limits
 end
@@ -4309,14 +4310,6 @@ if ESPenabled then
 		repeat wait(1) until plr.Character and getRoot(plr.Character)
 		ESP(plr)
 	end
-end)
-
-Players.PlayerAdded:Connect(function(plr)
-for _,Blacklisted in pairs(_G.Settings.Blacklist) do
-if plr.Name == Blacklisted then
-_announcement("WARNING! \n\n the player you blacklist has \njoined the same server \n\nName: \n" .. tostring(plr.Name))
-end
-end
 end)
 
 for _, ProtocolPlayer in pairs(Players:GetChildren()) do
