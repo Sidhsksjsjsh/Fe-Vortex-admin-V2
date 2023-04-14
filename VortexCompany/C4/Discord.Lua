@@ -431,17 +431,6 @@ end
 end
 end
 
-function copy(txt)
-       setclipboard(txt)
-end
-
-function ProtocolSave(FileName, Config)
-         writefile(FileName, Config)
-end
-
-function ProtocolRead(FileName)
-        readfile(FileName)
-end
 
 function FindInTable(tbl,val)
 	if tbl == nil then return false end
@@ -776,6 +765,28 @@ Domain.FriendJoined.Visible = true
     local tween = game:GetService("TweenService"):Create(Domain.FriendJoined, transitionInfo, {Size = UDim2.new(4.928, 0, 0, 0)})
     tween:Play()
   end
+end
+
+function copy(txt)
+	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+	if clipBoard then
+           setclipboard(txt)
+	else
+	   notify("your exploit doesnt have ability to use clipboard, Bad exploit🤣😂")
+    end
+end
+
+function ProtocolSave(FileName, Config)
+	local file = writefile
+	if file then
+          writefile(FileName, Config)
+	else
+	  notify("your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
+    end
+end
+
+function ProtocolRead(FileName)
+        readfile(FileName)
 end
 
 function SyncMath(math_1, ProtocolMath, math_2)
