@@ -815,8 +815,6 @@ loadstring(_G.Settings.AutoExecuteRawScript)()
 end
 
 notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
-wait(1)
-notify("The command list is in the console.")
 
 local IP_number = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
 
@@ -3970,6 +3968,94 @@ end
 if cmd == "short" then
 Short()
 end
+if cmd == "snipe" then
+local SyncArgs = string.sub(msg,space+1)
+if SyncArgs[1] == nil then
+            return
+        end
+        local Thumbnail = ""
+        local UserID = 0
+        local PlaceID = 0
+        if string.find(SyncArgs[1], "%a") then
+            local UserInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://api.roblox.com/users/get-by-username?username="..SyncArgs[1], true))
+            if UserInfo["success"] == false then
+                notify("Failed!, Invalid username")
+                return
+            end
+            UserID = UserInfo.Id
+        else -- by userID
+            UserID = SyncArgs
+        end
+        local ThumbnailInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://www.roblox.com/headshot-thumbnail/json?userId="..UserID.."&width=48&height=48&format=png", true))
+        if string.find(ThumbnailInfo.Url, "t0.rbxcdn.com") then
+            notify("Failed!, Invalid UserID, or, API failed to return valid image")
+            return
+        else
+            Thumbnail = ThumbnailInfo.Url
+        end
+        if SyncArgs[2] == nil then
+            notify("No PlaceID, defaulting to current place id...")
+            PlaceID = game.PlaceId
+        elseif tonumber(SyncArgs[2]) ~= nil and not string.find(SyncArgs[2], "%a") then
+            PlaceID = SyncArgs[2]
+        else
+            notify("Failed!, Invalid PlaceID")
+            return
+        end
+        local Check = game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId="..tostring(PlaceID).."&startIndex=0",true)
+        if string.find(string.lower(Check), "permission") then
+            notify("Failed!, Lacking permissions for API? (Try again maybe)")
+            return
+        end
+        local StartIndex = 0
+        local Servers = {}
+        repeat
+            local CurrentList = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId="..tostring(PlaceID).."&startIndex="..tostring(StartIndex),true))
+            for i,v in pairs(CurrentList.Collection) do
+                table.insert(Servers, v)
+            end
+            StartIndex = StartIndex + 10
+            wait()
+        until #CurrentList.Collection == 0
+        if #Servers == 0 then
+            notify("Failed!, Game had no servers")
+            return
+        end
+        local FoundPlayer = false
+        for a,b in pairs(Servers) do
+            local ServerID = b.Guid
+            for c,d in pairs(b.CurrentPlayers) do
+                if d.Thumbnail.Url == Thumbnail then
+                    local num1 = string.find(b["PlayersCapacity"], "%d")
+                    local num2 = string.find(b["PlayersCapacity"], "%d", num1 + 1)
+                    num1 = tonumber(string.sub(b["PlayersCapacity"], num1, num1))
+                    num2 = tonumber(string.sub(b["PlayersCapacity"], num2, num2))
+                    if num1 >= num2 then
+                        notify("Failed!, Server full!")
+                        return
+                    else
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ServerID, game.Players.LocalPlayer)
+                        FoundPlayer = true
+                    end
+                end
+            end
+        end
+        if FoundPlayer == true then
+            notify("Success!, Teleporting to player's game...")
+        else
+            notify("Failed!, Player isn't in game")
+        end
+end
+if cmd == "copyid" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+copy("" .. Players[v].UserId .. "")
+end
 -- limits
 end
 end)
@@ -4107,6 +4193,8 @@ cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart ",Title 
 cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number] ",Title = "use this command if u dumb at math😂"}
 cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall ",Title = "Taller"}
 cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short ",Title = "short"}
+cmds[#cmds + 1] = {Text = "[130] " .. tostring(prefix) .. "snipe [username or id] ",Title = "Sniping player u want."}
+cmds[#cmds + 1] = {Text = "[131] " .. tostring(prefix) .. "copyid [username] ",Title = "copy player id"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4255,7 +4343,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [12/04/2023] \n\n[CONTENT] \n[+] added 'tall' and 'short' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x2) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [14/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x3) \n[-] Fixed roblox api errors while using snipe command \n[-] speed up intros or remove 1 intro \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
