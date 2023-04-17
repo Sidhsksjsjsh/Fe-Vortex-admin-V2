@@ -800,7 +800,7 @@ end
 
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
-     loadstring(game:HttpGet(_link_))()
+     loadstring(_link_)()
      end)
      
      if not respon then
@@ -809,7 +809,7 @@ function executeHTTPS(_link_)
 end
 
 BarButtonExecute.MouseButton1Down:Connect(function()
-     executeHTTPS(TextBarExecutor)
+     executeHTTPS(game:HttpGet(TextBarExecutor))
 end)
 
 -- TextBarExecutor.Visible = true
@@ -4128,6 +4128,33 @@ end
 copy("" .. Players[var].UserId .. "")
 notify("Copied to clipboard")
 end
+if cmd == "dex" then
+local respon, result = pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+end)
+
+if not respon then
+notify(result)
+end
+end
+if cmd == "rspy" then
+local respon, result = pcall(function()
+loadstring(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))()
+end)
+
+if not respon then
+notify(result)
+end
+end
+if cmd == "iy" then
+local respon, result = pcall(function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+if not respon then
+notify(result)
+end
+end
 -- limits
 end
 end)
@@ -4267,6 +4294,9 @@ cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall ",Title = "Talle
 cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short ",Title = "short"}
 cmds[#cmds + 1] = {Text = "[130] " .. tostring(prefix) .. "snipe [username or id] ",Title = "Sniping player u want."}
 cmds[#cmds + 1] = {Text = "[131] " .. tostring(prefix) .. "copyid [username] ",Title = "copy player id"}
+cmds[#cmds + 1] = {Text = "[132] " .. tostring(prefix) .. "dex ",Title = "dex view client system"}
+cmds[#cmds + 1] = {Text = "[133] " .. tostring(prefix) .. "rspy",Title = "remote spy"}
+cmds[#cmds + 1] = {Text = "[134] " .. tostring(prefix) .. "iy ",Title = "infinite yield"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4407,7 +4437,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \n[+] added ui to run script via link \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'iy', 'rspy' and 'dex command \n[+] added ui to run script via link \n[+] dex, Infinite Yield and remote spy is now supported \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
