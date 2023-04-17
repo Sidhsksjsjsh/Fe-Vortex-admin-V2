@@ -108,6 +108,8 @@ local U5                         = Instance.new('TextButton', GUI_MAIN)
 local U6                         = Instance.new('TextButton', U5)
 local TextBar                         = Instance.new('TextBox', GUI_MAIN)
 local BarSent                         = Instance.new('TextButton', TextBar)
+local TextBarExecutor                         = Instance.new('TextBox', GUI_MAIN)
+local BarButtonExecute                         = Instance.new('TextButton', TextBar)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
@@ -135,6 +137,33 @@ BarSent.TextStrokeTransparency  = 1
 BarSent.TextWrapped             = true
 BarSent.FontSize                = 'Size24'
 BarSent.Font                    = 'SourceSansBold'
+
+TextBarExecutor.Size                    = UDim2.new(0,200,0,30)
+TextBarExecutor.BackgroundTransparency  = 0.5
+TextBarExecutor.BackgroundColor         = BrickColor.new('Fossil')
+TextBarExecutor.BorderSizePixel         = 0
+TextBarExecutor.Position                = UDim2.new(0.5,-100,0,0)
+TextBarExecutor.Text                    = "Link here!"
+TextBarExecutor.TextColor3              = Color3.new(1,1,1)
+TextBarExecutor.TextStrokeTransparency  = 1
+TextBarExecutor.TextWrapped             = true
+TextBarExecutor.FontSize                = 'Size24'
+TextBarExecutor.Font                    = 'SourceSansBold'
+TextBarExecutor.Draggable = true
+
+BarButtonExecute.Size                    = UDim2.new(0,200,0,30)
+BarButtonExecute.BackgroundTransparency  = 0.5
+BarButtonExecute.BackgroundColor         = BrickColor.new('Fossil')
+BarButtonExecute.BorderSizePixel         = 0
+BarButtonExecute.Position                = UDim2.new(0.5,-100,0,30)
+BarButtonExecute.Text                    = "Execute"
+BarButtonExecute.TextColor3              = Color3.new(1,1,1)
+BarButtonExecute.TextStrokeTransparency  = 1
+BarButtonExecute.TextWrapped             = true
+BarButtonExecute.FontSize                = 'Size24'
+BarButtonExecute.Font                    = 'SourceSansBold'
+BarButtonExecute.Visible = false
+TextBarExecutor.Visible = false
 
 TextBar.Visible = false
 BarSent.Visible = false
@@ -470,6 +499,8 @@ local chat = BypassWord
             chara = "ỷ"
 	elseif string.lower(chara) == " " then
             chara = " "
+	elseif string.lower(chara) == "Text Here!" then
+            chara = "{?}"
         end
         table.insert(tabl, chara)
     end
@@ -766,6 +797,23 @@ Domain.FriendJoined.Visible = true
     tween:Play()
   end
 end
+
+function executeHTTPS(_link_)
+     local respon, result = pcall(function()
+     loadstring(game:HttpGet(_link_))()
+     end)
+     
+     if not respon then
+     notify(result)
+     end
+end
+
+BarButtonExecute.MouseButton1Down:Connect(function()
+     executeHTTPS(TextBarExecutor)
+end)
+
+-- TextBarExecutor.Visible = true
+-- BarButtonExecute.Visible = true
 
 function copy(txt)
 	local clipBoard = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
@@ -1330,11 +1378,17 @@ function DisplayUI(UIname)
       TextBar.Visible = true
       BarSent.Visible = true
    end
+      if UIname == "exc" then
+      TextBarExecutor.Visible = true
+      BarButtonExecute.Visible = true
+   end
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
       TextBar.Visible = true
       BarSent.Visible = true
+      TextBarExecutor.Visible = true
+      BarButtonExecute.Visible = true
    end
 end
 
@@ -1349,11 +1403,17 @@ function RemoveDisplayUI(UIname)
       TextBar.Visible = false
       BarSent.Visible = false
    end
+   if UIname == "exc" then
+      TextBarExecutor.Visible = false
+      BarButtonExecute.Visible = false
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
       TextBar.Visible = false
       BarSent.Visible = false
+      TextBarExecutor.Visible = false
+      BarButtonExecute.Visible = false
    end
 end
 
@@ -4150,7 +4210,7 @@ cmds[#cmds + 1] = {Text = "[71] " .. tostring(prefix) .. "compliment [username]"
 cmds[#cmds + 1] = {Text = "[72] " .. tostring(prefix) .. "insult [username]",Title = "insult someone you hate😡😠🤬"}
 cmds[#cmds + 1] = {Text = "[73] " .. tostring(prefix) .. "reach",Title = "increase the range of your sword"}
 cmds[#cmds + 1] = {Text = "[74] " .. tostring(prefix) .. "unreach",Title = "Returns the range of the sword to its original range"}
-cmds[#cmds + 1] = {Text = "[75] " .. tostring(prefix) .. "grippos [Vector2]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
+cmds[#cmds + 1] = {Text = "[75] " .. tostring(prefix) .. "grippos [Vector3]",Title = "set GripPos tools (exp: /grippos 0,0,0)"}
 cmds[#cmds + 1] = {Text = "[76] " .. tostring(prefix) .. "hovername",Title = "enable player name"}
 cmds[#cmds + 1] = {Text = "[77] " .. tostring(prefix) .. "unhovername",Title = "disable player name"}
 cmds[#cmds + 1] = {Text = "[78] " .. tostring(prefix) .. "fall",Title = "fall..it hurts like jumping from the top of a building"}
@@ -4177,8 +4237,8 @@ cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "st
 cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass]",Title = "display your fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, or exc]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, or exc]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
@@ -4347,7 +4407,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [14/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x3) \n[-] Fixed roblox api errors while using snipe command \n[-] speed up intros or remove 1 intro \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \n[+] added ui to run script via link \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x3) \n[-] Fixed roblox api errors while using snipe command \n[-] speed up intros or remove 1 intro \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
