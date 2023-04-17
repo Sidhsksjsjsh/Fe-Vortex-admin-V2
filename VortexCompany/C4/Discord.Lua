@@ -218,7 +218,7 @@ end)
 
 UIButton_4.FocusLost:Connect(function(EnterInstance)
    if EnterInstance then
-       _G.Settings.EspColor = UIButton_4.Text
+       _G.Settings.EspColor = BrickColor.new(UIButton_4.Text)
        UIButton_4.Text = _G.Settings.EspColor
        saveSettings()
    end
