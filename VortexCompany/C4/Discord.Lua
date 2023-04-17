@@ -109,7 +109,7 @@ local U6                         = Instance.new('TextButton', U5)
 local TextBar                         = Instance.new('TextBox', GUI_MAIN)
 local BarSent                         = Instance.new('TextButton', TextBar)
 local TextBarExecutor                         = Instance.new('TextBox', GUI_MAIN)
-local BarButtonExecute                         = Instance.new('TextButton', TextBar)
+local BarButtonExecute                         = Instance.new('TextButton', TextBarExecutor)
 
 GUI_MAIN.Name                      = "Fly_Controller"
 
@@ -4407,7 +4407,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \n[+] added ui to run script via link \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed Tweeningpart Issue again and again (x3) \n[-] Fixed roblox api errors while using snipe command \n[-] speed up intros or remove 1 intro \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'snipe' and 'copyid' command \n[+] added ui to run script via link \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
