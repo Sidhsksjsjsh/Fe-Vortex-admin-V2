@@ -98,6 +98,8 @@ local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local Character = speaker.Character
+local Blur = Instance.new("BlurEffect", game.Lighting)
+Blur.Size = 0 -- 12
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -317,6 +319,7 @@ local Rotation_A4 = tweenService:Create(OBU, tweenInfo, RotationSTART_B4)
 
 local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
 
+Blur.Size = 12
 OBU.Visible = true
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
@@ -328,6 +331,7 @@ Rotation_A4:Play()
 Rotation_A4.Completed:Wait()
 Rotation_Stop:Play()
 Rotation_Stop.Completed:Wait()
+Blur.Size = 0
 OBU:Destroy()
 end
 
@@ -362,13 +366,13 @@ local tweenInfo = TweenInfo.new(
 local RotationSTART_B1 = {
     Size = SizeUI,
     Position = Pos,
-    Rotation = 60 -- 360
+    Rotation = 30 -- 360
 }
 
 local RotationSTART_B2 = {
     Size = SizeUI,
     Position = Pos,
-    Rotation = 30
+    Rotation = -30
 }
 
 local RotationSTOP = {
@@ -383,6 +387,7 @@ local Rotation_A2 = tweenService:Create(OBU, tweenInfo, RotationSTART_B2)
 
 local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
 
+Blur.Size = 12
 OBU.Visible = true
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
@@ -392,6 +397,7 @@ Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
 Rotation_Stop:Play()
 Rotation_Stop.Completed:Wait()
+Blur.Size = 0
 OBU:Destroy()
 end
 
@@ -439,11 +445,13 @@ local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
 
 local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
 
+Blur.Size = 12
 OBU.Visible = true
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
 -- Rotation_Stop:Play()
 -- Rotation_Stop.Completed:Wait()
+Blur.Size = 0
 OBU:Destroy()
 end
 
@@ -4437,7 +4445,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'iy', 'rspy' and 'dex command \n[+] added ui to run script via link \n[+] dex, Infinite Yield and remote spy is now supported \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [17/04/2023] \n\n[CONTENT] \n[+] added 'iy', 'rspy' and 'dex command \n[+] added ui to run script via link \n[+] added blur effect on all intros (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
