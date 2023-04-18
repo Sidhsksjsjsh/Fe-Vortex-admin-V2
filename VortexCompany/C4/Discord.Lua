@@ -4338,6 +4338,19 @@ end
 if cmd == "config" then
 hub_q.Visible = true
 end
+if cmd == "crosshair" then
+local Crosshair = Instance.new("ScreenGui")
+local CrosshairImage = Instance.new("ImageLabel")
+--Properties:
+Crosshair.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ 
+CrosshairImage.Parent = ScreenGui
+CrosshairImage.BackgroundColor3 = Color3.new(0, 0, 0)
+CrosshairImage.BackgroundTransparency = 100
+CrosshairImage.Position = UDim2.new(0.5, -25, 0.5, -44)
+CrosshairImage.Size = UDim2.new(0, 50, 0, 50)
+CrosshairImage.Image = "rbxassetid://13171020677"
+end
 -- limits
 end
 end)
@@ -4468,19 +4481,20 @@ cmds[#cmds + 1] = {Text = "[119] " .. tostring(prefix) .. "partesp [part name]",
 cmds[#cmds + 1] = {Text = "[120] " .. tostring(prefix) .. "unpartesp [part name] ",Title = "disable part esp"}
 cmds[#cmds + 1] = {Text = "[121] " .. tostring(prefix) .. "gotopart [part name]",Title = "teleporting you to selected part"}
 cmds[#cmds + 1] = {Text = "[122] " .. tostring(prefix) .. "tweengotopart [part name]",Title = "tweening you to selected part"}
-cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number] ",Title = "goto/tween delay or cooldown"}
-cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name] ",Title = "bring selected part"}
-cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name] ",Title = "will detect the part you selected appears"}
-cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart ",Title = "turn off ur detect part"}
-cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number] ",Title = "use this command if u dumb at math😂"}
-cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall ",Title = "Taller"}
-cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short ",Title = "short"}
-cmds[#cmds + 1] = {Text = "[130] " .. tostring(prefix) .. "snipe [username or id] ",Title = "Sniping player u want."}
-cmds[#cmds + 1] = {Text = "[131] " .. tostring(prefix) .. "copyid [username] ",Title = "copy player id"}
-cmds[#cmds + 1] = {Text = "[132] " .. tostring(prefix) .. "dex ",Title = "dex view client system"}
+cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number]",Title = "goto/tween delay or cooldown"}
+cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name]",Title = "bring selected part"}
+cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name]",Title = "will detect the part you selected appears"}
+cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart",Title = "turn off ur detect part"}
+cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number]",Title = "use this command if u dumb at math😂"}
+cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall",Title = "Taller"}
+cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short",Title = "short"}
+cmds[#cmds + 1] = {Text = "[130] " .. tostring(prefix) .. "snipe [username or id]",Title = "Sniping player u want."}
+cmds[#cmds + 1] = {Text = "[131] " .. tostring(prefix) .. "copyid [username]",Title = "copy player id"}
+cmds[#cmds + 1] = {Text = "[132] " .. tostring(prefix) .. "dex",Title = "dex view client system"}
 cmds[#cmds + 1] = {Text = "[133] " .. tostring(prefix) .. "rspy",Title = "remote spy"}
-cmds[#cmds + 1] = {Text = "[134] " .. tostring(prefix) .. "iy ",Title = "infinite yield"}
-cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "config ",Title = "real no clickbait😨😱"}
+cmds[#cmds + 1] = {Text = "[134] " .. tostring(prefix) .. "iy",Title = "infinite yield"}
+cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "config",Title = "real no clickbait😨😱"}
+cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "crosshair",Title = "to help you aim at your target opponent"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -4621,7 +4635,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] added 'iy', 'rspy' and 'dex command \n[+] added 'config' command?😱 \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] new crosshair command?😭😍😲😱 \n[+] added 'config' command?😱 \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
