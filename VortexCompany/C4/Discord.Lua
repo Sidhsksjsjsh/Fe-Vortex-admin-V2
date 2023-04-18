@@ -526,8 +526,13 @@ for i = 1, #InterfaceCoordFunction do
     BitchLabel.Parent = fuckingFrame
 
 BitchLabel.MouseButton1Down:Connect(function()
-pos = CFrame.new(InterfaceCoordFunction[i].COORD)
-speaker.Character.HumanoidRootPart.CFrame = pos
+for i,_ in pairs(InterfaceCoordFunction) do
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+					speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+					wait(.1)
+				end
+				speaker.Character.HumanoidRootPart.CFrame = CFrame.new(InterfaceCoordFunction[i].COORD[1].Position)
+			end
 end)
 end
 end
@@ -1415,7 +1420,7 @@ end)
 
 CopyPath.MouseButton1Click:Connect(function()
 	if Path.Text ~= "" then
-		toClipboard(Path.Text)
+		copy(Path.Text)
 	else
 		notify('Select a part to copy its path')
 	end
@@ -1432,8 +1437,8 @@ ChoosePart.MouseButton1Click:Connect(function()
 				end
 			end
 			if not FoundDupe then
-				notify("Created waypoint: "..selected.Adornee.Name..tpNameExt)
 				InterfaceCoordFunction[#InterfaceCoordFunction + 1] = {NAME = selected.Adornee.Name..tpNameExt, COORD = {selected.Adornee}}
+				notify("Created waypoint: "..selected.Adornee.Name..tpNameExt)
 					
 			else
 				if isNumber(tpNameExt) then
