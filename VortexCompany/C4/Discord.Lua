@@ -4349,7 +4349,7 @@ CrosshairImage.BackgroundColor3 = Color3.new(0, 0, 0)
 CrosshairImage.BackgroundTransparency = 100
 CrosshairImage.Position = UDim2.new(0.5, -25, 0.5, -44)
 CrosshairImage.Size = UDim2.new(0, 50, 0, 50)
-CrosshairImage.Image = "rbxassetid://13171020677"
+CrosshairImage.Image = "rbxassetid://13171020627"
 end
 -- limits
 end
