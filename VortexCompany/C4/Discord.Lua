@@ -288,9 +288,74 @@ local TextBar                         = Instance.new('TextBox', GUI_MAIN)
 local BarSent                         = Instance.new('TextButton', TextBar)
 local TextBarExecutor                         = Instance.new('TextBox', GUI_MAIN)
 local BarButtonExecute                         = Instance.new('TextButton', TextBarExecutor)
+-- choose part function ui
+local Path                         = Instance.new('TextLabel', GUI_MAIN)
+local ChoosePart                         = Instance.new('TextButton', Path)
+local CopyPath                         = Instance.new('TextButton', Path)
+local Exit_4                         = Instance.new('TextButton', Path)
 
-GUI_MAIN.Name                      = "Fly_Controller"
+GUI_MAIN.Name                      = "UI INTERFACE"
 
+Path.Size                    = UDim2.new(0,200,0,30)
+Path.BackgroundTransparency  = 0.5
+Path.BackgroundColor         = BrickColor.new('Fossil')
+Path.BorderSizePixel         = 0
+Path.Position                = UDim2.new(0.5,-100,0,0)
+Path.Text                    = ""
+Path.TextColor3              = Color3.new(1,1,1)
+Path.TextStrokeTransparency  = 1
+Path.TextWrapped             = true
+Path.FontSize                = 'Size24'
+Path.Font                    = 'SourceSansBold'
+Path.Draggable = true
+
+ChoosePart.Size                    = UDim2.new(0,200,0,30)
+ChoosePart.BackgroundTransparency  = 0.5
+ChoosePart.BackgroundColor         = BrickColor.new('Fossil')
+ChoosePart.BorderSizePixel         = 0
+ChoosePart.Position                = UDim2.new(0.5,-100,0,30)
+ChoosePart.Text                    = "Select path"
+ChoosePart.TextColor3              = Color3.new(1,1,1)
+ChoosePart.TextStrokeTransparency  = 1
+ChoosePart.TextWrapped             = true
+ChoosePart.FontSize                = 'Size24'
+ChoosePart.Font                    = 'SourceSansBold'
+
+CopyPath.Size                    = UDim2.new(0,200,0,30)
+CopyPath.BackgroundTransparency  = 0.5
+CopyPath.BackgroundColor         = BrickColor.new('Fossil')
+CopyPath.BorderSizePixel         = 0
+CopyPath.Position                = UDim2.new(0.5,-100,0,0)
+CopyPath.Text                    = "Copy path"
+CopyPath.TextColor3              = Color3.new(1,1,1)
+CopyPath.TextStrokeTransparency  = 1
+CopyPath.TextWrapped             = true
+CopyPath.FontSize                = 'Size24'
+CopyPath.Font                    = 'SourceSansBold'
+CopyPath.Draggable = true
+
+Exit_4.Size                    = UDim2.new(0,200,0,30)
+Exit_4.BackgroundTransparency  = 0.5
+Exit_4.BackgroundColor         = BrickColor.new('Fossil')
+Exit_4.BorderSizePixel         = 0
+Exit_4.Position                = UDim2.new(0.5,-100,0,30)
+Exit_4.Text                    = "Close Interface"
+Exit_4.TextColor3              = Color3.new(1,1,1)
+Exit_4.TextStrokeTransparency  = 1
+Exit_4.TextWrapped             = true
+Exit_4.FontSize                = 'Size24'
+Exit_4.Font                    = 'SourceSansBold'
+
+function Interface_Visible(GuiName, toggle_4)
+     GuiName.Visible = toggle_4 or false
+end
+
+Interface_Visible(Exit_4, false)
+Interface_Visible(CopyPath, false)
+Interface_Visible(ChoosePart, false)
+Interface_Visible(Path, false)
+
+-- diff ui
 TextBar.Size                    = UDim2.new(0,200,0,30)
 TextBar.BackgroundTransparency  = 0.5
 TextBar.BackgroundColor         = BrickColor.new('Fossil')
@@ -1183,6 +1248,91 @@ function tools(plr)
 		return true
 	end
 end
+
+local selectionBox = Instance.new("SelectionBox")
+selectionBox.Name = randomString()
+selectionBox.Color3 = Color3.new(255,255,255)
+selectionBox.Adornee = nil
+selectionBox.Parent = PARENT
+
+local selected = Instance.new("SelectionBox")
+selected.Name = randomString()
+selected.Color3 = Color3.new(0,166,0)
+selected.Adornee = nil
+selected.Parent = PARENT
+
+local ActivateHighlight = nil
+local ClickSelect = nil
+function selectPart()
+	local function HighlightPart()
+		if selected.Adornee ~= Mouse.Target then
+			selectionBox.Adornee = Mouse.Target
+		else
+			selectionBox.Adornee = nil
+		end
+	end
+	ActivateHighlight = Mouse.Move:Connect(HighlightPart)
+	local function SelectPart()
+		if Mouse.Target ~= nil then
+			selected.Adornee = Mouse.Target
+			Path.Text = getHierarchy(Mouse.Target)
+		end
+	end
+	ClickSelect = Mouse.Button1Down:Connect(SelectPart)
+end
+
+Part.MouseButton1Click:Connect(function()
+	selectPart()
+end)
+
+Exit_4.MouseButton1Click:Connect(function()
+	if ActivateHighlight then
+		ActivateHighlight:Disconnect()
+	end
+	if ClickSelect then
+		ClickSelect:Disconnect()
+	end
+	selectionBox.Adornee = nil
+	selected.Adornee = nil
+	Path.Text = ""
+end)
+
+CopyPath.MouseButton1Click:Connect(function()
+	if Path.Text ~= "" then
+		toClipboard(Path.Text)
+	else
+		notify('Select a part to copy its path')
+	end
+end)
+
+ChoosePart.MouseButton1Click:Connect(function()
+	if Path.Text ~= "" then
+		local tpNameExt = ''
+		local function handleWpNames()
+			local FoundDupe = false
+			for i,v in pairs(pWayPoints) do
+				if v.NAME:lower() == selected.Adornee.Name:lower()..tpNameExt then
+					FoundDupe = true
+				end
+			end
+			if not FoundDupe then
+				notify("Created waypoint: "..selected.Adornee.Name..tpNameExt)
+				pWayPoints[#pWayPoints + 1] = {NAME = selected.Adornee.Name..tpNameExt, COORD = {selected.Adornee}}
+			else
+				if isNumber(tpNameExt) then
+					tpNameExt = tpNameExt+1
+				else
+					tpNameExt = 1
+				end
+				handleWpNames()
+			end
+		end
+		handleWpNames()
+		
+	else
+		notify('Select a part first')
+	end
+end)
 
 fcRunning = false
 local Camera = workspace.CurrentCamera
