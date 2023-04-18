@@ -1396,10 +1396,6 @@ function selectPart()
 	ClickSelect = Mouse.Button1Down:Connect(SelectPart)
 end
 
-Part.MouseButton1Click:Connect(function()
-	selectPart()
-end)
-
 Exit_4.MouseButton1Click:Connect(function()
 	if ActivateHighlight then
 		ActivateHighlight:Disconnect()
@@ -1838,6 +1834,7 @@ function DisplayUI(UIname)
       Interface_Visible(ChoosePart, true)
       Interface_Visible(Path, true)
       fuckingFrame.Visible = true
+		selectPart()
    end
       if UIname == "all" then
       UI_A1.Visible = true
