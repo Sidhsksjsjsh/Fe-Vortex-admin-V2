@@ -295,7 +295,7 @@ local Exit_4                         = Instance.new('TextButton', Path)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
-Path.Size                    = UDim2.new(0,200,0,30)
+Path.Size                    = UDim2.new(0,500,0,30)
 Path.BackgroundTransparency  = 0.5
 Path.BackgroundColor         = BrickColor.new('Fossil')
 Path.BorderSizePixel         = 0
@@ -324,7 +324,7 @@ CopyPath.Size                    = UDim2.new(0,200,0,30)
 CopyPath.BackgroundTransparency  = 0.5
 CopyPath.BackgroundColor         = BrickColor.new('Fossil')
 CopyPath.BorderSizePixel         = 0
-CopyPath.Position                = UDim2.new(0.5,-100,0,0)
+CopyPath.Position                = UDim2.new(0.5,-100,0,60)
 CopyPath.Text                    = "Copy path"
 CopyPath.TextColor3              = Color3.new(1,1,1)
 CopyPath.TextStrokeTransparency  = 1
@@ -337,7 +337,7 @@ Exit_4.Size                    = UDim2.new(0,200,0,30)
 Exit_4.BackgroundTransparency  = 0.5
 Exit_4.BackgroundColor         = BrickColor.new('Fossil')
 Exit_4.BorderSizePixel         = 0
-Exit_4.Position                = UDim2.new(0.5,-100,0,30)
+Exit_4.Position                = UDim2.new(0.5,-100,0,90)
 Exit_4.Text                    = "Close Interface"
 Exit_4.TextColor3              = Color3.new(1,1,1)
 Exit_4.TextStrokeTransparency  = 1
@@ -1406,6 +1406,10 @@ Exit_4.MouseButton1Click:Connect(function()
 	selectionBox.Adornee = nil
 	selected.Adornee = nil
 	Path.Text = ""
+	Interface_Visible(Exit_4, false)
+        Interface_Visible(CopyPath, false)
+        Interface_Visible(ChoosePart, false)
+        Interface_Visible(Path, false)
 end)
 
 CopyPath.MouseButton1Click:Connect(function()
@@ -4748,7 +4752,7 @@ cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
 cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, or exc]",Title = "display your fps and ping UI"}
-cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, or exc]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, exc, or part]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
@@ -4922,7 +4926,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] new crosshair command?😭😍😲😱 \n[+] added 'config' command?😱 \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] new crosshair command?😭😍😲😱 \n[+] added part selection command (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
