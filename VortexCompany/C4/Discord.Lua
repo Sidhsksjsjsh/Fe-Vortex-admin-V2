@@ -332,7 +332,7 @@ CopyPath.TextStrokeTransparency  = 1
 CopyPath.TextWrapped             = true
 CopyPath.FontSize                = 'Size24'
 CopyPath.Font                    = 'SourceSansBold'
-CopyPath.Draggable = true
+
 
 Exit_4.Size                    = UDim2.new(0,200,0,30)
 Exit_4.BackgroundTransparency  = 0.5
@@ -1238,6 +1238,27 @@ function randomString()
 	return table.concat(array)
 end
 
+if get_hidden_gui or gethui then
+	local hiddenUI = get_hidden_gui or gethui
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	Main.Parent = hiddenUI()
+	PARENT = Main
+elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	syn.protect_gui(Main)
+	Main.Parent = COREGUI
+	PARENT = Main
+elseif COREGUI:FindFirstChild('RobloxGui') then
+	PARENT = COREGUI.RobloxGui
+else
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	Main.Parent = COREGUI
+	PARENT = Main
+end
+
 function round(num, numDecimalPlaces)
 	local mult = 10^(numDecimalPlaces or 0)
 	return math.floor(num * mult + 0.5) / mult
@@ -1246,6 +1267,60 @@ end
 function tools(plr)
 	if plr:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass('Tool') or plr.Character:FindFirstChildOfClass('Tool') then
 		return true
+	end
+end
+
+function getHierarchy(obj)
+	local fullname
+	local period
+
+	if string.find(obj.Name,' ') then
+		fullname = '["'..obj.Name..'"]'
+		period = false
+	else
+		fullname = obj.Name
+		period = true
+	end
+
+	local getS = obj
+	local parent = obj
+	local service = ''
+
+	if getS.Parent ~= game then
+		repeat
+			getS = getS.Parent
+			service = getS.ClassName
+		until getS.Parent == game
+	end
+
+	if parent.Parent ~= getS then
+		repeat
+			parent = parent.Parent
+			if string.find(tostring(parent),' ') then
+				if period then
+					fullname = '["'..parent.Name..'"].'..fullname
+				else
+					fullname = '["'..parent.Name..'"]'..fullname
+				end
+				period = false
+			else
+				if period then
+					fullname = parent.Name..'.'..fullname
+				else
+					fullname = parent.Name..''..fullname
+				end
+				period = true
+			end
+		until parent.Parent == getS
+	elseif string.find(tostring(parent),' ') then
+		fullname = '["'..parent.Name..'"]'
+		period = false
+	end
+
+	if period then
+		return 'game:GetService("'..service..'").'..fullname
+	else
+		return 'game:GetService("'..service..'")'..fullname
 	end
 end
 
@@ -1716,6 +1791,12 @@ function DisplayUI(UIname)
       TextBarExecutor.Visible = true
       BarButtonExecute.Visible = true
    end
+      if UIname == "part" then
+      Interface_Visible(Exit_4, true)
+      Interface_Visible(CopyPath, true)
+      Interface_Visible(ChoosePart, true)
+      Interface_Visible(Path, true)
+   end
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
@@ -1723,6 +1804,10 @@ function DisplayUI(UIname)
       BarSent.Visible = true
       TextBarExecutor.Visible = true
       BarButtonExecute.Visible = true
+      Interface_Visible(Exit_4, true)
+      Interface_Visible(CopyPath, true)
+      Interface_Visible(ChoosePart, true)
+      Interface_Visible(Path, true)
    end
 end
 
@@ -1741,6 +1826,12 @@ function RemoveDisplayUI(UIname)
       TextBarExecutor.Visible = false
       BarButtonExecute.Visible = false
    end
+      if UIname == "part" then
+      Interface_Visible(Exit_4, false)
+      Interface_Visible(CopyPath, false)
+      Interface_Visible(ChoosePart, false)
+      Interface_Visible(Path, false)
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
@@ -1748,6 +1839,10 @@ function RemoveDisplayUI(UIname)
       BarSent.Visible = false
       TextBarExecutor.Visible = false
       BarButtonExecute.Visible = false
+      Interface_Visible(Exit_4, false)
+      Interface_Visible(CopyPath, false)
+      Interface_Visible(ChoosePart, false)
+      Interface_Visible(Path, false)
    end
 end
 
