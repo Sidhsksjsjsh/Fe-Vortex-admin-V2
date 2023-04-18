@@ -97,7 +97,6 @@ mainFrame.Name = "MainFrame"
 mainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
 mainFrame.Size = UDim2.new(0, 300, 0, 200)
 mainFrame.Parent = hub_q
-mainFrame.Visible = false
 
 local LocalInterface = Instance.new("TextLabel")
 LocalInterface.Name = "TitleLabel"
@@ -491,6 +490,47 @@ U3.Visible = false
 U4.Visible = false
 U5.Visible = false
 U6.Visible = false
+
+-- Create a new ScreenGui object
+local ShitGui = Instance.new("ScreenGui")
+ShitGui.Name = "TPPOINT"
+ShitGui.Parent = speaker.PlayerGui
+ShitGui.ResetOnSpawn = false
+
+-- Create a ScrollingFrame object
+local fuckingFrame = Instance.new("ScrollingFrame")
+fuckingFrame.Name = "InterfaceScrollingFrame"
+fuckingFrame.Size = UDim2.new(0, 200, 0, 300)
+fuckingFrame.Position = UDim2.new(0.5, -100, 0.5, -150)
+fuckingFrame.CanvasSize = UDim2.new(0, 0, 0, 1000)
+fuckingFrame.ScrollBarThickness = 8
+fuckingFrame.Parent = ShitGui
+fuckingFrame.Visible = false
+
+local AddInterfaceEvent = {
+        {Name = "Event {%s} - {%s}", Event = "{%s}"},
+}
+
+local InterfaceCoordFunction = {}
+
+function RefreshInterface()
+-- Add some UI elements to the InterfaceScrollingFrame
+for i = 1, #InterfaceCoordFunction do
+    local BitchLabel = Instance.new("TextButton")
+    BitchLabel.Name = "Bitch"
+    BitchLabel.Size = UDim2.new(1, 0, 0, 50)
+    BitchLabel.Position = UDim2.new(0, 0, 0, (i - 1) * 50)
+    BitchLabel.BackgroundTransparency = 0.5
+    BitchLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+    BitchLabel.Text = InterfaceCoordFunction[i].NAME
+    BitchLabel.Parent = fuckingFrame
+
+BitchLabel.MouseButton1Down:Connect(function()
+pos = CFrame.new(InterfaceCoordFunction[i].COORD)
+speaker.Character.HumanoidRootPart.CFrame = pos
+end)
+end
+end
 
 function RotationData(RDataImg)
 local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
@@ -1392,7 +1432,8 @@ ChoosePart.MouseButton1Click:Connect(function()
 			end
 			if not FoundDupe then
 				notify("Created waypoint: "..selected.Adornee.Name..tpNameExt)
-				pWayPoints[#pWayPoints + 1] = {NAME = selected.Adornee.Name..tpNameExt, COORD = {selected.Adornee}}
+				InterfaceCoordFunction[#InterfaceCoordFunction + 1] = {NAME = selected.Adornee.Name..tpNameExt, COORD = {selected.Adornee}}
+					
 			else
 				if isNumber(tpNameExt) then
 					tpNameExt = tpNameExt+1
@@ -1403,7 +1444,7 @@ ChoosePart.MouseButton1Click:Connect(function()
 			end
 		end
 		handleWpNames()
-		
+		RefreshInterface()
 	else
 		notify('Select a part first')
 	end
@@ -1796,6 +1837,7 @@ function DisplayUI(UIname)
       Interface_Visible(CopyPath, true)
       Interface_Visible(ChoosePart, true)
       Interface_Visible(Path, true)
+      fuckingFrame.Visible = true
    end
       if UIname == "all" then
       UI_A1.Visible = true
@@ -1808,6 +1850,7 @@ function DisplayUI(UIname)
       Interface_Visible(CopyPath, true)
       Interface_Visible(ChoosePart, true)
       Interface_Visible(Path, true)
+      fuckingFrame.Visible = true
    end
 end
 
@@ -1831,6 +1874,7 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(CopyPath, false)
       Interface_Visible(ChoosePart, false)
       Interface_Visible(Path, false)
+      fuckingFrame.Visible = false
    end
       if UIname == "all" then
       UI_A1.Visible = false
@@ -1843,6 +1887,7 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(CopyPath, false)
       Interface_Visible(ChoosePart, false)
       Interface_Visible(Path, false)
+      fuckingFrame.Visible = false
    end
 end
 
