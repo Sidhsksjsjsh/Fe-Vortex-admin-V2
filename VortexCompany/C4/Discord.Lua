@@ -1410,6 +1410,7 @@ Exit_4.MouseButton1Click:Connect(function()
         Interface_Visible(CopyPath, false)
         Interface_Visible(ChoosePart, false)
         Interface_Visible(Path, false)
+	fuckingFrame.Visible = false
 end)
 
 CopyPath.MouseButton1Click:Connect(function()
@@ -1425,7 +1426,7 @@ ChoosePart.MouseButton1Click:Connect(function()
 		local tpNameExt = ''
 		local function handleWpNames()
 			local FoundDupe = false
-			for i,v in pairs(pWayPoints) do
+			for i,v in pairs(InterfaceCoordFunction) do
 				if v.NAME:lower() == selected.Adornee.Name:lower()..tpNameExt then
 					FoundDupe = true
 				end
@@ -4926,7 +4927,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] new crosshair command?😭😍😲😱 \n[+] added part selection command (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed the execute button doesn't appear \n[-] fixed invalid url \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [18/04/2023] \n\n[CONTENT] \n[+] new crosshair command?😭😍😲😱 \n[+] added part selection command (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed all Close Interface error button \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
