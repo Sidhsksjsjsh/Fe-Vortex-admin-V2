@@ -537,9 +537,10 @@ end)
 end
 end
 
-function RotationData(RDataImg)
+function RotationData(RDataImg, TitleNameScript)
 local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
 local OBU = Instance.new('ImageLabel', DataAnimate)
+local TitleLoading = Instance.new('TextLabel', DataAnimate)
 
 
 DataAnimate.Name = "><"
@@ -552,6 +553,19 @@ OBU.BorderSizePixel = 0
 OBU.Position = UDim2.new(0.5,-100,0,0)
 OBU.Image = "rbxassetid://" .. RDataImg
 OBU.BackgroundTransparency = 100
+
+TitleLoading.Size                    = UDim2.new(0,200,0,30)
+TitleLoading.BackgroundTransparency  = 0.5
+TitleLoading.BackgroundColor         = BrickColor.new('Fossil')
+TitleLoading.BorderSizePixel         = 0
+TitleLoading.Position                = UDim2.new(0.5,-100,0,30)
+TitleLoading.Text                    = TitleNameScript
+TitleLoading.TextColor3              = Color3.new(1,1,1)
+TitleLoading.TextStrokeTransparency  = 1
+TitleLoading.TextWrapped             = true
+TitleLoading.FontSize                = 'Size24'
+TitleLoading.Font                    = 'SourceSansBold'
+TitleLoading.BackgroundTransparency = 100
 
 local Pos = UDim2.new(0, 380, 0, 60)
 local SizeUI = UDim2.new(0, 150, 0, 150)
@@ -607,6 +621,7 @@ local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
 
 Blur.Size = 12
 OBU.Visible = true
+TitleLoading.Visible = true
 Rotation_A1:Play()
 Rotation_A1.Completed:Wait()
 Rotation_A2:Play()
@@ -616,6 +631,7 @@ Rotation_A3.Completed:Wait()
 Rotation_A4:Play()
 Rotation_A4.Completed:Wait()
 Rotation_Stop:Play()
+TitleLoading:Destroy()
 Rotation_Stop.Completed:Wait()
 Blur.Size = 0
 OBU:Destroy()
@@ -741,7 +757,7 @@ Blur.Size = 0
 OBU:Destroy()
 end
 
-RotationData("13030104160")
+RotationData("13030104160","Loading Admin...")
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1101,6 +1117,7 @@ function executeHTTPS(_link_)
      notify(result)
      end
 end
+
 
 BarButtonExecute.MouseButton1Down:Connect(function()
      executeHTTPS(game:HttpGet(TextBarExecutor))
@@ -4682,7 +4699,7 @@ notify("Copied to clipboard")
 end
 if cmd == "dex" then
 local respon, result = pcall(function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))
 end)
 
 if not respon then
@@ -4691,7 +4708,7 @@ end
 end
 if cmd == "rspy" then
 local respon, result = pcall(function()
-loadstring(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))()
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))
 end)
 
 if not respon then
@@ -4700,7 +4717,7 @@ end
 end
 if cmd == "iy" then
 local respon, result = pcall(function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))
 end)
 
 if not respon then
@@ -4726,6 +4743,13 @@ end
 if cmd == "animation" then
 local var = string.sub(msg,space+1)
 AnimationExtension(var)
+end
+if cmd == "date" then
+function Clock()
+    return os.date()
+end
+
+notify(Clock())
 end
 -- limits
 end
@@ -4872,6 +4896,7 @@ cmds[#cmds + 1] = {Text = "[134] " .. tostring(prefix) .. "iy",Title = "infinite
 cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "config",Title = "real no clickbait😨😱"}
 cmds[#cmds + 1] = {Text = "[136] " .. tostring(prefix) .. "crosshair",Title = "to help you aim at your target opponent"}
 cmds[#cmds + 1] = {Text = "[137] " .. tostring(prefix) .. "animation [patrol, confident, popstar, cowboy, ghost, sneaky, princess]",Title = "flex ur animation🤭"}
+cmds[#cmds + 1] = {Text = "[138] " .. tostring(prefix) .. "date",Title = "i have no idea"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5012,7 +5037,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [19/04/2023] \n\n[CONTENT] \n[+] new animation command?😭😍😲😱 \n[+] added part selection command (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fix some bugs \n[-] fixed all Close Interface error button \n[-] fixed part selection list error \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [19/04/2023] \n\n[CONTENT] \n[+] new date command? \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
