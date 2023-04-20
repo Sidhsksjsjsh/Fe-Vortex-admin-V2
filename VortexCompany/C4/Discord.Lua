@@ -5097,11 +5097,6 @@ tween:Play()
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
-local Developers = "Rivanda_Cheater"
-
-
-
-
 if _G.Settings.music == 0 or nil then
 	notify("You didn't add any music.")
 else
