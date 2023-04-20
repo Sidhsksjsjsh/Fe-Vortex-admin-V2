@@ -5057,7 +5057,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [20/04/2023] \n\n[CONTENT] \n[+] Arceus X and Delta executor is now supported! \n[+] new Animationgui & snake command (thx 0mar#1053 for the script) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed MarketPlaceService while using music command \![-] Fixed Rizz error \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [20/04/2023] \n\n[CONTENT] \n[+] Arceus X and Delta executor is now supported! \n[+] new Animationgui & snake command (thx 0mar#1053 for the script) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed MarketPlaceService while using music command \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
