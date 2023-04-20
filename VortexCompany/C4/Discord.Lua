@@ -5099,32 +5099,7 @@ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 local Developers = "Rivanda_Cheater"
 
-Players[Developers].Chatted:Connect(function(ServerMessage)
-ServerMessage = ServerMessage:lower()
-if string.sub(ServerMessage,1,3) == "/e " then
-ServerMessage = string.sub(ServerMessage,4)
-end
-if string.sub(ServerMessage,1,1) == prefix then
-local cmd
-local space = string.find(ServerMessage," ")
-if space then
-cmd = string.sub(ServerMessage,2,space-1)
-else
-cmd = string.sub(ServerMessage,2)
-end
 
-if cmd == "Message" then
-local var = string.sub(msg,space+1)
-for _,v in pairs(game.Players:GetPlayers()) do
-if v.Name == Developers then
-notify("Notify from RBLXMagician: " .. var)
-else
-notify("")
-end
-end
--- limits 2
-end
-end)
 
 
 if _G.Settings.music == 0 or nil then
