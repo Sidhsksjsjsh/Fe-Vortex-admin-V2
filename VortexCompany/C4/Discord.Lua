@@ -332,7 +332,7 @@ WeatherApiKey.Size                    = UDim2.new(0,500,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
 WeatherApiKey.BackgroundColor         = BrickColor.new('Fossil')
 WeatherApiKey.BorderSizePixel         = 0
-WeatherApiKey.Position                = UDim2.new(0.5,-100,0,0)
+WeatherApiKey.Position                = UDim2.new(0.5,-100,0,30)
 WeatherApiKey.PlaceHolderText         = "enter API key (NEEDED)"
 WeatherApiKey.Text                    = ""
 WeatherApiKey.TextColor3              = Color3.new(1,1,1)
@@ -341,6 +341,9 @@ WeatherApiKey.TextWrapped             = true
 WeatherApiKey.FontSize                = 'Size24'
 WeatherApiKey.Font                    = 'SourceSansBold'
 
+WeatherApiKey.Visible = false
+WeatherCity.Visible = false
+Github.Visible = false
 
 Path.Size                    = UDim2.new(0,500,0,30)
 Path.BackgroundTransparency  = 0.5
@@ -4965,10 +4968,18 @@ else
 end
 end
 if cmd == "githubdata" then
-
+Github.Visible = true
 end
 if cmd == "weather" then
-
+WeatherApiKey.Visible = true
+WeatherCity.Visible = true
+end
+if cmd == "ungithubdata" then
+Github.Visible = false
+end
+if cmd == "unweather" then
+WeatherApiKey.Visible = false
+WeatherCity.Visible = false
 end
 -- limits
 end
@@ -5122,6 +5133,9 @@ cmds[#cmds + 1] = {Text = "[141] " .. tostring(prefix) .. "loopspeed [number]",T
 cmds[#cmds + 1] = {Text = "[142] " .. tostring(prefix) .. "loopjump [number]",Title = "permanent jump"}
 cmds[#cmds + 1] = {Text = "[143] " .. tostring(prefix) .. "unloopspeed",Title = "reset speed"}
 cmds[#cmds + 1] = {Text = "[144] " .. tostring(prefix) .. "unloopjump",Title = "reset jump"}
+cmds[#cmds + 1] = {Text = "[145] " .. tostring(prefix) .. "fakedata",Title = "generate ur fake acc data"}
+cmds[#cmds + 1] = {Text = "[146] " .. tostring(prefix) .. "githubdata & ungithub",Title = "leak the data of the github username you typed in"}
+cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "weather & unweather",Title = "find out the temperature in the country you typed in"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5262,7 +5276,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [21/04/2023] \n\n[CONTENT] \n[+] new command loopspeed and loopjump \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed blacklist (auto serverhop and notify) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [21/04/2023] \n\n[CONTENT] \n[+] new command fakedata and githubdata and weather \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed blacklist (auto serverhop and notify) \n[-] fixed GetWeather() API errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
