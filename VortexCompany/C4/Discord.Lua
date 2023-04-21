@@ -293,8 +293,54 @@ local Path                         = Instance.new('TextLabel', GUI_MAIN)
 local ChoosePart                         = Instance.new('TextButton', Path)
 local CopyPath                         = Instance.new('TextButton', Path)
 local Exit_4                         = Instance.new('TextButton', Path)
+-- API
+local Github                         = Instance.new('TextBox', GUI_MAIN)
+local WeatherCity                         = Instance.new('TextBox', GUI_MAIN)
+local WeatherApiKey                         = Instance.new('TextBox', WeatherCity)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
+
+Github.Size                    = UDim2.new(0,500,0,30)
+Github.BackgroundTransparency  = 0.5
+Github.BackgroundColor         = BrickColor.new('Fossil')
+Github.BorderSizePixel         = 0
+Github.Position                = UDim2.new(0.5,-100,0,0)
+Github.PlaceHolderText         = "enter github username"
+Github.Text                    = ""
+Github.TextColor3              = Color3.new(1,1,1)
+Github.TextStrokeTransparency  = 1
+Github.TextWrapped             = true
+Github.FontSize                = 'Size24'
+Github.Font                    = 'SourceSansBold'
+Github.Draggable = true
+
+WeatherCity.Size                    = UDim2.new(0,500,0,30)
+WeatherCity.BackgroundTransparency  = 0.5
+WeatherCity.BackgroundColor         = BrickColor.new('Fossil')
+WeatherCity.BorderSizePixel         = 0
+WeatherCity.Position                = UDim2.new(0.5,-100,0,0)
+WeatherCity.PlaceHolderText         = "enter name of the city"
+WeatherCity.Text                    = ""
+WeatherCity.TextColor3              = Color3.new(1,1,1)
+WeatherCity.TextStrokeTransparency  = 1
+WeatherCity.TextWrapped             = true
+WeatherCity.FontSize                = 'Size24'
+WeatherCity.Font                    = 'SourceSansBold'
+WeatherCity.Draggable = true
+
+WeatherApiKey.Size                    = UDim2.new(0,500,0,30)
+WeatherApiKey.BackgroundTransparency  = 0.5
+WeatherApiKey.BackgroundColor         = BrickColor.new('Fossil')
+WeatherApiKey.BorderSizePixel         = 0
+WeatherApiKey.Position                = UDim2.new(0.5,-100,0,0)
+WeatherApiKey.PlaceHolderText         = "enter API key (NEEDED)"
+WeatherApiKey.Text                    = ""
+WeatherApiKey.TextColor3              = Color3.new(1,1,1)
+WeatherApiKey.TextStrokeTransparency  = 1
+WeatherApiKey.TextWrapped             = true
+WeatherApiKey.FontSize                = 'Size24'
+WeatherApiKey.Font                    = 'SourceSansBold'
+
 
 Path.Size                    = UDim2.new(0,500,0,30)
 Path.BackgroundTransparency  = 0.5
@@ -1108,6 +1154,68 @@ Domain.FriendJoined.Visible = true
     tween:Play()
   end
 end
+
+Github.FocusLost:Connect(function(InterfaceEnter)
+if InterfaceEnter then
+if Github.Text then
+local username = Github.Text
+
+local options = {
+    Url = "https://api.github.com/users/" .. username,
+    Method = "GET",
+    Headers = {
+        ["User-Agent"] = "Roblox"
+    }
+}
+
+local success, result = pcall(HttpService.RequestAsync, HttpService, options)
+
+if success then
+    local userData = HttpService:JSONDecode(result.Body)
+    print("GitHub username: " .. userData.login)
+    print("GitHub ID: " .. userData.id)
+    notify("Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
+else
+    notify("Error making request: " .. tostring(result))
+end
+else
+Github.Text = "REQUIRED GITHUB USERNAME"
+wait(3)
+Github.Text = ""
+end
+end
+end)
+
+WeatherApiKey.FocusLost:Connect(function(InterfaceEnterCity)
+if InterfaceEnterCity then
+if WeatherApiKey.Text then
+local city = WeatherCity.Text or "New York"
+local apiKey = WeatherApiKey.Text
+
+local options = {
+    Url = "http://api.openweathermap.org/data/2.5/weather?q=" .. city .. "&appid=" .. apiKey,
+    Method = "GET",
+    Headers = {
+        ["Content-Type"] = "application/json"
+    }
+}
+
+-- Send the request
+local success, result = pcall(HttpService.RequestAsync, HttpService, options)
+
+if success then
+    local weatherData = HttpService:JSONDecode(result.Body)
+    notify("Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
+else
+    notify("Error making request: " .. tostring(result))
+end
+else
+WeatherApiKey.Text = "REQUIRED API KEY"
+wait(3)
+WeatherApiKey.Text = ""
+end
+end
+end)
 
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
@@ -4833,6 +4941,34 @@ local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 			speaker.Character:FindFirstChildOfClass('Humanoid').JumpHeight  = 50
 		end
 	end
+end
+if cmd == "fakedata" then
+local options = {
+    Url = "https://jsonplaceholder.typicode.com/users",
+    Method = "GET",
+    Headers = {
+        ["Content-Type"] = "application/json"
+    }
+}
+
+local success, result = pcall(HttpService.RequestAsync, HttpService, options)
+
+if success then
+    local users = HttpService:JSONDecode(result.Body)
+    for _, user in ipairs(users) do
+        print("User ID: " .. user.id)
+        print("Username: " .. user.username)
+	notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
+    end
+else
+    notify("Error making request: " .. tostring(result))
+end
+end
+if cmd == "githubdata" then
+
+end
+if cmd == "weather" then
+
 end
 -- limits
 end
