@@ -273,6 +273,8 @@ local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local Character = speaker.Character
+local LoopSpeed = false
+local LoopJump = false
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
@@ -4769,6 +4771,26 @@ if not respon then
 notify(result)
 end
 end
+if cmd == "loopspeed" then
+local var = string.sub(msg,space+1)
+repeat wait()
+speaker.Character.Humanoid.WalkSpeed = var
+until LoopSpeed == false
+end
+if cmd == "loopjump" then
+local var = string.sub(msg,space+1)
+repeat wait()
+speaker.Character.Humanoid.JumpPower = var
+until LoopJump == false
+end
+if cmd == "unloopspeed" then
+LoopSpeed = false
+speaker.Character.Humanoid.WalkSpeed = 16
+end
+if cmd == "unloopjump" then
+LoopJump = false
+speaker.Character.Humanoid.JumpPower = 50
+end
 -- limits
 end
 end)
@@ -4915,8 +4937,12 @@ cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "config",Title = "real
 cmds[#cmds + 1] = {Text = "[136] " .. tostring(prefix) .. "crosshair",Title = "to help you aim at your target opponent"}
 cmds[#cmds + 1] = {Text = "[137] " .. tostring(prefix) .. "animation [patrol, confident, popstar, cowboy, ghost, sneaky, princess]",Title = "flex ur animation🤭"}
 cmds[#cmds + 1] = {Text = "[138] " .. tostring(prefix) .. "date",Title = "i have no idea"}
-cmds[#cmds + 1] = {Text = "[139] " .. tostring(prefix) .. "animationgui",Title = "Change your character's animation style - script from 0mar#1053"}
-cmds[#cmds + 1] = {Text = "[139] " .. tostring(prefix) .. "snake",Title = "change your character into a demon snake 😨😱 -- script from 0mar#1053"}
+cmds[#cmds + 1] = {Text = "[139] " .. tostring(prefix) .. "animationgui",Title = "Change your character's animation style -- script from 0mar#1053"}
+cmds[#cmds + 1] = {Text = "[140] " .. tostring(prefix) .. "snake",Title = "change your character into a demon snake 😨😱 -- script from 0mar#1053"}
+cmds[#cmds + 1] = {Text = "[141] " .. tostring(prefix) .. "loopspeed [number]",Title = "permanent speed"}
+cmds[#cmds + 1] = {Text = "[142] " .. tostring(prefix) .. "loopjump [number]",Title = "permanent jump"}
+cmds[#cmds + 1] = {Text = "[143] " .. tostring(prefix) .. "unloopspeed",Title = "reset speed"}
+cmds[#cmds + 1] = {Text = "[144] " .. tostring(prefix) .. "unloopjump",Title = "reset jump"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5057,7 +5083,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [20/04/2023] \n\n[CONTENT] \n[+] Arceus X and Delta executor is now supported! \n[+] new Animationgui & snake command (thx 0mar#1053 for the script) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed MarketPlaceService while using music command \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [21/04/2023] \n\n[CONTENT] \n[+] new command loopspeed and loopjump \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed blacklist (auto serverhop and notify) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
