@@ -5273,7 +5273,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [21/04/2023] \n\n[CONTENT] \n[+] new command fakedata and githubdata and weather \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed blacklist (auto serverhop and notify) \n[-] fixed GetWeather() API errors \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [22/04/2023] \n\n[CONTENT] \n[?] There isn't any.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[⭐] Eid Mubarak🙏 \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
