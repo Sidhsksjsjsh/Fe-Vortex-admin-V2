@@ -1155,6 +1155,10 @@ Domain.FriendJoined.Visible = true
   end
 end
 
+function Punish(ooo)
+	speaker:Kick(ooo)
+end
+
 Github.FocusLost:Connect(function(InterfaceEnter)
 if InterfaceEnter then
 if Github.Text then
@@ -3027,15 +3031,15 @@ print(var)
 end
 if cmd == "reset" then
 game.Players.LocalPlayer.Character:BreakJoints()
-notify("Reset Character")
+-- notify("Reset Character")
 end
 if cmd == "respawn" then
 respawn(speaker)
-notify("Respawning")
+-- notify("Respawning")
 end
 if cmd == "refresh" then
 refresh(speaker)
-notify("Refreshing")
+-- notify("Refreshing")
 end
 if cmd == "unrotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
@@ -3849,7 +3853,7 @@ local dates = {}
 		local splitDates = string.split(date,"-")
 		table.insert(dates,Players[var].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
-	notify(chatString)
+	notify(chatString .. " (" .. Players[var].AccountAge .. " days old)")
 end
 if cmd == "blockhats" then
 for _,v in pairs(speaker.Character:FindFirstChildOfClass('Humanoid'):GetAccessories()) do
@@ -4978,6 +4982,10 @@ if cmd == "unweather" then
 WeatherApiKey.Visible = false
 WeatherCity.Visible = false
 end
+if cmd == "punish" then
+local var = string.sub(msg,space+1)
+Punish(var)
+end
 -- limits
 end
 end)
@@ -5133,6 +5141,7 @@ cmds[#cmds + 1] = {Text = "[144] " .. tostring(prefix) .. "unloopjump",Title = "
 cmds[#cmds + 1] = {Text = "[145] " .. tostring(prefix) .. "fakedata",Title = "generate ur fake acc data"}
 cmds[#cmds + 1] = {Text = "[146] " .. tostring(prefix) .. "githubdata & ungithub",Title = "leak the data of the github username you typed in"}
 cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "weather & unweather",Title = "find out the temperature in the country you typed in"}
+cmds[#cmds + 1] = {Text = "[148] " .. tostring(prefix) .. "punish [reason]",Title = "beta punish system"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5273,7 +5282,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [22/04/2023] \n\n[CONTENT] \n[?] There isn't any.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[⭐] Eid Mubarak🙏 \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [26/04/2023] \n\n[CONTENT] \n[+] punish command \n[!] Im very sad:( \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] Theres isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
