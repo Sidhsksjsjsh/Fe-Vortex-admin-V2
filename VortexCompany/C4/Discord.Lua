@@ -303,8 +303,8 @@ local WeatherCity                         = Instance.new('TextBox', GUI_MAIN)
 local WeatherApiKey                         = Instance.new('TextBox', WeatherCity)
 -- whisper:
 local WhisperBox                         = Instance.new('TextBox', GUI_MAIN)
-local WhiserPlayer                         = Instance.new('TextBox', WhisperBox)
-local WhiserButton                         = Instance.new('TextButton', WhisperBox)
+local WhisperPlayer                         = Instance.new('TextBox', WhisperBox)
+local WhisperButton                         = Instance.new('TextButton', WhisperBox)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
