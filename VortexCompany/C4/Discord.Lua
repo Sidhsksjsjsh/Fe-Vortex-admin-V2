@@ -44,6 +44,10 @@ function loadSettings()
 end
 loadSettings()
 
+function Interface_Visible(GuiName, toggle_4)
+     GuiName.Visible = toggle_4 or false
+end
+
 function noKick()
 if _G.Settings.kick == false then
 local mt = getrawmetatable(game)
@@ -297,10 +301,14 @@ local Exit_4                         = Instance.new('TextButton', Path)
 local Github                         = Instance.new('TextBox', GUI_MAIN)
 local WeatherCity                         = Instance.new('TextBox', GUI_MAIN)
 local WeatherApiKey                         = Instance.new('TextBox', WeatherCity)
+-- whisper:
+local WhisperBox                         = Instance.new('TextBox', GUI_MAIN)
+local WhiserPlayer                         = Instance.new('TextBox', WhisperBox)
+local WhiserButton                         = Instance.new('TextButton', WhisperBox)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
-Github.Size                    = UDim2.new(0,500,0,30)
+Github.Size                    = UDim2.new(0,200,0,30)
 Github.BackgroundTransparency  = 0.5
 Github.BackgroundColor         = BrickColor.new('Fossil')
 Github.BorderSizePixel         = 0
@@ -313,7 +321,7 @@ Github.FontSize                = 'Size24'
 Github.Font                    = 'SourceSansBold'
 Github.Draggable = true
 
-WeatherCity.Size                    = UDim2.new(0,500,0,30)
+WeatherCity.Size                    = UDim2.new(0,200,0,30)
 WeatherCity.BackgroundTransparency  = 0.5
 WeatherCity.BackgroundColor         = BrickColor.new('Fossil')
 WeatherCity.BorderSizePixel         = 0
@@ -326,7 +334,7 @@ WeatherCity.FontSize                = 'Size24'
 WeatherCity.Font                    = 'SourceSansBold'
 WeatherCity.Draggable = true
 
-WeatherApiKey.Size                    = UDim2.new(0,500,0,30)
+WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
 WeatherApiKey.BackgroundColor         = BrickColor.new('Fossil')
 WeatherApiKey.BorderSizePixel         = 0
@@ -338,11 +346,62 @@ WeatherApiKey.TextWrapped             = true
 WeatherApiKey.FontSize                = 'Size24'
 WeatherApiKey.Font                    = 'SourceSansBold'
 
+WhisperBox.Size                    = UDim2.new(0,200,0,30)
+WhisperBox.BackgroundTransparency  = 0.5
+WhisperBox.BackgroundColor         = BrickColor.new('Fossil')
+WhisperBox.BorderSizePixel         = 0
+WhisperBox.Position                = UDim2.new(0.5,-100,0,0)
+WhisperBox.Text                    = "Message"
+WhisperBox.TextColor3              = Color3.new(1,1,1)
+WhisperBox.TextStrokeTransparency  = 1
+WhisperBox.TextWrapped             = true
+WhisperBox.FontSize                = 'Size24'
+WhisperBox.Font                    = 'SourceSansBold'
+WhisperBox.Draggable = true
+
+WhisperButton.Size                    = UDim2.new(0,200,0,30)
+WhisperButton.BackgroundTransparency  = 0.5
+WhisperButton.BackgroundColor         = BrickColor.new('Fossil')
+WhisperButton.BorderSizePixel         = 0
+WhisperButton.Position                = UDim2.new(0.5,-100,0,60)
+WhisperButton.Text                    = "send whisper"
+WhisperButton.TextColor3              = Color3.new(1,1,1)
+WhisperButton.TextStrokeTransparency  = 1
+WhisperButton.TextWrapped             = true
+WhisperButton.FontSize                = 'Size24'
+WhisperButton.Font                    = 'SourceSansBold'
+
+WhisperPlayer.Size                    = UDim2.new(0,200,0,30)
+WhisperPlayer.BackgroundTransparency  = 0.5
+WhisperPlayer.BackgroundColor         = BrickColor.new('Fossil')
+WhisperPlayer.BorderSizePixel         = 0
+WhisperPlayer.Position                = UDim2.new(0.5,-100,0,30)
+WhisperPlayer.Text                    = "Player name"
+WhisperPlayer.TextColor3              = Color3.new(1,1,1)
+WhisperPlayer.TextStrokeTransparency  = 1
+WhisperPlayer.TextWrapped             = true
+WhisperPlayer.FontSize                = 'Size24'
+WhisperPlayer.Font                    = 'SourceSansBold'
+
+WhisperPlayer.FocusLost:Connect(function(Enter)
+   if Enter then
+   for i,v in pairs(game.Players:GetChildren()) do
+       if (string.sub(string.lower(v.Name),1,string.len(WhisperPlayer.Text))) == string.lower(WhisperPlayer.Text) then
+         WhisperPlayer.Text = v.Name
+     end
+  end
+   end
+ end)
+
+Interface_Visible(WhisperButton, false)
+Interface_Visible(WhisperPlayer, false)
+Interface_Visible(WhisperBox, false)
+
 WeatherApiKey.Visible = false
 WeatherCity.Visible = false
 Github.Visible = false
 
-Path.Size                    = UDim2.new(0,500,0,30)
+Path.Size                    = UDim2.new(0,200,0,30)
 Path.BackgroundTransparency  = 0.5
 Path.BackgroundColor         = BrickColor.new('Fossil')
 Path.BorderSizePixel         = 0
@@ -391,10 +450,6 @@ Exit_4.TextStrokeTransparency  = 1
 Exit_4.TextWrapped             = true
 Exit_4.FontSize                = 'Size24'
 Exit_4.Font                    = 'SourceSansBold'
-
-function Interface_Visible(GuiName, toggle_4)
-     GuiName.Visible = toggle_4 or false
-end
 
 Interface_Visible(Exit_4, false)
 Interface_Visible(CopyPath, false)
@@ -1320,6 +1375,23 @@ local args = {
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 end
 
+function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
+local args = {
+    [1] = "/w " .. SyncPlayer .. " " .. ProtocolWhisperChatService,
+    [2] = "All"
+}
+
+
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end
+
+WhisperButton.MouseButton1Down:Connect(function()
+   if Players:FindFirstChild(WhisperPlayer.Text) then
+    ProtocolWhisperChat(WhisperPlayer.Text, WhisperBox.Text)
+    else
+    notify("player not found or text box is empty please fill in")
+  end
+end)
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
@@ -2051,6 +2123,11 @@ function DisplayUI(UIname)
       fuckingFrame.Visible = true
 		selectPart()
    end
+      if UIname == "whisper" then
+      Interface_Visible(WhisperButton, true)
+      Interface_Visible(WhisperPlayer, true)
+      Interface_Visible(WhisperBox, true)
+   end
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
@@ -2063,6 +2140,9 @@ function DisplayUI(UIname)
       Interface_Visible(ChoosePart, true)
       Interface_Visible(Path, true)
       fuckingFrame.Visible = true
+      Interface_Visible(WhisperButton, true)
+      Interface_Visible(WhisperPlayer, true)
+      Interface_Visible(WhisperBox, true)
    end
 end
 
@@ -2088,6 +2168,11 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(Path, false)
       fuckingFrame.Visible = false
    end
+      if UIname == "whisper" then
+      Interface_Visible(WhisperButton, false)
+      Interface_Visible(WhisperPlayer, false)
+      Interface_Visible(WhisperBox, false)
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
@@ -2100,6 +2185,9 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(ChoosePart, false)
       Interface_Visible(Path, false)
       fuckingFrame.Visible = false
+      Interface_Visible(WhisperButton, false)
+      Interface_Visible(WhisperPlayer, false)
+      Interface_Visible(WhisperBox, false)
    end
 end
 
@@ -5095,7 +5183,7 @@ cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "st
 cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, or exc]",Title = "display your fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, exc, or whisper]",Title = "display your UI"}
 cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, exc, or part]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
@@ -5282,7 +5370,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [26/04/2023] \n\n[CONTENT] \n[+] punish command \n[!] Im very sad:( \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] Theres isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [28/04/2023] \n\n[CONTENT] \n[+] new whisper command type " .. prefix .. "show whisper \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] Theres isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
