@@ -1408,6 +1408,11 @@ function isNumber(str)
 	end
 end
 
+function LOCAL_WEB_IP_HOST()
+local LOCAL_WEB = tostring(game:HttpGet("https://api.ipify.org", true))
+return LOCAL_WEB
+end
+
 -- Define a function to create a notification with tweening
 function _Announcement(text)
     -- Create the notification GUI
@@ -5370,7 +5375,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [28/04/2023] \n\n[CONTENT] \n[+] new whisper command type " .. prefix .. "show whisper \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] Theres isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console."
+title.Text = "Vortex UPDATE LIST: [28/04/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
