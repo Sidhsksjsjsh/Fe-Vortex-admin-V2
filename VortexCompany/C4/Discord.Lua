@@ -241,7 +241,7 @@ Pause()
 saveSettings()
 end)
 
-local CoreGui = game:GetService("CoreGui")
+local WarningGenerator = game:GetService("CoreGui")
 
 local game = game
 local workspace = workspace
@@ -283,9 +283,9 @@ end
 
 function ErrorPrompt(title, Message, buttonname)
     if getrenv then
-        local ErrorPrompt = getrenv().require(CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
+        local ErrorPrompt = getrenv().require(WarningGenerator:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
         local prompt = ErrorPrompt.new("Default",{HideErrorCode = true})
-        local ErrorStoarge = Create("ScreenGui",{Parent = CoreGui,ResetOnSpawn = false})
+        local ErrorStoarge = Create("ScreenGui",{Parent = WarningGenerator,ResetOnSpawn = false})
         local thread = running()
         prompt:setParent(ErrorStoarge)
         prompt:setErrorTitle(title)
