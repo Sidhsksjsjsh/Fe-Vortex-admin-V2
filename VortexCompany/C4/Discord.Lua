@@ -13,6 +13,7 @@ _G.Settings = {
       kick = true,
       RemovePaused = false,
 }
+-- _G.Settings.device
 
 if not game:IsLoaded() then
     local MessageCore = Instance.new("Message", Workspace)
@@ -309,7 +310,7 @@ function ErrorPrompt(title, Message, buttonname)
     end
 end
 
-ErrorPrompt("Vortex API", "API Error", "repair")
+ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -378,8 +379,110 @@ local WhisperButton                         = Instance.new('TextButton', Whisper
 local InFile                         = Instance.new('TextBox', GUI_MAIN)
 local FileName                         = Instance.new('TextBox', InFile)
 local SaveOMG                         = Instance.new('TextButton', InFile)
+-- Freecam
+local Control_1                         = Instance.new('TextButton', GUI_MAIN) -- W
+local Control_2                         = Instance.new('TextButton', Control_1) -- A
+local Control_3                         = Instance.new('TextButton', Control_1) -- S
+local Control_4                         = Instance.new('TextButton', Control_1) -- D
+local Control_UP                         = Instance.new('TextButton', Control_1) -- UP
+local Control_Down                         = Instance.new('TextButton', Control_1) -- DOWN
+local Control_LShift                         = Instance.new('TextButton', Control_1) -- Left Shift
 
 GUI_MAIN.Name                      = "UI INTERFACE"
+
+Control_1.Size                    = UDim2.new(0,200,0,30)
+Control_1.BackgroundTransparency  = 0.5
+Control_1.BackgroundColor         = BrickColor.new('Fossil')
+Control_1.BorderSizePixel         = 0
+Control_1.Position                = UDim2.new(0.5,-100,0,0)
+Control_1.Text                    = "↑"
+Control_1.TextColor3              = Color3.new(1,1,1)
+Control_1.TextStrokeTransparency  = 1
+Control_1.TextWrapped             = true
+Control_1.FontSize                = 'Size24'
+Control_1.Font                    = 'SourceSansBold'
+Control_1.Draggable = true
+
+Control_2.Size                    = UDim2.new(0,200,0,30)
+Control_2.BackgroundTransparency  = 0.5
+Control_2.BackgroundColor         = BrickColor.new('Fossil')
+Control_2.BorderSizePixel         = 0
+Control_2.Position                = UDim2.new(0.5,-100,0,30)
+Control_2.Text                    = "←"
+Control_2.TextColor3              = Color3.new(1,1,1)
+Control_2.TextStrokeTransparency  = 1
+Control_2.TextWrapped             = true
+Control_2.FontSize                = 'Size24'
+Control_2.Font                    = 'SourceSansBold'
+
+Control_3.Size                    = UDim2.new(0,200,0,30)
+Control_3.BackgroundTransparency  = 0.5
+Control_3.BackgroundColor         = BrickColor.new('Fossil')
+Control_3.BorderSizePixel         = 0
+Control_3.Position                = UDim2.new(0.5,-100,0,60)
+Control_3.Text                    = "↓"
+Control_3.TextColor3              = Color3.new(1,1,1)
+Control_3.TextStrokeTransparency  = 1
+Control_3.TextWrapped             = true
+Control_3.FontSize                = 'Size24'
+Control_3.Font                    = 'SourceSansBold'
+
+Control_4.Size                    = UDim2.new(0,200,0,30)
+Control_4.BackgroundTransparency  = 0.5
+Control_4.BackgroundColor         = BrickColor.new('Fossil')
+Control_4.BorderSizePixel         = 0
+Control_4.Position                = UDim2.new(0.5,-100,0,90)
+Control_4.Text                    = "→"
+Control_4.TextColor3              = Color3.new(1,1,1)
+Control_4.TextStrokeTransparency  = 1
+Control_4.TextWrapped             = true
+Control_4.FontSize                = 'Size24'
+Control_4.Font                    = 'SourceSansBold'
+
+Control_UP.Size                    = UDim2.new(0,200,0,30)
+Control_UP.BackgroundTransparency  = 0.5
+Control_UP.BackgroundColor         = BrickColor.new('Fossil')
+Control_UP.BorderSizePixel         = 0
+Control_UP.Position                = UDim2.new(0.5,-100,0,0)
+Control_UP.Text                    = "UP"
+Control_UP.TextColor3              = Color3.new(1,1,1)
+Control_UP.TextStrokeTransparency  = 1
+Control_UP.TextWrapped             = true
+Control_UP.FontSize                = 'Size24'
+Control_UP.Font                    = 'SourceSansBold'
+Control_UP.Draggable = true
+
+Control_Down.Size                    = UDim2.new(0,200,0,30)
+Control_Down.BackgroundTransparency  = 0.5
+Control_Down.BackgroundColor         = BrickColor.new('Fossil')
+Control_Down.BorderSizePixel         = 0
+Control_Down.Position                = UDim2.new(0.5,-100,0,30)
+Control_Down.Text                    = "DOWN"
+Control_Down.TextColor3              = Color3.new(1,1,1)
+Control_Down.TextStrokeTransparency  = 1
+Control_Down.TextWrapped             = true
+Control_Down.FontSize                = 'Size24'
+Control_Down.Font                    = 'SourceSansBold'
+
+Control_LShift.Size                    = UDim2.new(0,200,0,30)
+Control_LShift.BackgroundTransparency  = 0.5
+Control_LShift.BackgroundColor         = BrickColor.new('Fossil')
+Control_LShift.BorderSizePixel         = 0
+Control_LShift.Position                = UDim2.new(0.5,-100,0,30)
+Control_LShift.Text                    = "Left Shift"
+Control_LShift.TextColor3              = Color3.new(1,1,1)
+Control_LShift.TextStrokeTransparency  = 1
+Control_LShift.TextWrapped             = true
+Control_LShift.FontSize                = 'Size24'
+Control_LShift.Font                    = 'SourceSansBold'
+
+        Interface_Visible(Control_1, false)
+	Interface_Visible(Control_2, false)
+	Interface_Visible(Control_3, false)
+	Interface_Visible(Control_4, false)
+	Interface_Visible(Control_UP, false)
+	Interface_Visible(Control_Down, false)
+	Interface_Visible(Control_LShift, false)
 
 InFile.Size                    = UDim2.new(0,200,0,30)
 InFile.BackgroundTransparency  = 0.5
@@ -1932,6 +2035,61 @@ Input = {} do
 			ContextActionService:UnbindAction("FreecamMousePan")
 		end
 	end
+		        Control_1.MouseEnter:Connect(function()
+                    keyboard.W = 1
+                end)
+		
+		Control_2.MouseEnter:Connect(function()
+                    keyboard.A = 1
+                end)
+		
+		Control_3.MouseEnter:Connect(function()
+                    keyboard.S = 1
+                end)
+		
+		Control_4.MouseEnter:Connect(function()
+                    keyboard.D = 1
+                end)
+		
+		Control_UP.MouseEnter:Connect(function()
+                    keyboard.Up = 1
+                end)
+		
+		Control_Down.MouseEnter:Connect(function()
+                    keyboard.Down = 1
+                end)
+		
+		Control_LShift.MouseEnter:Connect(function()
+                    keyboard.LeftShift = 1
+                end)
+		
+		Control_1.MouseLeave:Connect(function()
+                    keyboard.W = 0
+                end)
+		
+		Control_2.MouseLeave:Connect(function()
+                    keyboard.A = 0
+                end)
+		
+		Control_3.MouseLeave:Connect(function()
+                    keyboard.S = 0
+                end)
+		
+		Control_4.MouseLeave:Connect(function()
+                    keyboard.D = 0
+                end)
+		
+		Control_UP.MouseLeave:Connect(function()
+                    keyboard.Up = 0
+                end)
+		
+		Control_Down.MouseLeave:Connect(function()
+                    keyboard.Down = 0
+                end)
+		
+		Control_LShift.MouseLeave:Connect(function()
+                    keyboard.LeftShift = 0
+                end)
 end
 
 function GetFocusDistance(cameraFrame)
@@ -2045,6 +2203,26 @@ function StartFreecam(pos)
 	RunService:BindToRenderStep("Freecam", Enum.RenderPriority.Camera.Value, StepFreecam)
 	Input.StartCapture()
 	fcRunning = true
+	if _G.Settings.device == "Mobile" then
+	Interface_Visible(Control_1, true)
+	Interface_Visible(Control_2, true)
+	Interface_Visible(Control_3, true)
+	Interface_Visible(Control_4, true)
+	Interface_Visible(Control_UP, true)
+	Interface_Visible(Control_Down, true)
+	Interface_Visible(Control_LShift, true)
+	notify("Freecam enable for mobile devices")
+	end
+	if _G.Settings.device == "PC" then
+	Interface_Visible(Control_1, false)
+	Interface_Visible(Control_2, false)
+	Interface_Visible(Control_3, false)
+	Interface_Visible(Control_4, false)
+	Interface_Visible(Control_UP, false)
+	Interface_Visible(Control_Down, false)
+	Interface_Visible(Control_LShift, false)
+	notify("Freecam enable for PC devices")
+	end
 end
 
 function StopFreecam()
@@ -5528,7 +5706,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [01/05/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \n[+] new notification model \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [01/05/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \n[+] new notification model \n[+] mobile controller now supports Freecam! (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -5566,7 +5744,7 @@ tween:Play()
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
-ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "good")
+ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "OK")
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
