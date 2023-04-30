@@ -443,7 +443,7 @@ Control_UP.Size                    = UDim2.new(0,200,0,30)
 Control_UP.BackgroundTransparency  = 0.5
 Control_UP.BackgroundColor         = BrickColor.new('Fossil')
 Control_UP.BorderSizePixel         = 0
-Control_UP.Position                = UDim2.new(0.5,-100,0,0)
+Control_UP.Position                = UDim2.new(0.5,-100,0,120)
 Control_UP.Text                    = "UP"
 Control_UP.TextColor3              = Color3.new(1,1,1)
 Control_UP.TextStrokeTransparency  = 1
@@ -452,7 +452,7 @@ Control_UP.FontSize                = 'Size24'
 Control_UP.Font                    = 'SourceSansBold'
 Control_UP.Draggable = true
 
-Control_Down.Size                    = UDim2.new(0,200,0,30)
+Control_Down.Size                    = UDim2.new(0,200,0,150)
 Control_Down.BackgroundTransparency  = 0.5
 Control_Down.BackgroundColor         = BrickColor.new('Fossil')
 Control_Down.BorderSizePixel         = 0
@@ -464,7 +464,7 @@ Control_Down.TextWrapped             = true
 Control_Down.FontSize                = 'Size24'
 Control_Down.Font                    = 'SourceSansBold'
 
-Control_LShift.Size                    = UDim2.new(0,200,0,30)
+Control_LShift.Size                    = UDim2.new(0,200,0,180)
 Control_LShift.BackgroundTransparency  = 0.5
 Control_LShift.BackgroundColor         = BrickColor.new('Fossil')
 Control_LShift.BorderSizePixel         = 0
@@ -2035,8 +2035,8 @@ Input = {} do
 			ContextActionService:UnbindAction("FreecamMousePan")
 		end
 	end
-		        Control_1.MouseEnter:Connect(function()
-                    keyboard.W = 1
+		Control_1.MouseEnter:Connect(function()
+                    keyboard.W = 0.5
                 end)
 		
 		Control_2.MouseEnter:Connect(function()
@@ -2044,7 +2044,7 @@ Input = {} do
                 end)
 		
 		Control_3.MouseEnter:Connect(function()
-                    keyboard.S = 1
+                    keyboard.S = 0.5
                 end)
 		
 		Control_4.MouseEnter:Connect(function()
@@ -2184,6 +2184,33 @@ local PlayerState = {} do
 	end
 end
 
+function MobileController()
+if _G.Settings.device == "Mobile" then
+	Interface_Visible(Control_1, true)
+	Interface_Visible(Control_2, true)
+	Interface_Visible(Control_3, true)
+	Interface_Visible(Control_4, true)
+	Interface_Visible(Control_UP, true)
+	Interface_Visible(Control_Down, true)
+	Interface_Visible(Control_LShift, true)
+	notify("Freecam enable for mobile devices")
+	ErrorPrompt("Announcement for mobile users", "THIS CONTROL AND THE SPEED IS STILL UNDER DEVELOPMENT, SO PLEASE REJOIN IF FOUND A BUG", "OK, I UNDERSTAND")
+   end
+if _G.Settings.device == "PC" then
+	Interface_Visible(Control_1, false)
+	Interface_Visible(Control_2, false)
+	Interface_Visible(Control_3, false)
+	Interface_Visible(Control_4, false)
+	Interface_Visible(Control_UP, false)
+	Interface_Visible(Control_Down, false)
+	Interface_Visible(Control_LShift, false)
+	notify("Freecam enable for PC devices")
+   end
+if _G.Settings.device == nil then
+        ErrorPrompt("Incompatible Device", "Unknown Device", "OK")
+    end
+end
+
 function StartFreecam(pos)
 	if fcRunning then
 		StopFreecam()
@@ -2203,26 +2230,6 @@ function StartFreecam(pos)
 	RunService:BindToRenderStep("Freecam", Enum.RenderPriority.Camera.Value, StepFreecam)
 	Input.StartCapture()
 	fcRunning = true
-	if _G.Settings.device == "Mobile" then
-	Interface_Visible(Control_1, true)
-	Interface_Visible(Control_2, true)
-	Interface_Visible(Control_3, true)
-	Interface_Visible(Control_4, true)
-	Interface_Visible(Control_UP, true)
-	Interface_Visible(Control_Down, true)
-	Interface_Visible(Control_LShift, true)
-	notify("Freecam enable for mobile devices")
-	end
-	if _G.Settings.device == "PC" then
-	Interface_Visible(Control_1, false)
-	Interface_Visible(Control_2, false)
-	Interface_Visible(Control_3, false)
-	Interface_Visible(Control_4, false)
-	Interface_Visible(Control_UP, false)
-	Interface_Visible(Control_Down, false)
-	Interface_Visible(Control_LShift, false)
-	notify("Freecam enable for PC devices")
-	end
 end
 
 function StopFreecam()
@@ -2232,6 +2239,13 @@ function StopFreecam()
 	PlayerState.Pop()
 	workspace.Camera.FieldOfView = 70
 	fcRunning = false
+	Interface_Visible(Control_1, false)
+	Interface_Visible(Control_2, false)
+	Interface_Visible(Control_3, false)
+	Interface_Visible(Control_4, false)
+	Interface_Visible(Control_UP, false)
+	Interface_Visible(Control_Down, false)
+	Interface_Visible(Control_LShift, false)
 end
 
 
@@ -4852,6 +4866,7 @@ for i,v in ipairs(workspace:GetDescendants()) do
 end
 if cmd == "freecam" then
 StartFreecam()
+MobileController()
 end
 if cmd == "freecampos" then
 local var = string.sub(msg,space+1)
