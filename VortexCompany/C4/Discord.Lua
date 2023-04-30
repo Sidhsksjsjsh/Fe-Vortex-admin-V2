@@ -1375,7 +1375,7 @@ SaveOMG.MouseButton1Down:Connect(function()
    else
       ProtocolSave(FileName.Text, InFile.Text)
    end
-end
+end)
 
 function SyncMath(math_1, ProtocolMath, math_2)
      if ProtocolMath == "+" then
