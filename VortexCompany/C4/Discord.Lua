@@ -241,6 +241,75 @@ Pause()
 saveSettings()
 end)
 
+local CoreGui = game:GetService("CoreGui")
+
+local game = game
+local workspace = workspace
+local table = table
+local math = math
+local task = task
+local debug = debug
+local coroutine = coroutine
+local string = string
+local Color3 = Color3
+local Instance = Instance
+local syn = syn 
+local oth = syn and syn.oth
+
+local unhook = oth and oth.unhook
+local hook = oth and oth.hook
+local lower = string.lower
+local byte = string.byte
+local round = math.round
+local running = coroutine.running
+local resume = coroutine.resume
+local status = coroutine.status
+local yield = coroutine.yield
+local create = coroutine.create
+local close = coroutine.close
+local info = debug.info
+
+local function Create(instance, properties, children)
+    local obj = Instance.new(instance)
+
+    for i, v in next, properties or {} do
+        obj[i] = v
+        for _, child in next, children or {} do
+            child.Parent = obj;
+        end
+    end
+    return obj;
+end
+
+function ErrorPrompt(title, Message, buttonname)
+    if getrenv then
+        local ErrorPrompt = getrenv().require(CoreGui:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
+        local prompt = ErrorPrompt.new("Default",{HideErrorCode = true})
+        local ErrorStoarge = Create("ScreenGui",{Parent = CoreGui,ResetOnSpawn = false})
+        local thread = running()
+        prompt:setParent(ErrorStoarge)
+        prompt:setErrorTitle(title)
+        prompt:updateButtons({{
+            Text = buttonname,
+            Callback = function()
+                prompt:_close()
+                ErrorStoarge:Destroy()
+                if thread then
+                    resume(thread)
+                end
+            end,
+            Primary = true
+        }}, 'Default')
+        prompt:_open(Message)
+        if thread then
+            yield(thread)
+        end
+    else
+        warn(Message)
+    end
+end
+
+ErrorPrompt("Vortex API", "API Error", "repair")
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -1001,13 +1070,11 @@ function partAdded(part)
 	end
 end
 
--- [[
-
--- ]]
-
+--[[
 function DebugPrint(SynText)
 print(SynText)
     end
+--]]
 
 function getstring(begin)
 	local start = begin-1
@@ -1288,7 +1355,8 @@ if success then
     print("GitHub ID: " .. userData.id)
     notify("Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
 else
-    notify("Error making request: " .. tostring(result))
+    -- notify("Error making request: " .. tostring(result))
+    ErrorPrompt("Error making request", tostring(result), "ok")
 end
 else
 Github.Text = "REQUIRED GITHUB USERNAME"
@@ -1319,7 +1387,8 @@ if success then
     local weatherData = HttpService:JSONDecode(result.Body)
     notify("Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
 else
-    notify("Error making request: " .. tostring(result))
+    -- notify("Error making request: " .. tostring(result))
+    ErrorPrompt("Error making request", tostring(result), "ok")
 end
 else
 WeatherApiKey.Text = "REQUIRED API KEY"
@@ -1335,7 +1404,8 @@ function executeHTTPS(_link_)
      end)
      
      if not respon then
-     notify(result)
+    -- notify(result)
+     ErrorPrompt("Execute Error", result, "ok")
      end
 end
 
@@ -1352,7 +1422,8 @@ function copy(txt)
 	if clipBoard then
            setclipboard(txt)
 	else
-	   notify("your exploit doesnt have ability to use clipboard, Bad exploit🤣😂")
+	   -- notify("your exploit doesnt have ability to use clipboard, Bad exploit🤣😂")
+	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use clipboard, Bad exploit🤣😂", "close")
     end
 end
 
@@ -1361,8 +1432,9 @@ function ProtocolSave(FileName, Config)
 	if file then
           writefile(FileName, Config)
 	else
-	  notify("your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
-    end
+	  -- notify("your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
+	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use clipboard, Bad exploit🤣😂", "close")
+    end 
 end
 
 function ProtocolRead(FileName)
@@ -2017,7 +2089,7 @@ function CheckServers()
     end)
     
     if not respon then
-    DebugPrint(result)
+    ErrorPrompt("Serverhop", result, "close")
     end
 end
 
@@ -2675,9 +2747,10 @@ local Anim = Instance.new("Animation")
 bruh:Play()
 bruh:AdjustSpeed(0)
 speaker.Character.Animate.Disabled = true
+
 local hi = Instance.new("Sound")
 hi.Name = "Sound"
-hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.SoundId = "http://www.roblox.com/asset/?id=0"
 hi.Volume = 2
 hi.Looped = true
 hi.archivable = false
@@ -2768,7 +2841,7 @@ bruh:AdjustSpeed(0)
 speaker.Character.Animate.Disabled = true
 local hi = Instance.new("Sound")
 hi.Name = "Sound"
-hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.SoundId = "http://www.roblox.com/asset/?id=0"
 hi.Volume = 2
 hi.Looped = true
 hi.archivable = false
@@ -2853,7 +2926,7 @@ bruh:AdjustSpeed(0)
 speaker.Character.Animate.Disabled = true
 local hi = Instance.new("Sound")
 hi.Name = "Sound"
-hi.SoundId = "http://www.roblox.com/asset/?id=165113352"
+hi.SoundId = "http://www.roblox.com/asset/?id=0"
 hi.Volume = 2
 hi.Looped = true
 hi.archivable = false
@@ -3851,7 +3924,7 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-		AppearData("13040492999")
+		AppearData("0")
 notify("Spying " .. var)
 end
 if cmd == "unspy" then
@@ -3863,7 +3936,7 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
-	AppearData("13040492999")
+	AppearData("0")
 notify("Spying turned off")
 end
 if cmd == "cmds" then
@@ -3930,7 +4003,7 @@ RejoinServer()
 end)
 
 if not respon then
-DebugPrint(result)
+ErrorPrompt("Rejoin", result, "close")
 end
 end
 if cmd == "delete" then
@@ -4684,7 +4757,7 @@ StartServerhop()
 end)
 
 if not respon then
-DebugPrint(result)
+ErrorPrompt("Serverhop", result, "close")
 end
 end
 if cmd == "blacklist" then
@@ -4738,7 +4811,7 @@ notify("Friend request sent to " .. var)
 end)
 
 if not respon then
-DebugPrint(result)
+ErrorPrompt("Friend request error", result, "close")
 ShakeData("13040484705")
 end
 end
@@ -4756,7 +4829,7 @@ notify("you are no longer friends with " .. var)
 end)
 
 if not respon then
-DebugPrint(result)
+ErrorPrompt("Unfriend error", result, "close")
 ShakeData("13040484705")
 end
 end
@@ -4964,9 +5037,11 @@ if SyncArgs[1] == nil then
             end
         end
         if FoundPlayer == true then
-            notify("Success!, Teleporting to player's game...")
+           -- notify("Success!, Teleporting to player's game...")
+	ErrorPrompt("Sniping player", "Success!, Teleporting to player's game...", "waiting respond")
         else
-            notify("Failed!, Player isn't in game")
+            -- notify("Failed!, Player isn't in game")
+	ErrorPrompt("Sniping player error", "Failed!, Player isn't in game", "Fuck | close")
         end
 end
 if cmd == "copyid" then
@@ -4986,7 +5061,7 @@ executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main
 end)
 
 if not respon then
-notify(result)
+ErrorPrompt("Dex error", result, "close")
 end
 end
 if cmd == "rspy" then
@@ -4995,7 +5070,7 @@ executeHTTPS(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))
 end)
 
 if not respon then
-notify(result)
+ErrorPrompt("Remote spy error", result, "close")
 end
 end
 if cmd == "iy" then
@@ -5004,7 +5079,7 @@ executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyiel
 end)
 
 if not respon then
-notify(result)
+ErrorPrompt("Infinite Yield error", result, "close")
 end
 end
 if cmd == "config" then
@@ -5040,7 +5115,7 @@ executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Anim
 end)
 
 if not respon then
-notify(result)
+ErrorPrompt("Animation", result, "close")
 end
 end
 if cmd == "snake" then
@@ -5049,7 +5124,7 @@ executeHTTPS(game:HttpGet("https://pastefy.ga/tWBTcE4R/raw"))
 end)
 
 if not respon then
-notify(result)
+ErrorPrompt("FE snake", result, "close")
 end
 end
 if cmd == "loopspeed" then
@@ -5136,6 +5211,7 @@ if success then
     end
 else
     notify("Error making request: " .. tostring(result))
+ErrorPrompt("API Error", "Error making request: " .. result, "close")
 end
 end
 if cmd == "githubdata" then
@@ -5452,7 +5528,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [28/04/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] there isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [01/05/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \n[+] new notification model \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -5490,6 +5566,8 @@ tween:Play()
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
+ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "good")
+
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
 if _G.Settings.music == 0 or nil then
@@ -5499,5 +5577,5 @@ music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
 
-DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+-- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
