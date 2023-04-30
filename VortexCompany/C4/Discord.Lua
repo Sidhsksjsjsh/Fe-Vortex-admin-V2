@@ -305,8 +305,49 @@ local WeatherApiKey                         = Instance.new('TextBox', WeatherCit
 local WhisperBox                         = Instance.new('TextBox', GUI_MAIN)
 local WhisperPlayer                         = Instance.new('TextBox', WhisperBox)
 local WhisperButton                         = Instance.new('TextButton', WhisperBox)
+-- file saver:
+local InFile                         = Instance.new('TextBox', GUI_MAIN)
+local FileName                         = Instance.new('TextBox', InFile)
+local SaveOMG                         = Instance.new('TextButton', InFile)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
+
+InFile.Size                    = UDim2.new(0,200,0,30)
+InFile.BackgroundTransparency  = 0.5
+InFile.BackgroundColor         = BrickColor.new('Fossil')
+InFile.BorderSizePixel         = 0
+InFile.Position                = UDim2.new(0.5,-100,0,0)
+InFile.Text                    = "Enter script (loadstring only)"
+InFile.TextColor3              = Color3.new(1,1,1)
+InFile.TextStrokeTransparency  = 1
+InFile.TextWrapped             = true
+InFile.FontSize                = 'Size24'
+InFile.Font                    = 'SourceSansBold'
+InFile.Draggable = true
+
+SaveOMG.Size                    = UDim2.new(0,200,0,30)
+SaveOMG.BackgroundTransparency  = 0.5
+SaveOMG.BackgroundColor         = BrickColor.new('Fossil')
+SaveOMG.BorderSizePixel         = 0
+SaveOMG.Position                = UDim2.new(0.5,-100,0,60)
+SaveOMG.Text                    = "save file"
+SaveOMG.TextColor3              = Color3.new(1,1,1)
+SaveOMG.TextStrokeTransparency  = 1
+SaveOMG.TextWrapped             = true
+SaveOMG.FontSize                = 'Size24'
+SaveOMG.Font                    = 'SourceSansBold'
+
+FileName.Size                    = UDim2.new(0,200,0,30)
+FileName.BackgroundTransparency  = 0.5
+FileName.BackgroundColor         = BrickColor.new('Fossil')
+FileName.BorderSizePixel         = 0
+FileName.Position                = UDim2.new(0.5,-100,0,30)
+FileName.Text                    = "File name"
+FileName.TextColor3              = Color3.new(1,1,1)
+FileName.TextStrokeTransparency  = 1
+FileName.TextWrapped             = true
+FileName.FontSize                = 'Size24'
+FileName.Font                    = 'SourceSansBold'
 
 Github.Size                    = UDim2.new(0,200,0,30)
 Github.BackgroundTransparency  = 0.5
@@ -455,6 +496,18 @@ Interface_Visible(Exit_4, false)
 Interface_Visible(CopyPath, false)
 Interface_Visible(ChoosePart, false)
 Interface_Visible(Path, false)
+
+--[[
+SaveOMG.MouseButton1Down:Connect(function()
+   if scriptfunc() then -- FileName & InFile   
+
+   end
+end
+--]]
+
+Interface_Visible(SaveOMG, false)
+Interface_Visible(FileName, false)
+Interface_Visible(InFile, false)
 
 -- diff ui
 TextBar.Size                    = UDim2.new(0,200,0,30)
@@ -1316,6 +1369,14 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+SaveOMG.MouseButton1Down:Connect(function()
+   if isfile(FileName.Text) then -- FileName & InFile
+      notify('file with name "' .. FileName.Text .. '" already exists.')
+   else
+      ProtocolSave(FileName.Text, InFile.Text)
+   end
+end
+
 function SyncMath(math_1, ProtocolMath, math_2)
      if ProtocolMath == "+" then
         local SyncNumber_1 = math_1
@@ -2133,6 +2194,11 @@ function DisplayUI(UIname)
       Interface_Visible(WhisperPlayer, true)
       Interface_Visible(WhisperBox, true)
    end
+      if UIname == "file" then
+      Interface_Visible(SaveOMG, true)
+      Interface_Visible(FileName, true)
+      Interface_Visible(InFile, true)
+   end  
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
@@ -2148,6 +2214,9 @@ function DisplayUI(UIname)
       Interface_Visible(WhisperButton, true)
       Interface_Visible(WhisperPlayer, true)
       Interface_Visible(WhisperBox, true)
+      Interface_Visible(SaveOMG, true)
+      Interface_Visible(FileName, true)
+      Interface_Visible(InFile, true)
    end
 end
 
@@ -2178,6 +2247,11 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(WhisperPlayer, false)
       Interface_Visible(WhisperBox, false)
    end
+      if UIname == "file" then
+      Interface_Visible(SaveOMG, false)
+      Interface_Visible(FileName, false)
+      Interface_Visible(InFile, false)
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
@@ -2193,6 +2267,9 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(WhisperButton, false)
       Interface_Visible(WhisperPlayer, false)
       Interface_Visible(WhisperBox, false)
+      Interface_Visible(SaveOMG, false)
+      Interface_Visible(FileName, false)
+      Interface_Visible(InFile, false)
    end
 end
 
@@ -5188,8 +5265,8 @@ cmds[#cmds + 1] = {Text = "[98] " .. tostring(prefix) .. "unfreecam",Title = "st
 cmds[#cmds + 1] = {Text = "[99] " .. tostring(prefix) .. "fcspeed [speed]",Title = "set freecam speed"}
 cmds[#cmds + 1] = {Text = "[100] " .. tostring(prefix) .. "notifyfcpos",Title = "provide notification of your freecam position"}
 cmds[#cmds + 1] = {Text = "[101] " .. tostring(prefix) .. "copyfcpos",Title = "Copy your freecam position"}
-cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, exc, or whisper]",Title = "display your UI"}
-cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, exc, or part]",Title = "remove your display fps and ping UI"}
+cmds[#cmds + 1] = {Text = "[102] " .. tostring(prefix) .. "show [ping, fps, chatbypass, exc, whisper, or file]",Title = "display your UI"}
+cmds[#cmds + 1] = {Text = "[103] " .. tostring(prefix) .. "unshow [ping, fps, chatbypass, exc, part, whisper, or file]",Title = "remove your display fps and ping UI"}
 cmds[#cmds + 1] = {Text = "[104] " .. tostring(prefix) .. "addnote [notes]",Title = "this command will add the log file to your executor folder"}
 cmds[#cmds + 1] = {Text = "[105] " .. tostring(prefix) .. "parttp",Title = "Beta Command"}
 cmds[#cmds + 1] = {Text = "[106] " .. tostring(prefix) .. "vfly",Title = "fly with ur car😍"}
