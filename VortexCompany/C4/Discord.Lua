@@ -452,11 +452,11 @@ Control_UP.FontSize                = 'Size24'
 Control_UP.Font                    = 'SourceSansBold'
 Control_UP.Draggable = true
 
-Control_Down.Size                    = UDim2.new(0,200,0,150)
+Control_Down.Size                    = UDim2.new(0,200,0,30)
 Control_Down.BackgroundTransparency  = 0.5
 Control_Down.BackgroundColor         = BrickColor.new('Fossil')
 Control_Down.BorderSizePixel         = 0
-Control_Down.Position                = UDim2.new(0.5,-100,0,30)
+Control_Down.Position                = UDim2.new(0.5,-100,0,150)
 Control_Down.Text                    = "DOWN"
 Control_Down.TextColor3              = Color3.new(1,1,1)
 Control_Down.TextStrokeTransparency  = 1
@@ -464,11 +464,11 @@ Control_Down.TextWrapped             = true
 Control_Down.FontSize                = 'Size24'
 Control_Down.Font                    = 'SourceSansBold'
 
-Control_LShift.Size                    = UDim2.new(0,200,0,180)
+Control_LShift.Size                    = UDim2.new(0,200,0,30)
 Control_LShift.BackgroundTransparency  = 0.5
 Control_LShift.BackgroundColor         = BrickColor.new('Fossil')
 Control_LShift.BorderSizePixel         = 0
-Control_LShift.Position                = UDim2.new(0.5,-100,0,30)
+Control_LShift.Position                = UDim2.new(0.5,-100,0,180)
 Control_LShift.Text                    = "Left Shift"
 Control_LShift.TextColor3              = Color3.new(1,1,1)
 Control_LShift.TextStrokeTransparency  = 1
@@ -2182,6 +2182,19 @@ local PlayerState = {} do
 		UserInputService.MouseBehavior = mouseBehavior
 		mouseBehavior = nil
 	end
+end
+
+function tptool_A1()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = true
+tool.Name = "Teleport"
+tool.Activated:connect(function()
+local pos = Mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+speaker.Character.HumanoidRootPart.CFrame = pos - speaker.Character.HumanoidRootPart.CFrame.LookVector*0
+tool.ToolTip = "Last teleport to coordinate " .. pos
+end)
+tool.Parent = speaker.Backpack
 end
 
 function MobileController()
@@ -5231,7 +5244,7 @@ if SyncArgs[1] == nil then
         end
         if FoundPlayer == true then
            -- notify("Success!, Teleporting to player's game...")
-	ErrorPrompt("Sniping player", "Success!, Teleporting to player's game...", "waiting respond")
+	ErrorPrompt("Sniping player", "Success!, Teleporting to player's game...", "wait for respond")
         else
             -- notify("Failed!, Player isn't in game")
 	ErrorPrompt("Sniping player error", "Failed!, Player isn't in game", "Fuck | close")
@@ -5401,9 +5414,10 @@ if success then
         print("User ID: " .. user.id)
         print("Username: " .. user.username)
 	notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
+	ErrorPrompt("Fake data generator", "User ID: " .. user.id .. "\nUsername: " .. user.username, "OK")
     end
 else
-    notify("Error making request: " .. tostring(result))
+    -- notify("Error making request: " .. tostring(result))
 ErrorPrompt("API Error", "Error making request: " .. result, "close")
 end
 end
@@ -5421,9 +5435,8 @@ if cmd == "unweather" then
 WeatherApiKey.Visible = false
 WeatherCity.Visible = false
 end
-if cmd == "punish" then
-local var = string.sub(msg,space+1)
-Punish(var)
+if cmd == "tptool" then
+tptool_A1()
 end
 -- limits
 end
@@ -5580,7 +5593,7 @@ cmds[#cmds + 1] = {Text = "[144] " .. tostring(prefix) .. "unloopjump",Title = "
 cmds[#cmds + 1] = {Text = "[145] " .. tostring(prefix) .. "fakedata",Title = "generate ur fake acc data"}
 cmds[#cmds + 1] = {Text = "[146] " .. tostring(prefix) .. "githubdata & ungithub",Title = "leak the data of the github username you typed in"}
 cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "weather & unweather",Title = "find out the temperature in the country you typed in"}
-cmds[#cmds + 1] = {Text = "[148] " .. tostring(prefix) .. "punish [reason]",Title = "beta punish system"}
+cmds[#cmds + 1] = {Text = "[148] " .. tostring(prefix) .. "tptool",Title = "gives u teleport tool"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5739,11 +5752,11 @@ closeButton.Parent = introFrame
 
 -- Set up the close button's functionality
 closeButton.MouseButton1Click:Connect(function()
-    -- Create a tween for the intro frame to slide offscreen
     local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
     local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Position = UDim2.new(0, 0, 1, 0)})
     
     -- Start the tween and destroy the intro GUI when it's finished
+    tptool_A1()
     tween:Play()
     tween.Completed:Connect(function()
         introGui:Destroy()
