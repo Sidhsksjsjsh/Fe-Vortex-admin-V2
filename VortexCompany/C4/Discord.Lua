@@ -5754,6 +5754,17 @@ cmds[#cmds + 1] = {Text = "[146] " .. tostring(prefix) .. "githubdata & ungithub
 cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "weather & unweather",Title = "find out the temperature in the country you typed in"}
 cmds[#cmds + 1] = {Text = "[148] " .. tostring(prefix) .. "tptool",Title = "gives u teleport tool"}
 
+cmds[#cmds + 1] = {Text = "[149] " .. tostring(prefix) .. "split",Title = "impostor😱"} -- 1
+cmds[#cmds + 1] = {Text = "[150] " .. tostring(prefix) .. "noroot",Title = "destroy root"} -- 2
+cmds[#cmds + 1] = {Text = "[151] " .. tostring(prefix) .. "reproot",Title = "replace root"} -- 3
+cmds[#cmds + 1] = {Text = "[152] " .. tostring(prefix) .. "nolegs",Title = "destroy ur 2 legs"} -- 4
+cmds[#cmds + 1] = {Text = "[153] " .. tostring(prefix) .. "sitwalk",Title = "walk but sit"} -- 5
+cmds[#cmds + 1] = {Text = "[154] " .. tostring(prefix) .. "nolimbs",Title = "nolimbs V2"} -- 6
+cmds[#cmds + 1] = {Text = "[155] " .. tostring(prefix) .. "noarms",Title = "destroy ur 2 arms"} -- 7
+cmds[#cmds + 1] = {Text = "[156] " .. tostring(prefix) .. "weaken [number]",Title = "weakness"} -- 8
+cmds[#cmds + 1] = {Text = "[157] " .. tostring(prefix) .. "unweaken",Title = "destroy weakness"} -- 9
+cmds[#cmds + 1] = {Text = "[158] " .. tostring(prefix) .. "strengthen [number]",Title = "strong"} -- 10
+
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
@@ -5893,7 +5904,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [01/05/2023] \n\n[CONTENT] \n[+] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) \n[+] new notification model \n[+] mobile controller now supports Freecam! (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [03/05/2023] \n\n[CONTENT] \n[+] added 10 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) [ends in 3 days] \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
