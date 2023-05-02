@@ -348,6 +348,7 @@ local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local Character = speaker.Character
 local HumanModCons = {}
+local friendsonline = #speaker:GetFriendsOnline()
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
@@ -407,7 +408,7 @@ Control_2.Size                    = UDim2.new(0,200,0,30)
 Control_2.BackgroundTransparency  = 0.5
 Control_2.BackgroundColor         = BrickColor.new('Fossil')
 Control_2.BorderSizePixel         = 0
-Control_2.Position                = UDim2.new(0.5,-100,0,30)
+Control_2.Position                = UDim2.new(0.5,-100,0,60)
 Control_2.Text                    = "←"
 Control_2.TextColor3              = Color3.new(1,1,1)
 Control_2.TextStrokeTransparency  = 1
@@ -419,7 +420,7 @@ Control_3.Size                    = UDim2.new(0,200,0,30)
 Control_3.BackgroundTransparency  = 0.5
 Control_3.BackgroundColor         = BrickColor.new('Fossil')
 Control_3.BorderSizePixel         = 0
-Control_3.Position                = UDim2.new(0.5,-100,0,60)
+Control_3.Position                = UDim2.new(0.5,-100,0,30)
 Control_3.Text                    = "↓"
 Control_3.TextColor3              = Color3.new(1,1,1)
 Control_3.TextStrokeTransparency  = 1
@@ -5942,7 +5943,7 @@ tween:Play()
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
-ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "OK")
+-- ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "OK")
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 
@@ -5952,6 +5953,16 @@ else
 music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
+
+local friendsingame = 0
+game.Players.PlayerAdded:Connect(function(Player)
+if speaker:IsFriendsWith(Player.UserId) then
+friendsingame = friendsingame + 1
+friendsonline = #speaker:GetFriendsOnline()
+ErrorPrompt("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game \n\nFriends in game: " .. friendsingame .. " \n\nFriends online: " .. friendsonline,"OK")
+-- print(friendsingame..' are in this server')
+end
+end)
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
