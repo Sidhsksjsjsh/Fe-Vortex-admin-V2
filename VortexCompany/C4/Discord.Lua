@@ -2185,16 +2185,18 @@ local PlayerState = {} do
 end
 
 function tptool_A1()
-local tool = Instance.new("Tool")
-tool.RequiresHandle = true
-tool.Name = "Teleport"
-tool.Activated:connect(function()
-local pos = Mouse.Hit+Vector3.new(0,2.5,0)
-pos = CFrame.new(pos.X,pos.Y,pos.Z)
-speaker.Character.HumanoidRootPart.CFrame = pos - speaker.Character.HumanoidRootPart.CFrame.LookVector*0
-tool.ToolTip = "Last teleport to coordinate " .. pos
-end)
-tool.Parent = speaker.Backpack
+local TpTool = Instance.new("Tool")
+	TpTool.Name = "Teleport Tool"
+	TpTool.RequiresHandle = false
+	TpTool.Parent = speaker.Backpack
+	TpTool.Activated:Connect(function()
+		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
+		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
+		if not Char or not HRP then
+			return ErrorPrompt("Failed to load tptool","Failed to find HumanoidRootPart","OK")
+		end
+		HRP.CFrame = CFrame.new(Mouse.Hit.X, Mouse.Hit.Y + 3, Mouse.Hit.Z, select(4, HRP.CFrame:components()))
+	end)
 end
 
 function MobileController()
@@ -2261,6 +2263,11 @@ function StopFreecam()
 	Interface_Visible(Control_LShift, false)
 end
 
+function r15(plr)
+	if plr.Character:FindFirstChildOfClass('Humanoid').RigType == Enum.HumanoidRigType.R15 then
+		return true
+	end
+end
 
 local ServerSize_A777 = "(0/0)"
 function Serverhop()
@@ -4222,6 +4229,11 @@ local UpperTorso_R15 = "Upper Torso"
 local LowerTorso_R15 = "Lower Torso"
 local Head = "Head"
 
+local Arms_2 = "RightUpperArm"
+local Arms_3 = "LeftUpperArm"
+local Legs_2 = "RightUpperLeg"
+local Legs_3 = "LeftUpperLeg
+
 local BodyPart = {
          ["ra"] = RightArm;
          ["la"] = LeftArm;
@@ -4234,7 +4246,20 @@ local BodyPart = {
          ["nolimbs"] = RightArm and LeftArm and LeftLeg and RightLeg;
     }
 
+local R15Part = {
+         ["ra"] = Arms_2,
+	 ["la"] = Arms_3,
+	 ["ll"] = Legs_2,
+	 ["rl"] = Legs_3,
+	 ["head"] = Head
+}
+
+if r15(speaker) then
+speaker.Character[R15Part[var]]:Destroy()
+else
 speaker.Character[BodyPart[var]]:Destroy()
+end
+
 notify("Deleting parts: " .. tostring(BodyPart[var]))
 end
 if cmd == "music" then
@@ -5437,6 +5462,140 @@ WeatherCity.Visible = false
 end
 if cmd == "tptool" then
 tptool_A1()
+end
+if cmd == "split" then
+if r15(speaker) then
+		speaker.Character.UpperTorso.Waist:Destroy()
+	else
+		ErrorPrompt('R15 Required','This command requires the r15 rig type',"OK")
+	end
+end
+if cmd == "noroot" then
+if speaker.Character ~= nil then
+		local char = Players.LocalPlayer.Character
+		char.Parent = nil
+		char.HumanoidRootPart:Destroy()
+		char.Parent = workspace
+	end
+end
+if cmd == "reproot" then
+if speaker.Character ~= nil and speaker.Character:FindFirstChild("HumanoidRootPart") then
+		local Char = speaker.Character
+		local OldParent = Char.Parent
+		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
+		local OldPos = HRP.CFrame
+		Char.Parent = game
+		local HRP1 = HRP:Clone()
+		HRP1.Parent = Char
+		HRP = HRP:Destroy()
+		HRP1.CFrame = OldPos
+		Char.Parent = OldParent
+	end
+end
+if cmd == "nolegs" then
+if r15(speaker) then
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "RightUpperLeg" or
+				v.Name == "LeftUpperLeg" then
+				v:Destroy()
+			end
+		end
+	else
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "Right Leg" or
+				v.Name == "Left Leg" then
+				v:Destroy()
+			end
+		end
+	end
+end
+if cmd == "sitwalk" then
+local anims = speaker.Character.Animate
+	local sit = anims.sit:FindFirstChildOfClass("Animation").AnimationId
+	anims.idle:FindFirstChildOfClass("Animation").AnimationId = sit
+	anims.walk:FindFirstChildOfClass("Animation").AnimationId = sit
+	anims.run:FindFirstChildOfClass("Animation").AnimationId = sit
+	anims.jump:FindFirstChildOfClass("Animation").AnimationId = sit
+	if r15(speaker) then
+		speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = 0.5
+	else
+		speaker.Character:FindFirstChildOfClass('Humanoid').HipHeight = -1.5
+	end
+end
+if cmd == "nolimbs" then
+if r15(speaker) then
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "RightUpperLeg" or
+				v.Name == "LeftUpperLeg" or
+				v.Name == "RightUpperArm" or
+				v.Name == "LeftUpperArm" then
+				v:Destroy()
+			end
+		end
+	else
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "Right Leg" or
+				v.Name == "Left Leg" or
+				v.Name == "Right Arm" or
+				v.Name == "Left Arm" then
+				v:Destroy()
+			end
+		end
+	end
+end
+if cmd == "noarms" then
+if r15(speaker) then
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "RightUpperArm" or
+				v.Name == "LeftUpperArm" then
+				v:Destroy()
+			end
+		end
+	else
+		for i,v in pairs(speaker.Character:GetChildren()) do
+			if v:IsA("BasePart") and
+				v.Name == "Right Arm" or
+				v.Name == "Left Arm" then
+				v:Destroy()
+			end
+		end
+	end
+end
+if cmd == "weaken" then
+local var = string.sub(msg,space+1)
+for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child.ClassName == "Part" then
+			if var then
+				child.CustomPhysicalProperties = PhysicalProperties.new(-var, 0.3, 0.5)
+			else
+				child.CustomPhysicalProperties = PhysicalProperties.new(0, 0.3, 0.5)
+			end
+		end
+	end
+end
+if cmd == "unweaken" then
+for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child.ClassName == "Part" then
+			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+		end
+	end
+end
+if cmd == "strengthen" then
+local var = string.sub(msg,space+1)
+for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child.ClassName == "Part" then
+			if var then
+				child.CustomPhysicalProperties = PhysicalProperties.new(var, 0.3, 0.5)
+			else
+				child.CustomPhysicalProperties = PhysicalProperties.new(100, 0.3, 0.5)
+			end
+		end
+	end
 end
 -- limits
 end
