@@ -5756,7 +5756,7 @@ closeButton.MouseButton1Click:Connect(function()
     local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Position = UDim2.new(0, 0, 1, 0)})
     
     -- Start the tween and destroy the intro GUI when it's finished
-    tptool_A1()
+    -- tptool_A1()
     tween:Play()
     tween.Completed:Connect(function()
         introGui:Destroy()
