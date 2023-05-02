@@ -4232,7 +4232,7 @@ local Head = "Head"
 local Arms_2 = "RightUpperArm"
 local Arms_3 = "LeftUpperArm"
 local Legs_2 = "RightUpperLeg"
-local Legs_3 = "LeftUpperLeg
+local Legs_3 = "LeftUpperLeg"
 
 local BodyPart = {
          ["ra"] = RightArm;
