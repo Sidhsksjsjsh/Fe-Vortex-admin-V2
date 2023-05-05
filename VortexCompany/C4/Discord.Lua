@@ -1550,7 +1550,7 @@ end
 
 
 BarButtonExecute.MouseButton1Down:Connect(function()
-     executeHTTPS(game:HttpGet(TextBarExecutor))
+     executeHTTPS(game:HttpGet(TextBarExecutor.Text))
 end)
 
 -- TextBarExecutor.Visible = true
@@ -5816,7 +5816,7 @@ cmds[#cmds + 1] = {Text = "[156] " .. tostring(prefix) .. "weaken [number]",Titl
 cmds[#cmds + 1] = {Text = "[157] " .. tostring(prefix) .. "unweaken",Title = "destroy weakness"} -- 9
 cmds[#cmds + 1] = {Text = "[158] " .. tostring(prefix) .. "strengthen [number]",Title = "strong"} -- 10
 cmds[#cmds + 1] = {Text = "[159] " .. tostring(prefix) .. "bundle [bundle ID]",Title = "gives u free bundle"}
-cmds[#cmds + 1] = {Text = "[160] " .. tostring(prefix) .. "username [enable or disable]",Title = "to enable or disable esp name"}
+cmds[#cmds + 1] = {Text = "[???] [ Command Removed ]",Title = "[ Command Removed ]"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5957,7 +5957,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [05/05/2023] \n\n[CONTENT] \n[+] added 2 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) [ends in 1 days] \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [06/05/2023] \n\n[CONTENT] \n[+] There isn't any.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -5998,13 +5998,6 @@ tween:Play()
 -- ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "OK")
 
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
-
-if _G.Settings.music == 0 or nil then
-	notify("You didn't add any music.")
-else
-music(tostring(_G.Settings.music))
-	notify("Now playing (AUTO PLAY): " .. MusicName)
-end
 
 function Data_AV12(PlayerSync)
 local dates = {}
