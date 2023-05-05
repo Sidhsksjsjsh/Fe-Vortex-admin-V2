@@ -12,9 +12,10 @@ _G.Settings = {
       Removed = false,
       kick = true,
       RemovePaused = false,
+      username = true,
 }
 -- _G.Settings.device
-
+-- _G.Settings.username
 if not game:IsLoaded() then
     local MessageCore = Instance.new("Message", Workspace)
     MessageCore.Text = "Vortex is waiting for the game to load"
@@ -1098,6 +1099,14 @@ end
 end
 end
 
+function ESPName(toggle)
+if toggle == "disable" then
+_G.Settings.username = false
+end
+if toggle == "enable" then 
+_G.Settings.username = true
+end
+end
 
 function FindInTable(tbl,val)
 	if tbl == nil then return false end
@@ -1114,6 +1123,32 @@ function GetInTable(Table, Name)
 		end
 	end
 	return false
+end
+
+function LoadBundle(id)
+	local bundleDetails = game:GetService("AssetService"):GetBundleDetailsAsync(id)
+	local HumanoidDescription = Instance.new("HumanoidDescription")
+	HumanoidDescription.Name = bundleDetails.Name
+	for _, bPartList in pairs(bundleDetails.Items) do
+		local specialChar = (string.find(bPartList.Name, "_") ~= nil and string.find(bPartList.Name, "_")) or ((string.find(bPartList.Name, "-") ~= nil and string.find(bPartList.Name, "-")) or nil)
+		if specialChar then
+			local BodyPartName = string.sub(bPartList.Name, specialChar+1)
+			BodyPartName = string.gsub(BodyPartName, "%s", "")
+			local filter = {
+				["Hat"] = "HatAccessory",
+				["Hair"] = "HairAccessory",
+				["Helmet"] = "HatAccessory",
+			}
+			if filter[BodyPartName] then
+				HumanoidDescription[filter[BodyPartName]] = bPartList.Id
+			else
+				if HumanoidDescription[BodyPartName] ~= nil then
+					HumanoidDescription[BodyPartName] = bPartList.Id
+				end
+			end
+		end
+	end
+	HumanoidDescription.Parent = workspace
 end
 
 function SyncBypassChat(BypassWord)
@@ -5598,6 +5633,21 @@ for _, child in pairs(speaker.Character:GetDescendants()) do
 		end
 	end
 end
+if cmd == "bundle" then
+local var = string.sub(msg,space+1)
+local respon, result = pcall(function()
+LoadBundle(var)
+end)
+
+if not respon then
+ErrorPrompt("Failed to load bundle", result, "OK")
+end
+end
+if cmd == "username" then
+local var = string.sub(msg,space+1)
+ESPName(var)
+saveSettings()
+end
 -- limits
 end
 end)
@@ -5765,6 +5815,8 @@ cmds[#cmds + 1] = {Text = "[155] " .. tostring(prefix) .. "noarms",Title = "dest
 cmds[#cmds + 1] = {Text = "[156] " .. tostring(prefix) .. "weaken [number]",Title = "weakness"} -- 8
 cmds[#cmds + 1] = {Text = "[157] " .. tostring(prefix) .. "unweaken",Title = "destroy weakness"} -- 9
 cmds[#cmds + 1] = {Text = "[158] " .. tostring(prefix) .. "strengthen [number]",Title = "strong"} -- 10
+cmds[#cmds + 1] = {Text = "[159] " .. tostring(prefix) .. "bundle [bundle ID]",Title = "gives u free bundle"}
+cmds[#cmds + 1] = {Text = "[160] " .. tostring(prefix) .. "username [enable or disable]",Title = "to enable or disable esp name"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5905,7 +5957,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [03/05/2023] \n\n[CONTENT] \n[+] added 10 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) [ends in 3 days] \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [05/05/2023] \n\n[CONTENT] \n[+] added 2 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] you can now change ur IP using Sync X IP changer ( VIP only & jailbreak ) (Paid) [ends in 1 days] \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -5954,6 +6006,46 @@ music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
 
+local esp_settings = { ---- table for esp settings 
+    textsize = 8,
+    colour = 255,255,255
+}
+ 
+local gui = Instance.new("BillboardGui")
+local esp = Instance.new("TextLabel",gui) 
+
+ 
+gui.Name = "SPY";
+gui.ResetOnSpawn = false
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+esp.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+esp.Text = ""
+esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001);
+esp.BorderSizePixel = 4;
+esp.BorderColor3 = Color3.new(esp_settings.colour)
+esp.BorderSizePixel = 0
+esp.Font = "GothamSemibold"
+esp.TextSize = esp_settings.textsize
+esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
+ 
+game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
+    for i,v in pairs (game:GetService("Players"):GetPlayers()) do
+        if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
+	esp.Text = "{"..v.Name.."}"
+            gui:Clone().Parent = v.Character.Head
+            if _G.Settings.username == true then
+	    esp.Visible = true
+            else
+	    esp.Visible = false
+	 end
+    end
+end
+end)
+
+notify("ESP name enable, type in chat " .. prefix .. "username [enable or disable] to disable or enable esp name")
+--[[
 local friendsingame = 0
 game.Players.PlayerAdded:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
@@ -5963,6 +6055,7 @@ ErrorPrompt("Friend Joined","Your friend " .. tostring(Player) .. " has joined t
 -- print(friendsingame..' are in this server')
 end
 end)
+--]]
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
