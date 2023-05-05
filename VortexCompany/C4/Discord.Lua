@@ -1540,11 +1540,12 @@ end)
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
      loadstring(_link_)()
+     notify("Executed!")
      end)
      
      if not respon then
     -- notify(result)
-     ErrorPrompt("Execute Error", result, "ok")
+     ErrorPrompt("Scripts Error", result, "OK")
      end
 end
 
@@ -1572,7 +1573,7 @@ function ProtocolSave(FileName, Config)
           writefile(FileName, Config)
 	else
 	  -- notify("your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
-	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use clipboard, Bad exploit🤣😂", "close")
+	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use writefile, Bad exploit🤣😂", "close")
     end 
 end
 
@@ -1682,7 +1683,11 @@ end
 
 function LOCAL_WEB_IP_HOST()
 local LOCAL_WEB = tostring(game:HttpGet("https://api.ipify.org", true))
-return LOCAL_WEB
+    if LOCAL_WEB then
+       return LOCAL_WEB
+    else
+       return "API website Error ':404: website not found ' or under maintenance"
+    end
 end
 
 -- Define a function to create a notification with tweening
@@ -1743,7 +1748,7 @@ function CameraMode(ModeType)
        if ModeType == "tpp" then
            speaker.CameraMode = "Classic"
 end
-       if not ModeType == "tpp" and ModeType == "fpp" then
+       if not ModeType == "tpp" and not ModeType == "fpp" then
            notify("Camera mode not found, mode: " .. ModeType)
 end
 end
@@ -2606,7 +2611,7 @@ VIPFrame.Parent = VIPScreenGui
 VIPFrame.Visible = false
 
 local VIPTextLabel = Instance.new("TextLabel")
-VIPTextLabel.Text = "Access Denied. Error 100"
+VIPTextLabel.Text = "No fling exploit detected"
 VIPTextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 VIPTextLabel.Size = UDim2.new(1, 0, 1, 0)
 VIPTextLabel.Parent = VIPFrame
@@ -3749,7 +3754,7 @@ end
 end
 
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
-notify("teleporting to " .. var)
+notify("teleporting you to " .. var)
 end
 if cmd == "tweento" then
 local var = string.sub(msg,space+1)
@@ -3765,7 +3770,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 
 
 {CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
-notify("tweening to " .. var)
+notify("tweening you to " .. var)
 end
 if cmd == "walkto" then
 local var = string.sub(msg,space+1)
@@ -3777,7 +3782,7 @@ end
 end
 
 speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
-notify("walk to " .. var)
+notify("walk you to " .. var)
 end
 if cmd == "unfollow" then
 if Follow then
@@ -4172,8 +4177,7 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-		AppearData("0")
-notify("Spying " .. var)
+		notify("Spying " .. var)
 end
 if cmd == "unspy" then
 if viewing ~= nil then
@@ -4184,12 +4188,10 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
-	AppearData("0")
-notify("Spying turned off")
+	notify("Spying turned off")
 end
 if cmd == "cmds" then
-RotationData("13040482767")
-notify("ERROR")
+ErrorPrompt("Error","ERROR","OK")
 end
 if cmd == "nosit" then
 local function DISABLESIT()
@@ -4285,18 +4287,18 @@ local BodyPart = {
 local R15Part = {
          ["ra"] = Arms_2,
 	 ["la"] = Arms_3,
-	 ["ll"] = Legs_2,
-	 ["rl"] = Legs_3,
+	 ["ll"] = Legs_3,
+	 ["rl"] = Legs_2,
 	 ["head"] = Head
 }
 
 if r15(speaker) then
 speaker.Character[R15Part[var]]:Destroy()
+notify("Deleting parts: " .. tostring(R15Part[var]))
 else
 speaker.Character[BodyPart[var]]:Destroy()
-end
-
 notify("Deleting parts: " .. tostring(BodyPart[var]))
+end
 end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
@@ -4328,8 +4330,8 @@ local MusicText = {
        ["sunrise"] = T7
 }
 
-music(var or OfficialMusic[var])
-notify("now playing " .. var .. " (" .. tostring(MusicName or MusicText[var]) .. ")")
+music(var)
+notify("now playing " .. MusicName .. " (" .. var .. ")")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
@@ -4590,7 +4592,13 @@ if loopUse then
 end
 end
 if cmd == "clogs" then
-loadstring(game:HttpGet("https://pastebin.com/raw/CB3Jghvb"))()
+local respon, result = pcall(function()
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/CB3Jghvb"))
+end)
+
+if not respon then
+ErrorPrompt("Chat logs error", result, "OK")
+end
 end
 if cmd == "datalimit" then
 local var = string.sub(msg,space+1)
@@ -5079,7 +5087,7 @@ end)
 
 if not respon then
 ErrorPrompt("Friend request error", result, "close")
-ShakeData("13040484705")
+-- ShakeData("13040484705")
 end
 end
 if cmd == "unfriend" then
@@ -5097,7 +5105,7 @@ end)
 
 if not respon then
 ErrorPrompt("Unfriend error", result, "close")
-ShakeData("13040484705")
+-- ShakeData("13040484705")
 end
 end
 if cmd == "debug" then
@@ -6010,6 +6018,12 @@ local dates = {}
 	return chatString
 end
 
+local ToolDateScript = "{00/00/0000}"
+
+for _,v in pairs(game.Players:GetPlayers()) do
+ToolDateScript = Data_AV12(v.Name)
+end
+
 local esp_settings = { ---- table for esp settings 
     textsize = 8,
     colour = 255,255,255
@@ -6037,13 +6051,13 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
-	    esp.Text = "{"..v.Name.."} \n{ Age: " .. v.AccountAge .. " Days ago }"
+	    esp.Text = "{"..v.Name.."} \n{ Age: " .. v.AccountAge .. " Days ago } \n{" .. ToolDateScript .. "}"
             gui:Clone().Parent = v.Character.Head
     end
 end
 end)
 
-ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up, 1787 minutes","OK")
+ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
 
 local friendsingame = 0
