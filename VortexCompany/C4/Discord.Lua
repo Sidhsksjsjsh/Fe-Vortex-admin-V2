@@ -5073,7 +5073,7 @@ if playerIsAlrFriend then
     end
 end
 
-Players:RequestFriendship(var)
+speaker:RequestFriendship(var)
 notify("Friend request sent to " .. var)
 end)
 
@@ -5091,7 +5091,7 @@ end
 end
 
 local respon, result = pcall(function()
-Players:RevokeFriendship(var)
+speaker:RevokeFriendship(var)
 notify("you are no longer friends with " .. var)
 end)
 
@@ -6006,6 +6006,17 @@ music(tostring(_G.Settings.music))
 	notify("Now playing (AUTO PLAY): " .. MusicName)
 end
 
+function Data_AV12(PlayerSync)
+local dates = {}
+		local user = game:HttpGet("https://users.roblox.com/v1/users/"..Players[PlayerSync].UserId)
+		local json = HttpService:JSONDecode(user)
+		local date = json["created"]:sub(1,10)
+		local splitDates = string.split(date,"-")
+		table.insert(dates,splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
+	local chatString = table.concat(dates, ', ')
+	return chatString
+end
+
 local esp_settings = { ---- table for esp settings 
     textsize = 8,
     colour = 255,255,255
@@ -6033,13 +6044,14 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
-	    esp.Text = "{"..v.Name.."} \n{Age: " .. v.AccountAge .. "} \n{"
+	    esp.Text = "{"..v.Name.."} \n{Age: " .. v.AccountAge .. "} \n{" .. Data_AV12(v.Name) .. "}"
             gui:Clone().Parent = v.Character.Head
     end
 end
 end)
 
-notify("ESP name enable, type in chat " .. prefix .. "username [enable or disable] to disable or enable esp name")
+ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up, 1787 minutes","OK")
+
 --[[
 local friendsingame = 0
 game.Players.PlayerAdded:Connect(function(Player)
