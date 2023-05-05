@@ -6037,7 +6037,7 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
-	    esp.Text = "{"..v.Name.."} \n{Age: " .. v.AccountAge .. "} \n{" .. Data_AV12(v.Name) .. "}"
+	    esp.Text = "{"..v.Name.."} \n{ Age: " .. v.AccountAge .. " Days ago }"
             gui:Clone().Parent = v.Character.Head
     end
 end
@@ -6045,7 +6045,7 @@ end)
 
 ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up, 1787 minutes","OK")
 
---[[
+
 local friendsingame = 0
 game.Players.PlayerAdded:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
@@ -6055,7 +6055,7 @@ ErrorPrompt("Friend Joined","Your friend " .. tostring(Player) .. " has joined t
 -- print(friendsingame..' are in this server')
 end
 end)
---]]
+
 
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
