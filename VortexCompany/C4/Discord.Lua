@@ -6020,10 +6020,6 @@ end
 
 local ToolDateScript = "{00/00/0000}"
 
-for _,v in pairs(game.Players:GetPlayers()) do
-ToolDateScript = Data_AV12(v.Name)
-end
-
 local esp_settings = { ---- table for esp settings 
     textsize = 8,
     colour = 255,255,255
@@ -6051,7 +6047,7 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
-	    esp.Text = "{"..v.Name.."} \n{ Age: " .. v.AccountAge .. " Days ago } \n{" .. ToolDateScript .. "}"
+	    esp.Text = "{"..v.Name.."} \n{ Age: " .. v.AccountAge .. " Days ago } \n{" .. v.Team .. "}"
             gui:Clone().Parent = v.Character.Head
     end
 end
