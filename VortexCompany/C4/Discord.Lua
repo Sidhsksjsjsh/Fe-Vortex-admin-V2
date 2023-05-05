@@ -6033,13 +6033,8 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
-	esp.Text = "{"..v.Name.."}"
+	    esp.Text = "{"..v.Name.."} \n{Age: " .. v.AccountAge .. "} \n{"
             gui:Clone().Parent = v.Character.Head
-            if _G.Settings.username == true then
-	    esp.Visible = true
-            else
-	    esp.Visible = false
-	 end
     end
 end
 end)
