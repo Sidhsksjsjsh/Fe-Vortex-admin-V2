@@ -6046,7 +6046,7 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
  
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
-        if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("SPY")==nil  then
+        if v ~= game:GetService("Players").LocalPlayer then
 	local VisualDistance = math.floor((getRoot(speaker.Character).Position - getRoot(v.Character).Position).magnitude)
 	for _,ToolItem in next,v.Backpack:GetChildren() do
 	    esp.Text = "{"..v.Name.."} \n{Distance: " .. tostring(VisualDistance) .. " Meters} \n{" .. v.Character:FindFirstChildOfClass('Humanoid').Health .. "/" .. v.Character:FindFirstChildOfClass('Humanoid').MaxHealth .. "} \n{ Tool: " .. ToolItem .. "}"
