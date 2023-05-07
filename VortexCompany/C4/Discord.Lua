@@ -6048,11 +6048,9 @@ game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer then
 	local VisualDistance = math.floor((getRoot(speaker.Character).Position - getRoot(v.Character).Position).magnitude)
-	for _,ToolItem in next,v.Backpack:GetChildren() do
-	    esp.Text = "{"..v.Name.."} \n{Distance: " .. tostring(VisualDistance) .. " Meters} \n{" .. v.Character:FindFirstChildOfClass('Humanoid').Health .. "/" .. v.Character:FindFirstChildOfClass('Humanoid').MaxHealth .. "} \n{ Tool: " .. ToolItem .. "}"
+	    esp.Text = "{"..v.Name.."} \n{Distance: " .. tostring(VisualDistance) .. " Meters} \n{" .. v.Character:FindFirstChildOfClass('Humanoid').Health .. "/" .. v.Character:FindFirstChildOfClass('Humanoid').MaxHealth .. "}"
             gui:Clone().Parent = v.Character.Head
-	 end -- tool
-    end
+	end
 end
 end)
 
