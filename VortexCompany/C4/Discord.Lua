@@ -6047,7 +6047,6 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
         if v ~= game:GetService("Players").LocalPlayer then
-	local VisualDistance = math.floor((getRoot(speaker.Character).Position - getRoot(v.Character).Position).magnitude)
 	    esp.Text = "{"..v.Name.."} \n{" .. v.Character:FindFirstChildOfClass('Humanoid').Health .. "/" .. v.Character:FindFirstChildOfClass('Humanoid').MaxHealth .. "}"
             gui:Clone().Parent = v.Character.Head
 	end
