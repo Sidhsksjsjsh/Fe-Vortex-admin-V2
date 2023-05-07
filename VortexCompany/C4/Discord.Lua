@@ -6026,10 +6026,11 @@ local esp_settings = { ---- table for esp settings
 }
  
 local gui = Instance.new("BillboardGui")
-local esp = Instance.new("TextLabel",gui) 
-
+local esp = Instance.new("TextLabel",gui) ---- new instances to make the billboard gui and the textlabel
  
-gui.Name = "SPY";
+ 
+ 
+gui.Name = "Cracked esp"; ---- properties of the esp
 gui.ResetOnSpawn = false
 gui.AlwaysOnTop = true;
 gui.LightInfluence = 0;
@@ -6046,10 +6047,10 @@ esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
  
 game:GetService("RunService").RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs (game:GetService("Players"):GetPlayers()) do
-        if v ~= game:GetService("Players").LocalPlayer then
-	    esp.Text = "{"..v.Name.."}"
+        if v ~= game:GetService("Players").LocalPlayer and v.Character.Head:FindFirstChild("Cracked esp")==nil  then -- craeting checks for team check, local player etc
+            esp.Text = "{"..v.Name.."}"
             gui:Clone().Parent = v.Character.Head
-	end
+    end
 end
 end)
 
