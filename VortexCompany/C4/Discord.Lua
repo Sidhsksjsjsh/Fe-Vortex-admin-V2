@@ -1581,6 +1581,21 @@ function ProtocolRead(FileName)
         readfile(FileName)
 end
 
+function GetTimePlayed()
+local seconds = math.floor(workspace.DistributedGameTime)
+local minutes = math.floor(workspace.DistributedGameTime / 60)
+local hours = math.floor(workspace.DistributedGameTime / 60 / 60)
+local seconds = seconds - (minutes * 60)
+local minutes = minutes - (hours * 60)
+if hours < 1 then if minutes < 1 then
+return seconds .. ' Second(s)' else
+return minutes .. " Minute(s), " .. seconds .. ' Second(s)'
+end
+else
+return hours .. ' Hour(s), ' .. minutes .. ' Minute(s), ' .. seconds .. ' Second(s)'
+end
+end
+
 SaveOMG.MouseButton1Down:Connect(function()
    if isfile(FileName.Text) then -- FileName & InFile
       notify('file with name "' .. FileName.Text .. '" already exists.')
@@ -5656,6 +5671,10 @@ local var = string.sub(msg,space+1)
 ESPName(var)
 saveSettings()
 end
+if cmd == "timeplayed" then
+notify("wait")
+notify(GetTimePlayed())
+end
 -- limits
 end
 end)
@@ -5824,7 +5843,7 @@ cmds[#cmds + 1] = {Text = "[156] " .. tostring(prefix) .. "weaken [number]",Titl
 cmds[#cmds + 1] = {Text = "[157] " .. tostring(prefix) .. "unweaken",Title = "destroy weakness"} -- 9
 cmds[#cmds + 1] = {Text = "[158] " .. tostring(prefix) .. "strengthen [number]",Title = "strong"} -- 10
 cmds[#cmds + 1] = {Text = "[159] " .. tostring(prefix) .. "bundle [bundle ID]",Title = "gives u free bundle"}
-cmds[#cmds + 1] = {Text = "[???] [ Command Removed ]",Title = "[ Command Removed ]"}
+cmds[#cmds + 1] = {Text = "[160] " .. tostring(prefix) .. "timeplayed",Title = "to check ur time played"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -5965,7 +5984,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [06/05/2023] \n\n[CONTENT] \n[+] There isn't any.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [08/05/2023] \n\n[CONTENT] \n[+] new rest notification (every 6 hours) \n[+] new 'timeplayed' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -6056,6 +6075,25 @@ end)
 
 ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
+RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
+local seconds = math.floor(workspace.DistributedGameTime)
+local minutes = math.floor(workspace.DistributedGameTime / 60)
+local hours = math.floor(workspace.DistributedGameTime / 60 / 60)
+local seconds = seconds - (minutes * 60)
+local minutes = minutes - (hours * 60)
+if hours == 1 and minutes == 0 and seconds == 0 then
+ErrorPrompt("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+end
+if hours == 6 and minutes == 0 and seconds == 0 then
+ErrorPrompt("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+end
+if hours == 12 and minutes == 0 and seconds == 0 then
+ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+end
+if hours == 18 and minutes == 0 and seconds == 0 then
+ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+end
+end)
 
 local friendsingame = 0
 game.Players.PlayerAdded:Connect(function(Player)
@@ -6067,6 +6105,10 @@ ErrorPrompt("Friend Joined","Your friend " .. tostring(Player) .. " has joined t
 end
 end)
 
-
+game.Players.PlayerRemoving:Connect(function(Player)
+if speaker:IsFriendsWith(Player.UserId) then
+friendsingame = friendsingame + -1
+end
+end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
