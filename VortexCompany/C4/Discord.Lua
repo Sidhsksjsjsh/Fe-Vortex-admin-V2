@@ -357,11 +357,11 @@ local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
 local U3                         = Instance.new('TextButton', U1)
 local U4                         = Instance.new('TextButton', U1)
--- toggle vfly:
 local U5                         = Instance.new('TextButton', GUI_MAIN)
 local U6                         = Instance.new('TextButton', U5)
 local TextBar                         = Instance.new('TextBox', GUI_MAIN)
 local BarSent                         = Instance.new('TextButton', TextBar)
+local ToggleBypass                         = Instance.new('TextButton', TextBar)
 local TextBarExecutor                         = Instance.new('TextBox', GUI_MAIN)
 local BarButtonExecute                         = Instance.new('TextButton', TextBarExecutor)
 -- choose part function ui
@@ -702,12 +702,35 @@ BarSent.BackgroundTransparency  = 0.5
 BarSent.BackgroundColor         = BrickColor.new('Fossil')
 BarSent.BorderSizePixel         = 0
 BarSent.Position                = UDim2.new(0.5,-100,0,30)
-BarSent.Text                    = "Sent!"
+BarSent.Text                    = "Send [Bypass: ON]"
 BarSent.TextColor3              = Color3.new(1,1,1)
 BarSent.TextStrokeTransparency  = 1
 BarSent.TextWrapped             = true
 BarSent.FontSize                = 'Size24'
 BarSent.Font                    = 'SourceSansBold'
+
+local BypassWord = true
+ToggleBypass.Size                    = UDim2.new(0,200,0,30)
+ToggleBypass.BackgroundTransparency  = 0.5
+ToggleBypass.BackgroundColor         = BrickColor.new('Fossil')
+ToggleBypass.BorderSizePixel         = 0
+ToggleBypass.Position                = UDim2.new(0.5,-100,0,60)
+ToggleBypass.Text                    = "Disable Bypass"
+ToggleBypass.TextColor3              = Color3.new(1,1,1)
+ToggleBypass.TextStrokeTransparency  = 1
+ToggleBypass.TextWrapped             = true
+ToggleBypass.FontSize                = 'Size24'
+ToggleBypass.Font                    = 'SourceSansBold'
+ToggleBypass.MouseButton1Down:Connect(function()
+	BypassWord = not BypassWord
+		if BypassWord then
+			BarSent.Text                    = "Send [Bypass: ON]"
+			ToggleBypass.Text                    = "Disable Bypass"
+			else
+			BarSent.Text                    = "Send [Bypass: OFF]"
+			ToggleBypass.Text                    = "Enable Bypass"
+     end
+end)
 
 TextBarExecutor.Size                    = UDim2.new(0,200,0,30)
 TextBarExecutor.BackgroundTransparency  = 0.5
@@ -1185,7 +1208,11 @@ local chat = BypassWord
 end
 
 BarSent.MouseButton1Down:Connect(function()
-     SyncBypassChat(TextBar.Text)
+	if BypassWord then
+           SyncBypassChat(TextBar.Text)
+	else
+	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
+    end
 end)
 
 local espParts = {}
