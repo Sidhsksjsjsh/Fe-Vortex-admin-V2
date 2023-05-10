@@ -5737,6 +5737,7 @@ notify(GetTimePlayed())
 end
 -- limit
 end
+end
 end)
 
 speaker.Chatted:Connect(function(msg)
