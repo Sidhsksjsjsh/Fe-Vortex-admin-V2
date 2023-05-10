@@ -5735,6 +5735,24 @@ if cmd == "timeplayed" then
 notify("wait")
 notify(GetTimePlayed())
 end
+if cmd == "domainhub" then
+local respon, result = pcall(function()
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d"))
+end)
+
+if not respon then
+ErrorPrompt("Domain Hub (REMAKE)", result, "close")
+end
+end
+if cmd == "nowall" then
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Transparency == 1 then
+                v.CanCollide = false
+            end
+        end
+    end
+end
 -- limit
 end
 end
@@ -7893,6 +7911,24 @@ if cmd == "timeplayed" then
 notify("wait")
 notify(GetTimePlayed())
 end
+if cmd == "domainhub" then
+local respon, result = pcall(function()
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d"))
+end)
+
+if not respon then
+ErrorPrompt("Domain Hub (REMAKE)", result, "close")
+end
+end
+if cmd == "nowall" then
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Transparency == 1 then
+                v.CanCollide = false
+            end
+        end
+    end
+end
 -- limits
 end
 end)
@@ -8062,6 +8098,8 @@ cmds[#cmds + 1] = {Text = "[157] " .. tostring(prefix) .. "unweaken",Title = "de
 cmds[#cmds + 1] = {Text = "[158] " .. tostring(prefix) .. "strengthen [number]",Title = "strong"} -- 10
 cmds[#cmds + 1] = {Text = "[159] " .. tostring(prefix) .. "bundle [bundle ID]",Title = "gives u free bundle"}
 cmds[#cmds + 1] = {Text = "[160] " .. tostring(prefix) .. "timeplayed",Title = "to check ur time played"}
+cmds[#cmds + 1] = {Text = "[161] " .. tostring(prefix) .. "domainhub",Title = "execute domain hub script"}
+cmds[#cmds + 1] = {Text = "[162] " .. tostring(prefix) .. "nowall",Title = "removed invisible wall"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
