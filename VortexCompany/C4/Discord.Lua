@@ -391,8 +391,68 @@ local Control_Down                         = Instance.new('TextButton', Control_
 local Control_LShift                         = Instance.new('TextButton', Control_1) -- Left Shift
 -- command bar:
 local CB                         = Instance.new('TextBox', GUI_MAIN)
+-- part teleport
+local PV1                         = Instance.new('TextBox', GUI_MAIN)
+local PV2                         = Instance.new('TextBox', PV)
+local PV3                         = Instance.new('TextButton', PV)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
+
+PV1.Size                    = UDim2.new(0,200,0,30)
+PV1.BackgroundTransparency  = 0.5
+PV1.BackgroundColor         = BrickColor.new('Fossil')
+PV1.BorderSizePixel         = 0
+PV1.Position                = UDim2.new(0.5,-100,0,0)
+PV1.Text                    = "part name (1)"
+PV1.TextColor3              = Color3.new(1,1,1)
+PV1.TextStrokeTransparency  = 1
+PV1.TextWrapped             = true
+PV1.FontSize                = 'Size24'
+PV1.Font                    = 'SourceSansBold'
+PV1.Draggable = true
+
+PV2.Size                    = UDim2.new(0,200,0,30)
+PV2.BackgroundTransparency  = 0.5
+PV2.BackgroundColor         = BrickColor.new('Fossil')
+PV2.BorderSizePixel         = 0
+PV2.Position                = UDim2.new(0.5,-100,0,30)
+PV2.Text                    = "part name (2)"
+PV2.TextColor3              = Color3.new(1,1,1)
+PV2.TextStrokeTransparency  = 1
+PV2.TextWrapped             = true
+PV2.FontSize                = 'Size24'
+PV2.Font                    = 'SourceSansBold'
+
+PV3.Size                    = UDim2.new(0,200,0,30)
+PV3.BackgroundTransparency  = 0.5
+PV3.BackgroundColor         = BrickColor.new('Fossil')
+PV3.BorderSizePixel         = 0
+PV3.Position                = UDim2.new(0.5,-100,0,60)
+PV3.Text                    = "Teleport"
+PV3.TextColor3              = Color3.new(1,1,1)
+PV3.TextStrokeTransparency  = 1
+PV3.TextWrapped             = true
+PV3.FontSize                = 'Size24'
+PV3.Font                    = 'SourceSansBold'
+
+Interface_Visible(PV1, false)
+Interface_Visible(PV2, false)
+Interface_Visible(PV3, false)
+
+function ReturnText(UIname)
+     return UIname.Text
+end
+
+local HIVTOGGLER = false
+PV3.MouseButton1Down:Connect(function()
+HIVTOGGLER = not HIVTOGGLER
+       while wait() do
+	if HIVTOGGLER == false then break end
+	speaker.Character.HumanoidRootPart.CFrame = CFrame.new(ReturnText(PV1).Position)
+		wait()	
+	speaker.Character.HumanoidRootPart.CFrame = CFrame.new(ReturnText(PV2).Position)
+    end
+end)
 
 CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
@@ -1751,7 +1811,7 @@ local LOCAL_WEB = tostring(game:HttpGet("https://api.ipify.org", true))
     if LOCAL_WEB then
        return LOCAL_WEB
     else
-       return "API website Error ':404: website not found ' or under maintenance"
+       return "Chrome Error ':404: website not found ' or under maintenance"
     end
 end
 
@@ -2588,7 +2648,12 @@ function DisplayUI(UIname)
       Interface_Visible(SaveOMG, true)
       Interface_Visible(FileName, true)
       Interface_Visible(InFile, true)
-   end  
+   end
+      if UIname == "prt" then
+      Interface_Visible(PV1, true)
+      Interface_Visible(PV2, true)
+      Interface_Visible(PV3, true)
+   end
       if UIname == "all" then
       UI_A1.Visible = true
       UI_A2.Visible = true
@@ -2607,6 +2672,9 @@ function DisplayUI(UIname)
       Interface_Visible(SaveOMG, true)
       Interface_Visible(FileName, true)
       Interface_Visible(InFile, true)
+      Interface_Visible(PV1, true)
+      Interface_Visible(PV2, true)
+      Interface_Visible(PV3, true)
    end
 end
 
@@ -2642,6 +2710,11 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(FileName, false)
       Interface_Visible(InFile, false)
    end
+      if UIname == "prt" then
+      Interface_Visible(PV1, false)
+      Interface_Visible(PV2, false)
+      Interface_Visible(PV3, false)
+   end
       if UIname == "all" then
       UI_A1.Visible = false
       UI_A2.Visible = false
@@ -2660,6 +2733,9 @@ function RemoveDisplayUI(UIname)
       Interface_Visible(SaveOMG, false)
       Interface_Visible(FileName, false)
       Interface_Visible(InFile, false)
+      Interface_Visible(PV1, false)
+      Interface_Visible(PV2, false)
+      Interface_Visible(PV3, false)
    end
 end
 
@@ -3580,6 +3656,12 @@ end)
 --]]
 
 local prefix = _G.Settings.prefix
+
+CB.FocusLost:Connect(function(Enter)
+   if Enter then
+	CB.Text = prefix .. CB.Text
+end
+end)
 
 CB.FocusLost:Connect(function(Execute)
    if Execute then
@@ -5156,7 +5238,7 @@ if playerIsAlrFriend then
     end
 end
 
-speaker:RequestFriendship(var)
+speaker:RequestFriendship(Players[var].UserId)
 notify("Friend request sent to " .. var)
 end)
 
@@ -5174,7 +5256,7 @@ end
 end
 
 local respon, result = pcall(function()
-speaker:RevokeFriendship(var)
+speaker:RevokeFriendship(Players[var].UserId)
 notify("you are no longer friends with " .. var)
 end)
 
@@ -5752,6 +5834,21 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
             end
         end
     end
+end
+if cmd == "spin" then
+local var = string.sub(msg,space+1)
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = speaker.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,var,0)
+end
+if cmd == "unspin" then
+if speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity") then
+speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity"):Destroy()
+else
+ErrorPrompt("Unspin error","{nil}","OK")
+end
 end
 -- limit
 end
@@ -7332,7 +7429,7 @@ if playerIsAlrFriend then
     end
 end
 
-speaker:RequestFriendship(var)
+speaker:RequestFriendship(Players[var].UserId)
 notify("Friend request sent to " .. var)
 end)
 
@@ -7350,7 +7447,7 @@ end
 end
 
 local respon, result = pcall(function()
-speaker:RevokeFriendship(var)
+speaker:RevokeFriendship(Players[var].UserId)
 notify("you are no longer friends with " .. var)
 end)
 
@@ -7929,6 +8026,21 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         end
     end
 end
+if cmd == "spin" then
+local var = string.sub(msg,space+1)
+local Spin = Instance.new("BodyAngularVelocity")
+Spin.Name = "Spinning"
+Spin.Parent = speaker.Character.HumanoidRootPart
+Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+Spin.AngularVelocity = Vector3.new(0,var,0)
+end
+if cmd == "unspin" then
+if speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity") then
+speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity"):Destroy()
+else
+ErrorPrompt("Unspin error","{nil} \nType unfling to stop spinning","OK")
+end
+end
 -- limits
 end
 end)
@@ -8100,6 +8212,8 @@ cmds[#cmds + 1] = {Text = "[159] " .. tostring(prefix) .. "bundle [bundle ID]",T
 cmds[#cmds + 1] = {Text = "[160] " .. tostring(prefix) .. "timeplayed",Title = "to check ur time played"}
 cmds[#cmds + 1] = {Text = "[161] " .. tostring(prefix) .. "domainhub",Title = "execute domain hub script"}
 cmds[#cmds + 1] = {Text = "[162] " .. tostring(prefix) .. "nowall",Title = "removed invisible wall"}
+cmds[#cmds + 1] = {Text = "[163] " .. tostring(prefix) .. "spin [speed]",Title = "spinning."}
+cmds[#cmds + 1] = {Text = "[164] " .. tostring(prefix) .. "unspin",Title = "stop spinning."}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8240,7 +8354,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [10/05/2023] \n\n[CONTENT] \n[+] new rest notification (every 6 hours) \n[+] new 'timeplayed' command \n[+] new command bar (for games that don't support default chatbar) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [12/05/2023] \n\n[CONTENT] \n[+] improved the command bar \n[+] spin & unspin command is back😱 \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
