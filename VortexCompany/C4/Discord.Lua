@@ -3657,9 +3657,11 @@ end)
 
 local prefix = _G.Settings.prefix
 
+local arrow = "➜ "
+
 CB.FocusLost:Connect(function(Enter)
    if Enter then
-	CB.Text = prefix .. CB.Text
+	CB.Text = arrow .. CB.Text
 end
 end)
 
@@ -5849,6 +5851,26 @@ speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity"):Destroy
 else
 ErrorPrompt("Unspin error","{nil}","OK")
 end
+end
+if cmd == "collide" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CanCollide = false
+            end
+        end
+    end
+end
+if cmd == "uncollide" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CanCollide = true
+            end
+        end
+    end
 end
 -- limit
 end
@@ -8041,6 +8063,26 @@ else
 ErrorPrompt("Unspin error","{nil} \nType unfling to stop spinning","OK")
 end
 end
+if cmd == "collide" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CanCollide = false
+            end
+        end
+    end
+end
+if cmd == "uncollide" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CanCollide = true
+            end
+        end
+    end
+end
 -- limits
 end
 end)
@@ -8214,6 +8256,8 @@ cmds[#cmds + 1] = {Text = "[161] " .. tostring(prefix) .. "domainhub",Title = "e
 cmds[#cmds + 1] = {Text = "[162] " .. tostring(prefix) .. "nowall",Title = "removed invisible wall"}
 cmds[#cmds + 1] = {Text = "[163] " .. tostring(prefix) .. "spin [speed]",Title = "spinning."}
 cmds[#cmds + 1] = {Text = "[164] " .. tostring(prefix) .. "unspin",Title = "stop spinning."}
+cmds[#cmds + 1] = {Text = "[165] " .. tostring(prefix) .. "collide [part name]",Title = "make u walk through"}
+cmds[#cmds + 1] = {Text = "[166] " .. tostring(prefix) .. "uncollide [part name]",Title = "cant make u walk through"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
