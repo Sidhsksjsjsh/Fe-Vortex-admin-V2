@@ -475,15 +475,6 @@ end
 end)
 --]]
 
-RunService.RenderStepped:Connect(function()
-local TeamColor = speaker.TeamColor
-if TeamColor then
-CB.BackgroundColor3         = Color3.new(TeamColor)
-else
-CB.BackgroundColor3         = Color3.new(0, 0, 1)
-end
-end)
-
 Control_1.Size                    = UDim2.new(0,200,0,30)
 Control_1.BackgroundTransparency  = 0.5
 Control_1.BackgroundColor         = BrickColor.new('Fossil')
@@ -8531,6 +8522,11 @@ end
 
 local ToolDateScript = "{00/00/0000}"
 
+speaker.TeamChanged:Connect(function()
+    local newTeam = speaker.Team.Name
+    ErrorPrompt("Team Changed","You've moved to a team: " .. newTeam,"OK")
+end)
+
 local esp_settings = { ---- table for esp settings 
     textsize = 8,
     colour = 255,255,255
@@ -8565,7 +8561,7 @@ RunService.RenderStepped:Connect(function() ---- loops faster than a while loop 
 end
 end)
 
-ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
+-- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
 local seconds = math.floor(workspace.DistributedGameTime)
