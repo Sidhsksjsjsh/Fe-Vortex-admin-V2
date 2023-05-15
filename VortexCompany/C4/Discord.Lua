@@ -1260,13 +1260,14 @@ end
 function SynchronousGameTeleport(GameID, CD, ScriptNumberAsync1)
 local SyncSetTitles = game:GetService("MarketplaceService"):GetProductInfo(GameID)
 local SyncTeleportScreen = Instance.new("Message", Workspace)
-SyncTeleportScreen.Text = "Traveling to \n" .. SyncSetTitles .. " \nplease wait about 1-5 minutes for it to teleport you to the game you choose"
+SyncTeleportScreen.Text = "Traveling to \n" .. SyncSetTitles.Name .. " \nplease wait about 1-5 minutes for it to teleport you to the game you choose"
 for i = 1, ScriptNumberAsync1 do
 workspace.CurrentCamera.FieldOfView = i
 end
 wait(CD)
-SyncTeleportScreen:Destroy()
 game:GetService('TeleportService'):Teleport(GameID)
+wait(1)
+SyncTeleportScreen:Destroy()
 end
 
 function SyncBypassChat(BypassWord)
