@@ -8578,6 +8578,15 @@ ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than
 end
 end)
 
+RunService.RenderStepped:Connect(function()
+local TeamColor = speaker.TeamColor
+if TeamColor then
+CB.BackgroundColor         = BrickColor.new(TeamColor)
+else
+CB.BackgroundColor         = BrickColor.new('Fossil')
+end
+end)
+
 local friendsingame = 0
 game.Players.PlayerAdded:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
