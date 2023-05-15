@@ -5509,7 +5509,7 @@ end
 end
 if cmd == "iy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))
+executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua')) -- without .lua
 end)
 
 if not respon then
@@ -5821,7 +5821,7 @@ notify(GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d"))
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d.lua")) -- without .lua
 end)
 
 if not respon then
@@ -5868,6 +5868,16 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.CanCollide = true
+            end
+        end
+    end
+end
+if cmd == "dpart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.Transparency = 1 
             end
         end
     end
@@ -7720,7 +7730,7 @@ end
 end
 if cmd == "iy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))
+executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua')) -- without .lua
 end)
 
 if not respon then
@@ -8032,7 +8042,7 @@ notify(GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d"))
+executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d.lua")) -- without .lua
 end)
 
 if not respon then
@@ -8079,6 +8089,16 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.CanCollide = true
+            end
+        end
+    end
+end
+if cmd == "dpart" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.Transparency = 1 
             end
         end
     end
@@ -8258,6 +8278,7 @@ cmds[#cmds + 1] = {Text = "[163] " .. tostring(prefix) .. "spin [speed]",Title =
 cmds[#cmds + 1] = {Text = "[164] " .. tostring(prefix) .. "unspin",Title = "stop spinning."}
 cmds[#cmds + 1] = {Text = "[165] " .. tostring(prefix) .. "collide [part name]",Title = "make u walk through"}
 cmds[#cmds + 1] = {Text = "[166] " .. tostring(prefix) .. "uncollide [part name]",Title = "cant make u walk through"}
+cmds[#cmds + 1] = {Text = "[167] " .. tostring(prefix) .. "dpart [part name]",Title = "remove selected part"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8398,7 +8419,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [12/05/2023] \n\n[CONTENT] \n[+] improved the command bar \n[+] spin & unspin command is back😱 \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [15/05/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -8521,7 +8542,11 @@ end)
 
 game.Players.PlayerRemoving:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
+if friendsingame < 0 then
+friendsingame = 0
+else
 friendsingame = friendsingame + -1
+end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
