@@ -4738,10 +4738,16 @@ local var = string.sub(msg,space+1)
 CameraMode(var)
 end
 if cmd == "usetool" then
+local var = string.sub(msg,space+1)
+if loopUse then
+       loopUse:Disconnect()
+end
 local function Tool_Service_UV75()
-   for i,v in pairs(speaker.Backpack:GetChildren()) do
-       v:Activate()
-      end
+   for i,v in pairs (speaker.Character:GetChildren()) do
+       if v.Name:lower() == var then
+           v:Activate()
+       end
+   end
 end
     loopUse = RunService.Stepped:Connect(Tool_Service_UV75)
 end
@@ -5878,6 +5884,7 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.Transparency = 1 
+		v.CanCollide = false
             end
         end
     end
@@ -6959,10 +6966,16 @@ local var = string.sub(msg,space+1)
 CameraMode(var)
 end
 if cmd == "usetool" then
+local var = string.sub(msg,space+1)
+if loopUse then
+       loopUse:Disconnect()
+end
 local function Tool_Service_UV75()
-   for i,v in pairs(speaker.Backpack:GetChildren()) do
-       v:Activate()
-      end
+   for i,v in pairs (speaker.Character:GetChildren()) do
+       if v.Name:lower() == var then
+           v:Activate()
+       end
+   end
 end
     loopUse = RunService.Stepped:Connect(Tool_Service_UV75)
 end
@@ -8099,6 +8112,7 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.Transparency = 1 
+		v.CanCollide = false
             end
         end
     end
