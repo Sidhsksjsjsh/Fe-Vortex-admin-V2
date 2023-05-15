@@ -456,7 +456,7 @@ end)
 
 CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
-CB.BackgroundColor         = BrickColor.new('Fossil')
+CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
 CB.Position                = UDim2.new(0.5,-100,0,50)
 CB.Text                    = "Command name"
@@ -474,6 +474,15 @@ CB.FocusLost:Connect(function(Execute)
 end
 end)
 --]]
+
+RunService.RenderStepped:Connect(function()
+local TeamColor = speaker.TeamColor
+if TeamColor then
+CB.BackgroundColor3         = Color.new(TeamColor)
+else
+CB.BackgroundColor3         = Color.new(0, 0, 1)
+end
+end)
 
 Control_1.Size                    = UDim2.new(0,200,0,30)
 Control_1.BackgroundTransparency  = 0.5
@@ -8575,15 +8584,6 @@ ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than
 end
 if hours == 18 and minutes == 0 and seconds == 0 then
 ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
-end
-end)
-
-RunService.RenderStepped:Connect(function()
-local TeamColor = speaker.TeamColor
-if TeamColor then
-CB.BackgroundColor         = BrickColor.new(TeamColor)
-else
-CB.BackgroundColor         = BrickColor.new('Fossil')
 end
 end)
 
