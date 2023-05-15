@@ -1257,6 +1257,18 @@ function LoadBundle(id)
 	HumanoidDescription.Parent = workspace
 end
 
+function SynchronousGameTeleport(GameID, CD, ScriptNumberAsync1)
+local SyncSetTitles = game:GetService("MarketplaceService"):GetProductInfo(GameID)
+local SyncTeleportScreen = Instance.new("Message", Workspace)
+SyncTeleportScreen.Text = "Traveling to \n" .. SyncSetTitles .. " \nplease wait about 1-5 minutes for it to teleport you to the game you choose"
+for i = 1, ScriptNumberAsync1 do
+workspace.CurrentCamera.FieldOfView = i
+end
+wait(CD)
+SyncTeleportScreen:Destroy()
+game:GetService('TeleportService'):Teleport(GameID)
+end
+
 function SyncBypassChat(BypassWord)
 local chat = BypassWord
     local tabl = {}
@@ -3657,11 +3669,11 @@ end)
 
 local prefix = _G.Settings.prefix
 
-local arrow = "➜ "
-
+local arrow = "> "
+local Arrow_2 = " <"
 CB.FocusLost:Connect(function(Enter)
    if Enter then
-	CB.Text = arrow .. CB.Text
+	CB.Text = arrow .. CB.Text .. Arrow_2
 end
 end)
 
@@ -5888,6 +5900,16 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
             end
         end
     end
+end
+if cmd == "travelto" then
+local var = string.sub(msg,space+1)
+local respon, result = pcall(function()
+SynchronousGameTeleport(var, 60, 60) -- https://
+end)
+
+if not respon then
+ErrorPrompt("Travel Failed",result,"OK")
+end
 end
 -- limit
 end
@@ -8117,6 +8139,16 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         end
     end
 end
+if cmd == "travelto" then
+local var = string.sub(msg,space+1)
+local respon, result = pcall(function()
+SynchronousGameTeleport(var, 60, 60) -- https://
+end)
+
+if not respon then
+ErrorPrompt("Travel Failed",result,"OK")
+end
+end
 -- limits
 end
 end)
@@ -8293,6 +8325,7 @@ cmds[#cmds + 1] = {Text = "[164] " .. tostring(prefix) .. "unspin",Title = "stop
 cmds[#cmds + 1] = {Text = "[165] " .. tostring(prefix) .. "collide [part name]",Title = "make u walk through"}
 cmds[#cmds + 1] = {Text = "[166] " .. tostring(prefix) .. "uncollide [part name]",Title = "cant make u walk through"}
 cmds[#cmds + 1] = {Text = "[167] " .. tostring(prefix) .. "dpart [part name]",Title = "remove selected part"}
+cmds[#cmds + 1] = {Text = "[168] " .. tostring(prefix) .. "travelto [game ID]",Title = "game teleport but travel"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
