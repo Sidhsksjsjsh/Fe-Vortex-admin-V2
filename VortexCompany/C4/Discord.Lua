@@ -478,9 +478,9 @@ end)
 RunService.RenderStepped:Connect(function()
 local TeamColor = speaker.TeamColor
 if TeamColor then
-CB.BackgroundColor3         = Color.new(TeamColor)
+CB.BackgroundColor3         = Color3.new(TeamColor)
 else
-CB.BackgroundColor3         = Color.new(0, 0, 1)
+CB.BackgroundColor3         = Color3.new(0, 0, 1)
 end
 end)
 
