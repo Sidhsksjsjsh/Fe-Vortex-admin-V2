@@ -467,13 +467,16 @@ CB.FontSize                = 'Size24'
 CB.Font                    = 'SourceSansBold'
 CB.Draggable = true
 
---[[
-CB.FocusLost:Connect(function(Execute)
-   if Execute then
-
-end
+CB.MouseEnter:Connect(function()
+CB.BackgroundTransparency = 0.5
+CB.TextTransparency = 1
 end)
---]]
+
+CB.MouseLeave:Connect(function()
+wait(3)
+CB.BackgroundTransparency = 100
+CB.TextTransparency = 0
+end)
 
 Control_1.Size                    = UDim2.new(0,200,0,30)
 Control_1.BackgroundTransparency  = 0.5
@@ -5912,6 +5915,26 @@ if not respon then
 ErrorPrompt("Travel Failed",result,"OK")
 end
 end
+if cmd == "loopbringpart" then
+local var = string.sub(msg,space+1)
+local function Loopbring()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CFrame = getRoot(speaker.Character).CFrame
+            end
+        end
+    end
+   end
+    ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
+    notify("started carrying the named object '" .. var .. "'.")
+end
+if cmd == "unloopbringpart" then
+if ScriptLoopBring then
+       ScriptLoopBring:Disconnect()
+       notify("stoped carrying the object")
+end
+end
 -- limit
 end
 end
@@ -8150,6 +8173,26 @@ if not respon then
 ErrorPrompt("Travel Failed",result,"OK")
 end
 end
+if cmd == "loopbringpart" then
+local var = string.sub(msg,space+1)
+local function Loopbring()
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CFrame = getRoot(speaker.Character).CFrame
+            end
+        end
+    end
+   end
+    ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
+    notify("started carrying the named object '" .. var .. "'.")
+end
+if cmd == "unloopbringpart" then
+if ScriptLoopBring then
+       ScriptLoopBring:Disconnect()
+       notify("stoped carrying the object")
+end
+end
 -- limits
 end
 end)
@@ -8327,6 +8370,8 @@ cmds[#cmds + 1] = {Text = "[165] " .. tostring(prefix) .. "collide [part name]",
 cmds[#cmds + 1] = {Text = "[166] " .. tostring(prefix) .. "uncollide [part name]",Title = "cant make u walk through"}
 cmds[#cmds + 1] = {Text = "[167] " .. tostring(prefix) .. "dpart [part name]",Title = "remove selected part"}
 cmds[#cmds + 1] = {Text = "[168] " .. tostring(prefix) .. "travelto [game ID]",Title = "game teleport but travel"}
+cmds[#cmds + 1] = {Text = "[169] " .. tostring(prefix) .. "loopbringpart [part name]",Title = "auto bringing all item"}
+cmds[#cmds + 1] = {Text = "[170] " .. tostring(prefix) .. "unloopbringpart",Title = "stop auto bringing"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8522,11 +8567,7 @@ end
 
 local ToolDateScript = "{00/00/0000}"
 
-speaker.TeamChanged:Connect(function()
-    local newTeam = speaker.Team.Name
-    ErrorPrompt("Team Changed","You've moved to a team: " .. newTeam,"OK")
-end)
-
+--[[
 local esp_settings = { ---- table for esp settings 
     textsize = 8,
     colour = 255,255,255
@@ -8560,7 +8601,7 @@ RunService.RenderStepped:Connect(function() ---- loops faster than a while loop 
     end
 end
 end)
-
+--]]
 -- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
