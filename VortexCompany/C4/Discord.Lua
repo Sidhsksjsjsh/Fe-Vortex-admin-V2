@@ -469,13 +469,13 @@ CB.Draggable = true
 
 CB.MouseEnter:Connect(function()
 CB.BackgroundTransparency = 0.5
-CB.TextTransparency = 1
+CB.TextTransparency = 0
 end)
 
 CB.MouseLeave:Connect(function()
 wait(3)
-CB.BackgroundTransparency = 100
-CB.TextTransparency = 0
+CB.BackgroundTransparency = 75
+CB.TextTransparency = 0.7
 end)
 
 Control_1.Size                    = UDim2.new(0,200,0,30)
