@@ -6044,7 +6044,7 @@ if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
 end
-if cmd == "Mysterious" then
+if cmd == "mysterious" then
 MysteriousTool()
 end
 -- limit
@@ -8314,7 +8314,7 @@ if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
 end
-if cmd == "Mysterious" then
+if cmd == "mysterious" then
 MysteriousTool()
 end
 -- limits
