@@ -5899,8 +5899,8 @@ local var = string.sub(msg,space+1)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
-                v.Transparency = 1 
-		v.CanCollide = false
+                v:Destroy()
+                notify("Removed " .. var)
             end
         end
     end
@@ -8157,8 +8157,8 @@ local var = string.sub(msg,space+1)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
-                v.Transparency = 1 
-		v.CanCollide = false
+                v:Destroy()
+		notify("Removed " .. var)
             end
         end
     end
