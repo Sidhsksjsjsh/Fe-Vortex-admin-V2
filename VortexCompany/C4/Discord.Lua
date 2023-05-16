@@ -1590,7 +1590,103 @@ Domain.FriendJoined.Visible = true
 end
 
 function Punish(ooo)
-	speaker:Kick(ooo)
+	speaker:kick(ooo)
+end
+
+function FindWorkspacePartName(name, hvhvhghh, turn_on_or_off)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Name == name then
+              if hvhvhghh == "Collide" then
+                v.CanCollide = turn_on_or_off or false
+                end
+              if hvhvhghh == "Anchor" then
+                v.Anchored = turn_on_or_off or false
+                end
+              if hvhvhghh == "Lock" then
+                v.Locked = turn_on_or_off or false
+                end
+             if hvhvhghh == "Delete" then
+                v:Destroy()
+                end
+            end
+        end
+    end
+end
+
+function MysteriousTool()
+local AddPartTool = Instance.new("Tool")
+AddPartTool.RequiresHandle = false
+AddPartTool.Name = "Add part"
+AddPartTool.Activated:connect(function()
+local pos = Mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+-- PartScript
+local PartScriptVoxi = Instance.new("Part", workspace)
+PartScriptVoxi.Size = Vector3.new(5, 0.5, 5)
+PartScriptVoxi.Name = "VoxelScriptPart"
+PartScriptVoxi.Locked = true
+PartScriptVoxi.CFrame = pos * CFrame.new(Vector3.new(0, 0, 0))
+PartScriptVoxi.Anchored = true
+local Mesh = Instance.new("CylinderMesh", PartScriptVoxi)
+-- End
+end)
+AddPartTool.Parent = speaker.Backpack
+
+function EditToolName(name, toolname)
+         toolname.Name = name
+end
+
+local DescAnchor = false
+local DescLocked = false
+
+local AnchorPartTool = Instance.new("Tool")
+AnchorPartTool.RequiresHandle = false
+AnchorPartTool.Name = "Anchor: false"
+AnchorPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescAnchor = not DescAnchor
+FindWorkspacePartName("VoxelScriptPart","Anchor",DescAnchor)
+if DescAnchor then
+EditToolName("Anchor: true",AnchorPartTool)
+else
+EditToolName("Anchor: false",AnchorPartTool)
+end
+else
+notify("Error while trying to anchor part")
+end
+end)
+AnchorPartTool.Parent = speaker.Backpack
+
+local LockedPartTool = Instance.new("Tool")
+LockedPartTool.RequiresHandle = false
+LockedPartTool.Name = "Locked: false"
+LockedPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescLocked = not DescLocked
+FindWorkspacePartName("VoxelScriptPart","Lock",DescLocked)
+if DescLocked then
+EditToolName("Locked: true",LockedPartTool)
+else
+EditToolName("Locked: false",LockedPartTool)
+end
+else
+notify("Error while trying to lock part")
+end
+end)
+LockedPartTool.Parent = speaker.Backpack
+
+local DeletePartTool = Instance.new("Tool")
+DeletePartTool.RequiresHandle = false
+DeletePartTool.Name = "Delete"
+DeletePartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+FindWorkspacePartName("VoxelScriptPart","Delete")
+else
+notify("Error while trying to delete part")
+end
+end)
+DeletePartTool.Parent = speaker.Backpack
 end
 
 Github.FocusLost:Connect(function(InterfaceEnter)
@@ -5948,6 +6044,9 @@ if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
 end
+if cmd == "Mysterious" then
+MysteriousTool()
+end
 -- limit
 end
 end
@@ -8214,6 +8313,9 @@ end)
 if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
+end
+if cmd == "Mysterious" then
+MysteriousTool()
 end
 -- limits
 end
