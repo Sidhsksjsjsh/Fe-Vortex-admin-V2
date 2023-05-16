@@ -472,12 +472,6 @@ CB.BackgroundTransparency = 0.5
 CB.TextTransparency = 0
 end)
 
-CB.MouseLeave:Connect(function()
-wait(3)
-CB.BackgroundTransparency = 75
-CB.TextTransparency = 0.7
-end)
-
 Control_1.Size                    = UDim2.new(0,200,0,30)
 Control_1.BackgroundTransparency  = 0.5
 Control_1.BackgroundColor         = BrickColor.new('Fossil')
@@ -3673,11 +3667,21 @@ end)
 
 local prefix = _G.Settings.prefix
 
+--[[
+CB.MouseLeave:Connect(function()
+wait(3)
+CB.BackgroundTransparency = 75
+CB.TextTransparency = 0.7
+end)
+--]]
+
 local arrow = "> "
 local Arrow_2 = " <"
 CB.FocusLost:Connect(function(Enter)
    if Enter then
 	CB.Text = arrow .. CB.Text .. Arrow_2
+	CB.BackgroundTransparency = 0.7
+        CB.TextTransparency = 0.7
 end
 end)
 
@@ -5933,6 +5937,15 @@ if cmd == "unloopbringpart" then
 if ScriptLoopBring then
        ScriptLoopBring:Disconnect()
        notify("stoped carrying the object")
+end
+end
+if cmd == "fates" then
+local respon, result = pcall(function()
+executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))
+end)
+
+if not respon then
+ErrorPrompt("Fates admin error", result, "close")
 end
 end
 -- limit
@@ -8193,6 +8206,15 @@ if ScriptLoopBring then
        notify("stoped carrying the object")
 end
 end
+if cmd == "fates" then
+local respon, result = pcall(function()
+executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))
+end)
+
+if not respon then
+ErrorPrompt("Fates admin error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -8372,6 +8394,7 @@ cmds[#cmds + 1] = {Text = "[167] " .. tostring(prefix) .. "dpart [part name]",Ti
 cmds[#cmds + 1] = {Text = "[168] " .. tostring(prefix) .. "travelto [game ID]",Title = "game teleport but travel"}
 cmds[#cmds + 1] = {Text = "[169] " .. tostring(prefix) .. "loopbringpart [part name]",Title = "auto bringing all item"}
 cmds[#cmds + 1] = {Text = "[170] " .. tostring(prefix) .. "unloopbringpart",Title = "stop auto bringing"}
+cmds[#cmds + 1] = {Text = "[171] " .. tostring(prefix) .. "fates",Title = "execute fates admin"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8512,7 +8535,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [15/05/2023] \n\n[CONTENT] \n[+] added 'travelto' new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] You can customize command names using Sync X admin (PAID) (Ends in 3 days) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [16/05/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] You can customize command names using Sync X admin (PAID) (Ends in 3 days) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
