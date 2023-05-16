@@ -1908,7 +1908,7 @@ MaterialPartTool.RequiresHandle = false
 MaterialPartTool.Name = "Material: Air"
 MaterialPartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
-SetAsAShapes("VoxelScriptPart")
+SetAsAMaterial("VoxelScriptPart")
 EditToolName("Material: " .. MaterialMark,MaterialPartTool)
 else
 notify("Error when trying to apply shape to part")
