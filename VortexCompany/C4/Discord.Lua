@@ -1601,7 +1601,7 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
                 v.CanCollide = turn_on_or_off or false
                 end
               if hvhvhghh == "Anchor" then
-                v.Anchored = turn_on_or_off or false
+                v.Anchored = false
                 end
               if hvhvhghh == "Lock" then
                 v.Locked = turn_on_or_off or false
@@ -1609,12 +1609,259 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
              if hvhvhghh == "Delete" then
                 v:Destroy()
                 end
+              if hvhvhghh == "Query" then
+                v.CanQuery = turn_on_or_off or false
+                end
+              if hvhvhghh == "Touch" then
+                v.CanTouch = turn_on_or_off or false
+                end
+              if hvhvhghh == "Massless" then
+                v.Massless = turn_on_or_off or false
+                end
             end
         end
     end
 end
 
-function MysteriousTool()
+local material = {
+	air = "Air",
+	asphalt = "Asphalt",
+	basalt = "Basalt",
+	brick = "Brick",
+	cobb = "Cobblestone",
+	concrete = "Concrete",
+	cm = "CorrodedMetal",
+	cl = "CrackedLava",
+	dl = "DiamondPlate",
+	fabric = "Fabric",
+	foil = "Foil",
+	ff = "ForceField",
+	glacier = "Glacier",
+	glass = "Glass",
+	granite = "Granite",
+	grass = "Grass",
+	ground = "Ground",
+	ice = "Ice",
+	lg = "LeafyGrass",
+	lime = "Limestone",
+	marble = "Marble",
+	metal = "Metal",
+	mud = "Mud",
+	neon = "Neon",
+	pave = "Pavement",
+	pebble = "Pebble",
+	plastic = "Plastic",
+	rock = "Rock",
+	salt = "Salt",
+	sand = "Sand",
+	sandstone = "Sandstone",
+	slate = "Slate",
+	sp = "SmoothPlastic",
+	snow = "Snow",
+	water = "Water",
+	wood = "Wood",
+	wp = "WoodPlanks"
+}
+
+local MaterialMark = ""
+
+function SetAsAMaterial(name)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Name == name then
+		if v.Material == "Air" then
+                   v.Material = material.asphalt
+		   MaterialMark = "Asphalt"
+		end
+		if v.Material == "Asphalt" then
+                   v.Material = material.basalt
+		   MaterialMark = "Basalt"
+		end
+		if v.Material == "Basalt" then
+                   v.Material = material.brick
+		   MaterialMark = "Brick"
+		end
+		if v.Material == "Brick" then
+                   v.Material = material.cobb
+		   MaterialMark = "Cobblestone"
+		end
+		if v.Material == "Cobblestone" then
+                   v.Material = material.concrete
+		   MaterialMark = "Concrete"
+		end
+		if v.Material == "Concrete" then
+                   v.Material = material.cm
+		   MaterialMark = "CorrodedMetal"
+		end
+		if v.Material == "CorrodedMetal" then
+                   v.Material = material.cl
+		   MaterialMark = "CrackedLava"
+		end
+		if v.Material == "CrackedLava" then
+                   v.Material = material.dl
+		   MaterialMark = "DiamondPlate"
+		end
+		if v.Material == "DiamondPlate" then
+                   v.Material = material.fabric
+		   MaterialMark = "Fabric"
+		end
+		if v.Material == "Fabric" then
+                   v.Material = material.foil
+		   MaterialMark = "Foil"
+		end
+		if v.Material == "Foil" then
+                   v.Material = material.ff
+		   MaterialMark = "ForceField"
+		end
+		if v.Material == "ForceField" then
+                   v.Material = material.glacier
+		   MaterialMark = "Glacier"
+		end
+		if v.Material == "Glacier" then
+                   v.Material = material.glass
+		   MaterialMark = "Glass"
+		end
+		if v.Material == "Glass" then
+                   v.Material = material.granite
+		   MaterialMark = "Granite"
+		end
+		if v.Material == "Granite" then
+                   v.Material = material.grass
+		   MaterialMark = "Grass"
+		end
+		if v.Material == "Grass" then
+                   v.Material = material.ground
+		   MaterialMark = "Ground"
+		end
+		if v.Material == "Ground" then
+                   v.Material = material.ice
+		   MaterialMark = "Ice"
+		end
+		if v.Material == "Ice" then
+                   v.Material = material.lg
+		   MaterialMark = "LeafyGrass"
+		end
+		if v.Material == "LeafyGrass" then
+                   v.Material = material.lime
+		   MaterialMark = "Limestone"
+		end
+		if v.Material == "Limestone" then
+                   v.Material = material.marble
+		   MaterialMark = "Marble"
+		end
+		if v.Material == "Marble" then
+                   v.Material = material.metal
+		   MaterialMark = "Metal"
+		end
+		if v.Material == "Metal" then
+                   v.Material = material.mud
+		   MaterialMark = "Mud"
+		end
+		if v.Material == "Mud" then
+                   v.Material = material.neon
+		   MaterialMark = "Neon"
+		end
+		if v.Material == "Neon" then
+                   v.Material = material.pave
+		   MaterialMark = "Pavement"
+		end
+		if v.Material == "Pavement" then
+                   v.Material = material.pebble
+		   MaterialMark = "Pebble"
+		end
+		if v.Material == "Pebble" then
+                   v.Material = material.plastic
+		   MaterialMark = "Plastic"
+		end
+		if v.Material == "Plastic" then
+                   v.Material = material.rock
+		   MaterialMark = "Rock"
+		end
+		if v.Material == "Rock" then
+                   v.Material = material.salt
+		   MaterialMark = "Salt"
+		end
+		if v.Material == "Salt" then
+                   v.Material = material.sand
+		   MaterialMark = "Sand"
+		end
+		if v.Material == "Sand" then
+                   v.Material = material.sandstone
+		   MaterialMark = "Sandstone"
+		end
+		if v.Material == "Sandstone" then
+                   v.Material = material.slate
+		   MaterialMark = "Slate"
+		end
+		if v.Material == "Slate" then
+                   v.Material = material.sp
+		   MaterialMark = "SmoothPlastic"
+		end
+		if v.Material == "SmoothPlastic" then
+                   v.Material = material.snow
+		   MaterialMark = "Snow"
+		end
+		if v.Material == "Snow" then
+                   v.Material = material.water
+		   MaterialMark = "Water"
+		end
+		if v.Material == "Water" then
+                   v.Material = material.wood
+		   MaterialMark = "Wood"
+		end
+		if v.Material == "Wood" then
+                   v.Material = material.wp
+		   MaterialMark = "WoodPlanks"
+		end
+		if v.Material == "WoodPlanks" then
+                   v.Material = material.air
+		   MaterialMark = "Air"
+		end
+            end
+        end
+    end
+end
+
+local shapes = {
+	ball = "Ball",
+	block = "Block",
+	corner = "CornerWedge",
+	cylinder = "Cylinder",
+	wedge = "Wedge"
+}
+
+local ShapesMark = ""
+
+function SetAsAShapes(name)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Name == name then
+		if v.Shape == "Cylinder" then
+                   v.Shape = shapes.wedge
+		   ShapesMark = "Wedge"
+		end
+		if v.Shape == "Wedge" then
+                   v.Shape = shapes.ball
+		   ShapesMark = "Ball"
+		end
+		if v.Shape == "Ball" then
+                   v.Shape = shapes.block
+		   ShapesMark = "Block"
+		end
+		if v.Shape == "Block" then
+                   v.Shape = shapes.corner
+		   ShapesMark = "CornerWedge"
+		end
+		if v.Shape == "CornerWedge" then
+                   v.Shape = shapes.cylinder
+		   ShapesMark = "Cylinder"
+		end
+            end
+        end
+    end
+end
+
+function MysteriousTool()        
 local AddPartTool = Instance.new("Tool")
 AddPartTool.RequiresHandle = false
 AddPartTool.Name = "Add part"
@@ -1639,7 +1886,90 @@ end
 
 local DescAnchor = false
 local DescLocked = false
+local DescMass = false
+local DescTouch = false
+local DescQuery = false
 
+local ShapePartTool = Instance.new("Tool")
+ShapePartTool.RequiresHandle = false
+ShapePartTool.Name = "Shape: Cylinder"
+ShapePartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+SetAsAShapes("VoxelScriptPart")
+EditToolName("Shape: " .. ShapesMark,ShapePartTool)
+else
+notify("Error when trying to apply shape to part")
+end
+end)
+ShapePartTool.Parent = speaker.Backpack
+	
+local MaterialPartTool = Instance.new("Tool")
+MaterialPartTool.RequiresHandle = false
+MaterialPartTool.Name = "Material: Air"
+MaterialPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+SetAsAShapes("VoxelScriptPart")
+EditToolName("Material: " .. MaterialMark,MaterialPartTool)
+else
+notify("Error when trying to apply shape to part")
+end
+end)
+MaterialPartTool.Parent = speaker.Backpack
+	
+local QueryPartTool = Instance.new("Tool")
+QueryPartTool.RequiresHandle = false
+QueryPartTool.Name = "CanQuery: false"
+QueryPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescQuery = not DescQuery
+FindWorkspacePartName("VoxelScriptPart","Query",DescQuery)
+if DescQuery then
+EditToolName("CanQuery: true",QueryPartTool)
+else
+EditToolName("CanQuery: false",QueryPartTool)
+end
+else
+notify("Error while trying to CanQuery part")
+end
+end)
+QueryPartTool.Parent = speaker.Backpack
+	
+local TouchPartTool = Instance.new("Tool")
+TouchPartTool.RequiresHandle = false
+TouchPartTool.Name = "CanTouch: false"
+TouchPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescTouch = not DescTouch
+FindWorkspacePartName("VoxelScriptPart","Touch",DescTouch)
+if DescTouch then
+EditToolName("CanTouch: true",TouchPartTool)
+else
+EditToolName("CanTouch: false",TouchPartTool)
+end
+else
+notify("Error while trying to CanTouch part")
+end
+end)
+TouchPartTool.Parent = speaker.Backpack
+	
+local MassPartTool = Instance.new("Tool")
+MassPartTool.RequiresHandle = false
+MassPartTool.Name = "Massless: false"
+MassPartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescMass = not DescMass
+FindWorkspacePartName("VoxelScriptPart","Massless",DescMass)
+if DescMass then
+EditToolName("Massless: true",MassPartTool)
+else
+EditToolName("Massless: false",MassPartTool)
+end
+else
+notify("Error while trying to massless part")
+end
+end)
+MassPartTool.Parent = speaker.Backpack
+	
 local AnchorPartTool = Instance.new("Tool")
 AnchorPartTool.RequiresHandle = false
 AnchorPartTool.Name = "Anchor: false"
@@ -6044,7 +6374,7 @@ if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
 end
-if cmd == "mysterious" then
+if cmd == "tool" then
 MysteriousTool()
 end
 -- limit
@@ -8314,7 +8644,7 @@ if not respon then
 ErrorPrompt("Fates admin error", result, "close")
 end
 end
-if cmd == "mysterious" then
+if cmd == "tool" then
 MysteriousTool()
 end
 -- limits
