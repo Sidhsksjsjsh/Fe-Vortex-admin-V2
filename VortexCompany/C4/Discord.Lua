@@ -5917,16 +5917,16 @@ end
 end
 if cmd == "loopbringpart" then
 local var = string.sub(msg,space+1)
-local function Loopbring()
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
+		local function Loopbring()
                 v.CFrame = getRoot(speaker.Character).CFrame
+		end
+		ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
             end
         end
     end
-   end
-    ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
     notify("started carrying the named object '" .. var .. "'.")
 end
 if cmd == "unloopbringpart" then
@@ -8175,16 +8175,16 @@ end
 end
 if cmd == "loopbringpart" then
 local var = string.sub(msg,space+1)
-local function Loopbring()
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
+		local function Loopbring()
                 v.CFrame = getRoot(speaker.Character).CFrame
+		end
+		ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
             end
         end
     end
-   end
-    ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
     notify("started carrying the named object '" .. var .. "'.")
 end
 if cmd == "unloopbringpart" then
