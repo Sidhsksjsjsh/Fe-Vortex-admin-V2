@@ -1624,43 +1624,43 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
 end
 
 local material = {
-	air = "Air",
-	asphalt = "Asphalt",
-	basalt = "Basalt",
-	brick = "Brick",
-	cobb = "Cobblestone",
-	concrete = "Concrete",
-	cm = "CorrodedMetal",
-	cl = "CrackedLava",
-	dl = "DiamondPlate",
-	fabric = "Fabric",
-	foil = "Foil",
-	ff = "ForceField",
-	glacier = "Glacier",
-	glass = "Glass",
-	granite = "Granite",
-	grass = "Grass",
-	ground = "Ground",
-	ice = "Ice",
-	lg = "LeafyGrass",
-	lime = "Limestone",
-	marble = "Marble",
-	metal = "Metal",
-	mud = "Mud",
-	neon = "Neon",
-	pave = "Pavement",
-	pebble = "Pebble",
-	plastic = "Plastic",
-	rock = "Rock",
-	salt = "Salt",
-	sand = "Sand",
-	sandstone = "Sandstone",
-	slate = "Slate",
-	sp = "SmoothPlastic",
-	snow = "Snow",
-	water = "Water",
-	wood = "Wood",
-	wp = "WoodPlanks"
+	"Air",
+	"Asphalt",
+	"Basalt",
+	"Brick",
+	"Cobblestone",
+	"Concrete",
+	"CorrodedMetal",
+	"CrackedLava",
+	"DiamondPlate",
+	"Fabric",
+	"Foil",
+	"ForceField",
+	"Glacier",
+	"Glass",
+	"Granite",
+	"Grass",
+	"Ground",
+	"Ice",
+	"LeafyGrass",
+	"Limestone",
+	"Marble",
+	"Metal",
+	"Mud",
+	"Neon",
+	"Pavement",
+	"Pebble",
+	"Plastic",
+	"Rock",
+	"Salt",
+	"Sand",
+	"Sandstone",
+	"Slate",
+	"SmoothPlastic",
+	"Snow",
+	"Water",
+	"Wood",
+	"WoodPlanks"
 }
 
 local MaterialMark = ""
@@ -1823,11 +1823,11 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
 end
 
 local shapes = {
-	ball = "Ball",
-	block = "Block",
-	corner = "CornerWedge",
-	cylinder = "Cylinder",
-	wedge = "Wedge"
+	"Ball",
+	"Block",
+	"CornerWedge",
+	"Cylinder",
+	"Wedge"
 }
 
 local ShapesMark = ""
@@ -1889,14 +1889,16 @@ local DescLocked = false
 local DescMass = false
 local DescTouch = false
 local DescQuery = false
-
+local DescCollide = false
+	
 local ShapePartTool = Instance.new("Tool")
 ShapePartTool.RequiresHandle = false
 ShapePartTool.Name = "Shape: Cylinder"
 ShapePartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
-SetAsAShapes("VoxelScriptPart")
-EditToolName("Shape: " .. ShapesMark,ShapePartTool)
+local randomshape = shapes[math.random(1, #shapes)]
+game.Workspace.VoxelScriptPart.Shape = randomshape
+EditToolName("Shape: " .. randomshape,ShapePartTool)
 else
 notify("Error when trying to apply shape to part")
 end
@@ -1908,13 +1910,32 @@ MaterialPartTool.RequiresHandle = false
 MaterialPartTool.Name = "Material: Air"
 MaterialPartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
-SetAsAMaterial("VoxelScriptPart")
-EditToolName("Material: " .. MaterialMark,MaterialPartTool)
+local randommaterial = material[math.random(1, #material)]
+game.Workspace.VoxelScriptPart.Material = randommaterial
+EditToolName("Material: " .. randommaterial,MaterialPartTool)
 else
 notify("Error when trying to apply shape to part")
 end
 end)
 MaterialPartTool.Parent = speaker.Backpack
+	
+local CollidePartTool = Instance.new("Tool")
+CollidePartTool.RequiresHandle = false
+CollidePartTool.Name = "CanCollide: false"
+CollidePartTool.Activated:connect(function()
+if game.Workspace:FindFirstChild("VoxelScriptPart") then
+DescCollide = not DescCollide
+FindWorkspacePartName("VoxelScriptPart","Collide",DescCollide)
+if DescCollide then
+EditToolName("CanCollide: true",CollidePartTool)
+else
+EditToolName("CanCollide: false",CollidePartTool)
+end
+else
+notify("Error while trying to CanCollide part")
+end
+end)
+QueryPartTool.Parent = speaker.Backpack
 	
 local QueryPartTool = Instance.new("Tool")
 QueryPartTool.RequiresHandle = false
