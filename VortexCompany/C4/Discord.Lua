@@ -1189,7 +1189,7 @@ Blur.Size = 0
 OBU:Destroy()
 end
 
-RotationData("13030104160","Loading Admin...")
+-- RotationData("13030104160","Loading Admin...")
 
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
@@ -1864,7 +1864,7 @@ end
 function SetShape(name, shapename)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
-            if v.Name:lower() == name then
+            if v.Name == name then
 		game.Workspace[v].Shape = shapename
             end
         end
@@ -1874,7 +1874,7 @@ end
 function SetMaterial(name, materialname)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
-            if v.Name:lower() == name then
+            if v.Name == name then
                 game.Workspace[v].Material = materialname
             end
         end
@@ -1934,7 +1934,7 @@ local randommaterial = material[math.random(1, #material)]
 SetMaterial("VoxelScriptPart", randommaterial)
 EditToolName("Material: " .. randommaterial,MaterialPartTool)
 else
-notify("Error when trying to apply shape to part")
+notify("Error when trying to apply Material to part")
 end
 end)
 MaterialPartTool.Parent = speaker.Backpack
@@ -6417,6 +6417,7 @@ end
 end
 if cmd == "tool" then
 MysteriousTool()
+notify("10 items have been added to your inventory")
 end
 -- limit
 end
@@ -8687,6 +8688,7 @@ end
 end
 if cmd == "tool" then
 MysteriousTool()
+notify("10 items have been added to your inventory")
 end
 -- limits
 end
@@ -9008,7 +9010,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [16/05/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[🤝] You can customize command names using Sync X admin (PAID) (Ends in 3 days) \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [16/05/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: " .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
