@@ -350,6 +350,7 @@ local TweenService = game:GetService("TweenService")
 local Character = speaker.Character
 local HumanModCons = {}
 local friendsonline = #speaker:GetFriendsOnline()
+local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
@@ -6419,6 +6420,22 @@ if cmd == "tool" then
 MysteriousTool()
 notify("10 items have been added to your inventory")
 end
+if cmd == "looptime" then
+local var = string.sub(msg,space+1)
+local function LoopTimeZone()
+      Lighting.ClockTime = var
+end
+      TimeZones = RunService.Stepped:Connect(LoopTimeZone)
+end
+if cmd == "time" then
+local var = string.sub(msg,space+1)
+Lighting.ClockTime = var
+end
+if cmd == "unlooptime" then
+if TimeZones then
+       TimeZones:Disconnect()
+end
+end
 -- limit
 end
 end
@@ -8690,6 +8707,22 @@ if cmd == "tool" then
 MysteriousTool()
 notify("10 items have been added to your inventory")
 end
+if cmd == "looptime" then
+local var = string.sub(msg,space+1)
+local function LoopTimeZone()
+      Lighting.ClockTime = var
+end
+      TimeZones = RunService.Stepped:Connect(LoopTimeZone)
+end
+if cmd == "time" then
+local var = string.sub(msg,space+1)
+Lighting.ClockTime = var
+end
+if cmd == "unlooptime" then
+if TimeZones then
+       TimeZones:Disconnect()
+end
+end
 -- limits
 end
 end)
@@ -8870,6 +8903,9 @@ cmds[#cmds + 1] = {Text = "[168] " .. tostring(prefix) .. "travelto [game ID]",T
 cmds[#cmds + 1] = {Text = "[169] " .. tostring(prefix) .. "loopbringpart [part name]",Title = "auto bringing all item"}
 cmds[#cmds + 1] = {Text = "[170] " .. tostring(prefix) .. "unloopbringpart",Title = "stop auto bringing"}
 cmds[#cmds + 1] = {Text = "[171] " .. tostring(prefix) .. "fates",Title = "execute fates admin"}
+cmds[#cmds + 1] = {Text = "[172] " .. tostring(prefix) .. "looptime [number]",Title = "Looping"}
+cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "stop looping"}
+cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
