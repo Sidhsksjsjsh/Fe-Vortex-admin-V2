@@ -1861,6 +1861,26 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
     end
 end
 
+function SetShape(name, shapename)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Name:lower() == name then
+		game.Workspace[v].Shape = shapename
+            end
+        end
+    end
+end
+
+function SetMaterial(name, materialname)
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Part") then
+            if v.Name:lower() == name then
+                game.Workspace[v].Material = materialname
+            end
+        end
+    end
+end
+
 function MysteriousTool()        
 local AddPartTool = Instance.new("Tool")
 AddPartTool.RequiresHandle = false
@@ -1897,7 +1917,7 @@ ShapePartTool.Name = "Shape: Cylinder"
 ShapePartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 local randomshape = shapes[math.random(1, #shapes)]
-game.Workspace.VoxelScriptPart.Shape = randomshape
+SetShape("VoxelScriptPart", randomshape)
 EditToolName("Shape: " .. randomshape,ShapePartTool)
 else
 notify("Error when trying to apply shape to part")
@@ -1911,7 +1931,7 @@ MaterialPartTool.Name = "Material: Air"
 MaterialPartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 local randommaterial = material[math.random(1, #material)]
-game.Workspace.VoxelScriptPart.Material = randommaterial
+SetMaterial("VoxelScriptPart", randommaterial)
 EditToolName("Material: " .. randommaterial,MaterialPartTool)
 else
 notify("Error when trying to apply shape to part")
@@ -1935,7 +1955,7 @@ else
 notify("Error while trying to CanCollide part")
 end
 end)
-QueryPartTool.Parent = speaker.Backpack
+CollidePartTool.Parent = speaker.Backpack
 	
 local QueryPartTool = Instance.new("Tool")
 QueryPartTool.RequiresHandle = false
