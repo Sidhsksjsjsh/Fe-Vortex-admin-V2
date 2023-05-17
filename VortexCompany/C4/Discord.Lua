@@ -1865,7 +1865,7 @@ function SetShape(name, shapename)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
             if v.Name == name then
-		game.Workspace[v].Shape = shapename
+		v.Shape = shapename
             end
         end
     end
@@ -1875,7 +1875,7 @@ function SetMaterial(name, materialname)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
             if v.Name == name then
-                game.Workspace[v].Material = materialname
+                v.Material = materialname
             end
         end
     end
