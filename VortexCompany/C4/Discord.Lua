@@ -6372,10 +6372,10 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v:Destroy()
-                notify("Removed " .. var)
             end
         end
     end
+notify("Removed " .. var)
 end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
@@ -8659,10 +8659,10 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v:Destroy()
-		notify("Removed " .. var)
             end
         end
     end
+notify("Removed " .. var)
 end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
