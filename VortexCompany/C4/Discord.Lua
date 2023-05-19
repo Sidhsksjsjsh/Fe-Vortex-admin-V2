@@ -2253,6 +2253,7 @@ local args = {
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 end
 
+--[[
 function LoveRate(player, ratetype)
         local Rate = math.random(1, 100)
 	if ratetype == "notify" then
@@ -2270,6 +2271,7 @@ function LoveRate(player, ratetype)
 	end
 	end
 end
+--]]
 
 function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
 local args = {
