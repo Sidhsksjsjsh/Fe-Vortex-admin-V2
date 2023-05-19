@@ -3979,15 +3979,11 @@ function sFLY(vfly)
 			repeat wait()
 				if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
 					if game.PlaceId == 277751860 then
-					local Human = speaker.Character and speaker.Character:FindFirstChildOfClass('Humanoid')
-					if not Human then
-						return
-					end
-					Human.Sit = true
-					task.wait(.1)
-					Human.RootPart.CFrame = Human.RootPart.CFrame * CFrame.Angles(math.pi * .5, 0, 0)
-					for _, v in ipairs(Human:GetPlayingAnimationTracks()) do
-						v:Stop()
+					if speaker and speaker.Character and speaker.Character:FindFirstChildOfClass("Humanoid") and getRoot(speaker.Character) then
+					local hum = speaker.Character:FindFirstChildOfClass("Humanoid")
+					local root = getRoot(speaker.Character)
+					hum:ChangeState(0)
+					root.Velocity = root.CFrame.LookVector * 30
 					end
 					else
 					Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
@@ -5161,9 +5157,9 @@ local var = string.sub(msg,space+1)
 if setfpscap then
 		local num = var or 1e6
 		if num == 'none' then
-			return setfpscap(1e6)
+			setfpscap(1e6)
 		elseif num > 0 then
-			return setfpscap(num)
+			setfpscap(num)
 		else
 			return notify("Please provide a number above 0 or 'none'.")
 		end
@@ -7451,9 +7447,9 @@ local var = string.sub(msg,space+1)
 if setfpscap then
 		local num = var or 1e6
 		if num == 'none' then
-			return setfpscap(1e6)
+			setfpscap(1e6)
 		elseif num > 0 then
-			return setfpscap(num)
+			setfpscap(num)
 		else
 			return notify("Please provide a number above 0 or 'none'.")
 		end
