@@ -49,9 +49,15 @@ loadSettings()
 function Interface_Visible(GuiName, toggle_4)
      GuiName.Visible = toggle_4 or false
 end
-
-function noKick()
-if _G.Settings.kick == false then
+--[[
+function AntiBypass()
+if game.PlaceId == 277751860 then
+game.Players.LocalPlayer.Character.HumanoidRootPart.ChildAdded:connect(function(child)
+if child.ClassName == "BodyVelocity" or child.ClassName == "BodyGyro" then
+child.Name = "power"
+end
+end)
+else
 local mt = getrawmetatable(game)
 local old = mt.__namecall
 local protect = newcclosure or protect_function
@@ -72,14 +78,14 @@ end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
 end
 end
-
+--]]
 function Pause()
 if _G.Settings.RemovePaused == true then
 game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
 end
 end
 
-noKick()
+-- noKick() < Removed
 Pause()
 
 -- Define the GUI
@@ -126,7 +132,7 @@ local UIButton = Instance.new("TextButton") -- pos: 0.25, 0, 0, 80 | Size: 0.25,
 UIButton.Name = "A2"
 UIButton.Position = UDim2.new(0.25, 0, 0, 50)
 UIButton.Size = UDim2.new(0.5, 0, 0, 20)
-UIButton.Text = "false"
+UIButton.Text = "REMOVED"
 UIButton.TextColor3 = Color3.new(1, 1, 1)
 UIButton.BackgroundTransparency = 1
 UIButton.Parent = mainFrame
@@ -230,9 +236,8 @@ UIButton_4.FocusLost:Connect(function(EnterInstance)
 end)
 
 UIButton.MouseButton1Down:Connect(function()
-_G.Settings.kick = not _G.Settings.kick
-UIButton.Text = _G.Settings.kick
-noKick()
+UIButton.Text = "REMOVED"
+-- noKick()
 saveSettings()
 end)
 
@@ -1594,7 +1599,36 @@ function Punish(ooo)
 	speaker:kick(ooo)
 end
 
+function Anticheat_Bypass()
+if game.PlaceId == 277751860 then
+speaker.Character.HumanoidRootPart.ChildAdded:connect(function(child)
+if child.ClassName == "BodyVelocity" or child.ClassName == "BodyGyro" then
+child.Name = "power"
+end
+end)
+notify("anti-cheat bypass enabled for the game Epic Minigames")
+else
+local mt = getrawmetatable(game)
+local old = mt.__namecall
+local protect = newcclosure or protect_function
 
+if not protect then
+protect = function(f) return f end
+end
+
+setreadonly(mt, false)
+mt.__namecall = protect(function(self, ...)
+local method = getnamecallmethod()
+if method == "Kick" then
+wait(9e9)
+return
+end
+return old(self, ...)
+end)
+hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
+notify("kick bypass enable")
+end
+end
 
 function FindWorkspacePartName(name, hvhvhghh, turn_on_or_off)
 for i,v in pairs(game.Workspace:GetDescendants()) do
@@ -3944,7 +3978,20 @@ function sFLY(vfly)
 		task.spawn(function()
 			repeat wait()
 				if not vfly and Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid') then
+					if game.PlaceId == 277751860 then
+					local Human = speaker.Character and speaker.Character:FindFirstChildOfClass('Humanoid')
+					if not Human then
+						return
+					end
+					Human.Sit = true
+					task.wait(.1)
+					Human.RootPart.CFrame = Human.RootPart.CFrame * CFrame.Angles(math.pi * .5, 0, 0)
+					for _, v in ipairs(Human:GetPlayingAnimationTracks()) do
+						v:Stop()
+					end
+					else
 					Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+				end
 				end
 				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 or CONTROL.Q + CONTROL.E ~= 0 then
 					SPEED = 50
@@ -5596,7 +5643,7 @@ if speaker.Character then
 	end
 end
 if cmd == "noterrain" then
-workspace:FindFirstChildOfClass('Terrain'):Clear()
+game:GetService("Workspace"):FindFirstChildOfClass('Terrain'):Destroy()
 end
 if cmd == "firecd" then
 local var = string.sub(msg,space+1)
@@ -6458,6 +6505,9 @@ if cmd == "unlooptime" then
 if TimeZones then
        TimeZones:Disconnect()
 end
+end
+if cmd == "bypass" then
+Anticheat_Bypass()
 end
 -- limit
 end
@@ -8746,6 +8796,9 @@ if TimeZones then
        TimeZones:Disconnect()
 end
 end
+if cmd == "bypass" then
+Anticheat_Bypass()
+end
 -- limits
 end
 end)
@@ -8929,6 +8982,7 @@ cmds[#cmds + 1] = {Text = "[171] " .. tostring(prefix) .. "fates",Title = "execu
 cmds[#cmds + 1] = {Text = "[172] " .. tostring(prefix) .. "looptime [number]",Title = "Looping"}
 cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "stop looping"}
 cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
+cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all anti-cheat"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9069,7 +9123,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [17/05/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [20/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -9201,4 +9255,4 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
-
+Anticheat_Bypass()
