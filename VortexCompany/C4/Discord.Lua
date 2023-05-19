@@ -1594,6 +1594,8 @@ function Punish(ooo)
 	speaker:kick(ooo)
 end
 
+
+
 function FindWorkspacePartName(name, hvhvhghh, turn_on_or_off)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
@@ -2127,7 +2129,7 @@ end)
 
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
-     loadstring(_link_)()
+     loadstring(game:HttpGet(_link_))()
      notify("Executed!")
      end)
      
@@ -2249,6 +2251,24 @@ local args = {
 
 
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end
+
+function LoveRate(player, ratetype)
+        local Rate = math.random(1, 100)
+	if ratetype == "notify" then
+		if Rate > 10 then
+		   notify(string.format("love rating you and %s is %s❤️", player, Rate)
+		else
+		   notify(string.format("love rating you and %s is %s❤️", player, Rate)
+	end
+	end
+	if ratetype == "chat" then
+		if Rate > 10 then
+		   ProtocolSendChat(string.format("love rating " .. tostring(speaker.Name) .." and %s is %s❤️", player, Rate)
+		else
+		   ProtocolSendChat(string.format("love rating " .. tostring(speaker.Name) .." and %s is %s💔", player, Rate)
+	end
+	end
 end
 
 function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
@@ -2833,6 +2853,7 @@ local TpTool = Instance.new("Tool")
 	TpTool.Name = "Teleport Tool"
 	TpTool.RequiresHandle = false
 	TpTool.Parent = speaker.Backpack
+	TpTool.ToolTip = "Teleport to place you want"
 	TpTool.Activated:Connect(function()
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
@@ -5246,7 +5267,7 @@ end
 end
 if cmd == "clogs" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/CB3Jghvb"))
+executeHTTPS("https://pastebin.com/raw/CB3Jghvb")
 end)
 
 if not respon then
@@ -5734,7 +5755,7 @@ if playerIsAlrFriend then
     end
 end
 
-speaker:RequestFriendship(Players[var].UserId)
+speaker:RequestFriendship(Players[var].Name)
 notify("Friend request sent to " .. var)
 end)
 
@@ -5752,7 +5773,7 @@ end
 end
 
 local respon, result = pcall(function()
-speaker:RevokeFriendship(Players[var].UserId)
+speaker:RevokeFriendship(Players[var].Name)
 notify("you are no longer friends with " .. var)
 end)
 
@@ -5985,7 +6006,7 @@ notify("Copied to clipboard")
 end
 if cmd == "dex" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))
+executeHTTPS("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua")
 end)
 
 if not respon then
@@ -5994,7 +6015,7 @@ end
 end
 if cmd == "rspy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))
+executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
 end)
 
 if not respon then
@@ -6003,7 +6024,7 @@ end
 end
 if cmd == "iy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua')) -- without .lua
+executeHTTPS('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua') -- without .lua
 end)
 
 if not respon then
@@ -6039,7 +6060,7 @@ notify(Clock())
 end
 if cmd == "animationgui" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui"))
+executeHTTPS("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui")
 end)
 
 if not respon then
@@ -6048,7 +6069,7 @@ end
 end
 if cmd == "snake" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastefy.ga/tWBTcE4R/raw"))
+executeHTTPS("https://pastefy.ga/tWBTcE4R/raw")
 end)
 
 if not respon then
@@ -6315,7 +6336,7 @@ notify(GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d.lua")) -- without .lua
+executeHTTPS("https://pastebin.com/raw/udQLpt5d.lua") -- without .lua
 end)
 
 if not respon then
@@ -6409,7 +6430,7 @@ end
 end
 if cmd == "fates" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))
+executeHTTPS("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua")
 end)
 
 if not respon then
@@ -7533,7 +7554,7 @@ end
 end
 if cmd == "clogs" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/CB3Jghvb"))
+executeHTTPS("https://pastebin.com/raw/CB3Jghvb")
 end)
 
 if not respon then
@@ -7948,7 +7969,7 @@ ShakeData("13030062874")
 notify("notes are saved to your executor folder.")
 end
 if cmd == "parttp" then
-loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
+executeHTTPS("https://pastebin.com/raw/aYRmhsMG")
 end
 if cmd == "savemusic" then
 notify("Sorry, this command has been temporarily disabled and is currently being tested")
@@ -8021,7 +8042,7 @@ if playerIsAlrFriend then
     end
 end
 
-speaker:RequestFriendship(Players[var].UserId)
+speaker:RequestFriendship(Players[var])
 notify("Friend request sent to " .. var)
 end)
 
@@ -8039,7 +8060,7 @@ end
 end
 
 local respon, result = pcall(function()
-speaker:RevokeFriendship(Players[var].UserId)
+speaker:RevokeFriendship(Players[var])
 notify("you are no longer friends with " .. var)
 end)
 
@@ -8272,7 +8293,7 @@ notify("Copied to clipboard")
 end
 if cmd == "dex" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))
+executeHTTPS("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua")
 end)
 
 if not respon then
@@ -8281,7 +8302,7 @@ end
 end
 if cmd == "rspy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/0XkSXRhy"))
+executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
 end)
 
 if not respon then
@@ -8290,7 +8311,7 @@ end
 end
 if cmd == "iy" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua')) -- without .lua
+executeHTTPS('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua') -- without .lua
 end)
 
 if not respon then
@@ -8326,7 +8347,7 @@ notify(Clock())
 end
 if cmd == "animationgui" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui"))
+executeHTTPS("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui")
 end)
 
 if not respon then
@@ -8335,7 +8356,7 @@ end
 end
 if cmd == "snake" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastefy.ga/tWBTcE4R/raw"))
+executeHTTPS("https://pastefy.ga/tWBTcE4R/raw")
 end)
 
 if not respon then
@@ -8602,7 +8623,7 @@ notify(GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://pastebin.com/raw/udQLpt5d.lua")) -- without .lua
+executeHTTPS("https://pastebin.com/raw/udQLpt5d.lua") -- without .lua
 end)
 
 if not respon then
@@ -8696,7 +8717,7 @@ end
 end
 if cmd == "fates" then
 local respon, result = pcall(function()
-executeHTTPS(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))
+executeHTTPS("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua")
 end)
 
 if not respon then
