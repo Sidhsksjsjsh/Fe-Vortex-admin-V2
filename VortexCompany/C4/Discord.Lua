@@ -2173,6 +2173,19 @@ function executeHTTPS(_link_)
      end
 end
 
+local epicm = 0
+
+function ExecuteScriptNameFunction(script_name)
+	if script_name == "epicm" then -- epic minigames
+		epicm = epicm + 1
+		if epicm > 1 then
+			epicm = 1
+			notify("you can only run this script once")
+			else
+			executeHTTPS("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI")
+		end
+	end
+end
 
 BarButtonExecute.MouseButton1Down:Connect(function()
      executeHTTPS(game:HttpGet(TextBarExecutor.Text))
@@ -6505,6 +6518,14 @@ end
 if cmd == "bypass" then
 Anticheat_Bypass()
 end
+if cmd == "epicm" then
+if game.PlaceId == 277751860 then
+   executeHTTPS("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI")
+else
+   notify("this game is not supported, teleport to Epic Minigames to run this script")
+   SynchronousGameTeleport(277751860, 0, 0)
+end
+end
 -- limit
 end
 end
@@ -8795,6 +8816,14 @@ end
 if cmd == "bypass" then
 Anticheat_Bypass()
 end
+if cmd == "epicm" then
+if game.PlaceId == 277751860 then
+   executeHTTPS("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI")
+else
+   notify("this game is not supported, teleport to Epic Minigames to run this script")
+   SynchronousGameTeleport(277751860, 0, 0)
+end
+end
 -- limits
 end
 end)
@@ -8979,6 +9008,7 @@ cmds[#cmds + 1] = {Text = "[172] " .. tostring(prefix) .. "looptime [number]",Ti
 cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "stop looping"}
 cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
 cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all anti-cheat"}
+cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execute epic minigames script"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9119,7 +9149,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [20/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [21/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \nnew epicm command (you can request the script on my discord) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -9211,6 +9241,8 @@ end)
 --]]
 -- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
+local restnotify = true
+
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
 local seconds = math.floor(workspace.DistributedGameTime)
 local minutes = math.floor(workspace.DistributedGameTime / 60)
@@ -9218,16 +9250,36 @@ local hours = math.floor(workspace.DistributedGameTime / 60 / 60)
 local seconds = seconds - (minutes * 60)
 local minutes = minutes - (hours * 60)
 if hours == 1 and minutes == 0 and seconds == 0 then
+if restnotify then
 ErrorPrompt("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+restnotify = false
+wait(1.5)
+restnotify = true
+end
 end
 if hours == 6 and minutes == 0 and seconds == 0 then
+if restnotify then
 ErrorPrompt("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+restnotify = false
+wait(1.5)
+restnotify = true
+end
 end
 if hours == 12 and minutes == 0 and seconds == 0 then
+if restnotify then
 ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+restnotify = false
+wait(1.5)
+restnotify = true
+end
 end
 if hours == 18 and minutes == 0 and seconds == 0 then
+if restnotify then
 ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+restnotify = false
+wait(1.5)
+restnotify = true
+end
 end
 end)
 
