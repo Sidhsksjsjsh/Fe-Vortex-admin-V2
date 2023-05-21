@@ -6137,7 +6137,7 @@ executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
 end)
 
 if not respon then
-ErrorPrompt("Remote spy error", result, "close")
+ErrorPrompt("Remote spy V3 error", result, "close")
 end
 end
 if cmd == "iy" then
@@ -6586,6 +6586,15 @@ if game.PlaceId == 277751860 then
 else
    notify("this game is not supported, teleport to Epic Minigames to run this script")
    SynchronousGameTeleport(277751860, 0, 0)
+end
+end
+if cmd == "oldrspy" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Jshdjdhdkdb/main/Omgshit.lua")
+end)
+
+if not respon then
+ErrorPrompt("Remote spy V2 error", result, "close")
 end
 end
 -- limit
@@ -8886,6 +8895,15 @@ else
    SynchronousGameTeleport(277751860, 0, 0)
 end
 end
+if cmd == "oldrspy" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Jshdjdhdkdb/main/Omgshit.lua")
+end)
+
+if not respon then
+ErrorPrompt("Remote spy V2 error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9071,6 +9089,7 @@ cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "
 cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
 cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all anti-cheat"}
 cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execute epic minigames script"}
+cmds[#cmds + 1] = {Text = "[177] " .. tostring(prefix) .. "oldrspy",Title = "execute old remote spy script"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9211,7 +9230,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [21/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \n[+] new epicm command (you can request the script on my discord) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [21/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \n[+] new oldrspy command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
