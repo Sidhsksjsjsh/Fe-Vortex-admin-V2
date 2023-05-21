@@ -6485,20 +6485,13 @@ end
 end
 if cmd == "collide" then
 local var = string.sub(msg,space+1)
-local partBypassName = var
-	if not FindInTable(BypassParts,partBypassName) then
-		table.insert(BypassParts,partBypassName)
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BasePart") and v.Name:lower() == partBypassName then
-				v.CanCollide = false
-				ToolFunc_3 = partDeleteName
-				-- ToolFunc_3 = ""
-			end
-		end
-	end
-	if partDeleteTrigger == nil then
-		partDeleteTrigger = workspace.DescendantAdded:Connect(partDelete)
-	end
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v.CanCollide = false
+            end
+        end
+    end
 end
 if cmd == "uncollide" then
 local var = string.sub(msg,space+1)
@@ -6506,29 +6499,19 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.CanCollide = true
-		partDeleteTrigger:Disconnect()
-		partDeleteTrigger = nil
-		BypassParts = {}
-		ToolFunc_3 = ""
             end
         end
     end
 end
 if cmd == "dpart" then
 local var = string.sub(msg,space+1)
-local partDeleteName = var
-	if not FindInTable(DeleteParts,partDeleteName) then
-		table.insert(DeleteParts,partDeleteName)
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BasePart") and v.Name:lower() == partDeleteName then
-				v:Destroy()
-				ToolFunc_2 = partDeleteName
-			end
-		end
-	end
-	if partDeleteTrigger == nil then
-		partDeleteTrigger = workspace.DescendantAdded:Connect(partDelete)
-	end
+for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            if v.Name:lower() == var then
+                v:Destroy()
+            end
+        end
+    end
 end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
@@ -9228,7 +9211,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [21/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \nnew epicm command (you can request the script on my discord) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [21/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \n[+] new epicm command (you can request the script on my discord) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed all bug \n[-] fixed update log UI screen \n[-] Remove IPs \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
