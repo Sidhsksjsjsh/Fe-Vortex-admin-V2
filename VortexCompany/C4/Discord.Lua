@@ -1335,6 +1335,66 @@ function partAdded(part)
 	end
 end
 
+local ToolFunc_2 = ""
+local DeleteParts = {}
+local partDeleteTrigger = nil
+function partDelete(part)
+	if #DeleteParts > 0 then
+		if FindInTable(DeleteParts,part.Name:lower()) then
+			for i,v in pairs(game.Workspace:GetDescendants()) do
+                                if v:IsA("BasePart") then
+                                    if v.Name:lower() == ToolFunc_2:lower() then
+                                        v:Destroy()
+                                    end
+                           end
+                    end
+		end
+	else
+		partDeleteTrigger:Disconnect()
+		partDeleteTrigger = nil
+	end
+end
+
+local ToolFunc_1 = ""
+local BringParts = {}
+local partBringTrigger = nil
+function partBringing(part)
+	if #BringParts > 0 then
+		if FindInTable(BringParts,part.Name:lower()) then
+			for i,v in pairs(game.Workspace:GetDescendants()) do
+                                if v:IsA("BasePart") then
+                                    if v.Name:lower() == ToolFunc_1:lower() then
+                                        v.CFrame = speaker.Character.HumanoidRootPart.CFrame
+                                    end
+                           end
+                    end
+		end
+	else
+		partBringTrigger:Disconnect()
+		partBringTrigger = nil
+	end
+end
+
+local ToolFunc_3 = ""
+local BypassParts = {}
+local partBypassTrigger = nil
+function partBypassed(part)
+	if #BypassParts > 0 then
+		if FindInTable(BypassParts,part.Name:lower()) then
+			for i,v in pairs(game.Workspace:GetDescendants()) do
+                                if v:IsA("BasePart") then
+                                    if v.Name:lower() == ToolFunc_3:lower() then
+                                        v.CanCollide = false
+                                    end
+                           end
+                    end
+		end
+	else
+		partBypassTrigger:Disconnect()
+		partBypassTrigger = nil
+	end
+end
+
 --[[
 function DebugPrint(SynText)
 print(SynText)
@@ -6401,13 +6461,11 @@ if not respon then
 ErrorPrompt("Domain Hub (REMAKE)", result, "close")
 end
 end
-if cmd == "nowall" then
-for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("Part") then
-            if v.Transparency == 1 then
-                v.CanCollide = false
-            end
-        end
+if cmd == "nowall" then    
+for i,v in pairs(workspace:GetDescendants()) do
+	if v:IsA("BasePart") and v.Transparency == 1 then
+	   v.CanCollide = false
+	end
     end
 end
 if cmd == "spin" then
@@ -6427,13 +6485,20 @@ end
 end
 if cmd == "collide" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("BasePart") then
-            if v.Name:lower() == var then
-                v.CanCollide = false
-            end
-        end
-    end
+local partBypassName = var
+	if not FindInTable(BypassParts,partBypassName) then
+		table.insert(BypassParts,partBypassName)
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") and v.Name:lower() == partBypassName then
+				v.CanCollide = false
+				ToolFunc_3 = partDeleteName
+				-- ToolFunc_3 = ""
+			end
+		end
+	end
+	if partDeleteTrigger == nil then
+		partDeleteTrigger = workspace.DescendantAdded:Connect(partDelete)
+	end
 end
 if cmd == "uncollide" then
 local var = string.sub(msg,space+1)
@@ -6441,6 +6506,10 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
                 v.CanCollide = true
+		partDeleteTrigger:Disconnect()
+		partDeleteTrigger = nil
+		BypassParts = {}
+		ToolFunc_3 = ""
             end
         end
     end
@@ -6453,6 +6522,7 @@ local partDeleteName = var
 		for i,v in pairs(workspace:GetDescendants()) do
 			if v:IsA("BasePart") and v.Name:lower() == partDeleteName then
 				v:Destroy()
+				ToolFunc_2 = partDeleteName
 			end
 		end
 	end
@@ -6478,6 +6548,7 @@ local partBringName = var
 		for i,v in pairs(workspace:GetDescendants()) do
 			if v:IsA("BasePart") and v.Name:lower() == partBringName then
 				v.CFrame = getRoot(speaker.Character).CFrame
+				ToolFunc_1 = partBringName
 			end
 		end
 	end
@@ -6490,6 +6561,7 @@ if cmd == "unloopbringpart" then
 if partBringTrigger then
        partBringTrigger:Disconnect()
 	partBringTrigger = nil
+	ToolFunc_1 = ""
        notify("stoped carrying the object")
 end
 end
