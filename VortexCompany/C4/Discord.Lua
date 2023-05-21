@@ -6447,14 +6447,18 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
 end
 if cmd == "dpart" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("BasePart") then
-            if v.Name:lower() == var then
-                v:Destroy()
-            end
-        end
-    end
-notify("Removed " .. var)
+local partDeleteName = var
+	if not FindInTable(DeleteParts,partDeleteName) then
+		table.insert(DeleteParts,partDeleteName)
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") and v.Name:lower() == partDeleteName then
+				v:Destroy()
+			end
+		end
+	end
+	if partDeleteTrigger == nil then
+		partDeleteTrigger = workspace.DescendantAdded:Connect(partDelete)
+	end
 end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
@@ -6468,21 +6472,24 @@ end
 end
 if cmd == "loopbringpart" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Workspace:GetDescendants()) do
-        if v:IsA("BasePart") then
-            if v.Name:lower() == var then
-		local function Loopbring()
-                v.CFrame = getRoot(speaker.Character).CFrame
+local partBringName = var
+	if not FindInTable(BringParts,partBringName) then
+		table.insert(BringParts,partBringName)
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") and v.Name:lower() == partBringName then
+				v.CFrame = getRoot(speaker.Character).CFrame
+			end
 		end
-		ScriptLoopBring = RunService.Stepped:Connect(Loopbring)
-            end
-        end
-    end
+	end
+	if partBringTrigger == nil then
+		partBringTrigger = workspace.DescendantAdded:Connect(partBringing)
+	end
     notify("started carrying the named object '" .. var .. "'.")
 end
 if cmd == "unloopbringpart" then
-if ScriptLoopBring then
-       ScriptLoopBring:Disconnect()
+if partBringTrigger then
+       partBringTrigger:Disconnect()
+	partBringTrigger = nil
        notify("stoped carrying the object")
 end
 end
