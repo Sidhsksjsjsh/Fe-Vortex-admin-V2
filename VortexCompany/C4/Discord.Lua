@@ -6612,6 +6612,15 @@ if not respon then
 ErrorPrompt("Zombie script Error", result, "close")
 end
 end
+if cmd == "fling2" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
+end)
+
+if not respon then
+ErrorPrompt("FE Touch Fling GUI Error", result, "close")
+end
+end
 -- limit
 end
 end
@@ -8928,6 +8937,15 @@ if not respon then
 ErrorPrompt("Zombie script Error", result, "close")
 end
 end
+if cmd == "fling2" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
+end)
+
+if not respon then
+ErrorPrompt("FE Touch Fling GUI Error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9114,6 +9132,8 @@ cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title 
 cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all anti-cheat"}
 cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execute epic minigames script"}
 cmds[#cmds + 1] = {Text = "[177] " .. tostring(prefix) .. "oldrspy",Title = "execute old remote spy script"}
+cmds[#cmds + 1] = {Text = "[178] " .. tostring(prefix) .. "fling2",Title = "touch someone"}
+cmds[#cmds + 1] = {Text = "[179] " .. tostring(prefix) .. "zombie",Title = "zombie script, eat em"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
