@@ -9303,6 +9303,8 @@ closeButton.MouseButton1Click:Connect(function()
     end)
 end)
 
+ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
+
 -- Create a tween for the intro frame to slide onto the screen
 local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Position = UDim2.new(0, 0, 0, 0)})
