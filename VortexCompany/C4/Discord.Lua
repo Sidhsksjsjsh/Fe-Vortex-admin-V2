@@ -1659,6 +1659,12 @@ function Punish(ooo)
 	speaker:kick(ooo)
 end
 
+function Executor()
+if identifyexecutor then
+    return identifyexecutor()
+    end
+end
+
 function Anticheat_Bypass()
 if game.PlaceId == 277751860 then
 speaker.Character.HumanoidRootPart.ChildAdded:connect(function(child)
@@ -6597,6 +6603,15 @@ if not respon then
 ErrorPrompt("Remote spy V2 error", result, "close")
 end
 end
+if cmd == "zombie" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastefy.ga/n42Ougzx/raw")
+end)
+
+if not respon then
+ErrorPrompt("Zombie script Error", result, "close")
+end
+end
 -- limit
 end
 end
@@ -8904,6 +8919,15 @@ if not respon then
 ErrorPrompt("Remote spy V2 error", result, "close")
 end
 end
+if cmd == "zombie" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastefy.ga/n42Ougzx/raw")
+end)
+
+if not respon then
+ErrorPrompt("Zombie script Error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9230,7 +9254,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [22/05/2023] \n\n[CONTENT] \n[+] added new anti cheat bypass for epic minigames \n[+] new oldrspy command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nIP Host: REMOVED" -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [22/05/2023] \n\n[CONTENT] \n[+] new zombie command \n[+] new oldrspy command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
