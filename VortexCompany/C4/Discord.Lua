@@ -6621,6 +6621,28 @@ if not respon then
 ErrorPrompt("FE Touch Fling GUI Error", result, "close")
 end
 end
+if cmd == "nofog" then
+Lighting.FogEnd = 100000
+	for i,v in pairs(Lighting:GetDescendants()) do
+		if v:IsA("Atmosphere") then
+			v:Destroy()
+		end
+	end
+end
+if cmd == "maxzoom" then
+local var = string.sub(msg,space+1)
+speaker.CameraMaxZoomDistance = tonumber(var)
+end
+if cmd == "minzoom" then
+local var = string.sub(msg,space+1)
+speaker.CameraMinZoomDistance = tonumber(var)
+end
+if cmd == "fixcam" then
+game.Workspace.CurrentCamera.CameraType = "Fixed"
+wait(0.5)
+game.Workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+game.Workspace.CurrentCamera.CameraType = "Custom"
+end
 -- limit
 end
 end
@@ -8946,6 +8968,28 @@ if not respon then
 ErrorPrompt("FE Touch Fling GUI Error", result, "close")
 end
 end
+if cmd == "nofog" then
+Lighting.FogEnd = 100000
+	for i,v in pairs(Lighting:GetDescendants()) do
+		if v:IsA("Atmosphere") then
+			v:Destroy()
+		end
+	end
+end
+if cmd == "maxzoom" then
+local var = string.sub(msg,space+1)
+speaker.CameraMaxZoomDistance = tonumber(var)
+end
+if cmd == "minzoom" then
+local var = string.sub(msg,space+1)
+speaker.CameraMinZoomDistance = tonumber(var)
+end
+if cmd == "fixcam" then
+game.Workspace.CurrentCamera.CameraType = "Fixed"
+wait(0.5)
+game.Workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
+game.Workspace.CurrentCamera.CameraType = "Custom"
+end
 -- limits
 end
 end)
@@ -9134,6 +9178,10 @@ cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execu
 cmds[#cmds + 1] = {Text = "[177] " .. tostring(prefix) .. "oldrspy",Title = "execute old remote spy script"}
 cmds[#cmds + 1] = {Text = "[178] " .. tostring(prefix) .. "fling2",Title = "touch someone"}
 cmds[#cmds + 1] = {Text = "[179] " .. tostring(prefix) .. "zombie",Title = "zombie script, eat em"}
+cmds[#cmds + 1] = {Text = "[180] " .. tostring(prefix) .. "nofog",Title = "remove fog"}
+cmds[#cmds + 1] = {Text = "[181] " .. tostring(prefix) .. "maxzoom [number]",Title = "set camera maxzoom distance"}
+cmds[#cmds + 1] = {Text = "[182] " .. tostring(prefix) .. "minzoom [number]",Title = "set camera minzoom distance"}
+cmds[#cmds + 1] = {Text = "[183] " .. tostring(prefix) .. "fixcam",Title = "fix ur camera"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9274,7 +9322,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [22/05/2023] \n\n[CONTENT] \n[+] new zombie command \n[+] new oldrspy command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [23/05/2023] \n\n[CONTENT] \n[+] new zombie command \n[+] added 4 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
