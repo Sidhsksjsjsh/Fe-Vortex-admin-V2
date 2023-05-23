@@ -336,6 +336,7 @@ local Asset = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId)
 local oofing = false
 local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
+local queue_on_teleport = syn and syn.queue_on_teleport or queue_on_teleport
 local CharInject = true
 local NetworkClient = game:GetService("NetworkClient")
 local currentToolSize = ""
@@ -5042,6 +5043,9 @@ local respon, result = pcall(function()
 notify("Rejoining...")
 wait()
 RejoinServer()
+if (queue_on_teleport) then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+	end
 end)
 
 if not respon then
@@ -5132,7 +5136,7 @@ end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
 _Anims(var)
-notify("now playing animation " .. var .. " (" .. tostring(_AnimName) .. ")")
+notify("now playing animation " .. _AnimName .. " (" .. tostring(var) .. ")")
 end
 if cmd == "noanim" then
 AnimService:Stop()
@@ -5827,6 +5831,9 @@ end
 if cmd == "serverhop" then
 local respon, result = pcall(function()
 StartServerhop()
+if (queue_on_teleport) then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+	end
 end)
 
 if not respon then
@@ -7391,6 +7398,9 @@ local respon, result = pcall(function()
 notify("Rejoining...")
 wait()
 RejoinServer()
+if (queue_on_teleport) then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+	end
 end)
 
 if not respon then
@@ -8176,6 +8186,9 @@ end
 if cmd == "serverhop" then
 local respon, result = pcall(function()
 StartServerhop()
+if (queue_on_teleport) then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+	end
 end)
 
 if not respon then
@@ -9470,10 +9483,9 @@ end)
 
 game.Players.PlayerRemoving:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
+friendsingame = friendsingame + -1
 if friendsingame < 0 then
 friendsingame = 0
-else
-friendsingame = friendsingame + -1
 end
 end
 end)
