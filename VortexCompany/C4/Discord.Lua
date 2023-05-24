@@ -1578,7 +1578,7 @@ Domain.Avatarjoin.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Domain.Avatarjoin.BackgroundTransparency = 1.000
 Domain.Avatarjoin.BorderSizePixel = 0
 Domain.Avatarjoin.Position = UDim2.new(0.0651319921, 0, 0.189999998, 0)
-Domain.Avatarjoin.Size = UDim2.new(0, 18, 0, 18)
+Domain.Avatarjoin.Size = UDim2.new(0, 40, 0, 40) -- 0, 18, 0, 18
 Domain.Avatarjoin.Image = "rbxasset://13030062874"
 
 Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
