@@ -316,7 +316,7 @@ function ErrorPrompt(title, Message, buttonname)
     end
 end
 
-ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
+-- ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
 
 local cmds = {}
 local speaker = game.Players.LocalPlayer
@@ -3407,12 +3407,24 @@ end
 game:GetService("Workspace").DescendantAdded:Connect(onPartSpawned)
 
 local _AnimName = ""
-function _Anims(id)
+function _Anims(id, typeloop)
 AnimService = Instance.new("Animation")
 AnimService.AnimationId = "rbxassetid://" .. id
 ServiceStart = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimService)
 ServiceStart:Play()
-ServiceStart:AdjustSpeed(1)
+if typeloop == "unloop" then
+   ServiceStart:AdjustSpeed(1)
+end
+if typeloop == "loop" then
+   ServiceStart:AdjustSpeed(1)
+	wait(1.5)
+	repeat wait(0.5)
+	ServiceStart:AdjustSpeed(1)
+	wait(0.5)
+	ServiceStart:AdjustSpeed(-1)
+	until speaker.Character.Humanoid.Health == 0
+end	
+	
 local id = string.match(AnimService.AnimationId, "rbxasset://sounds.+") or string.match(AnimService.AnimationId, "&hash=.+") or string.match(AnimService.AnimationId, "%d+")
 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
