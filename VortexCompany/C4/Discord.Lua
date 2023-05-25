@@ -6660,6 +6660,16 @@ if not respon then
 ErrorPrompt("FE Sturdy Error", result, "close")
 end
 end
+if cmd == "emotegui" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
+notify('press ","')
+end)
+
+if not respon then
+ErrorPrompt("FE Emote GUI Error", result, "close")
+end
+end
 -- limit
 end
 end
@@ -9023,6 +9033,16 @@ if not respon then
 ErrorPrompt("FE Sturdy Error", result, "close")
 end
 end
+if cmd == "emotegui" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
+notify('press ","')
+end)
+
+if not respon then
+ErrorPrompt("FE Emote GUI Error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9216,6 +9236,7 @@ cmds[#cmds + 1] = {Text = "[181] " .. tostring(prefix) .. "maxzoom [number]",Tit
 cmds[#cmds + 1] = {Text = "[182] " .. tostring(prefix) .. "minzoom [number]",Title = "set camera minzoom distance"}
 cmds[#cmds + 1] = {Text = "[183] " .. tostring(prefix) .. "fixcam",Title = "fix ur camera"}
 cmds[#cmds + 1] = {Text = "[184] " .. tostring(prefix) .. "sturdy",Title = "Get Sturdy"}
+cmds[#cmds + 1] = {Text = "[185] " .. tostring(prefix) .. "emotegui",Title = "Free Emote"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9356,7 +9377,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [23/05/2023] \n\n[CONTENT] \n[+] new zombie command \n[+] added 4 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [25/05/2023] \n\n[CONTENT] \n[+] added 2 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
