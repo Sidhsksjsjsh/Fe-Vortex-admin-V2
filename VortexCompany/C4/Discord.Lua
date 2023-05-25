@@ -3407,14 +3407,13 @@ end
 game:GetService("Workspace").DescendantAdded:Connect(onPartSpawned)
 
 local _AnimName = ""
-function _Anims(id, typeloop)
+function _Anims(id)
 AnimService = Instance.new("Animation")
 AnimService.AnimationId = "rbxassetid://" .. id
 ServiceStart = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimService)
 ServiceStart:Play()
 ServiceStart:AdjustSpeed(1)
-end	
-	
+
 local id = string.match(AnimService.AnimationId, "rbxasset://sounds.+") or string.match(AnimService.AnimationId, "&hash=.+") or string.match(AnimService.AnimationId, "%d+")
 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
