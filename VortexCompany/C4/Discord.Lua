@@ -3412,17 +3412,7 @@ AnimService = Instance.new("Animation")
 AnimService.AnimationId = "rbxassetid://" .. id
 ServiceStart = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimService)
 ServiceStart:Play()
-if typeloop == "unloop" then
-   ServiceStart:AdjustSpeed(1)
-end
-if typeloop == "loop" then
-   ServiceStart:AdjustSpeed(1)
-	wait(1.5)
-	repeat wait(0.5)
-	ServiceStart:AdjustSpeed(1)
-	wait(0.5)
-	ServiceStart:AdjustSpeed(-1)
-	until speaker.Character.Humanoid.Health == 0
+ServiceStart:AdjustSpeed(1)
 end	
 	
 local id = string.match(AnimService.AnimationId, "rbxasset://sounds.+") or string.match(AnimService.AnimationId, "&hash=.+") or string.match(AnimService.AnimationId, "%d+")
