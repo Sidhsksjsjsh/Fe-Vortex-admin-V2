@@ -6674,7 +6674,7 @@ end
 if cmd == "fighter" then
 local respon, result = pcall(function()
 ForceBodyPart()
-executeHTTPS("https://raw.githubusercontent.com/OmarXploits/Free-Scripts/main/R15-Fighter")
+executeHTTPS("https://pastebin.com/raw/XhTSzvNU")
 end)
 
 if not respon then
@@ -9057,7 +9057,7 @@ end
 if cmd == "fighter" then
 local respon, result = pcall(function()
 ForceBodyPart()
-executeHTTPS("https://raw.githubusercontent.com/OmarXploits/Free-Scripts/main/R15-Fighter")
+executeHTTPS("https://pastebin.com/raw/XhTSzvNU")
 end)
 
 if not respon then
