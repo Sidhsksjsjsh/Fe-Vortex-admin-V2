@@ -6681,6 +6681,15 @@ if not respon then
 ErrorPrompt("FE Fighter Error", result, "close")
 end
 end
+if cmd == "esp2" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/EspV2/main/Death.lua")
+end)
+
+if not respon then
+ErrorPrompt("ESP V2 Error", result, "close")
+end
+end
 -- limit
 end
 end
@@ -9064,6 +9073,15 @@ if not respon then
 ErrorPrompt("FE Fighter Error", result, "close")
 end
 end
+if cmd == "esp2" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/EspV2/main/Death.lua")
+end)
+
+if not respon then
+ErrorPrompt("ESP V2 Error", result, "close")
+end
+end
 -- limits
 end
 end)
@@ -9259,6 +9277,7 @@ cmds[#cmds + 1] = {Text = "[183] " .. tostring(prefix) .. "fixcam",Title = "fix 
 cmds[#cmds + 1] = {Text = "[184] " .. tostring(prefix) .. "sturdy",Title = "Get Sturdy"}
 cmds[#cmds + 1] = {Text = "[185] " .. tostring(prefix) .. "emotegui",Title = "Free Emote"}
 cmds[#cmds + 1] = {Text = "[186] " .. tostring(prefix) .. "fighter",Title = "Become a fighter"}
+cmds[#cmds + 1] = {Text = "[187] " .. tostring(prefix) .. "esp2",Title = "enable esp v2"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
