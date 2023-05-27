@@ -923,6 +923,19 @@ U6.TextWrapped             = true
 U6.FontSize                = 'Size24'
 U6.Font                    = 'SourceSansBold'
 
+repeat wait() until speaker.Character
+
+local StoredCF = speaker.Character:WaitForChild('Head').CFrame
+local IsTPing  = false
+local LPost = CFrame.new(0, 0, 0)
+	
+speaker.CharacterAdded:connect(function(Char)
+   if IsTPing then
+       IsTPing = false
+       Char:WaitForChild('Head').CFrame = StoredCF
+   end
+end)
+
 U1.Visible = false
 U2.Visible = false
 U3.Visible = false
@@ -4254,10 +4267,10 @@ function ESP(plr)
 						if plr.Character and getRoot(plr.Character) and plr.Character:FindFirstChildOfClass("Humanoid") and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
 							local pos = math.floor((getRoot(Players.LocalPlayer.Character).Position - getRoot(plr.Character).Position).magnitude)
 							if pos < 1000 then
-							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nStuds: '..pos..' meters'
+							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' meters'
 							end
 							if pos > 999 then
-							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nStuds: '..pos..' km'
+							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' km'
 							end
 						end
 					else
@@ -4842,94 +4855,85 @@ game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
 notify("Current jump: " .. var)
 end
 if cmd == "fling" then
-flinging = false
-	for _, child in pairs(speaker.Character:GetDescendants()) do
-		if child:IsA("BasePart") then
-			child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
-		end
-	end
-	Clip = false
-	wait(0.1)
-	local function V()
-		if Clip == false and speaker.Character ~= nil then
-			for _, child in pairs(speaker.Character:GetDescendants()) do
-				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
-					child.CanCollide = false
-				end
-			end
-		end
-	end
-	XV = RunService.Stepped:Connect(V)
-	wait(.1)
-	local bambam = Instance.new("BodyAngularVelocity")
-	bambam.Name = randomString()
-	bambam.Parent = getRoot(speaker.Character)
-	bambam.AngularVelocity = Vector3.new(0,99999,0)
-	bambam.MaxTorque = Vector3.new(0,math.huge,0)
-	bambam.P = math.huge
-	local Char = speaker.Character:GetChildren()
-	for i, v in next, Char do
-		if v:IsA("BasePart") then
-			v.CanCollide = false
-			v.Massless = true
-			v.Velocity = Vector3.new(0, 0, 0)
-		end
-	end
-	flinging = true
-	local function flingDiedF()
-		if XV then
-        	XV:Disconnect()
-	end
-	Clip = true
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
 end
-	if flingDied then
-		flingDied:Disconnect()
-	end
-	wait(.1)
-	local speakerChar = speaker.Character
-	if not speakerChar or not getRoot(speakerChar) then return end
-	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
-		if v.ClassName == 'BodyAngularVelocity' then
-			v:Destroy()
-		end
-	end
-	for _, child in pairs(speakerChar:GetDescendants()) do
-		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
-			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
-		end
-	end
-	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
-	repeat
-		bambam.AngularVelocity = Vector3.new(0,99999,0)
-		wait(.2)
-		bambam.AngularVelocity = Vector3.new(0,0,0)
-		wait(.1)
-	until flinging == false
-notify("fling enabled")
 end
-if cmd == "unfling" then
-if XV then
-        	XV:Disconnect()
-	end
-	Clip = true
-	if flingDied then
-		flingDied:Disconnect()
-	end
-	flinging = false
-	wait(.1)
-	local speakerChar = speaker.Character
-	if not speakerChar or not getRoot(speakerChar) then return end
-	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
-		if v.ClassName == 'BodyAngularVelocity' then
-			v:Destroy()
-		end
-	end
-	for _, child in pairs(speakerChar:GetDescendants()) do
-		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
-			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
-		end
-	end
-notify("fling disabled")
+	LPost = CFrame.new(speaker.HumanoidRootPart.Position)
+   local Target   = var
+   local HasDied  = false
+   local PPart    = speaker.Character.PrimaryPart
+
+   StoredCF = PPart.CFrame
+
+   if not Target then
+       return
+   end
+
+   repeat wait() until Target.Character
+   
+   local bodyp    = Instance.new("BodyPosition",PPart)
+   bodyp.D        = 0
+   bodyp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+
+       pcall(function()
+           bodyp.Position = Target.Character.PrimaryPart.Position
+       end)
+
+   pcall(function()
+       bodyp:Destroy()
+       speaker.Character.HumanoidRootPart.Position = LPost
+   end)
+
+   notify('Flinged!')
+end
+if cmd == "loopfling" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+   local Target   = var
+   local HasDied  = false
+   local PPart    = speaker.Character.PrimaryPart
+
+   StoredCF = PPart.CFrame
+
+   if not Target then
+       return
+   end
+
+   repeat wait() until Target.Character
+
+   IsTPing = true
+
+   Target.Character:WaitForChild('Humanoid').Died:connect(function()
+       HasDied = true
+   end)
+
+   local bodyp    = Instance.new("BodyPosition",PPart)
+   bodyp.D        = 0
+   bodyp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+
+   repeat
+       game:GetService("RunService").RenderStepped:Wait()
+       pcall(function()
+           bodyp.Position = Target.Character.PrimaryPart.Position
+       end)
+   until
+
+       HasDied == true
+
+   pcall(function()
+       bodyp:Destroy()
+       speaker.Character:BreakJoints()
+   end)
+
+   notify('Killed')
 end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
@@ -9121,8 +9125,8 @@ cmds[#cmds + 1] = {Text = "[31] " .. tostring(prefix) .. "loopspeed [speed]",Tit
 cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopspeed",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[31] " .. tostring(prefix) .. "loopjump [jump]",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopjump",Title = "no text"}
-cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "fling",Title = "Troll"}
-cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "unfling",Title = "stop flinging"}
+cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "fling [username]",Title = "Troll"}
+cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "loopfling [username]",Title = "stop flinging"}
 cmds[#cmds + 1] = {Text = "[34] " .. tostring(prefix) .. "headsit [username]",Title = "sit at nigga head🤡🤙"}
 cmds[#cmds + 1] = {Text = "[35] " .. tostring(prefix) .. "nosit",Title = "disable sit"}
 cmds[#cmds + 1] = {Text = "[36] " .. tostring(prefix) .. "unnosit",Title = "enable sit"}
