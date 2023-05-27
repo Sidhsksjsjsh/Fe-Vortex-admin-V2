@@ -4861,7 +4861,7 @@ if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) the
 var = v.Name
 end
 end
-	LPost = CFrame.new(speaker.HumanoidRootPart.Position)
+	LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
    local Target   = var
    local HasDied  = false
    local PPart    = speaker.Character.PrimaryPart
