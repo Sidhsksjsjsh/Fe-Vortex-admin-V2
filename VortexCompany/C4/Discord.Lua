@@ -860,7 +860,7 @@ U1.TextStrokeTransparency  = 1
 U1.TextWrapped             = true
 U1.FontSize                = 'Size24'
 U1.Font                    = 'SourceSansBold'
-U1.Draggable = true
+U1.Draggable = false
 
 U2.Size                    = UDim2.new(0,200,0,30)
 U2.BackgroundTransparency  = 0.5
@@ -935,6 +935,34 @@ speaker.CharacterAdded:connect(function(Char)
        Char:WaitForChild('Head').CFrame = StoredCF
    end
 end)
+
+function MarkTarget()
+if game:GetService("Workspace"):FindFirstChild("BlockMark") then
+	game:GetService("Workspace"):FindFirstChild("BlockMark"):Destroy()
+end
+
+local part = Instance.new("Part")
+part.Size = Vector3.new(2, 2, 2)
+part.BrickColor = BrickColor.new("Bright green")
+part.Transparency = 0.5
+part.Name = "BlockMark"
+part.Anchored = true
+part.CanCollide = false
+part.Position = speaker.Character.HumanoidRootPart.Position
+
+part.Parent = game:GetService("Workspace")
+--[[
+while true do
+    part.CFrame = part.CFrame * CFrame.Angles(0, math.rad(1), 0)
+    wait()
+end
+--]]
+end
+
+function SetPartPosition(PartName, SecondPartPos, PartColor) -- BlockMark
+	game:GetService("Workspace"):FindFirstChild(PartName).CFrame = SecondPartPos
+	game:GetService("Workspace"):FindFirstChild(PartName).BrickColor = BrickColor.new(PartColor or "Bright red")
+end
 
 U1.Visible = false
 U2.Visible = false
@@ -4307,25 +4335,25 @@ local arrow = "> "
 local Arrow_2 = " <"
 CB.FocusLost:Connect(function(Enter)
    if Enter then
-	CB.Text = arrow .. CB.Text .. Arrow_2
+	CB.Text = arrow .. prefix .. CB.Text .. Arrow_2
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
 end
 end)
 
-CB.FocusLost:Connect(function(Execute)
+CB.FocusLost:Connect(function(Execute) -- prefix disabled
    if Execute then
 local msg = CB.Text:lower()
 if string.sub(CB.Text,1,3) == "/e " then
 msg = string.sub(msg,4)
 end
-if string.sub(msg,1,1) == prefix then
+if not string.sub(msg,1,1) == prefix then
 local cmd
 local space = string.find(msg," ")
 if space then
-cmd = string.sub(msg,2,space-1)
+cmd = string.sub(msg,1,space-1) -- 2
 else
-cmd = string.sub(msg,2)
+cmd = string.sub(msg,1) -- 2
 end
 
 if cmd == "print" then
@@ -5297,6 +5325,7 @@ ShakeData("13030078632")
 end
 if cmd == "antifling" then
 VIPFrame.Visible = true
+MarkTarget()
 local Services = setmetatable({}, {__index = function(Self, Index)
 			local NewService = game.GetService(game, Index)
 			if NewService then
@@ -5331,6 +5360,9 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 						if Detected == false then
 							warn("be carefull!")
 							EditFlingNotify("Fling Exploit detected, Player: " .. tostring(Player))
+							SetPartPosition("BlockMark", Players[Player].Character.HumanoidRootPart.Position, "Bright red") -- BlockMark
+							wait(1)
+							SetPartPosition("BlockMark", speaker.Character.HumanoidRootPart.Position, "Bright green")
 						end
 						Detected = true
 						for i,v in ipairs(Character:GetDescendants()) do
@@ -5369,6 +5401,7 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 	
 					warn("you were flung")
 					EditFlingNotify("You were flung. Neutralizing velocity.")
+					SetPartPosition("BlockMark", speaker.Character.HumanoidRootPart.Position, "Bright yellow")
 				elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
 					LastPosition = PrimaryPart.CFrame
 				end
@@ -9422,7 +9455,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [28/05/2023] \n\n[CONTENT] \n[+] added 1 new commands \n[+] updated command fling and loopfling, only works for command bar. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [29/05/2023] \n\n[CONTENT] \n[+] you no longer need to add prefix to the command bar \n[+] added a marker block to the antifling command (Bright red = flings detected, Bright green = safe, Bright yellow = u were flung) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n[+] fixed IP and identifyexecutor or identifyexploit bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
