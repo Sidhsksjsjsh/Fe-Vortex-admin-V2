@@ -4341,19 +4341,21 @@ CB.FocusLost:Connect(function(Enter)
 end
 end)
 
+local SPrefix = ""
+
 CB.FocusLost:Connect(function(Execute) -- prefix disabled
    if Execute then
 local msg = CB.Text:lower()
 if string.sub(CB.Text,1,3) == "/e " then
 msg = string.sub(msg,4)
 end
-if not string.sub(msg,1,1) == prefix then
+if string.sub(msg,1,1) == SPrefix then
 local cmd
 local space = string.find(msg," ")
 if space then
-cmd = string.sub(msg,1,space-1) -- 2
+cmd = string.sub(msg,2,space-1) -- 2
 else
-cmd = string.sub(msg,1) -- 2
+cmd = string.sub(msg,2) -- 2
 end
 
 if cmd == "print" then
