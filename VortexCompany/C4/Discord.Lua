@@ -4344,18 +4344,18 @@ end)
 local SPrefix = ""
 
 CB.FocusLost:Connect(function(Execute) -- prefix disabled
-   if Execute then
+   if Execute then -- 1
 local msg = CB.Text:lower()
 if string.sub(CB.Text,1,3) == "/e " then
 msg = string.sub(msg,4)
 end
-if string.sub(msg,1,1) == SPrefix then
+-- if string.sub(msg,1,1) == prefix then -- 2
 local cmd
 local space = string.find(msg," ")
 if space then
-cmd = string.sub(msg,2,space-1) -- 2
+cmd = string.sub(msg,1,space-1) -- 2
 else
-cmd = string.sub(msg,2) -- 2
+cmd = string.sub(msg,1) -- 2
 end
 
 if cmd == "print" then
@@ -6731,7 +6731,7 @@ end
 end
 -- limit
 end
-end
+-- end
 end)
 
 speaker.Chatted:Connect(function(msg)
