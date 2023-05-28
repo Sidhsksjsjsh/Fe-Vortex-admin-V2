@@ -5326,7 +5326,7 @@ saveSettings()
 ShakeData("13030078632")
 end
 if cmd == "antifling" then
-VIPFrame.Visible = true
+VIPFrame.Visible = true -- 
 MarkTarget()
 local Services = setmetatable({}, {__index = function(Self, Index)
 			local NewService = game.GetService(game, Index)
@@ -5340,7 +5340,7 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 		local LocalPlayer = Services.Players.LocalPlayer
 	
 		-- // Functions \\ --
-		local function PlayerAdded(Player)
+		local function PlayerAdded(yolo)
 			local Detected = false
 			local Character;
 			local PrimaryPart;
@@ -5354,17 +5354,17 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 				Detected = false
 			end
 	
-			CharacterAdded(Player.Character or Player.CharacterAdded:Wait())
-			Player.CharacterAdded:Connect(CharacterAdded)
+			CharacterAdded(yolo.Character or yolo.CharacterAdded:Wait())
+			yolo.CharacterAdded:Connect(CharacterAdded)
 			Services.RunService.Heartbeat:Connect(function()
 				if (Character and Character:IsDescendantOf(workspace)) and (PrimaryPart and PrimaryPart:IsDescendantOf(Character)) then
 					if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
 						if Detected == false then
-							warn("be carefull!")
-							EditFlingNotify("Fling Exploit detected, Player: " .. tostring(Player))
-							SetPartPosition("BlockMark", Players[Player].Character.HumanoidRootPart.Position, "Bright red") -- BlockMark
+							-- warn("be carefull!")
+							EditFlingNotify("Fling Exploit detected, Player: " .. tostring(yolo))
+							SetPartPosition("BlockMark",yolo.Character.HumanoidRootPart.Position,"Bright red") -- BlockMark
 							wait(1)
-							SetPartPosition("BlockMark", speaker.Character.HumanoidRootPart.Position, "Bright green")
+							SetPartPosition("BlockMark",speaker.Character.HumanoidRootPart.Position,"Bright green")
 						end
 						Detected = true
 						for i,v in ipairs(Character:GetDescendants()) do
@@ -5401,9 +5401,9 @@ local Services = setmetatable({}, {__index = function(Self, Index)
 					PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
 					PrimaryPart.CFrame = LastPosition
 	
-					warn("you were flung")
+					-- warn("you were flung")
 					EditFlingNotify("You were flung. Neutralizing velocity.")
-					SetPartPosition("BlockMark", speaker.Character.HumanoidRootPart.Position, "Bright yellow")
+					SetPartPosition("BlockMark",speaker.Character.HumanoidRootPart.Position,"Bright yellow")
 				elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
 					LastPosition = PrimaryPart.CFrame
 				end
