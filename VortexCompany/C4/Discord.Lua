@@ -960,7 +960,7 @@ end
 end
 
 function SetPartPosition(PartName, SecondPartPos, PartColor) -- BlockMark
-	game:GetService("Workspace"):FindFirstChild(PartName).CFrame = SecondPartPos
+	game:GetService("Workspace"):FindFirstChild(PartName).CFrame = CFrame.new(SecondPartPos)
 	game:GetService("Workspace"):FindFirstChild(PartName).BrickColor = BrickColor.new(PartColor or "Bright red")
 end
 
