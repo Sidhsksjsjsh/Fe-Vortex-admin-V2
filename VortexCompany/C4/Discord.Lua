@@ -5079,7 +5079,9 @@ notify("Rejoining...")
 wait()
 RejoinServer()
 if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
 	end
 end)
 
@@ -5872,7 +5874,9 @@ if cmd == "serverhop" then
 local respon, result = pcall(function()
 StartServerhop()
 if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
 	end
 end)
 
@@ -6569,7 +6573,12 @@ end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
 local respon, result = pcall(function()
-SynchronousGameTeleport(var, 60, 60) -- https://
+SynchronousGameTeleport(var,0,0) -- https://
+if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
+	end
 end)
 
 if not respon then
@@ -7478,7 +7487,9 @@ notify("Rejoining...")
 wait()
 RejoinServer()
 if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
 	end
 end)
 
@@ -8266,7 +8277,9 @@ if cmd == "serverhop" then
 local respon, result = pcall(function()
 StartServerhop()
 if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
 	end
 end)
 
@@ -8966,7 +8979,12 @@ end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
 local respon, result = pcall(function()
-SynchronousGameTeleport(var, 60, 60) -- https://
+SynchronousGameTeleport(var,0,0) -- https://
+if (queue_on_teleport) then
+	if Executor() == "Arceus X" then
+            queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
+		end
+	end
 end)
 
 if not respon then
@@ -9377,7 +9395,7 @@ local partner = {
 
 local CrV = staff._staff_Title .. "\n" .. staff._staff_1 .. "\n" .. staff._staff_2 .. "\n\n" .. moderator._mod_title .. "\n" .. moderator._mod_1 .. "\n\n"
 
-local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n" .. friend.iksan .. "\n\n" .. CrV .. "" .. partner.Title .. "\n" .. partner._A .. "\n" .. partner._B .. "\n" .. partner._C ..  "\n" .. partner._D
+local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "\n" .. Developer.CookieProgamming .. "\n\n" .. friend.Title .. "\n" .. friend.Daffy .. "\n" .. friend.anikazila .. "\n" .. friend.vilobatir .. "\n" .. friend.iksan .. "\n\n" .. CrV .. ""
 
 local ContentCmds = "The command list is in the console."
 
@@ -9561,33 +9579,29 @@ local seconds = seconds - (minutes * 60)
 local minutes = minutes - (hours * 60)
 if hours == 1 and minutes == 0 and seconds == 0 then
 if restnotify then
-ErrorPrompt("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = false
-wait(1.5)
+ErrorPrompt("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = true
 end
 end
 if hours == 6 and minutes == 0 and seconds == 0 then
 if restnotify then
-ErrorPrompt("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = false
-wait(1.5)
+ErrorPrompt("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = true
 end
 end
 if hours == 12 and minutes == 0 and seconds == 0 then
 if restnotify then
-ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = false
-wait(1.5)
+ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = true
 end
 end
 if hours == 18 and minutes == 0 and seconds == 0 then
 if restnotify then
-ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = false
-wait(1.5)
+ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
 restnotify = true
 end
 end
