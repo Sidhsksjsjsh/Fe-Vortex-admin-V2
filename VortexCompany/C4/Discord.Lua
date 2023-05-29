@@ -2272,7 +2272,7 @@ end)
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
      loadstring(game:HttpGet(_link_))()
-     notify_("Executed!")
+     -- notify_("Executed!")
      end)
      
      if not respon then
@@ -2283,25 +2283,30 @@ end
 
 local epicm = 0
 
-local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
+-- local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 
 function notify(title, content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 	NotifyV1.new("message",title or "command notification",content)
 end
 
 function info(title, content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 	NotifyV1.new("info",title or "command information",content)
 end
 
 function ErrorPrompt(title, content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 	NotifyV1.new("message",title or "failed while executing the command",content)
 end
 
 function success(title, content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 	NotifyV1.new("success",title or "successfully executed the command",content)
 end
 
 function warning(title, content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 	NotifyV1.new("warning",title or "command warning",content)
 end
 
