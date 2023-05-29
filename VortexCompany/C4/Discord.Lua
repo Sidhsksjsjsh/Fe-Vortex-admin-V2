@@ -288,7 +288,7 @@ local function Create(instance, properties, children)
     return obj;
 end
 
-function ErrorPrompt(title, Message, buttonname)
+function ErrorPrompt_(title, Message, buttonname)
     if getrenv then
         local ErrorPrompt = getrenv().require(WarningGenerator:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
         local prompt = ErrorPrompt.new("Default",{HideErrorCode = true})
