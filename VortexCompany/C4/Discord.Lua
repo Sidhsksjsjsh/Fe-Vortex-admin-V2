@@ -2286,28 +2286,48 @@ local epicm = 0
 -- local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 
 function notify(title, content)
-	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-	NotifyV1.new("message",title or "command notification",content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
+	NotifyV1:Notify(
+               {Title = title, Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
 end
 
 function info(title, content)
-	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-	NotifyV1.new("info",title or "command information",content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
+	NotifyV1:Notify(
+               {Title = title, Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
 end
 
 function ErrorPrompt(title, content)
-	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-	NotifyV1.new("message",title or "failed while executing the command",content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
+	NotifyV1:Notify(
+               {Title = title, Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
 end
 
 function success(title, content)
-	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-	NotifyV1.new("success",title or "successfully executed the command",content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
+	NotifyV1:Notify(
+               {Title = title, Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
 end
 
 function warning(title, content)
-	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-	NotifyV1.new("warning",title or "command warning",content)
+	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
+	NotifyV1:Notify(
+               {Title = title, Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
 end
 
 function ExecuteScriptNameFunction(script_name)
