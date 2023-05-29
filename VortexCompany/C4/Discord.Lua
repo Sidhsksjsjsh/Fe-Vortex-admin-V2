@@ -1625,7 +1625,7 @@ Domain.Avatarjoin.Image = "rbxasset://13030062874"
 Domain.UICorner_67.CornerRadius = UDim.new(1, 20)
 Domain.UICorner_67.Parent = Domain.Avatarjoin
 
-function notify(A1)
+function notify_(A1)
 if os.date("%m %d") == "04 01" then
 Domain.FriendJoined.Visible = true
     Domain.FriendJoined.Size = UDim2.new(0,0,0.195,0)
@@ -1714,7 +1714,7 @@ if child.ClassName == "BodyVelocity" or child.ClassName == "BodyGyro" then
 child.Name = "power"
 end
 end)
-notify("anti-cheat bypass enabled for the game Epic Minigames")
+notify_("anti-cheat bypass enabled for the game Epic Minigames")
 else
 local mt = getrawmetatable(game)
 local old = mt.__namecall
@@ -1734,7 +1734,7 @@ end
 return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
-notify("kick bypass enable")
+notify_("kick bypass enable")
 end
 end
 
@@ -2065,7 +2065,7 @@ local randomshape = shapes[math.random(1, #shapes)]
 SetShape("VoxelScriptPart", randomshape)
 EditToolName("Shape: " .. randomshape,ShapePartTool)
 else
-notify("Error when trying to apply shape to part")
+notify_("Error when trying to apply shape to part")
 end
 end)
 ShapePartTool.Parent = speaker.Backpack
@@ -2079,7 +2079,7 @@ local randommaterial = material[math.random(1, #material)]
 SetMaterial("VoxelScriptPart", randommaterial)
 EditToolName("Material: " .. randommaterial,MaterialPartTool)
 else
-notify("Error when trying to apply Material to part")
+notify_("Error when trying to apply Material to part")
 end
 end)
 MaterialPartTool.Parent = speaker.Backpack
@@ -2097,7 +2097,7 @@ else
 EditToolName("CanCollide: false",CollidePartTool)
 end
 else
-notify("Error while trying to CanCollide part")
+notify_("Error while trying to CanCollide part")
 end
 end)
 CollidePartTool.Parent = speaker.Backpack
@@ -2115,7 +2115,7 @@ else
 EditToolName("CanQuery: false",QueryPartTool)
 end
 else
-notify("Error while trying to CanQuery part")
+notify_("Error while trying to CanQuery part")
 end
 end)
 QueryPartTool.Parent = speaker.Backpack
@@ -2133,7 +2133,7 @@ else
 EditToolName("CanTouch: false",TouchPartTool)
 end
 else
-notify("Error while trying to CanTouch part")
+notify_("Error while trying to CanTouch part")
 end
 end)
 TouchPartTool.Parent = speaker.Backpack
@@ -2151,7 +2151,7 @@ else
 EditToolName("Massless: false",MassPartTool)
 end
 else
-notify("Error while trying to massless part")
+notify_("Error while trying to massless part")
 end
 end)
 MassPartTool.Parent = speaker.Backpack
@@ -2169,7 +2169,7 @@ else
 EditToolName("Anchor: false",AnchorPartTool)
 end
 else
-notify("Error while trying to anchor part")
+notify_("Error while trying to anchor part")
 end
 end)
 AnchorPartTool.Parent = speaker.Backpack
@@ -2187,7 +2187,7 @@ else
 EditToolName("Locked: false",LockedPartTool)
 end
 else
-notify("Error while trying to lock part")
+notify_("Error while trying to lock part")
 end
 end)
 LockedPartTool.Parent = speaker.Backpack
@@ -2199,7 +2199,7 @@ DeletePartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 FindWorkspacePartName("VoxelScriptPart","Delete")
 else
-notify("Error while trying to delete part")
+notify_("Error while trying to delete part")
 end
 end)
 DeletePartTool.Parent = speaker.Backpack
@@ -2224,10 +2224,10 @@ if success then
     local userData = HttpService:JSONDecode(result.Body)
     print("GitHub username: " .. userData.login)
     print("GitHub ID: " .. userData.id)
-    notify("Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
+    notify_("Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
 else
     -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt("Error making request", tostring(result), "ok")
+    ErrorPrompt_("Error making request", tostring(result), "ok")
 end
 else
 Github.Text = "REQUIRED GITHUB USERNAME"
@@ -2256,10 +2256,10 @@ local success, result = pcall(HttpService.RequestAsync, HttpService, options)
 
 if success then
     local weatherData = HttpService:JSONDecode(result.Body)
-    notify("Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
+    notify_("Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
 else
     -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt("Error making request", tostring(result), "ok")
+    ErrorPrompt_("Error making request", tostring(result), "ok")
 end
 else
 WeatherApiKey.Text = "REQUIRED API KEY"
@@ -2272,7 +2272,7 @@ end)
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
      loadstring(game:HttpGet(_link_))()
-     notify("Executed!")
+     notify_("Executed!")
      end)
      
      if not respon then
@@ -2283,12 +2283,34 @@ end
 
 local epicm = 0
 
+local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
+
+function notify(title, content)
+	NotifyV1.new("message",title or "command notification",content)
+end
+
+function info(title, content)
+	NotifyV1.new("info",title or "command information",content)
+end
+
+function ErrorPrompt(title, content)
+	NotifyV1.new("message",title or "failed while executing the command",content)
+end
+
+function success(title, content)
+	NotifyV1.new("success",title or "successfully executed the command",content)
+end
+
+function warning(title, content)
+	NotifyV1.new("warning",title or "command warning",content)
+end
+
 function ExecuteScriptNameFunction(script_name)
 	if script_name == "epicm" then -- epic minigames
 		epicm = epicm + 1
 		if epicm > 1 then
 			epicm = 1
-			notify("you can only run this script once")
+			ErrorPrompt("ERROR!","you can only run this script once")
 			else
 			executeHTTPS("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI")
 		end
@@ -2308,7 +2330,7 @@ function copy(txt)
            setclipboard(txt)
 	else
 	   -- notify("your exploit doesnt have ability to use clipboard, Bad exploit🤣😂")
-	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use clipboard, Bad exploit🤣😂", "close")
+	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use clipboard, Bad exploit🤣😂")
     end
 end
 
@@ -2318,7 +2340,7 @@ function ProtocolSave(FileName, Config)
           writefile(FileName, Config)
 	else
 	  -- notify("your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
-	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use writefile, Bad exploit🤣😂", "close")
+	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
     end 
 end
 
@@ -2343,7 +2365,7 @@ end
 
 SaveOMG.MouseButton1Down:Connect(function()
    if isfile(FileName.Text) then -- FileName & InFile
-      notify('file with name "' .. FileName.Text .. '" already exists.')
+      notify("This file already exists",'file with name "' .. FileName.Text .. '" already exists.')
    else
       ProtocolSave(FileName.Text, InFile.Text)
    end
@@ -2355,21 +2377,21 @@ function SyncMath(math_1, ProtocolMath, math_2)
 	local SyncNumber_2 = math_2
 	local ExecuteResultPlus = 0
 	ExecuteResultPlus = SyncNumber_1 + SyncNumber_2
-	notify(SyncNumber_1 .. " + " .. SyncNumber_2 .. " = " .. ExecuteResultPlus)
+	notify("Math",SyncNumber_1 .. " + " .. SyncNumber_2 .. " = " .. ExecuteResultPlus)
     end
      if ProtocolMath == "*" then
         local SyncNumber_1 = math_1
 	local SyncNumber_2 = math_2
 	local ExecuteResultMultiplication = 0
 	ExecuteResultMultiplication = SyncNumber_1 * SyncNumber_2
-	notify(SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMultiplication)
+	notify("Math",SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMultiplication)
     end
      if ProtocolMath == "/" then
         local SyncNumber_1 = math_1
 	local SyncNumber_2 = math_2
 	local ExecuteResultMisc = 0
 	ExecuteResultMisc = SyncNumber_1 / SyncNumber_2
-	notify(SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMisc)
+	notify("Math",SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMisc)
     end
 end
 
@@ -2395,7 +2417,7 @@ function IP(country)
      notify("Currently getting " .. country .. " country IP... please wait")
        local IP_Address = IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "." .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "" .. IP_number[math.random(1, #IP_number)] .. "." .. IP_one_number[math.random(1, #IP_one_number)] .. "." .. IP_one_number[math.random(1, #IP_one_number)]
         copy(IP_Address)
-     notify("IP code: '" .. IP_Address .. "', country: '" .. country .. "'. The IP has been copied to your keyboard")
+     notify("Fake IP","IP code: '" .. IP_Address .. "', country: '" .. country .. "'. The IP has been copied to your keyboard")
 end
 
 function ProtocolSendChat(ProtocolChatService)
@@ -2442,7 +2464,7 @@ WhisperButton.MouseButton1Down:Connect(function()
    if Players:FindFirstChild(WhisperPlayer.Text) then
     ProtocolWhisperChat(WhisperPlayer.Text, WhisperBox.Text)
     else
-    notify("player not found or text box is empty please fill in")
+    ErrorPrompt("Player not found!","player not found or text box is empty please fill in")
   end
 end)
         function RejoinServer()
@@ -2529,7 +2551,7 @@ function CameraMode(ModeType)
            speaker.CameraMode = "Classic"
 end
        if not ModeType == "tpp" and not ModeType == "fpp" then
-           notify("Camera mode not found, mode: " .. ModeType)
+           ErrorPrompt("string:nil","Camera mode not found, mode: " .. ModeType)
 end
 end
 
@@ -2686,7 +2708,7 @@ CopyPath.MouseButton1Click:Connect(function()
 	if Path.Text ~= "" then
 		copy(Path.Text)
 	else
-		notify('Select a part to copy its path')
+		ErrorPrompt("Copy part",'Select a part to copy its path')
 	end
 end)
 
@@ -2702,7 +2724,7 @@ ChoosePart.MouseButton1Click:Connect(function()
 			end
 			if not FoundDupe then
 				InterfaceCoordFunction[#InterfaceCoordFunction + 1] = {NAME = selected.Adornee.Name..tpNameExt, COORD = {selected.Adornee}}
-				notify("Created waypoint: "..selected.Adornee.Name..tpNameExt)
+				notify("Select Part","Created waypoint: "..selected.Adornee.Name..tpNameExt)
 					
 			else
 				if isNumber(tpNameExt) then
@@ -2716,7 +2738,7 @@ ChoosePart.MouseButton1Click:Connect(function()
 		handleWpNames()
 		RefreshInterface()
 	else
-		notify('Select a part first')
+		ErrorPrompt("Select Part",'Select a part first')
 	end
 end)
 
@@ -3015,7 +3037,7 @@ local TpTool = Instance.new("Tool")
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
 		if not Char or not HRP then
-			return ErrorPrompt("Failed to load tptool","Failed to find HumanoidRootPart","OK")
+			return ErrorPrompt("Failed to load tptool","Failed to find HumanoidRootPart")
 		end
 		HRP.CFrame = CFrame.new(Mouse.Hit.X, Mouse.Hit.Y + 3, Mouse.Hit.Z, select(4, HRP.CFrame:components()))
 	end)
@@ -3030,8 +3052,8 @@ if _G.Settings.device == "Mobile" then
 	Interface_Visible(Control_UP, true)
 	Interface_Visible(Control_Down, true)
 	Interface_Visible(Control_LShift, true)
-	notify("Freecam enable for mobile devices")
-	ErrorPrompt("Announcement for mobile users", "THIS CONTROL AND THE SPEED IS STILL UNDER DEVELOPMENT, SO PLEASE REJOIN IF FOUND A BUG", "OK, I UNDERSTAND")
+	notify("Mobile Freecam","Freecam enable for mobile devices")
+	ErrorPrompt("Announcement for mobile users", "THIS CONTROL AND THE SPEED IS STILL UNDER DEVELOPMENT, SO PLEASE REJOIN IF FOUND A BUG")
    end
 if _G.Settings.device == "PC" then
 	Interface_Visible(Control_1, false)
@@ -3041,10 +3063,10 @@ if _G.Settings.device == "PC" then
 	Interface_Visible(Control_UP, false)
 	Interface_Visible(Control_Down, false)
 	Interface_Visible(Control_LShift, false)
-	notify("Freecam enable for PC devices")
+	notify("PC Freecam","Freecam enable for PC devices")
    end
 if _G.Settings.device == nil then
-        ErrorPrompt("Incompatible Device", "Unknown Device", "OK")
+        ErrorPrompt("Incompatible Device", "Unknown Device")
     end
 end
 
@@ -3123,7 +3145,7 @@ function CheckServers()
     end)
     
     if not respon then
-    ErrorPrompt("Serverhop", result, "close")
+    ErrorPrompt("Serverhop", result)
     end
 end
 
@@ -3205,15 +3227,15 @@ end
 function StartServerhop()
 	local ServerChecker = CheckServers()
 	if ServerChecker == "Protocol:cantfind" then
-	notify("We couldn't find a server")
+	ErrorPrompt("Cant find a server for u","We couldn't find a server")
 	end
 	if ServerChecker == "Protocol:found" then
-	notify("Joining server " .. tostring(ServerSize_A777))
+	success("Joining..","Joining server " .. tostring(ServerSize_A777))
 	end
 	wait(1)
 	local Check2 = Serverhop()
 	if Check2 == "Protocol:cantfind" then
-	notify("We couldn't find a server")
+	ErrorPrompt("Cant find a server for u","We couldn't find a server")
 	end
 end
 
@@ -3514,7 +3536,7 @@ function attach(client,target)
 			hrp.CFrame = hrp2.CFrame
 		until (tool.Parent ~= char or not hrp or not hrp2 or not hrp.Parent or not hrp2.Parent or n > 250) and n > 2
 	else
-		notify("Tool Required","You need to have an item in your inventory to use this command","Yes","No","")
+		notify("Tool Required","You need to have an item in your inventory to use this command")
 	end
 end
 
@@ -3537,7 +3559,7 @@ function kill(client,target,fast)
 			speaker.CharacterAdded:Wait():WaitForChild("HumanoidRootPart").CFrame = NormPos
 		end
 	else
-		notify("Tool Required","You need to have an item in your inventory to use this command","Yes","No","")
+		notify("Tool Required","You need to have an item in your inventory to use this command")
 	end
 end
 
@@ -4400,7 +4422,7 @@ end
 end
 
 kill(speaker,Players[var])
-notify("kill " .. var)
+success("managed to kill","killed " .. var)
 end
 if cmd == "inspect" then
 local var = string.sub(msg,space+1)
@@ -4460,7 +4482,7 @@ wait()
 getout(game.Players.LocalPlayer, game.Players[Target])
 wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
-notify("bring " .. var)
+notify("FE bring","bring " .. var)
 end
 if cmd == "esp" then
 ESPenabled = true
@@ -4469,7 +4491,7 @@ ESPenabled = true
 				ESP(v)
 			end
 		end
-notify("ESP enabled")
+success("ESP","ESP enabled")
 end
 if cmd == "unesp" then
 ESPenabled = false
@@ -4478,7 +4500,7 @@ ESPenabled = false
 			c:Destroy()
 		end
 	end
-notify("ESP disabled")
+success("ESP disabled")
 end
 if cmd == "noclip" then
 Clip = false
@@ -4493,14 +4515,14 @@ Clip = false
 		end
 	end
 	Noclipping = RunService.Stepped:Connect(NoclipLoop)
-notify("noclip enabled")
+success("noclipping","noclip enabled")
 end
 if cmd == "clip" then
 if Noclipping then
 		Noclipping:Disconnect()
 	end
 	Clip = true
-notify("noclip disabled")
+success("noclipping","noclip disabled")
 end
 if cmd == "bang" then
 local var = string.sub(msg,space+1)
@@ -4522,14 +4544,14 @@ local otherRoot = getTorso(Players[var].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
-notify("Banging: " .. var)
+notify("Ambatukam","Banging: " .. var)
 end
 if cmd == "unbang" then
 if RapeStart then
 		RapeStart:Disconnect()
                 track:Stop()
 		Anim:Destroy()
-		notify("Stop Banging")
+		notify("bang","Stop Banging")
 	end
 end
 if cmd == "follow" then
@@ -4666,7 +4688,7 @@ if result == "Mobile" then
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("FLY enabled for mobile devices")
+	notify("Mobile FLY","FLY enabled for mobile devices")
    end
    if result == "PC" then
         _G.Settings.device = "PC"
@@ -4674,7 +4696,7 @@ if result == "Mobile" then
         NOFLY()
 	wait()
 	sFLY()
-        notify("FLY enabled for PC devices")
+        notify("PC FLY","FLY enabled for PC devices")
    end
 end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
@@ -4687,13 +4709,13 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("FLY enabled for mobile devices")
+	notify("mobile FLY","FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
 NOFLY()
 	wait()
 	sFLY()
-        notify("FLY enabled for PC devices")
+        notify("PC FLY","FLY enabled for PC devices")
 end
 end
 if cmd == "invisfling" then
@@ -4763,7 +4785,7 @@ if result == "Mobile" then
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("INVISIBLE FLING enabled for mobile devices, RESET and type " .. prefix .. "unfly to hide controller")
+	notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for mobile devices, RESET and type " .. prefix .. "unfly to hide controller")
    end
    if result == "PC" then
         _G.Settings.device = "PC"
@@ -4771,7 +4793,7 @@ if result == "Mobile" then
         NOFLY()
 	wait()
 	sFLY()
-        notify("INVISIBLE FLING enabled for PC devices")
+        notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for PC devices")
    end
 end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
@@ -4784,13 +4806,13 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("INVISIBLE FLING enabled for mobile devices")
+	notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
 NOFLY()
 	wait()
 	sFLY()
-        notify("INVISIBLE FLING enabled for PC devices")
+        notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for PC devices")
 end
 
 	workspace.CurrentCamera.CameraSubject = root
@@ -4834,7 +4856,7 @@ if result == "Mobile" then
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-	notify("VEHICLE FLY enabled for mobile devices")
+	notify("Mobile Vehicle FLY","VEHICLE FLY enabled for mobile devices")
    end
    if result == "PC" then
         _G.Settings.device = "PC"
@@ -4842,7 +4864,7 @@ if result == "Mobile" then
         NOFLY()
 	wait()
 	sFLY(true)
-        notify("VEHICLE FLY enabled for PC devices")
+        notify("PC Vehicle FLY","VEHICLE FLY enabled for PC devices")
    end
 end
 Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
@@ -4855,13 +4877,13 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
-        notify("VEHICLE FLY enabled for mobile devices")
+        notify("Mobile Vehicle FLY","VEHICLE FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
 NOFLY()
 	wait()
 	sFLY(true)
-        notify("VEHICLE FLY enabled for PC devices [Control' Q, E]")
+        notify("PC Vehicle FLY","VEHICLE FLY enabled for PC devices [Control' Q, E]")
 end
 end
 if cmd == "unvfly" then
@@ -4877,12 +4899,12 @@ end
 if cmd == "speed" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = var
-notify("Current speed: " .. var)
+notify("WalkSpeed Changed","Current speed: " .. var)
 end
 if cmd == "jump" then
 local var = string.sub(msg,space+1)
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = var
-notify("Current jump: " .. var)
+notify("JumpPower Changed","Current jump: " .. var)
 end
 if cmd == "fling" then
 local var = string.sub(msg,space+1)
@@ -4983,7 +5005,7 @@ if headSit then headSit:Disconnect() end
 				headSit:Disconnect()
 			end
 		end)
-notify("sitting on the " .. var .. " head")
+notify("Headsit","sitting on the " .. var .. " head")
 end
 if cmd == "spy" then
 local var = string.sub(msg,space+1)
@@ -5019,24 +5041,24 @@ if viewing ~= nil then
 	notify("Spying turned off")
 end
 if cmd == "cmds" then
-ErrorPrompt("Error","ERROR","OK")
+ErrorPrompt("Error","ERROR")
 end
 if cmd == "nosit" then
 local function DISABLESIT()
       game.Players.LocalPlayer.Character.Humanoid.Sit = false
 end
     NositCmd = RunService.Stepped:Connect(DISABLESIT)
-notify("sit disabled")
+success("u cant sit","sit disabled")
 end
 if cmd == "unnosit" then
 if NositCmd then
      NositCmd:Disconnect()
 end
-notify("sit enabled")
+success("can sit","sit enabled")
 end
 if cmd == "sit" then
 game.Players.LocalPlayer.Character.Humanoid.Sit = true
-notify("sit XD")
+notify("tired?","sit XD")
 end
 if cmd == "helicopter" then
 local var = string.sub(msg,space+1)
@@ -5086,7 +5108,7 @@ if (queue_on_teleport) then
 end)
 
 if not respon then
-ErrorPrompt("Rejoin", result, "close")
+ErrorPrompt("Rejoin", result)
 end
 end
 if cmd == "delete" then
@@ -5127,10 +5149,10 @@ local R15Part = {
 
 if r15(speaker) then
 speaker.Character[R15Part[var]]:Destroy()
-notify("Deleting parts: " .. tostring(R15Part[var]))
+notify("Humanoid Part (R15)","Deleting parts: " .. tostring(R15Part[var]))
 else
 speaker.Character[BodyPart[var]]:Destroy()
-notify("Deleting parts: " .. tostring(BodyPart[var]))
+notify("Humanoid Part (R6)","Deleting parts: " .. tostring(BodyPart[var]))
 end
 end
 if cmd == "music" then
@@ -5164,7 +5186,7 @@ local MusicText = {
 }
 
 music(var)
-notify("now playing " .. MusicName .. " (" .. var .. ")")
+info("now playing ",MusicName .. " (" .. var .. ")")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
@@ -5173,7 +5195,7 @@ end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
 _Anims(var)
-notify("now playing animation " .. _AnimName .. " (" .. tostring(var) .. ")")
+notify("now playing animation ",_AnimName .. " (" .. tostring(var) .. ")")
 end
 if cmd == "noanim" then
 AnimService:Stop()
@@ -5197,7 +5219,7 @@ local dates = {}
 		local splitDates = string.split(date,"-")
 		table.insert(dates,Players[var].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
-	notify(chatString .. " (" .. Players[var].AccountAge .. " days old)")
+	notify(var .. " Account Age",chatString .. " (" .. Players[var].AccountAge .. " days old)")
 end
 if cmd == "blockhats" then
 for _,v in pairs(speaker.Character:FindFirstChildOfClass('Humanoid'):GetAccessories()) do
@@ -5270,7 +5292,7 @@ oofing = false
 end
 if cmd == "enablesl" then
 speaker.DevEnableMouseLock = true
-	notify("Shift lock is now available")
+	notify("PC shiftlock","Shift lock is now available")
 end
 if cmd == "setfpscap" then
 local var = string.sub(msg,space+1)
@@ -5281,15 +5303,15 @@ if setfpscap then
 		elseif num > 0 then
 			setfpscap(num)
 		else
-			return notify("Please provide a number above 0 or 'none'.")
+			return ErrorPrompt("ERROR","Please provide a number above 0 or 'none'.")
 		end
 	else
-		return notify("Your exploit does not support this command (missing setfpscap)")
+		return ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing setfpscap)")
 	end
 end
 if cmd == "antiteleport" then
 if not hookmetamethod then 
-		return notify("Your exploit does not support this command (missing hookmetamethod)")
+		return ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
 	end
 	local TeleportService = TeleportService
 	local oldhmmi
@@ -5297,9 +5319,9 @@ if not hookmetamethod then
 	oldhmmi = hookmetamethod(game, "__index", function(self, method)
 		if self == TeleportService then
 			if method:lower() == "teleport" then
-				return notify("Expected ':' not '.' calling member function Kick")
+				return ErrorPrompt("Error","Expected ':' not '.' calling member function Kick")
 			elseif method == "TeleportToPlaceInstance" then
-				return notify("Expected ':' not '.' calling member function TeleportToPlaceInstance")
+				return ErrorPrompt("Error","Expected ':' not '.' calling member function TeleportToPlaceInstance")
 			end
 		end
 		return oldhmmi(self, method)
@@ -5311,7 +5333,7 @@ if not hookmetamethod then
 		return oldhmmnc(self, ...)
 	end)
 
-	notify("Client anti teleport is now active (only effective on localscript teleport)")
+	notify("Anti-Teleport","Client anti teleport is now active (only effective on localscript teleport)")
 end
 if cmd == "ip" then
 local var = string.sub(msg,space+1)
@@ -5441,7 +5463,7 @@ executeHTTPS("https://pastebin.com/raw/CB3Jghvb")
 end)
 
 if not respon then
-ErrorPrompt("Chat logs error", result, "OK")
+ErrorPrompt("Chat logs error", result)
 end
 end
 if cmd == "datalimit" then
@@ -5690,7 +5712,7 @@ local char = Players[var].Character
 			return notify("Getposition Error, Missing character")
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
-		notify("Current Position " .. roundedPos)
+		notify(var .. " Position","Current Position " .. roundedPos)
 end
 if cmd == "copypos" then
 local var = string.sub(msg,space+1)
@@ -5709,7 +5731,7 @@ local char = Players[var].Character
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
 		copy(roundedPos)
-                notify("copied")
+                success("copied","copied to the clipboard")
 end
 if cmd == "spam" then
 local var = string.sub(msg,space+1)
@@ -5855,14 +5877,14 @@ if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
 end
 if cmd == "savemusic" then
-notify("Sorry, this command has been temporarily disabled and is currently being tested")
+warning("Maintenance","Sorry, this command has been temporarily disabled and is currently being tested")
 end
 if cmd == "addevent" then
 local var = string.sub(msg,space+1)
 StatusBAR(var)
 end
 if cmd == "checkprefix" then
-notify("prefix: '" .. tostring(prefix) .. "'")
+notify("Current Prefix","prefix: '" .. tostring(prefix) .. "'")
 end
 if cmd == "addplaymusic" then
 local var = string.sub(msg,space+1)
@@ -5881,7 +5903,7 @@ if (queue_on_teleport) then
 end)
 
 if not respon then
-ErrorPrompt("Serverhop", result, "close")
+ErrorPrompt("Serverhop", result)
 end
 end
 if cmd == "blacklist" then
@@ -5896,16 +5918,16 @@ _G.Settings.Blacklist = var
 _G.Settings.BlacklistCount = _G.Settings.BlacklistCount + 1
 if _G.Settings.BlacklistCount > 1 then
 _G.Settings.BlacklistCount = 1
-_Announcement("You can only blacklist a player once")
+warning("Blacklist","You can only blacklist a player once")
 else
-_Announcement("Successfull Blacklisted!")
+success("Successfull Blacklisted!")
 saveSettings()
 end
 end
 if cmd == "clearblacklist" then
 _G.Settings.Blacklist = ""
 _G.Settings.BlacklistCount = 0
-_Announcement("Blacklist cleared!")
+success("Blacklist cleared!")
 saveSettings()
 end
 if cmd == "cleardevice" then
@@ -5925,17 +5947,17 @@ local playerIsAlrFriend = Players:FindFirstChild(var)
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
     if isFriend then
-        notify("You are already friends with " .. var)
+        warning("You are already friends with " .. var)
         return
     end
 end
 
 speaker:RequestFriendship(Players[var].Name)
-notify("Friend request sent to " .. var)
+success("Send Friend Request","Friend request sent to " .. var)
 end)
 
 if not respon then
-ErrorPrompt("Friend request error", result, "close")
+ErrorPrompt("Friend request error", result)
 -- ShakeData("13040484705")
 end
 end
@@ -5949,16 +5971,16 @@ end
 
 local respon, result = pcall(function()
 speaker:RevokeFriendship(Players[var].Name)
-notify("you are no longer friends with " .. var)
+notify("Unfriend","you are no longer friends with " .. var)
 end)
 
 if not respon then
-ErrorPrompt("Unfriend error", result, "close")
+ErrorPrompt("Unfriend error", result)
 -- ShakeData("13040484705")
 end
 end
 if cmd == "debug" then
-notify("unsupported command")
+ErrorPrompt("missing","unsupported command")
 end
 if cmd == "partesp" then
 local var = string.sub(msg,space+1)
@@ -6051,7 +6073,7 @@ local gtpDelay = var or 0.1
 	if isNumber(gtpDelay) then
 		gotopartDelay = gtpDelay
 	else
-		notify("Number ONLY!")
+		warning("Number ONLY!")
 	end
 end
 if cmd == "detectpart" then
@@ -6099,7 +6121,7 @@ if SyncArgs[1] == nil then
         if string.find(SyncArgs[1], "%a") then
             local UserInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://api.roblox.com/users/get-by-username?username="..SyncArgs[1], true))
             if UserInfo["success"] == false then
-                notify("Failed!, Invalid username")
+                ErrorPrompt("Snipe","Failed!, Invalid username")
                 return
             end
             UserID = UserInfo.Id
@@ -6108,23 +6130,23 @@ if SyncArgs[1] == nil then
         end
         local ThumbnailInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://www.roblox.com/headshot-thumbnail/json?userId="..UserID.."&width=48&height=48&format=png", true))
         if string.find(ThumbnailInfo.Url, "t0.rbxcdn.com") then
-            notify("Failed!, Invalid UserID, or, API failed to return valid image")
+            ErrorPrompt("Invalid UserID or API","Failed!, Invalid UserID, or, API failed to return valid image")
             return
         else
             Thumbnail = ThumbnailInfo.Url
         end
         if SyncArgs[2] == nil then
-            notify("No PlaceID, defaulting to current place id...")
+            warning("No PlaceID","No PlaceID, defaulting to current place id...")
             PlaceID = game.PlaceId
         elseif tonumber(SyncArgs[2]) ~= nil and not string.find(SyncArgs[2], "%a") then
             PlaceID = SyncArgs[2]
         else
-            notify("Failed!, Invalid PlaceID")
+            ErrorPrompt("Fail","Failed!, Invalid PlaceID")
             return
         end
         local Check = game:HttpGet("https://www.roblox.com/games/getgameinstancesjson?placeId="..tostring(PlaceID).."&startIndex=0",true)
         if string.find(string.lower(Check), "permission") then
-            notify("Failed!, Lacking permissions for API? (Try again maybe)")
+            ErrorPrompt("Fail","Failed!, Lacking permissions for API? (Try again maybe)")
             return
         end
         local StartIndex = 0
@@ -6138,7 +6160,7 @@ if SyncArgs[1] == nil then
             wait()
         until #CurrentList.Collection == 0
         if #Servers == 0 then
-            notify("Failed!, Game had no servers")
+            ErrorPrompt("No server detected","Failed!, Game had no servers")
             return
         end
         local FoundPlayer = false
@@ -6151,7 +6173,7 @@ if SyncArgs[1] == nil then
                     num1 = tonumber(string.sub(b["PlayersCapacity"], num1, num1))
                     num2 = tonumber(string.sub(b["PlayersCapacity"], num2, num2))
                     if num1 >= num2 then
-                        notify("Failed!, Server full!")
+                        ErrorPrompt("Server full","Failed!, Server full!")
                         return
                     else
                         game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ServerID, game.Players.LocalPlayer)
@@ -6162,10 +6184,10 @@ if SyncArgs[1] == nil then
         end
         if FoundPlayer == true then
            -- notify("Success!, Teleporting to player's game...")
-	ErrorPrompt("Sniping player", "Success!, Teleporting to player's game...", "wait for respond")
+	success("Sniping player","Success!, Teleporting to player's game...")
         else
             -- notify("Failed!, Player isn't in game")
-	ErrorPrompt("Sniping player error", "Failed!, Player isn't in game", "Fuck | close")
+	ErrorPrompt("Sniping player error", "Failed!, Player isn't in game")
         end
 end
 if cmd == "copyid" then
@@ -6185,7 +6207,7 @@ executeHTTPS("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua")
 end)
 
 if not respon then
-ErrorPrompt("Dex error", result, "close")
+ErrorPrompt("Dex error", result)
 end
 end
 if cmd == "rspy" then
@@ -6194,7 +6216,7 @@ executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
 end)
 
 if not respon then
-ErrorPrompt("Remote spy V3 error", result, "close")
+ErrorPrompt("Remote spy V3 error", result)
 end
 end
 if cmd == "iy" then
@@ -6203,7 +6225,7 @@ executeHTTPS('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/sour
 end)
 
 if not respon then
-ErrorPrompt("Infinite Yield error", result, "close")
+ErrorPrompt("Infinite Yield error", result)
 end
 end
 if cmd == "config" then
@@ -6239,7 +6261,7 @@ executeHTTPS("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/mai
 end)
 
 if not respon then
-ErrorPrompt("Animation", result, "close")
+ErrorPrompt("Animation", result)
 end
 end
 if cmd == "snake" then
@@ -6248,7 +6270,7 @@ executeHTTPS("https://pastefy.ga/tWBTcE4R/raw")
 end)
 
 if not respon then
-ErrorPrompt("FE snake", result, "close")
+ErrorPrompt("FE snake", result)
 end
 end
 if cmd == "loopspeed" then
@@ -6336,7 +6358,7 @@ if success then
     end
 else
     -- notify("Error making request: " .. tostring(result))
-ErrorPrompt("API Error", "Error making request: " .. result, "close")
+ErrorPrompt("API Error","Error making request: " .. result)
 end
 end
 if cmd == "githubdata" then
@@ -6360,7 +6382,7 @@ if cmd == "split" then
 if r15(speaker) then
 		speaker.Character.UpperTorso.Waist:Destroy()
 	else
-		ErrorPrompt('R15 Required','This command requires the r15 rig type',"OK")
+		ErrorPrompt('R15 Required','This command requires the r15 rig type')
 	end
 end
 if cmd == "noroot" then
@@ -6497,7 +6519,7 @@ LoadBundle(var)
 end)
 
 if not respon then
-ErrorPrompt("Failed to load bundle", result, "OK")
+ErrorPrompt("Failed to load bundle", result)
 end
 end
 if cmd == "username" then
@@ -6515,7 +6537,7 @@ executeHTTPS("https://pastebin.com/raw/udQLpt5d.lua") -- without .lua
 end)
 
 if not respon then
-ErrorPrompt("Domain Hub (REMAKE)", result, "close")
+ErrorPrompt("Domain Hub (REMAKE)", result)
 end
 end
 if cmd == "nowall" then    
@@ -6537,7 +6559,7 @@ if cmd == "unspin" then
 if speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity") then
 speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity"):Destroy()
 else
-ErrorPrompt("Unspin error","{nil}","OK")
+ErrorPrompt("Unspin error","{nil}")
 end
 end
 if cmd == "collide" then
@@ -6582,7 +6604,7 @@ if (queue_on_teleport) then
 end)
 
 if not respon then
-ErrorPrompt("Travel Failed",result,"OK")
+ErrorPrompt("Travel Failed",result)
 end
 end
 if cmd == "loopbringpart" then
@@ -6600,14 +6622,14 @@ local partBringName = var
 	if partBringTrigger == nil then
 		partBringTrigger = workspace.DescendantAdded:Connect(partBringing)
 	end
-    notify("started carrying the named object '" .. var .. "'.")
+    success("started carrying the named object '" .. var .. "'.")
 end
 if cmd == "unloopbringpart" then
 if partBringTrigger then
        partBringTrigger:Disconnect()
 	partBringTrigger = nil
 	ToolFunc_1 = ""
-       notify("stoped carrying the object")
+       success("stoped carrying the object")
 end
 end
 if cmd == "fates" then
@@ -6616,7 +6638,7 @@ executeHTTPS("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua
 end)
 
 if not respon then
-ErrorPrompt("Fates admin error", result, "close")
+ErrorPrompt("Fates admin error", result)
 end
 end
 if cmd == "tool" then
@@ -6646,7 +6668,7 @@ if cmd == "epicm" then
 if game.PlaceId == 277751860 then
    executeHTTPS("https://raw.githubusercontent.com/SlamminPig/rblxgames/main/Epic%20Minigames/EpicMinigamesGUI")
 else
-   notify("this game is not supported, teleport to Epic Minigames to run this script")
+   warning("Unsupported game","this game is not supported, teleport to Epic Minigames to run this script")
    SynchronousGameTeleport(277751860, 0, 0)
 end
 end
@@ -6656,7 +6678,7 @@ executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Jshdjdhdkdb/main/Om
 end)
 
 if not respon then
-ErrorPrompt("Remote spy V2 error", result, "close")
+ErrorPrompt("Remote spy V2 error", result)
 end
 end
 if cmd == "zombie" then
@@ -6665,7 +6687,7 @@ executeHTTPS("https://pastefy.ga/n42Ougzx/raw")
 end)
 
 if not respon then
-ErrorPrompt("Zombie script Error", result, "close")
+ErrorPrompt("Zombie script Error", result)
 end
 end
 if cmd == "fling2" then
@@ -6674,7 +6696,7 @@ executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
 end)
 
 if not respon then
-ErrorPrompt("FE Touch Fling GUI Error", result, "close")
+ErrorPrompt("FE Touch Fling GUI Error", result)
 end
 end
 if cmd == "nofog" then
@@ -6706,17 +6728,17 @@ executeHTTPS("https://pastebin.com/raw/sfH0d8RW")
 end)
 
 if not respon then
-ErrorPrompt("FE Sturdy Error", result, "close")
+ErrorPrompt("FE Sturdy Error", result)
 end
 end
 if cmd == "emotegui" then
 local respon, result = pcall(function()
 executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
-notify('press ","')
+notify("Keybind",'press ","')
 end)
 
 if not respon then
-ErrorPrompt("FE Emote GUI Error", result, "close")
+ErrorPrompt("FE Emote GUI Error", result)
 end
 end
 if cmd == "fighter" then
@@ -6726,7 +6748,7 @@ executeHTTPS("https://pastebin.com/raw/XhTSzvNU")
 end)
 
 if not respon then
-ErrorPrompt("FE Fighter Error", result, "close")
+ErrorPrompt("FE Fighter Error", result)
 end
 end
 if cmd == "esp2" then
@@ -6735,7 +6757,7 @@ executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/EspV2/main/Death.lu
 end)
 
 if not respon then
-ErrorPrompt("ESP V2 Error", result, "close")
+ErrorPrompt("ESP V2 Error", result)
 end
 end
 -- limit
