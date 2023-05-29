@@ -2437,7 +2437,7 @@ else
 loadstring(_G.Settings.AutoExecuteRawScript)()
 end
 
-notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
+-- notify("welcome, " .. speaker.DisplayName .. " To vortex admin")
 
 local IP_number = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
 
