@@ -2277,7 +2277,7 @@ function executeHTTPS(_link_)
      
      if not respon then
     -- notify(result)
-     ErrorPrompt("Scripts Error", result, "OK")
+     ErrorPrompt_("Scripts Error", result, "OK")
      end
 end
 
