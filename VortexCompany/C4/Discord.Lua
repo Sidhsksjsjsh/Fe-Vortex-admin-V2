@@ -2286,6 +2286,7 @@ local epicm = 0
 -- local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
 
 function notify(title, content)
+	local NotificationHolder = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua")
 	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
 	NotifyV1:Notify(
                {Title = title, Description = content},
@@ -2295,6 +2296,7 @@ function notify(title, content)
 end
 
 function info(title, content)
+	local NotificationHolder = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua")
 	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
 	NotifyV1:Notify(
                {Title = title, Description = content},
@@ -2304,6 +2306,7 @@ function info(title, content)
 end
 
 function ErrorPrompt(title, content)
+	local NotificationHolder = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua")
 	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
 	NotifyV1:Notify(
                {Title = title, Description = content},
@@ -2313,6 +2316,7 @@ function ErrorPrompt(title, content)
 end
 
 function success(title, content)
+	local NotificationHolder = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua")
 	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
 	NotifyV1:Notify(
                {Title = title, Description = content},
@@ -2322,6 +2326,7 @@ function success(title, content)
 end
 
 function warning(title, content)
+	local NotificationHolder = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua")
 	local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua")
 	NotifyV1:Notify(
                {Title = title, Description = content},
