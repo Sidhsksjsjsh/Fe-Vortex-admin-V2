@@ -2290,7 +2290,7 @@ local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Bocu
 
 function notify(title, content)
 	NotifyV1:Notify(
-               {Title = title, Description = content},
+               {Title = title or "command notification", Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -2298,33 +2298,33 @@ end
 
 function info(title, content)
 	NotifyV1:Notify(
-               {Title = title, Description = content},
+               {Title = title or "command information", Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+               {Image = "http://www.roblox.com/asset/?id=9072944922", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
 end
 
 function ErrorPrompt(title, content)
 	NotifyV1:Notify(
-               {Title = title, Description = content},
+               {Title = title or "failed to execute command", Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+               {Image = "http://www.roblox.com/asset/?id=9072920609", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
 end
 
 function success(title, content)
 	NotifyV1:Notify(
-               {Title = title, Description = content},
+               {Title = title or "command executed successfully", Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+               {Image = "http://www.roblox.com/asset/?id=9073052584", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
 end
 
 function warning(title, content)
 	NotifyV1:Notify(
-               {Title = title, Description = content},
+               {Title = title or "command warning", Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+               {Image = "http://www.roblox.com/asset/?id=9072448788", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
 end
 
