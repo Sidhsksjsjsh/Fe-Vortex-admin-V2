@@ -1015,7 +1015,7 @@ U5.Visible = false
 U6.Visible = false
 
 local _L = {}
-local args = {}
+local argsus = {}
 
 _L.timestamp = tick()
 
@@ -1029,7 +1029,7 @@ local center = rootPart.Position
 local distance = 10
 local angle = math.pi / 2
 
-local function orbit(user)
+function orbit(user)
     getgenv().isOrbiting = true
 
     if not user then
@@ -1051,7 +1051,7 @@ local function orbit(user)
                 rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
                 rootPart.CFrame = CFrame.new(rootPart.Position, center)
             end
-        end)()
+        end)
     end
 end
 
@@ -9743,7 +9743,7 @@ end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
-local function onScriptLoaded()
+function onScriptLoaded()
     info("-","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
 end
 
