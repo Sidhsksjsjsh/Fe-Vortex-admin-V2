@@ -9743,12 +9743,4 @@ end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
-function onScriptLoaded()
-    info("-","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
-end
-
-if game:IsLoaded() then
-    onScriptLoaded()
-end
-
 Anticheat_Bypass()
