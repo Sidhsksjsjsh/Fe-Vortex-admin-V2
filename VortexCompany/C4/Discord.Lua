@@ -4409,31 +4409,31 @@ print(var)
 end
 if cmd == "reset" then
 game.Players.LocalPlayer.Character:BreakJoints()
--- notify("Reset Character")
+success("Reset character","Reset Character")
 end
 if cmd == "respawn" then
 respawn(speaker)
--- notify("Respawning")
+success("respawn character","Respawning")
 end
 if cmd == "refresh" then
 refresh(speaker)
--- notify("Refreshing")
+success("refresh character","Refreshing")
 end
 if cmd == "unrotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
-notify("Rotate disabled")
+notify("look vector","Rotate disabled")
 end
 if cmd == "rotate" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
-notify("Rotate enabled")
+notify("look vector","Rotate enabled")
 end
 if cmd == "stun" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
-notify("PlatformStand enabled")
+notify("PlatformStand","PlatformStand enabled")
 end
 if cmd == "unstun" then
 game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-notify("PlatformStand disabled")
+notify("PlatformStand","PlatformStand disabled")
 end
 if cmd == "kill" then
 local var = string.sub(msg,space+1)
@@ -4458,7 +4458,7 @@ end
 
 GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[var].UserId)
-notify("inspect " .. var .. " (" .. Players[var].Userid .. ")")
+notify("command notifcation","inspect " .. var .. " (" .. Players[var].Userid .. ")")
 end
 if cmd == "bring" then
 local var = string.sub(msg,space+1)
@@ -4523,7 +4523,7 @@ ESPenabled = false
 			c:Destroy()
 		end
 	end
-success("ESP disabled")
+success("ESP","ESP disabled")
 end
 if cmd == "noclip" then
 Clip = false
@@ -4590,7 +4590,7 @@ local function Loopwalk()
 speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
 end
     Follow = RunService.Stepped:Connect(Loopwalk)
-notify("Following " .. var)
+notify("follow","Following " .. var)
 end
 if cmd == "loopgoto" then
 local var = string.sub(msg,space+1)
@@ -4605,7 +4605,7 @@ local function Looptp()
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
 end
     Loopgoto = RunService.Stepped:Connect(Looptp)
-notify("loop go to " .. var)
+notify("loop goto","loop go to " .. var)
 end
 if cmd == "looptween" then
 local var = string.sub(msg,space+1)
@@ -4624,7 +4624,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 {CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
-notify("Loop tweening to " .. var)
+notify("loop tweening","Loop tweening to " .. var)
 end
 if cmd == "goto" then
 local var = string.sub(msg,space+1)
@@ -4636,7 +4636,7 @@ end
 end
 
 speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
-notify("teleporting you to " .. var)
+notify("Teleporting","teleporting you to " .. var)
 end
 if cmd == "tweento" then
 local var = string.sub(msg,space+1)
@@ -4652,7 +4652,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 
 
 {CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
-notify("tweening you to " .. var)
+notify("Teleporting","tweening you to " .. var)
 end
 if cmd == "walkto" then
 local var = string.sub(msg,space+1)
@@ -4664,25 +4664,25 @@ end
 end
 
 speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
-notify("walk you to " .. var)
+notify("walking to","walk you to " .. var)
 end
 if cmd == "unfollow" then
 if Follow then
 		Follow:Disconnect()
 end
-notify("follow disabled")
+success("unfollow","follow disabled")
 end
 if cmd == "unloopgoto" then
 if Loopgoto then
 		Loopgoto:Disconnect()
 end
-notify("loopgoto disabled")
+success("unloopgoto","loopgoto disabled")
 end
 if cmd == "unlooptween" then
 if LoopTween then
 		LoopTween:Disconnect()
 end
-notify("looptween disabled")
+success("loop tweening","looptween disabled")
 end
 if cmd == "fly" then
 if _G.Settings.device == "" then
@@ -4850,7 +4850,7 @@ U1.Visible = false
 U2.Visible = false
 U3.Visible = false
 U4.Visible = false
-notify("FLY disabled")
+notify("FLY","FLY disabled")
 end
 if cmd == "vfly" then
 if _G.Settings.device == "" then
@@ -4917,7 +4917,7 @@ U3.Visible = false
 U4.Visible = false
 U5.Visible = false
 U6.Visible = false
-notify("VEHICLE FLY disabled")
+notify("🗿","VEHICLE FLY disabled")
 end
 if cmd == "speed" then
 local var = string.sub(msg,space+1)
@@ -5050,7 +5050,7 @@ viewing = Players[var]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-		notify("Spying " .. var)
+		notify("spy","Spying " .. var)
 end
 if cmd == "unspy" then
 if viewing ~= nil then
@@ -5061,7 +5061,7 @@ if viewing ~= nil then
 		viewChanged:Disconnect()
 	end
 	workspace.CurrentCamera.CameraSubject = speaker.Character
-	notify("Spying turned off")
+	notify("unspy","Spying turned off")
 end
 if cmd == "cmds" then
 ErrorPrompt("Error","ERROR")
@@ -5086,7 +5086,7 @@ end
 if cmd == "helicopter" then
 local var = string.sub(msg,space+1)
 Helicopter(var)
-notify("Helicopter mode: " .. var)
+notify("useless command","Helicopter mode: " .. var)
 end
 if cmd == "attach" then
 local var = string.sub(msg,space+1)
@@ -5098,7 +5098,7 @@ end
 end
 
 attach(speaker,Players[var])
-notify("attached: " .. var)
+notify("give tool","attached: " .. var)
 end
 if cmd == "enablestate" then
 local var = string.sub(msg,space+1)
@@ -5107,7 +5107,7 @@ local x = var
 		local x = Enum.HumanoidStateType[var]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, true)
-notify("state enabled, current state: " .. var)
+notify("state enabled","current state: " .. var)
 end
 if cmd == "disablestate" then
 local var = string.sub(msg,space+1)
@@ -5116,11 +5116,11 @@ local x = var
 		local x = Enum.HumanoidStateType[var]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, false)
-notify("state disabled")
+notify("😘","state disabled")
 end
 if cmd == "rejoin" then
 local respon, result = pcall(function()
-notify("Rejoining...")
+notify("Rejoin server","Rejoining...")
 wait()
 RejoinServer()
 if (queue_on_teleport) then
@@ -5213,7 +5213,7 @@ info("now playing ",MusicName .. " (" .. var .. ")")
 end
 if cmd == "nomusic" then
 sound.Volume = 0
-notify("music disabled")
+notify("Client Music","music disabled")
 end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
@@ -5223,7 +5223,7 @@ end
 if cmd == "noanim" then
 AnimService:Stop()
 ServiceStart:Destroy()
-notify("animation disabled")
+notify("Reset animation","animation disabled")
 end
 if cmd == "joindate" then
 local var = string.sub(msg,space+1)
@@ -5289,14 +5289,14 @@ local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
 		end
 	end)
 
-	notify("Picking up any dropped tools")
+	notify("Auto Picking tools","Picking up any dropped tools")
 end
 if cmd == "ungrabtools" then
 if grabtoolsFunc then 
 		grabtoolsFunc:Disconnect() 
 	end
 
-	notify("Grabtools has been disabled")
+	notify("Disable Auto Picking Tools","Grabtools has been disabled")
 end
 if cmd == "loopoof" then
 oofing = true
@@ -5697,7 +5697,7 @@ if not swimming and speaker and speaker.Character and speaker.Character:FindFirs
 		end)
 		swimming = true
 	end
-notify("Swimming enabled")
+notify("swim","Swimming enabled")
 end
 if cmd == "unswim" then
 if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("Humanoid") then
@@ -5717,7 +5717,7 @@ if speaker and speaker.Character and speaker.Character:FindFirstChildWhichIsA("H
 			Humanoid:SetStateEnabled(v, true)
 		end
 	end
-notify("Swimming disabled")
+notify("unswim","Swimming disabled")
 end
 if cmd == "getpos" then
 local var = string.sub(msg,space+1)
@@ -5869,7 +5869,7 @@ if cmd == "notifyfcpos" then
 if fcRunning then
 		local X,Y,Z = workspace.CurrentCamera.CFrame.Position.X,workspace.CurrentCamera.CFrame.Position.Y,workspace.CurrentCamera.CFrame.Position.Z
 		local Format, Round = string.format, math.round
-		notify("Current Position: " .. tostring(Format("%s, %s, %s", Round(X), Round(Y), Round(Z))))
+		notify("Freecam Position","Current Position: " .. tostring(Format("%s, %s, %s", Round(X), Round(Y), Round(Z))))
 	end
 end
 if cmd == "copyfcpos" then
@@ -5943,14 +5943,14 @@ if _G.Settings.BlacklistCount > 1 then
 _G.Settings.BlacklistCount = 1
 warning("Blacklist","You can only blacklist a player once")
 else
-success("Successfull Blacklisted!")
+success("Done Blacklist","Successfull Blacklisted!")
 saveSettings()
 end
 end
 if cmd == "clearblacklist" then
 _G.Settings.Blacklist = ""
 _G.Settings.BlacklistCount = 0
-success("Blacklist cleared!")
+success("Blacklist cleared!","Removed all blacklist")
 saveSettings()
 end
 if cmd == "cleardevice" then
@@ -5970,7 +5970,7 @@ local playerIsAlrFriend = Players:FindFirstChild(var)
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
     if isFriend then
-        warning("You are already friends with " .. var)
+        warning("is friend","You are already friends with " .. var)
         return
     end
 end
@@ -6096,7 +6096,7 @@ local gtpDelay = var or 0.1
 	if isNumber(gtpDelay) then
 		gotopartDelay = gtpDelay
 	else
-		warning("Number ONLY!")
+		warning("unsupported character","Number ONLY!")
 	end
 end
 if cmd == "detectpart" then
@@ -6222,7 +6222,7 @@ end
 end
 
 copy("" .. Players[var].UserId .. "")
-notify("Copied to clipboard")
+notify("Copy UserId","Copied to clipboard")
 end
 if cmd == "dex" then
 local respon, result = pcall(function()
@@ -6276,7 +6276,7 @@ function Clock()
     return os.date()
 end
 
-notify(Clock())
+notify("Time",Clock())
 end
 if cmd == "animationgui" then
 local respon, result = pcall(function()
@@ -6551,8 +6551,8 @@ ESPName(var)
 saveSettings()
 end
 if cmd == "timeplayed" then
-notify("wait")
-notify(GetTimePlayed())
+notify("wait","wait")
+notify("Time Played",GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
@@ -6645,14 +6645,14 @@ local partBringName = var
 	if partBringTrigger == nil then
 		partBringTrigger = workspace.DescendantAdded:Connect(partBringing)
 	end
-    success("started carrying the named object '" .. var .. "'.")
+    success("Auto Bring","started carrying the named object '" .. var .. "'.")
 end
 if cmd == "unloopbringpart" then
 if partBringTrigger then
        partBringTrigger:Disconnect()
 	partBringTrigger = nil
 	ToolFunc_1 = ""
-       success("stoped carrying the object")
+       success("Auto Bring","stoped carrying the object")
 end
 end
 if cmd == "fates" then
@@ -6666,7 +6666,7 @@ end
 end
 if cmd == "tool" then
 MysteriousTool()
-notify("10 items have been added to your inventory")
+notify("Mysterious Tools","10 items have been added to your inventory")
 end
 if cmd == "looptime" then
 local var = string.sub(msg,space+1)
