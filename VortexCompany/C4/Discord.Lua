@@ -318,6 +318,49 @@ end
 
 -- ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
 
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+function notify(title, content)
+	NotifyV1:Notify(
+               {Title = title or "command notification", Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
+end
+
+function info(title, content)
+	NotifyV1:Notify(
+               {Title = title or "command information", Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=9072944922", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
+end
+
+function ErrorPrompt(title, content)
+	NotifyV1:Notify(
+               {Title = title or "failed to execute command", Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=9072920609", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
+end
+
+function success(title, content)
+	NotifyV1:Notify(
+               {Title = title or "command executed successfully", Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=9073052584", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
+end
+
+function warning(title, content)
+	NotifyV1:Notify(
+               {Title = title or "command warning", Description = content},
+               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
+               {Image = "http://www.roblox.com/asset/?id=9072448788", ImageColor = Color3.fromRGB(255, 84, 84)}
+        )
+end
+
 local cmds = {}
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
@@ -971,6 +1014,58 @@ U4.Visible = false
 U5.Visible = false
 U6.Visible = false
 
+local _L = {}
+local args = {}
+
+_L.timestamp = tick()
+
+getgenv().isOrbiting = false
+
+local character = speaker.Character or speaker.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
+
+local center = rootPart.Position
+local distance = 10
+local angle = math.pi / 2
+
+local function orbit(user)
+    getgenv().isOrbiting = true
+
+    if not user then
+      return
+    else
+        coroutine.wrap(function()
+            while wait() do
+                if not getgenv().isOrbiting then
+                    break
+                end
+
+                local angular = tick() * angle
+                local center = user.Character.HumanoidRootPart.Position
+
+                local x = center.X + distance * math.cos(angular)
+                local y = center.Y
+                local z = center.Z + distance * math.sin(angular)
+
+                rootPart.CFrame = CFrame.new(Vector3.new(x, y, z))
+                rootPart.CFrame = CFrame.new(rootPart.Position, center)
+            end
+        end)()
+    end
+end
+
+
+
+--[[
+local function onScriptLoaded()
+    userChat("All", "Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds. See more projects on GitHub from suno-ui")
+end
+
+if game:IsLoaded() then
+    onScriptLoaded()
+end
+--]]
 -- Create a new ScreenGui object
 local ShitGui = Instance.new("ScreenGui")
 ShitGui.Name = "TPPOINT"
@@ -1714,7 +1809,7 @@ if child.ClassName == "BodyVelocity" or child.ClassName == "BodyGyro" then
 child.Name = "power"
 end
 end)
-notify_("anti-cheat bypass enabled for the game Epic Minigames")
+info("Anti-Cheat Bypass","anti-cheat bypass enabled for the game Epic Minigames")
 else
 local mt = getrawmetatable(game)
 local old = mt.__namecall
@@ -1734,7 +1829,7 @@ end
 return old(self, ...)
 end)
 hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
-notify_("kick bypass enable")
+info("Anti-Cheat and Anti-Kick Bypass","kick bypass enable")
 end
 end
 
@@ -2065,7 +2160,7 @@ local randomshape = shapes[math.random(1, #shapes)]
 SetShape("VoxelScriptPart", randomshape)
 EditToolName("Shape: " .. randomshape,ShapePartTool)
 else
-notify_("Error when trying to apply shape to part")
+ErrorPrompt("Unknown Part","Error when trying to apply shape to part")
 end
 end)
 ShapePartTool.Parent = speaker.Backpack
@@ -2079,7 +2174,7 @@ local randommaterial = material[math.random(1, #material)]
 SetMaterial("VoxelScriptPart", randommaterial)
 EditToolName("Material: " .. randommaterial,MaterialPartTool)
 else
-notify_("Error when trying to apply Material to part")
+ErrorPrompt("Unknown Part","Error when trying to apply Material to part")
 end
 end)
 MaterialPartTool.Parent = speaker.Backpack
@@ -2097,7 +2192,7 @@ else
 EditToolName("CanCollide: false",CollidePartTool)
 end
 else
-notify_("Error while trying to CanCollide part")
+ErrorPrompt("Unknown Part","Error while trying to CanCollide part")
 end
 end)
 CollidePartTool.Parent = speaker.Backpack
@@ -2115,7 +2210,7 @@ else
 EditToolName("CanQuery: false",QueryPartTool)
 end
 else
-notify_("Error while trying to CanQuery part")
+ErrorPrompt("Unknown Part","Error while trying to CanQuery part")
 end
 end)
 QueryPartTool.Parent = speaker.Backpack
@@ -2133,7 +2228,7 @@ else
 EditToolName("CanTouch: false",TouchPartTool)
 end
 else
-notify_("Error while trying to CanTouch part")
+ErrorPrompt("Unknown Part","Error while trying to CanTouch part")
 end
 end)
 TouchPartTool.Parent = speaker.Backpack
@@ -2151,7 +2246,7 @@ else
 EditToolName("Massless: false",MassPartTool)
 end
 else
-notify_("Error while trying to massless part")
+ErrorPrompt("Unknown Part","Error while trying to massless part")
 end
 end)
 MassPartTool.Parent = speaker.Backpack
@@ -2169,7 +2264,7 @@ else
 EditToolName("Anchor: false",AnchorPartTool)
 end
 else
-notify_("Error while trying to anchor part")
+ErrorPrompt("Unknown Part","Error while trying to anchor part")
 end
 end)
 AnchorPartTool.Parent = speaker.Backpack
@@ -2187,7 +2282,7 @@ else
 EditToolName("Locked: false",LockedPartTool)
 end
 else
-notify_("Error while trying to lock part")
+ErrorPrompt("Unknown Part","Error while trying to lock part")
 end
 end)
 LockedPartTool.Parent = speaker.Backpack
@@ -2199,7 +2294,7 @@ DeletePartTool.Activated:connect(function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 FindWorkspacePartName("VoxelScriptPart","Delete")
 else
-notify_("Error while trying to delete part")
+ErrorPrompt("Unknown Part","Error while trying to delete part")
 end
 end)
 DeletePartTool.Parent = speaker.Backpack
@@ -2224,10 +2319,10 @@ if success then
     local userData = HttpService:JSONDecode(result.Body)
     print("GitHub username: " .. userData.login)
     print("GitHub ID: " .. userData.id)
-    notify_("Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
+    info("Github Data","Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
 else
     -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt_("Error making request", tostring(result), "ok")
+    ErrorPrompt("Request Error or API Error","Error making request", tostring(result), "ok")
 end
 else
 Github.Text = "REQUIRED GITHUB USERNAME"
@@ -2256,10 +2351,10 @@ local success, result = pcall(HttpService.RequestAsync, HttpService, options)
 
 if success then
     local weatherData = HttpService:JSONDecode(result.Body)
-    notify_("Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
+    info("temperature","Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
 else
     -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt_("Error making request", tostring(result), "ok")
+    ErrorPrompt("Request Error or API Error","Error making request", tostring(result), "ok")
 end
 else
 WeatherApiKey.Text = "REQUIRED API KEY"
@@ -2272,61 +2367,18 @@ end)
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
      loadstring(game:HttpGet(_link_))()
-     -- notify_("Executed!")
+     notify("Executed!","script executed successfully.")
      end)
      
      if not respon then
     -- notify(result)
-     ErrorPrompt_("Scripts Error", result, "OK")
+     ErrorPrompt("Failed to inject scripts", result)
      end
 end
 
 local epicm = 0
 
 -- local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
-
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
-local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
-
-function notify(title, content)
-	NotifyV1:Notify(
-               {Title = title or "command notification", Description = content},
-               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
-        )
-end
-
-function info(title, content)
-	NotifyV1:Notify(
-               {Title = title or "command information", Description = content},
-               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=9072944922", ImageColor = Color3.fromRGB(255, 84, 84)}
-        )
-end
-
-function ErrorPrompt(title, content)
-	NotifyV1:Notify(
-               {Title = title or "failed to execute command", Description = content},
-               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=9072920609", ImageColor = Color3.fromRGB(255, 84, 84)}
-        )
-end
-
-function success(title, content)
-	NotifyV1:Notify(
-               {Title = title or "command executed successfully", Description = content},
-               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=9073052584", ImageColor = Color3.fromRGB(255, 84, 84)}
-        )
-end
-
-function warning(title, content)
-	NotifyV1:Notify(
-               {Title = title or "command warning", Description = content},
-               {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
-               {Image = "http://www.roblox.com/asset/?id=9072448788", ImageColor = Color3.fromRGB(255, 84, 84)}
-        )
-end
 
 function ExecuteScriptNameFunction(script_name)
 	if script_name == "epicm" then -- epic minigames
@@ -3559,7 +3611,7 @@ function attach(client,target)
 			hrp.CFrame = hrp2.CFrame
 		until (tool.Parent ~= char or not hrp or not hrp2 or not hrp.Parent or not hrp2.Parent or n > 250) and n > 2
 	else
-		notify("Tool Required","You need to have an item in your inventory to use this command")
+		ErrorPrompt("Tool Required","You need to have an item in your inventory to use this command")
 	end
 end
 
@@ -3582,7 +3634,7 @@ function kill(client,target,fast)
 			speaker.CharacterAdded:Wait():WaitForChild("HumanoidRootPart").CFrame = NormPos
 		end
 	else
-		notify("Tool Required","You need to have an item in your inventory to use this command")
+		ErrorPrompt("Tool Required","You need to have an item in your inventory to use this command")
 	end
 end
 
@@ -5235,7 +5287,7 @@ end
 end
 
 local dates = {}
-	notify("Hold on a sec")
+	warning("Wait","Hold on a sec")
 		local user = game:HttpGet("https://users.roblox.com/v1/users/"..Players[var].UserId)
 		local json = HttpService:JSONDecode(user)
 		local date = json["created"]:sub(1,10)
@@ -5894,7 +5946,7 @@ local V_C2 = "╚═══════════════❖••❖══
 local notes = V_C1 .. "\n Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
 ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
 ShakeData("13030062874")
-notify("notes are saved to your executor folder.")
+warning("The note has been saved to a folder.","notes are saved to your executor folder.")
 end
 if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
@@ -5917,6 +5969,7 @@ ShakeData("13030078632")
 end
 if cmd == "serverhop" then
 local respon, result = pcall(function()
+notify("Serverhop","Teleporting you to another server")
 StartServerhop()
 if (queue_on_teleport) then
 	if Executor() == "Arceus X" then
@@ -6757,7 +6810,7 @@ end
 if cmd == "emotegui" then
 local respon, result = pcall(function()
 executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
-notify("Keybind",'press ","')
+notify("Keybind",'press "," or comma')
 end)
 
 if not respon then
@@ -6783,11 +6836,26 @@ if not respon then
 ErrorPrompt("ESP V2 Error", result)
 end
 end
+if cmd == "orbit" then
+local var = string.sub(msg,space+1)
+for i,v in pairs(game.Players:GetChildren()) do
+if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
+var = v.Name
+end
+end
+
+orbit(var)
+notify("Orbit","Orbiting " .. var .. " \nCredit to suno-ui on Github.")
+end
+if cmd == "unorbit" then
+getgenv().isOrbiting = false
+end
 -- limit
 end
 -- end
 end)
 
+--[[
 speaker.Chatted:Connect(function(msg)
 msg = msg:lower()
 if string.sub(msg,1,3) == "/e " then
@@ -7579,10 +7647,10 @@ local R15Part = {
 }
 
 if r15(speaker) then
-speaker.Character[R15Part[var]]:Destroy()
+speaker.Character[R15Part[varDestroy()
 notify("Deleting parts: " .. tostring(R15Part[var]))
 else
-speaker.Character[BodyPart[var]]:Destroy()
+speaker.Character[BodyPart[var:Destroy()
 notify("Deleting parts: " .. tostring(BodyPart[var]))
 end
 end
@@ -9187,6 +9255,7 @@ end
 -- limits
 end
 end)
+--]]
 -- + 1
 cmds[#cmds + 1] = {Text = "[1] " .. tostring(prefix) .. "print [text]",Title = "useless"}
 cmds[#cmds + 1] = {Text = "[2] " .. tostring(prefix) .. "unrotate",Title = "disable view"}
@@ -9380,6 +9449,8 @@ cmds[#cmds + 1] = {Text = "[184] " .. tostring(prefix) .. "sturdy",Title = "Get 
 cmds[#cmds + 1] = {Text = "[185] " .. tostring(prefix) .. "emotegui",Title = "Free Emote"}
 cmds[#cmds + 1] = {Text = "[186] " .. tostring(prefix) .. "fighter",Title = "Become a fighter"}
 cmds[#cmds + 1] = {Text = "[187] " .. tostring(prefix) .. "esp2",Title = "enable esp v2"}
+cmds[#cmds + 1] = {Text = "[188] " .. tostring(prefix) .. "orbit [username]",Title = "orbiting someone"}
+cmds[#cmds + 1] = {Text = "[189] " .. tostring(prefix) .. "unorbit",Title = "stop orbiting"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9549,7 +9620,7 @@ closeButton.MouseButton1Click:Connect(function()
     end)
 end)
 
-ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
+-- ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
 
 -- Create a tween for the intro frame to slide onto the screen
 local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
@@ -9625,28 +9696,28 @@ local minutes = minutes - (hours * 60)
 if hours == 1 and minutes == 0 and seconds == 0 then
 if restnotify then
 restnotify = false
-ErrorPrompt("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+warning("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours")
 restnotify = true
 end
 end
 if hours == 6 and minutes == 0 and seconds == 0 then
 if restnotify then
 restnotify = false
-ErrorPrompt("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+warning("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours")
 restnotify = true
 end
 end
 if hours == 12 and minutes == 0 and seconds == 0 then
 if restnotify then
 restnotify = false
-ErrorPrompt("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+warning("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours")
 restnotify = true
 end
 end
 if hours == 18 and minutes == 0 and seconds == 0 then
 if restnotify then
 restnotify = false
-ErrorPrompt("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours","OK")
+warning("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours")
 restnotify = true
 end
 end
@@ -9657,7 +9728,7 @@ game.Players.PlayerAdded:Connect(function(Player)
 if speaker:IsFriendsWith(Player.UserId) then
 friendsingame = friendsingame + 1
 friendsonline = #speaker:GetFriendsOnline()
-ErrorPrompt("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game \n\nFriends in game: " .. friendsingame .. " \n\nFriends online: " .. friendsonline,"OK")
+info("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game \nFriends in game: " .. friendsingame .. " \nFriends online: " .. friendsonline)
 -- print(friendsingame..' are in this server')
 end
 end)
@@ -9671,4 +9742,13 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+
+local function onScriptLoaded()
+    info("-","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
+end
+
+if game:IsLoaded() then
+    onScriptLoaded()
+end
+
 Anticheat_Bypass()
