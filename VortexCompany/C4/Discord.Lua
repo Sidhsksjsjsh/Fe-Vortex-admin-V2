@@ -1050,7 +1050,9 @@ function orbit(user)
     end
 end
 
-
+local _L = {}
+local Ytm = {}
+_L.timestamp = tick()
 
 --[[
 local function onScriptLoaded()
@@ -7335,5 +7337,13 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+
+local function onScriptLoaded()
+    info("C4#4172","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
+end
+
+if game:IsLoaded() then
+    onScriptLoaded()
+end
 
 Anticheat_Bypass()
