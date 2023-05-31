@@ -6828,8 +6828,24 @@ var = v.Name
 end
 end
 
-orbit(var)
-notify("Orbit","Orbiting " .. var .. " \nCredit to suno-ui on Github.")
+local player = Players[var].Character.HumanoidRootPart --- enter players name there (do it)
+local lpr = speaker.Character.HumanoidRootPart
+local speed = 8
+local radius = 8 --- orbit size
+local eclipse = 1 --- width of orbit
+local rotation = CFrame.Angles(0,0,0) --only works for unanchored parts (not localplayer)
+local sin, cos = math.sin, math.cos
+local rotspeed = math.pi*2/speed
+eclipse = eclipse * radius
+-- local runservice = game:GetService('RunService')
+local rot = 0
+RunService.Stepped:connect(function(t, dt)
+rot = rot + dt * rotspeed
+print(rot + dt * rotspeed)
+-- lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + player.Position
+end)
+
+notify("Orbit","Orbiting " .. var .. ".")
 end
 if cmd == "unorbit" then
 getgenv().isOrbiting = false
