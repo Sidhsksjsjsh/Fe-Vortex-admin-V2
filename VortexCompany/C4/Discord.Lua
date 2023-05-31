@@ -6773,8 +6773,7 @@ end
 end
 if cmd == "fling2" then
 local respon, result = pcall(function()
-executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
--- ToggleNotify(title, content, for_false, for_true)
+ToggleNotify("Choice","would you like to run our custom touch fling script?",executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"),executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ToggleFling/main/Roblox/Script.lua"))
 end)
 
 if not respon then
