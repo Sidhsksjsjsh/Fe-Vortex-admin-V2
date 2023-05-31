@@ -1014,16 +1014,11 @@ U4.Visible = false
 U5.Visible = false
 U6.Visible = false
 
-local _L = {}
-local argsus = {}
-
-_L.timestamp = tick()
-
 getgenv().isOrbiting = false
 
-local character = speaker.Character or speaker.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local rootPart = character:WaitForChild("HumanoidRootPart")
+local characterss = speaker.Character or speaker.CharacterAdded:Wait()
+local humanoid = characterss:WaitForChild("Humanoid")
+local rootPart = characterss:WaitForChild("HumanoidRootPart")
 
 local center = rootPart.Position
 local distance = 10
