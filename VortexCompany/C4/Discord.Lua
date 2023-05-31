@@ -1051,18 +1051,15 @@ function orbit(user)
 end
 
 local _L = {}
-local Ytm = {}
 _L.timestamp = tick()
 
---[[
-local function onScriptLoaded()
-    userChat("All", "Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds. See more projects on GitHub from suno-ui")
+
+function onScriptLoaded()
+    notify("C4#4172","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
 end
 
-if game:IsLoaded() then
-    onScriptLoaded()
-end
---]]
+onScriptLoaded()
+
 -- Create a new ScreenGui object
 local ShitGui = Instance.new("ScreenGui")
 ShitGui.Name = "TPPOINT"
@@ -7337,13 +7334,5 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
-
-local function onScriptLoaded()
-    info("C4#4172","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
-end
-
-if game:IsLoaded() then
-    onScriptLoaded()
-end
 
 Anticheat_Bypass()
