@@ -1050,16 +1050,6 @@ function orbit(user)
     end
 end
 
-local _L = {}
-_L.timestamp = tick()
-
-
-function onScriptLoaded()
-    notify("C4#4172","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
-end
-
-onScriptLoaded()
-
 -- Create a new ScreenGui object
 local ShitGui = Instance.new("ScreenGui")
 ShitGui.Name = "TPPOINT"
