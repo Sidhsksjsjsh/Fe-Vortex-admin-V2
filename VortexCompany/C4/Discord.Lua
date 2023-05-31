@@ -1013,7 +1013,7 @@ U3.Visible = false
 U4.Visible = false
 U5.Visible = false
 U6.Visible = false
-
+--[[
 getgenv().isOrbiting = false
 
 local characterss = speaker.Character or speaker.CharacterAdded:Wait()
@@ -1023,6 +1023,7 @@ local rootPart = characterss:WaitForChild("HumanoidRootPart")
 local center = rootPart.Position
 local distance = 10
 local angle = math.pi / 2
+
 
 function orbit(user) -- 1
     getgenv().isOrbiting = true
@@ -1049,6 +1050,13 @@ function orbit(user) -- 1
         end)
     end
 end
+--]]
+
+local orbit = {
+	eclipse = 1,
+	radius = 8,
+	speed = 8
+}
 
 -- Create a new ScreenGui object
 local ShitGui = Instance.new("ScreenGui")
@@ -6830,25 +6838,43 @@ end
 
 local player = Players[var].Character.HumanoidRootPart --- enter players name there (do it)
 local lpr = speaker.Character.HumanoidRootPart
-local speed = 8
-local radius = 8 --- orbit size
-local eclipse = 1 --- width of orbit
+local speed = orbit.speed
+local radius = orbit.radius
+local eclipse = orbit.eclipse
 local rotation = CFrame.Angles(0,0,0) --only works for unanchored parts (not localplayer)
 local sin, cos = math.sin, math.cos
 local rotspeed = math.pi*2/speed
 eclipse = eclipse * radius
 -- local runservice = game:GetService('RunService')
 local rot = 0
-RunService.Stepped:connect(function(t, dt)
+OrbitRaycast = RunService.Stepped:connect(function(t, dt)
 rot = rot + dt * rotspeed
-print(rot + dt * rotspeed)
--- lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + player.Position
+lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + player.Position
 end)
 
+if Players:FindFirstChild(var) then
 notify("Orbit","Orbiting " .. var .. ".")
+else
+ErrorPrompt("Player not found","We couldn't find the player named " .. var)
+end
 end
 if cmd == "unorbit" then
-getgenv().isOrbiting = false
+if OrbitRaycast then
+   OrbitRaycast:Disconnect()
+   notify("Orbit","Orbit disabled")
+end
+end
+if cmd == "orbitspeed" then
+local var = string.sub(msg,space+1)
+orbit.speed = tonumber(var)
+end
+if cmd == "orbiteclipse" then
+local var = string.sub(msg,space+1)
+orbit.eclipse = tonumber(var)
+end
+if cmd == "orbitradius" then
+local var = string.sub(msg,space+1)
+orbit.radius = tonumber(var)
 end
 -- limit
 end
@@ -7049,6 +7075,9 @@ cmds[#cmds + 1] = {Text = "[186] " .. tostring(prefix) .. "fighter",Title = "Bec
 cmds[#cmds + 1] = {Text = "[187] " .. tostring(prefix) .. "esp2",Title = "enable esp v2"}
 cmds[#cmds + 1] = {Text = "[188] " .. tostring(prefix) .. "orbit [username]",Title = "orbiting someone"}
 cmds[#cmds + 1] = {Text = "[189] " .. tostring(prefix) .. "unorbit",Title = "stop orbiting"}
+cmds[#cmds + 1] = {Text = "[190] " .. tostring(prefix) .. "orbitspeed [number]",Title = "set orbit speed"}
+cmds[#cmds + 1] = {Text = "[191] " .. tostring(prefix) .. "orbitradius [number]",Title = "set orbit size or radius"}
+cmds[#cmds + 1] = {Text = "[192] " .. tostring(prefix) .. "orbiteclipse [number]",Title = "set orbit eclipse"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7189,7 +7218,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [29/05/2023] \n\n[CONTENT] \n[+] you no longer need to add prefix to the command bar \n[+] added a marker block to the antifling command (Bright red = flings detected, Bright green = safe, Bright yellow = u were flung) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Injection Error bug \n[+] fixed IP and identifyexecutor or identifyexploit bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [01/06/2023] \n\n[CONTENT] \n[+] added 5 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
