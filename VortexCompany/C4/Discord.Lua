@@ -1024,13 +1024,13 @@ local center = rootPart.Position
 local distance = 10
 local angle = math.pi / 2
 
-function orbit(user)
+function orbit(user) -- 1
     getgenv().isOrbiting = true
 
-    if not user then
+    if not user then -- 2
       return
     else
-        coroutine.wrap(function()
+        coroutine.wrap(function() -- 3
             while wait() do
                 if not getgenv().isOrbiting then
                     break
