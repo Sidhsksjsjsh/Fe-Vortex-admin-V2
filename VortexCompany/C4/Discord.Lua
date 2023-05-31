@@ -361,6 +361,19 @@ function warning(title, content)
         )
 end
 
+function ToggleNotify(title, content, for_false, for_true)
+NotifyV1:Notify(
+    {Title = title, Description = content},
+    {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "option"},
+    {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State)
+	if State == true then
+            Callback(for_true)
+	else
+            Callback(for_false)
+	end
+end})
+end
+
 local cmds = {}
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
@@ -6761,6 +6774,7 @@ end
 if cmd == "fling2" then
 local respon, result = pcall(function()
 executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
+-- ToggleNotify(title, content, for_false, for_true)
 end)
 
 if not respon then
