@@ -5038,12 +5038,12 @@ var = v.Name
 end
 end
 
-local Ostatus 0
+local ostatus = 0
 Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 Flings_IIX = RunService.Stepped:Connect(TouchFling)
 
 repeat wait()
-Ostatus = Players[var].Character.Humanoid.Health
+ostatus = Players[var].Character.Humanoid.Health
 speaker.Character.HumanoidRootPart.CFrame = CFrame(Players[var].Character.HumanoidRootPart.Position)
 until Ostatus == 0
 
