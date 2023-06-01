@@ -6874,6 +6874,42 @@ if cmd == "orbitradius" then
 local var = string.sub(msg,space+1)
 orbit.radius = tonumber(var)
 end
+if cmd == "noanim" then
+speaker.Character.Animate.Disabled = true
+end
+if cmd == "freezeanims" then
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(0)
+	end
+end
+if cmd == "reanim" then
+speaker.Character.Animate.Disabled = false
+end
+if cmd == "unfreezeanims" then
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(1)
+	end
+end
+if cmd == "stand" then
+speaker.Character.Animate.Disabled = true
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(0)
+	end
+end
+if cmd == "unstand" then
+speaker.Character.Animate.Disabled = false
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(1)
+	end
+end
 -- limit
 end
 -- end
@@ -7076,6 +7112,12 @@ cmds[#cmds + 1] = {Text = "[189] " .. tostring(prefix) .. "unorbit",Title = "sto
 cmds[#cmds + 1] = {Text = "[190] " .. tostring(prefix) .. "orbitspeed [number]",Title = "set orbit speed"}
 cmds[#cmds + 1] = {Text = "[191] " .. tostring(prefix) .. "orbitradius [number]",Title = "set orbit size or radius"}
 cmds[#cmds + 1] = {Text = "[192] " .. tostring(prefix) .. "orbiteclipse [number]",Title = "set orbit eclipse"}
+cmds[#cmds + 1] = {Text = "[193] " .. tostring(prefix) .. "noanim",Title = "disable ur character animation"}
+cmds[#cmds + 1] = {Text = "[194] " .. tostring(prefix) .. "freezeanims",Title = "freeze ur character animation"}
+cmds[#cmds + 1] = {Text = "[195] " .. tostring(prefix) .. "reanim",Title = "enable udr character animation"}
+cmds[#cmds + 1] = {Text = "[196] " .. tostring(prefix) .. "unfreezeanims",Title = "unfreeze ur character animation"}
+cmds[#cmds + 1] = {Text = "[197] " .. tostring(prefix) .. "stand",Title = "stand without animation and move without animation"}
+cmds[#cmds + 1] = {Text = "[198] " .. tostring(prefix) .. "unstand",Title = ""}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7367,6 +7409,24 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
+
+local PastedSources = true
+
+local VortexHook = nil
+VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
+	if PastedSources == true then
+		if not checkcaller() then
+			if key == "CFrame" and PastedSources == true and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character:FindFirstChild("Humanoid") and LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
+				if self == LocalPlayer.Character.HumanoidRootPart then
+					return DesyncTypesFlings[1] or CFrame.new()
+				elseif self == LocalPlayer.Character.Head then
+					return DesyncTypesFlings[1] and DesyncTypesFlings[1] + Vector3.new(0, LocalPlayer.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
+				end
+			end
+		end
+	end
+	return VortexHook(self, key)
+end))
 
 local _L = {}
 _L.timestamp = tick()
