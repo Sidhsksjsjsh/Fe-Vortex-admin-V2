@@ -1561,6 +1561,13 @@ function ProtocolCheck(FileName)
     isfile(FileName)     
 end
 
+function RandomNumberRange(a)
+	return math.random(-a * 100, a * 100) / 100
+end
+
+function RandomVectorRange(a, b, c)
+	return Vector3.new(RandomNumberRange(a), RandomNumberRange(b), RandomNumberRange(c))
+end
 
 local DesyncTypesFlings = {}
 function TouchFling()
@@ -4463,6 +4470,8 @@ end)
 
 local SPrefix = ""
 
+local Rect = CFrame.new(0, 0, 0)
+
 CB.FocusLost:Connect(function(Execute) -- prefix disabled
    if Execute then -- 1
 local msg = CB.Text:lower()
@@ -5011,33 +5020,15 @@ if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) the
 var = v.Name
 end
 end
-	LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
-   local Target   = var
-   local HasDied  = false
-   local PPart    = speaker.Character.PrimaryPart
 
-   StoredCF = PPart.CFrame
-
-   if not Target then
-       return
-   end
-
-   repeat wait() until Target.Character
-   
-   local bodyp    = Instance.new("BodyPosition",PPart)
-   bodyp.D        = 0
-   bodyp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-
-       pcall(function()
-           bodyp.Position = Target.Character.PrimaryPart.Position
-       end)
-
-   pcall(function()
-       bodyp:Destroy()
-       speaker.Character.HumanoidRootPart.Position = LPost
-   end)
-
-   notify('Flinged!')
+Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
+Flings_IX = RunService.Stepped:Connect(TouchFling)
+wait(0.1)
+speaker.Character.HumanoidRootPart.CFrame = CFrame(Players[var].Character.HumanoidRootPart.Position)
+wait(0.1)
+speaker.Character.HumanoidRootPart.CFrame = Rect
+Flings_IX:Disconnect()
+notify("Fling",'Flinged!')
 end
 if cmd == "loopfling" then
 local var = string.sub(msg,space+1)
@@ -5047,43 +5038,19 @@ var = v.Name
 end
 end
 
-   local Target   = var
-   local HasDied  = false
-   local PPart    = speaker.Character.PrimaryPart
+local Ostatus 0
+Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
+Flings_IIX = RunService.Stepped:Connect(TouchFling)
 
-   StoredCF = PPart.CFrame
+repeat wait()
+Ostatus = Players[var].Character.Humanoid.Health
+speaker.Character.HumanoidRootPart.CFrame = CFrame(Players[var].Character.HumanoidRootPart.Position)
+until Ostatus == 0
 
-   if not Target then
-       return
-   end
+speaker.Character.HumanoidRootPart.CFrame = Rect
+Flings_IIX:Disconnect()
 
-   repeat wait() until Target.Character
-
-   IsTPing = true
-
-   Target.Character:WaitForChild('Humanoid').Died:connect(function()
-       HasDied = true
-   end)
-
-   local bodyp    = Instance.new("BodyPosition",PPart)
-   bodyp.D        = 0
-   bodyp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-
-   repeat
-       game:GetService("RunService").RenderStepped:Wait()
-       pcall(function()
-           bodyp.Position = Target.Character.PrimaryPart.Position
-       end)
-   until
-
-       HasDied == true
-
-   pcall(function()
-       bodyp:Destroy()
-       speaker.Character:BreakJoints()
-   end)
-
-   notify('Killed')
+   notify("Loop bring",'Killed')
 end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
