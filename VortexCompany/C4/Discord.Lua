@@ -5024,7 +5024,7 @@ end
 Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 Flings_IX = RunService.Stepped:Connect(TouchFling)
 wait(0.1)
-speaker.Character.HumanoidRootPart.CFrame = CFrame(Players[var].Character.HumanoidRootPart.Position)
+speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)
 wait(0.1)
 speaker.Character.HumanoidRootPart.CFrame = Rect
 Flings_IX:Disconnect()
@@ -5044,7 +5044,7 @@ Flings_IIX = RunService.Stepped:Connect(TouchFling)
 
 repeat wait()
 ostatus = Players[var].Character.Humanoid.Health
-speaker.Character.HumanoidRootPart.CFrame = CFrame(Players[var].Character.HumanoidRootPart.Position)
+speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)
 until Ostatus == 0
 
 speaker.Character.HumanoidRootPart.CFrame = Rect
