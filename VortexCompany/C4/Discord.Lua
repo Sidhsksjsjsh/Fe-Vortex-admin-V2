@@ -1562,6 +1562,24 @@ function ProtocolCheck(FileName)
 end
 
 
+local DesyncTypesFlings = {}
+function TouchFling()
+		DesyncTypesFlings[1] = speaker.Character.HumanoidRootPart.CFrame
+		DesyncTypesFlings[2] = speaker.Character.HumanoidRootPart.AssemblyLinearVelocity
+
+		local SpoofThis = speaker.Character.HumanoidRootPart.CFrame
+
+		SpoofThis = SpoofThis * CFrame.new(Vector3.new(0, 0, 0))
+		SpoofThis = SpoofThis * CFrame.Angles(math.rad(RandomNumberRange(180)), math.rad(RandomNumberRange(180)), math.rad(RandomNumberRange(180)))
+
+		speaker.Character.HumanoidRootPart.CFrame = SpoofThis
+
+		speaker.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
+
+		speaker.Character.HumanoidRootPart.CFrame = DesyncTypesFlings[1]
+		speaker.Character.HumanoidRootPart.AssemblyLinearVelocity = DesyncTypesFlings[2]
+end
+
 function Tall()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 
