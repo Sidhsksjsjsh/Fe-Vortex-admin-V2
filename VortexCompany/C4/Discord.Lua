@@ -7411,7 +7411,7 @@ end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
 local PastedSources = true
-
+--[[
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	if PastedSources == true then
@@ -7427,7 +7427,7 @@ VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	end
 	return VortexHook(self, key)
 end))
-
+--]]
 local _L = {}
 _L.timestamp = tick()
 
