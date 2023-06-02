@@ -2576,9 +2576,9 @@ end)
     if #game.Players:GetPlayers() <= 1 then
         game.Players.LocalPlayer:Kick("\nRejoining...")
         wait()
-        game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
+        game:GetService('TeleportService'):Teleport(game.PlaceId, speaker)
     else
-        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, speaker)
     end
 end
 
@@ -7258,7 +7258,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [02/06/2023] \n\n[CONTENT] \n[+] added 6 new command \n[+] added auto rejoin when u got kicked \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [03/06/2023] \n\n[CONTENT] \n[+] added 6 new command \n[+] added auto rejoin when u got kicked \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -7412,28 +7412,28 @@ end)
 
 getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
-        game:GetService("TeleportService"):Teleport(game.PlaceId)
+        RejoinServer()
     end
 end)
 
 local PastedSources = true
---[[
+
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	if PastedSources == true then
 		if not checkcaller() then
-			if key == "CFrame" and PastedSources == true and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character:FindFirstChild("Humanoid") and LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
-				if self == LocalPlayer.Character.HumanoidRootPart then
+			if key == "CFrame" and PastedSources == true and speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character:FindFirstChild("Humanoid") and speaker.Character:FindFirstChild("Humanoid").Health > 0 then
+				if self == speaker.Character.HumanoidRootPart then
 					return DesyncTypesFlings[1] or CFrame.new()
-				elseif self == LocalPlayer.Character.Head then
-					return DesyncTypesFlings[1] and DesyncTypesFlings[1] + Vector3.new(0, LocalPlayer.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
+				elseif self == speaker.Character.Head then
+					return DesyncTypesFlings[1] and DesyncTypesFlings[1] + Vector3.new(0, speaker.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
 				end
 			end
 		end
 	end
 	return VortexHook(self, key)
 end))
---]]
+
 local _L = {}
 _L.timestamp = tick()
 
