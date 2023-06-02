@@ -7416,7 +7416,7 @@ getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.Chil
     end
 end)
 
-local PastedSources = true
+local PastedSources = false
 
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
