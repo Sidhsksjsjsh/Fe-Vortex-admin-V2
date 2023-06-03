@@ -6910,6 +6910,9 @@ local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.
 		v:AdjustSpeed(1)
 	end
 end
+if cmd == "exit" then
+ToggleNotify("Confirm","Are you sure you want to exit the game?",print("NO"),game:shutdown())
+end
 -- limit
 end
 -- end
@@ -7118,6 +7121,7 @@ cmds[#cmds + 1] = {Text = "[195] " .. tostring(prefix) .. "reanim",Title = "enab
 cmds[#cmds + 1] = {Text = "[196] " .. tostring(prefix) .. "unfreezeanims",Title = "unfreeze ur character animation"}
 cmds[#cmds + 1] = {Text = "[197] " .. tostring(prefix) .. "stand",Title = "stand without animation and move without animation"}
 cmds[#cmds + 1] = {Text = "[198] " .. tostring(prefix) .. "unstand",Title = ""}
+cmds[#cmds + 1] = {Text = "[199] " .. tostring(prefix) .. "exit",Title = "take you out of the game."}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7220,7 +7224,7 @@ end
             wait(1)
             ProtocolSendChat("")
         end
-        if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name then -- string if they call your name using display or username
+        if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
             ProtocolSendChat("what?") -- roblox chat anti-detect
         end
@@ -7258,7 +7262,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [03/06/2023] \n\n[CONTENT] \n[+] added 6 new command \n[+] added auto rejoin when u got kicked \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [04/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] added auto rejoin when u got kicked \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
