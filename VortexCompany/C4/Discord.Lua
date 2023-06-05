@@ -1020,6 +1020,17 @@ function SetPartPosition(PartName, SecondPartPos, PartColor) -- BlockMark
 	game:GetService("Workspace"):FindFirstChild(PartName).BrickColor = BrickColor.new(PartColor or "Bright red")
 end
 
+function getEquippedTool(player)
+        local char = player.Character
+        local polvus = char and char:FindFirstChildWhichIsA("Tool")
+    
+        if polvus ~= nil then
+            return "[ " .. tostring(polvus.Name) .. " ]"
+        else
+            return "[ No tool ]"
+        end
+    end
+
 U1.Visible = false
 U2.Visible = false
 U3.Visible = false
@@ -4422,10 +4433,10 @@ function ESP(plr)
 						if plr.Character and getRoot(plr.Character) and plr.Character:FindFirstChildOfClass("Humanoid") and Players.LocalPlayer.Character and getRoot(Players.LocalPlayer.Character) and Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
 							local pos = math.floor((getRoot(Players.LocalPlayer.Character).Position - getRoot(plr.Character).Position).magnitude)
 							if pos < 1000 then
-							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' meters'
+							TextLabel.Text = 'Name: '..plr.Name..' ' .. getEquippedTool(plr) .. ' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' meters'
 							end
 							if pos > 999 then
-							TextLabel.Text = 'Name: '..plr.Name..' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' km'
+							TextLabel.Text = 'Name: '..plr.Name..' ' .. getEquippedTool(plr) .. ' \nHealth: '..round(plr.Character:FindFirstChildOfClass('Humanoid').Health, 1)..' \nDistance: '..pos..' km'
 							end
 						end
 					else
