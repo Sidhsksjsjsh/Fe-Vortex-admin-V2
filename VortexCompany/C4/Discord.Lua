@@ -1843,6 +1843,13 @@ if identifyexecutor then
     end
 end
 
+local InfiniteJumpToggle = false
+UserInputService.JumpRequest:connect(function()
+	if InfiniteJumpToggle then
+		speaker.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+	end
+end)
+
 function Anticheat_Bypass()
 if game.PlaceId == 277751860 then
 speaker.Character.HumanoidRootPart.ChildAdded:connect(function(child)
@@ -6932,6 +6939,9 @@ end
 if cmd == "exit" then
 ToggleNotify("Confirm","Are you sure you want to exit the game?",print("NO"),game:shutdown())
 end
+if cmd == "infjump" then
+InfiniteJumpToggle = true
+end
 -- limit
 end
 -- end
@@ -7141,6 +7151,7 @@ cmds[#cmds + 1] = {Text = "[196] " .. tostring(prefix) .. "unfreezeanims",Title 
 cmds[#cmds + 1] = {Text = "[197] " .. tostring(prefix) .. "stand",Title = "stand without animation and move without animation"}
 cmds[#cmds + 1] = {Text = "[198] " .. tostring(prefix) .. "unstand",Title = ""}
 cmds[#cmds + 1] = {Text = "[199] " .. tostring(prefix) .. "exit",Title = "take you out of the game."}
+cmds[#cmds + 1] = {Text = "[200] " .. tostring(prefix) .. "infjump",Title = "Infinite jump"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7281,7 +7292,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [04/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] added auto rejoin when u got kicked \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [06/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] added tool detector in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
