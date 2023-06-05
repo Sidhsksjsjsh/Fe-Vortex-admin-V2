@@ -3557,12 +3557,20 @@ end
 
 local MusicName = ""
 function music(idmusic)
-sound = Instance.new("Sound")
+if game:GetService("SoundService"):FindFirstChild("Sound") then
+game:GetService("SoundService"):FindFirstChild("Sound").SoundId = "rbxassetid://" .. idmusic
+game:GetService("SoundService"):FindFirstChild("Sound").Volume = 1
+game:GetService("SoundService"):FindFirstChild("Sound").Looped = true
+game:GetService("SoundService"):FindFirstChild("Sound"):Play()
+else
+local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://" .. idmusic
 sound.Volume = 1
 sound.Parent = game:GetService("SoundService")
 sound.Looped = true
 sound:Play()
+end
+
 local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
@@ -5262,11 +5270,11 @@ local MusicText = {
 }
 
 music(var)
-info("now playing ",MusicName .. " (" .. var .. ")")
+success("now playing ",MusicName .. " (" .. var .. ")")
 end
 if cmd == "nomusic" then
-sound.Volume = 0
-notify("Client Music","music disabled")
+game:GetService("SoundService"):FindFirstChild("Sound").Volume = 0
+success("Client Music","music disabled")
 end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
