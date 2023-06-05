@@ -1842,14 +1842,14 @@ if identifyexecutor then
     return identifyexecutor()
     end
 end
-
+--[[
 local InfiniteJumpToggle = false
 UserInputService.JumpRequest:connect(function()
 	if InfiniteJumpToggle then
 		speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
 	end
 end)
-
+--]]
 function Anticheat_Bypass()
 if game.PlaceId == 277751860 then
 speaker.Character.HumanoidRootPart.ChildAdded:connect(function(child)
@@ -6940,7 +6940,9 @@ if cmd == "exit" then
 ToggleNotify("Confirm","Are you sure you want to exit the game?",print("NO"),game:shutdown())
 end
 if cmd == "infjump" then
-InfiniteJumpToggle = true
+UserInputService.JumpRequest:connect(function()
+	speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+end)
 end
 -- limit
 end
