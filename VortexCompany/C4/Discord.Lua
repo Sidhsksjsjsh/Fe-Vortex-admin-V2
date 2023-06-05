@@ -1846,7 +1846,7 @@ end
 local InfiniteJumpToggle = false
 UserInputService.JumpRequest:connect(function()
 	if InfiniteJumpToggle then
-		speaker.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+		speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
 	end
 end)
 
