@@ -393,6 +393,8 @@ local oofing = false
 local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
 local queue_on_teleport = syn and syn.queue_on_teleport or queue_on_teleport
+local sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
+local gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
 local CharInject = true
 local NetworkClient = game:GetService("NetworkClient")
 local currentToolSize = ""
@@ -3578,7 +3580,7 @@ sound.Looped = true
 sound:Play()
 end
 
-local id = string.match(sound.SoundId, "rbxasset://sounds.+") or string.match(sound.SoundId, "&hash=.+") or string.match(sound.SoundId, "%d+")
+local id = string.match(game:GetService("SoundService"):FindFirstChild("Sound").SoundId, "rbxasset://sounds.+") or string.match(game:GetService("SoundService"):FindFirstChild("Sound").SoundId, "&hash=.+") or string.match(game:GetService("SoundService"):FindFirstChild("Sound").SoundId, "%d+")
 
 local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
 
@@ -5276,8 +5278,14 @@ local MusicText = {
        ["sunrise"] = T7
 }
 
+local respond, result = pcall(function()
 music(var)
 success("now playing ",MusicName .. " (" .. var .. ")")
+end)
+
+if not respond then
+ErrorPrompt("failed to load music",result)
+end
 end
 if cmd == "nomusic" then
 game:GetService("SoundService"):FindFirstChild("Sound").Volume = 0
@@ -6944,6 +6952,79 @@ UserInputService.JumpRequest:connect(function()
 	speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
 end)
 end
+if cmd == "btools" then
+for i = 1, 4 do
+		local Tool = Instance.new("HopperBin")
+		Tool.BinType = i
+		Tool.Name = randomString()
+		Tool.Parent = speaker:FindFirstChildOfClass("Backpack")
+	end
+notify("btools","4 items have been added to your inventory.")
+end
+if cmd == "immortal" then
+local Cam = game:GetService("Workspace").CurrentCamera
+	local Pos, Char = Cam.CFrame, speaker.Character
+	local Human = Char and Char.FindFirstChildWhichIsA(Char, "Humanoid")
+	local nHuman = Human.Clone(Human)
+	nHuman.Parent, speaker.Character = Char, nil
+	nHuman.SetStateEnabled(nHuman, 15, false)
+	nHuman.SetStateEnabled(nHuman, 1, false)
+	nHuman.SetStateEnabled(nHuman, 0, false)
+	nHuman.BreakJointsOnDeath, Human = true, Human.Destroy(Human)
+	speaker.Character, Cam.CameraSubject, Cam.CFrame = Char, nHuman, wait() and Pos
+	nHuman.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+	local Script = Char.FindFirstChild(Char, "Animate")
+	if Script then
+		Script.Disabled = true
+		wait()
+		Script.Disabled = false
+	end
+	nHuman.Health = nHuman.MaxHealth
+end
+if cmd == "headless" then
+if sethidden then
+		-- Full credit to Thomas_Cornez#0272 @Discord
+		local lplr = speaker
+		local char = lplr.Character
+		local rigType = tostring(char:FindFirstChildOfClass('Humanoid').RigType) == "Enum.HumanoidRigType.R6" and 1 or tostring(char:FindFirstChildOfClass('Humanoid').RigType) == "Enum.HumanoidRigType.R15" and 2
+
+		local test = Instance.new("Model")
+		local hum  = Instance.new("Humanoid")
+		local animation = Instance.new("Model")
+		local humanoidanimation = Instance.new("Humanoid")
+		test.Parent = workspace
+		hum.Parent = test
+		animation.Parent = workspace
+		humanoidanimation.Parent = animation
+
+		lplr.Character = test
+		wait(2)
+		char:FindFirstChildOfClass('Humanoid').Animator.Parent = humanoidanimation
+		char:FindFirstChildOfClass('Humanoid'):Destroy()
+
+		char.Head:Destroy()
+		wait(5)
+		Players.LocalPlayer.Character = char
+
+		local hum2 = Instance.new("Humanoid")
+		hum2.Parent = char
+		char:FindFirstChildOfClass("Humanoid").Jump = true
+
+		humanoidanimation.Animator.Parent = hum2
+		char.Animate.Disabled = true
+		wait()
+		char.Animate.Disabled = false
+		wait()
+
+		if rig == 1 then
+			hum2.HipHeight = 0
+		elseif rig == 2 then
+			hum2.HipHeight = 2.19
+		end
+	else
+		ErrorPrompt('Incompatible Exploit','Your exploit does not support this command (missing sethiddenproperty)')
+	end
+end
 -- limit
 end
 -- end
@@ -7154,6 +7235,9 @@ cmds[#cmds + 1] = {Text = "[197] " .. tostring(prefix) .. "stand",Title = "stand
 cmds[#cmds + 1] = {Text = "[198] " .. tostring(prefix) .. "unstand",Title = ""}
 cmds[#cmds + 1] = {Text = "[199] " .. tostring(prefix) .. "exit",Title = "take you out of the game."}
 cmds[#cmds + 1] = {Text = "[200] " .. tostring(prefix) .. "infjump",Title = "Infinite jump"}
+cmds[#cmds + 1] = {Text = "[201] " .. tostring(prefix) .. "btools",Title = "🤷"}
+cmds[#cmds + 1] = {Text = "[202] " .. tostring(prefix) .. "immortal",Title = "you are immortal, can't die"}
+cmds[#cmds + 1] = {Text = "[203] " .. tostring(prefix) .. "headless",Title = "remove your head to make it look like a real headless"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7294,7 +7378,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [06/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] added tool detector in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed chat command \n[-] fixed vortex hook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [07/06/2023] \n\n[CONTENT] \n[+] added 3 new command \n[+] added tool detection in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
