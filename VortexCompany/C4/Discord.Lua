@@ -7537,7 +7537,7 @@ getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.Chil
 end)
 
 local PastedSources = false
-
+--[[
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	if PastedSources == true then
@@ -7553,7 +7553,7 @@ VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	end
 	return VortexHook(self, key)
 end))
-
+--]]
 local _L = {}
 _L.timestamp = tick()
 
