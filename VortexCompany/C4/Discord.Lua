@@ -6992,9 +6992,9 @@ if sethidden then
 		local hum  = Instance.new("Humanoid")
 		local animation = Instance.new("Model")
 		local humanoidanimation = Instance.new("Humanoid")
-		test.Parent = workspace
+		test.Parent = game:Getservice("Workspace")
 		hum.Parent = test
-		animation.Parent = workspace
+		animation.Parent = game:Getservice("Workspace")
 		humanoidanimation.Parent = animation
 
 		lplr.Character = test
@@ -7016,9 +7016,9 @@ if sethidden then
 		char.Animate.Disabled = false
 		wait()
 
-		if rig == 1 then
+		if not r15(speaker) then
 			hum2.HipHeight = 0
-		elseif rig == 2 then
+		else
 			hum2.HipHeight = 2.19
 		end
 	else
