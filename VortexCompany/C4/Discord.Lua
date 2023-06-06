@@ -7553,7 +7553,8 @@ VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
 	end
 	return VortexHook(self, key)
 end))
---]]
+--
+
 local _L = {}
 _L.timestamp = tick()
 
@@ -7564,5 +7565,5 @@ end
 if game:IsLoaded() then
     onScriptLoaded()
 end
-
+--]]
 Anticheat_Bypass()
