@@ -4950,39 +4950,26 @@ notify("PlatformStand","PlatformStand disabled")
 end
 if cmd == "kill" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+	kill(speaker,Players[v])
+success("managed to kill","killed " .. Players[v])
 end
-end
-
-kill(speaker,Players[var])
-success("managed to kill","killed " .. var)
 end
 if cmd == "inspect" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 GuiService:CloseInspectMenu()
-		GuiService:InspectPlayerFromUserId(Players[var].UserId)
-notify("command notifcation","inspect " .. var .. " (" .. Players[var].Userid .. ")")
+		GuiService:InspectPlayerFromUserId(Players[v].UserId)
+notify("command notifcation","inspect " .. Players[v] .. " (" .. Players[v].Userid .. ")")
+end
 end
 if cmd == "bring" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-local Target = var
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+local Target = Players[v]
 
 local NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 game.Players.LocalPlayer.Character.Humanoid.Name = 1
@@ -5019,6 +5006,7 @@ getout(game.Players.LocalPlayer, game.Players[Target])
 wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
 notify("FE bring","bring " .. var)
+end
 end
 if cmd == "esp" then
 ESPenabled = true
@@ -5062,13 +5050,8 @@ success("noclipping","noclip disabled")
 end
 if cmd == "bang" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 Anim = Instance.new("Animation")
 Anim.AnimationId = "rbxassetid://148840371"
 track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
@@ -5076,68 +5059,57 @@ track:Play()
 track:AdjustSpeed(10)
 local function Looptp()
 local bangOffet = CFrame.new(0, 0, 1.1)
-local otherRoot = getTorso(Players[var].Character)
+local otherRoot = getTorso(Players[v].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
-notify("Ambatukam","Banging: " .. var)
+notify("Ambatukam","Banging " .. var)
+end
 end
 if cmd == "unbang" then
 if RapeStart then
 		RapeStart:Disconnect()
                 track:Stop()
 		Anim:Destroy()
-		notify("bang","Stop Banging")
+		notify("Ambatukam","Stop Banging")
 	end
 end
 if cmd == "follow" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local function Loopwalk()
-speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
+speaker.Character.Humanoid:MoveTo(Players[v].Character.HumanoidRootPart.Position)
 end
     Follow = RunService.Stepped:Connect(Loopwalk)
 notify("follow","Following " .. var)
 end
+end
 if cmd == "loopgoto" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local function Looptp()
-speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+speaker.Character.HumanoidRootPart.CFrame = Players[v].Character.HumanoidRootPart.CFrame - Players[v].Character.HumanoidRootPart.CFrame.LookVector*0
 end
     Loopgoto = RunService.Stepped:Connect(Looptp)
 notify("loop goto","loop go to " .. var)
 end
+end
 if cmd == "looptween" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local function TweenTo()
 local TweenService = game:GetService("TweenService")
 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 
 
-{CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
+{CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
 notify("loop tweening","Loop tweening to " .. var)
+end
 end
 if cmd == "goto" then
 local var = string.sub(msg,space+1)
@@ -5153,31 +5125,23 @@ notify("Teleporting","teleporting you to " .. var)
 end
 if cmd == "tweento" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local TweenService = game:GetService("TweenService")
 local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
 
 
-{CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)}):Play()
+{CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 notify("Teleporting","tweening you to " .. var)
+end
 end
 if cmd == "walkto" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-speaker.Character.Humanoid:MoveTo(Players[var].Character.HumanoidRootPart.Position)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+speaker.Character.Humanoid:MoveTo(Players[v].Character.HumanoidRootPart.Position)
 notify("walking to","walk you to " .. var)
+end
 end
 if cmd == "unfollow" then
 if Follow then
@@ -5444,36 +5408,29 @@ notify("JumpPower Changed","Current jump: " .. var)
 end
 if cmd == "fling" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 Flings_IX = RunService.Stepped:Connect(TouchFling)
 wait(0.1)
-speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)
+speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)
 wait(0.1)
 speaker.Character.HumanoidRootPart.CFrame = Rect
 Flings_IX:Disconnect()
 notify("Fling",'Flinged!')
 end
+end
 if cmd == "loopfling" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local ostatus = 0
 Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 Flings_IIX = RunService.Stepped:Connect(TouchFling)
 
 repeat wait()
-ostatus = Players[var].Character.Humanoid.Health
-speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[var].Character.HumanoidRootPart.Position)
+ostatus = Players[v].Character.Humanoid.Health
+speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)
 until Ostatus == 0
 
 speaker.Character.HumanoidRootPart.CFrame = Rect
@@ -5481,47 +5438,40 @@ Flings_IIX:Disconnect()
 
    notify("Loop bring",'Killed')
 end
+end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 if headSit then headSit:Disconnect() end
 		game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit = true
 		headSit = RunService.Heartbeat:Connect(function()
-			if game.Players:FindFirstChild(game.Players[var].Name) and game.Players[var].Character ~= nil and getRoot(game.Players[var].Character) and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit == true then
-				getRoot(game.Players.LocalPlayer.Character).CFrame = getRoot(game.Players[var].Character).CFrame * CFrame.Angles(0,math.rad(0),0)* CFrame.new(0,1.6,0.4)
+			if game.Players:FindFirstChild(game.Players[v].Name) and game.Players[v].Character ~= nil and getRoot(game.Players[v].Character) and getRoot(game.Players.LocalPlayer.Character) and game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').Sit == true then
+				getRoot(game.Players.LocalPlayer.Character).CFrame = getRoot(game.Players[v].Character).CFrame * CFrame.Angles(0,math.rad(0),0)* CFrame.new(0,1.6,0.4)
 			else
 				headSit:Disconnect()
 			end
 		end)
-notify("Headsit","sitting on the " .. var .. " head")
+notify("Headsit","sitting on the " .. Players[v] .. " head")
+end
 end
 if cmd == "spy" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-viewing = Players[var]
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+viewing = Players[v]
 		workspace.CurrentCamera.CameraSubject = viewing.Character
 		local function viewDiedFunc()
-			repeat wait() until Players[var].Character ~= nil and getRoot(Players[var].Character)
+			repeat wait() until Players[v].Character ~= nil and getRoot(Players[v].Character)
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
-		viewDied = Players[var].CharacterAdded:Connect(viewDiedFunc)
+		viewDied = Players[v].CharacterAdded:Connect(viewDiedFunc)
 		local function viewChangedFunc()
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-		notify("spy","Spying " .. var)
+		notify("spy","Spying " .. Players[v])
+end
 end
 if cmd == "unspy" then
 if viewing ~= nil then
@@ -5561,15 +5511,11 @@ notify("useless command","Helicopter mode: " .. var)
 end
 if cmd == "attach" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+attach(speaker,Players[v])
+notify("give tool","attached: " .. Players[v])
 end
-end
-
-attach(speaker,Players[var])
-notify("give tool","attached: " .. var)
 end
 if cmd == "enablestate" then
 local var = string.sub(msg,space+1)
@@ -5704,22 +5650,18 @@ notify("Reset animation","animation disabled")
 end
 if cmd == "joindate" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local dates = {}
 	warning("Wait","Hold on a sec")
-		local user = game:HttpGet("https://users.roblox.com/v1/users/"..Players[var].UserId)
+		local user = game:HttpGet("https://users.roblox.com/v1/users/"..Players[v].UserId)
 		local json = HttpService:JSONDecode(user)
 		local date = json["created"]:sub(1,10)
 		local splitDates = string.split(date,"-")
-		table.insert(dates,Players[var].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
+		table.insert(dates,Players[v].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
-	notify(var .. " Account Age",chatString .. " (" .. Players[var].AccountAge .. " days old)")
+	notify(Players[v] .. " Account Age",chatString .. " (" .. Players[v].AccountAge .. " days old)")
+end
 end
 if cmd == "blockhats" then
 for _,v in pairs(speaker.Character:FindFirstChildOfClass('Humanoid'):GetAccessories()) do
@@ -5998,25 +5940,17 @@ if tonumber(var) then
 end
 if cmd == "compliment" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+ProtocolResponse("compliment",Players[v])
 end
-end
-
-ProtocolResponse("compliment",var)
 end
 if cmd == "insult" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+ProtocolResponse("insult",Players[v])
 end
-end
-
-ProtocolResponse("insult",var)
 end
 if cmd == "reach" then
 local var = string.sub(msg,space+1)
@@ -6198,40 +6132,32 @@ notify("unswim","Swimming disabled")
 end
 if cmd == "getpos" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-local char = Players[var].Character
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+local char = Players[v].Character
 		local pos = char and (getRoot(char) or char:FindFirstChildWhichIsA("BasePart"))
 		pos = pos and pos.Position
 		if not pos then
-			return notify("Getposition Error, Missing character")
+			return notify("Getposition Error","Missing character")
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
-		notify(var .. " Position","Current Position " .. roundedPos)
+		notify(Players[v] .. " Position","Current Position " .. roundedPos)
+end
 end
 if cmd == "copypos" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-local char = Players[var].Character
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+local char = Players[v].Character
 		local pos = char and (getRoot(char) or char:FindFirstChildWhichIsA("BasePart"))
 		pos = pos and pos.Position
 		if not pos then
-			return notify("Getposition Error, Missing character")
+			return notify("Getposition Error","Missing character")
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
 		copy(roundedPos)
                 success("copied","copied to the clipboard")
+end
 end
 if cmd == "spam" then
 local var = string.sub(msg,space+1)
@@ -6286,7 +6212,7 @@ if speaker.Character then
 	end
 end
 if cmd == "noterrain" then
-game:GetService("Workspace"):FindFirstChildOfClass('Terrain'):Destroy()
+game:GetService("Workspace"):FindFirstChild('Terrain'):Destroy()
 end
 if cmd == "firecd" then
 local var = string.sub(msg,space+1)
@@ -6324,13 +6250,10 @@ if not var then return end
 end
 if cmd == "fcgoto" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+StartFreecam(getRoot(Players[v].Character).CFrame)
 end
-end
-
-StartFreecam(getRoot(Players[var].Character).CFrame)
 end
 if cmd == "unfreecam" then
 StopFreecam()
@@ -6409,13 +6332,9 @@ end
 end
 if cmd == "blacklist" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-_G.Settings.Blacklist = var
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+_G.Settings.Blacklist = Players[v]
 _G.Settings.BlacklistCount = _G.Settings.BlacklistCount + 1
 if _G.Settings.BlacklistCount > 1 then
 _G.Settings.BlacklistCount = 1
@@ -6423,6 +6342,7 @@ warning("Blacklist","You can only blacklist a player once")
 else
 success("Done Blacklist","Successfull Blacklisted!")
 saveSettings()
+end
 end
 end
 if cmd == "clearblacklist" then
@@ -6437,24 +6357,20 @@ saveSettings()
 end
 if cmd == "friend" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local respon, result = pcall(function()
-local playerIsAlrFriend = Players:FindFirstChild(var)
+local playerIsAlrFriend = Players:FindFirstChild(Players[v])
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
     if isFriend then
-        warning("is friend","You are already friends with " .. var)
+        warning("is friend","You are already friends with " .. Players[v])
         return
     end
 end
 
-speaker:RequestFriendship(Players[var].Name)
-success("Send Friend Request","Friend request sent to " .. var)
+speaker:RequestFriendship(Players[v])
+success("Send Friend Request","Friend request sent to " .. Players[v])
 end)
 
 if not respon then
@@ -6462,22 +6378,20 @@ ErrorPrompt("Friend request error", result)
 -- ShakeData("13040484705")
 end
 end
+end
 if cmd == "unfriend" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
 local respon, result = pcall(function()
-speaker:RevokeFriendship(Players[var].Name)
-notify("Unfriend","you are no longer friends with " .. var)
+speaker:RevokeFriendship(Players[v])
+notify("Unfriend","you are no longer friends with " .. Players[v])
 end)
 
 if not respon then
 ErrorPrompt("Unfriend error", result)
 -- ShakeData("13040484705")
+end
 end
 end
 if cmd == "debug" then
@@ -6693,14 +6607,11 @@ if SyncArgs[1] == nil then
 end
 if cmd == "copyid" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-copy("" .. Players[var].UserId .. "")
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+copy("" .. Players[v].UserId .. "")
 notify("Copy UserId","Copied to clipboard")
+end
 end
 if cmd == "dex" then
 local respon, result = pcall(function()
@@ -7263,13 +7174,9 @@ end
 end
 if cmd == "orbit" then
 local var = string.sub(msg,space+1)
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
-end
-end
-
-local player = Players[var].Character.HumanoidRootPart --- enter players name there (do it)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+local player = Players[v].Character.HumanoidRootPart --- enter players name there (do it)
 local lpr = speaker.Character.HumanoidRootPart
 local speed = orbit.speed
 local radius = orbit.radius
@@ -7285,10 +7192,11 @@ rot = rot + dt * rotspeed
 lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + player.Position
 end)
 
-if Players:FindFirstChild(var) then
-notify("Orbit","Orbiting " .. var .. ".")
+if Players:FindFirstChild(Players[v]) then
+notify("Orbit","Orbiting " .. Players[v] .. ".")
 else
-ErrorPrompt("Player not found","We couldn't find the player named " .. var)
+ErrorPrompt("Player not found","We couldn't find the player named " .. Players[v])
+end
 end
 end
 if cmd == "unorbit" then
@@ -7429,13 +7337,13 @@ end
 if cmd == "discordusername" then
 copy("Tora#4172")
 end
-if cmd == "gtm" then
+--[[ if cmd == "-?-" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
             notify("Player found","Player " .. tostring(Players[v]))
 	end
-end
+end --]]
 -- limit
 end
 -- end
@@ -7790,7 +7698,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [07/06/2023] \n\n[CONTENT] \n[+] added 3 new command \n[+] added tool detection in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [08/06/2023] \n\n[CONTENT] \n[+] You can now write the player's display name in the command bar \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
