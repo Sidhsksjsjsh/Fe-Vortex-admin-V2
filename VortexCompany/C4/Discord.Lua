@@ -7139,10 +7139,10 @@ end
 if cmd == "discordusername" then
 copy("Tora#4172")
 end
-if cmd == "gtm2" then
+if cmd == "gtm" then
 local var = string.sub(msg,space+1)
-local players = getPlayer(var, speaker)
-	for i,v in pairs(players)do
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
             notify(v.Name)
 	end
 end
@@ -7364,8 +7364,8 @@ cmds[#cmds + 1] = {Text = "[204] " .. tostring(prefix) .. "discordusername",Titl
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
-       end
-
+end
+--[[
 function GetPlayer(String)
     local plr
     local strl = String:lower()
@@ -7382,7 +7382,7 @@ function GetPlayer(String)
         end
     return plr
 end
-
+--]]
 local Developer = {
       Title = "Developer:";
       Rivanda_Cheater = "Rivanda_Cheater (Tora#4172) (YT: Entity)";
