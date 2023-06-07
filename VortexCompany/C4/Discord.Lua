@@ -7392,7 +7392,7 @@ if cmd == "gtm" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-            notify("Player found",v.Name)
+            notify("Player found","Player " .. tostring(v.Name))
 	end
 end
 -- limit
