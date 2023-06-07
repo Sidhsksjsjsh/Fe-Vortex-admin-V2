@@ -475,6 +475,7 @@ PV1.TextWrapped             = true
 PV1.FontSize                = 'Size24'
 PV1.Font                    = 'SourceSansBold'
 PV1.Draggable = true
+PV1.Name = "PART TELEPORT"
 
 PV2.Size                    = UDim2.new(0,200,0,30)
 PV2.BackgroundTransparency  = 0.5
@@ -532,6 +533,7 @@ CB.FontSize                = 'Size24'
 CB.Font                    = 'SourceSansBold'
 CB.Draggable = true
 CB.ClearTextOnFocus = false
+CB.Name = "COMMAND BAR"
 
 CB.MouseEnter:Connect(function()
 CB.BackgroundTransparency = 0.5
@@ -550,6 +552,7 @@ Control_1.TextWrapped             = true
 Control_1.FontSize                = 'Size24'
 Control_1.Font                    = 'SourceSansBold'
 Control_1.Draggable = true
+Control_1.Name = "FREECAM CONTROLLER"
 
 Control_2.Size                    = UDim2.new(0,200,0,30)
 Control_2.BackgroundTransparency  = 0.5
@@ -644,6 +647,7 @@ InFile.TextWrapped             = true
 InFile.FontSize                = 'Size24'
 InFile.Font                    = 'SourceSansBold'
 InFile.Draggable = true
+InFile.Name = "FILE SAVER"
 
 SaveOMG.Size                    = UDim2.new(0,200,0,30)
 SaveOMG.BackgroundTransparency  = 0.5
@@ -681,6 +685,7 @@ Github.TextWrapped             = true
 Github.FontSize                = 'Size24'
 Github.Font                    = 'SourceSansBold'
 Github.Draggable = true
+Github.Name = "GITHUB USERNAME UI"
 
 WeatherCity.Size                    = UDim2.new(0,200,0,30)
 WeatherCity.BackgroundTransparency  = 0.5
@@ -694,6 +699,7 @@ WeatherCity.TextWrapped             = true
 WeatherCity.FontSize                = 'Size24'
 WeatherCity.Font                    = 'SourceSansBold'
 WeatherCity.Draggable = true
+WeatherCity.Name = "CITY NAME UI"
 
 WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
@@ -719,6 +725,7 @@ WhisperBox.TextWrapped             = true
 WhisperBox.FontSize                = 'Size24'
 WhisperBox.Font                    = 'SourceSansBold'
 WhisperBox.Draggable = true
+WhisperBox.Name = "WHISPER UI"
 
 WhisperButton.Size                    = UDim2.new(0,200,0,30)
 WhisperButton.BackgroundTransparency  = 0.5
@@ -774,6 +781,7 @@ Path.TextWrapped             = true
 Path.FontSize                = 'Size24'
 Path.Font                    = 'SourceSansBold'
 Path.Draggable = true
+Path.Name = "PART or PATH NAME"
 
 ChoosePart.Size                    = UDim2.new(0,200,0,30)
 ChoosePart.BackgroundTransparency  = 0.5
@@ -842,6 +850,7 @@ TextBar.TextWrapped             = true
 TextBar.FontSize                = 'Size24'
 TextBar.Font                    = 'SourceSansBold'
 TextBar.Draggable = true
+TextBar.Name = "CHAT BYPASS UI"
 
 BarSent.Size                    = UDim2.new(0,200,0,30)
 BarSent.BackgroundTransparency  = 0.5
@@ -890,6 +899,7 @@ TextBarExecutor.TextWrapped             = true
 TextBarExecutor.FontSize                = 'Size24'
 TextBarExecutor.Font                    = 'SourceSansBold'
 TextBarExecutor.Draggable = true
+TextBarExecutor.Name = "LINK EXECUTE"
 
 BarButtonExecute.Size                    = UDim2.new(0,200,0,30)
 BarButtonExecute.BackgroundTransparency  = 0.5
@@ -920,6 +930,7 @@ U1.TextWrapped             = true
 U1.FontSize                = 'Size24'
 U1.Font                    = 'SourceSansBold'
 U1.Draggable = false
+U1.Name = "FLY MOBILE CONTROLLER"
 
 U2.Size                    = UDim2.new(0,200,0,30)
 U2.BackgroundTransparency  = 0.5
