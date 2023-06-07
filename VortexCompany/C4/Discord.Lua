@@ -89,12 +89,12 @@ end
 Pause()
 
 -- Define the GUI
-local settingsGui = Instance.new("ScreenGui")
+settingsGui = Instance.new("ScreenGui")
 settingsGui.Name = "SettingsGui"
 settingsGui.Parent = game.Players.LocalPlayer.PlayerGui
 settingsGui.ResetOnSpawn = false
 
-local hub_q = Instance.new("TextLabel")
+hub_q = Instance.new("TextLabel")
 hub_q.Name = "TitleLabel"
 hub_q.Position = UDim2.new(0.5, -150, 0.5, -100)
 hub_q.Size = UDim2.new(0, 300, 0, 200)
@@ -104,13 +104,13 @@ hub_q.BackgroundTransparency = 1
 hub_q.Parent = settingsGui
 hub_q.Visible = false
 
-local mainFrame = Instance.new("ScrollingFrame")
+mainFrame = Instance.new("ScrollingFrame")
 mainFrame.Name = "MainFrame"
 mainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
 mainFrame.Size = UDim2.new(0, 300, 0, 200)
 mainFrame.Parent = hub_q
 
-local LocalInterface = Instance.new("TextLabel")
+LocalInterface = Instance.new("TextLabel")
 LocalInterface.Name = "TitleLabel"
 LocalInterface.Position = UDim2.new(0, 0, 0, 10)
 LocalInterface.Size = UDim2.new(1, 0, 0, 20)
@@ -119,7 +119,7 @@ LocalInterface.TextColor3 = Color3.new(1, 1, 1)
 LocalInterface.BackgroundTransparency = 1
 LocalInterface.Parent = mainFrame
 
-local musicLabel = Instance.new("TextLabel")
+musicLabel = Instance.new("TextLabel")
 musicLabel.Name = "A1"
 musicLabel.Position = UDim2.new(0, 20, 0, 50)
 musicLabel.Size = UDim2.new(0, 80, 0, 20)
@@ -128,7 +128,7 @@ musicLabel.TextColor3 = Color3.new(1, 1, 1)
 musicLabel.BackgroundTransparency = 1
 musicLabel.Parent = mainFrame
 
-local UIButton = Instance.new("TextButton") -- pos: 0.25, 0, 0, 80 | Size: 0.25, 0, 0, 80
+UIButton = Instance.new("TextButton") -- pos: 0.25, 0, 0, 80 | Size: 0.25, 0, 0, 80
 UIButton.Name = "A2"
 UIButton.Position = UDim2.new(0.25, 0, 0, 50)
 UIButton.Size = UDim2.new(0.5, 0, 0, 20)
@@ -137,7 +137,7 @@ UIButton.TextColor3 = Color3.new(1, 1, 1)
 UIButton.BackgroundTransparency = 1
 UIButton.Parent = mainFrame
 
-local soundLabel = Instance.new("TextLabel")
+soundLabel = Instance.new("TextLabel")
 soundLabel.Name = "A3"
 soundLabel.Position = UDim2.new(0, 20, 0, 70)
 soundLabel.Size = UDim2.new(0, 80, 0, 20)
@@ -146,7 +146,7 @@ soundLabel.TextColor3 = Color3.new(1, 1, 1)
 soundLabel.BackgroundTransparency = 1
 soundLabel.Parent = mainFrame
 
-local UIButton_2 = Instance.new("TextButton") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
+UIButton_2 = Instance.new("TextButton") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
 UIButton_2.Name = "A4"
 UIButton_2.Position = UDim2.new(0.25, 0, 0,70)
 UIButton_2.Size = UDim2.new(0.5, 0, 0, 20)
@@ -155,16 +155,16 @@ UIButton_2.TextColor3 = Color3.new(1, 1, 1)
 UIButton_2.BackgroundTransparency = 1
 UIButton_2.Parent = mainFrame
 
-local prefix = Instance.new("TextLabel")
-prefix.Name = "A3"
-prefix.Position = UDim2.new(0, 20, 0, 90)
-prefix.Size = UDim2.new(0, 80, 0, 20)
-prefix.Text = "prefix"
-prefix.TextColor3 = Color3.new(1, 1, 1)
-prefix.BackgroundTransparency = 1
-prefix.Parent = mainFrame
+prefixx = Instance.new("TextLabel")
+prefixx.Name = "A3"
+prefixx.Position = UDim2.new(0, 20, 0, 90)
+prefixx.Size = UDim2.new(0, 80, 0, 20)
+prefixx.Text = "prefix"
+prefixx.TextColor3 = Color3.new(1, 1, 1)
+prefixx.BackgroundTransparency = 1
+prefixx.Parent = mainFrame
 
-local UIButton_3 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
+UIButton_3 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
 UIButton_3.Name = "A4"
 UIButton_3.Position = UDim2.new(0.25, 0, 0,90)
 UIButton_3.Size = UDim2.new(0.5, 0, 0, 20)
@@ -173,7 +173,7 @@ UIButton_3.TextColor3 = Color3.new(1, 1, 1)
 UIButton_3.BackgroundTransparency = 1
 UIButton_3.Parent = mainFrame
 
-local ESPCOLOR = Instance.new("TextLabel")
+ESPCOLOR = Instance.new("TextLabel")
 ESPCOLOR.Name = "A3"
 ESPCOLOR.Position = UDim2.new(0, 20, 0, 110)
 ESPCOLOR.Size = UDim2.new(0, 80, 0, 20)
@@ -182,7 +182,7 @@ ESPCOLOR.TextColor3 = Color3.new(1, 1, 1)
 ESPCOLOR.BackgroundTransparency = 1
 ESPCOLOR.Parent = mainFrame
 
-local UIButton_4 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
+UIButton_4 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
 UIButton_4.Name = "A4"
 UIButton_4.Position = UDim2.new(0.25, 0, 0,110)
 UIButton_4.Size = UDim2.new(0.5, 0, 0, 20)
@@ -191,7 +191,7 @@ UIButton_4.TextColor3 = Color3.new(1, 1, 1)
 UIButton_4.BackgroundTransparency = 1
 UIButton_4.Parent = mainFrame
 
-local LocalCloseInterface = Instance.new("TextButton")
+LocalCloseInterface = Instance.new("TextButton")
 LocalCloseInterface.Name = "TitleLabel"
 LocalCloseInterface.Position = UDim2.new(0, 0, 0, 130)
 LocalCloseInterface.Size = UDim2.new(1, 0, 0, 20)
@@ -427,6 +427,7 @@ local U6                         = Instance.new('TextButton', U5)
 local TextBar                         = Instance.new('TextBox', GUI_MAIN)
 local BarSent                         = Instance.new('TextButton', TextBar)
 local ToggleBypass                         = Instance.new('TextButton', TextBar)
+local ToggleBypassMode                         = Instance.new('TextButton', TextBar)
 local TextBarExecutor                         = Instance.new('TextBox', GUI_MAIN)
 local BarButtonExecute                         = Instance.new('TextButton', TextBarExecutor)
 -- choose part function ui
@@ -884,6 +885,27 @@ ToggleBypass.MouseButton1Down:Connect(function()
 			else
 			BarSent.Text                    = "Send [Bypass: OFF]"
 			ToggleBypass.Text                    = "Enable Bypass"
+     end
+end)
+-- ToggleBypassMode
+local BypassModeScript = false
+ToggleBypassMode.Size                    = UDim2.new(0,200,0,30)
+ToggleBypassMode.BackgroundTransparency  = 0.5
+ToggleBypassMode.BackgroundColor         = BrickColor.new('Fossil')
+ToggleBypassMode.BorderSizePixel         = 0
+ToggleBypassMode.Position                = UDim2.new(0.5,-100,0,60)
+ToggleBypassMode.Text                    = "Bypass Mode: 1"
+ToggleBypassMode.TextColor3              = Color3.new(1,1,1)
+ToggleBypassMode.TextStrokeTransparency  = 1
+ToggleBypassMode.TextWrapped             = true
+ToggleBypassMode.FontSize                = 'Size24'
+ToggleBypassMode.Font                    = 'SourceSansBold'
+ToggleBypassMode.MouseButton1Down:Connect(function()
+	BypassModeScript = not BypassModeScript
+		if BypassModeScript then
+			ToggleBypassMode.Text                    = "Current mode 1"
+			else
+			ToggleBypassMode.Text                    = "Current Mode 2"
      end
 end)
 
@@ -1473,9 +1495,27 @@ local chat = BypassWord
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat, "All")
 end
 
+function SyncBypassChatTwoMode(text)
+local message = string.lower(text)
+    for word in string.gmatch(message, "%S+") do
+        for i, key in ipairs(keywords) do
+            if word == string.lower(key) then
+                word = replace[i]
+                break
+            end
+        end
+        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(word, "All")
+        wait(tonumber(delay.Text))
+    end
+end
+
 BarSent.MouseButton1Down:Connect(function()
 	if BypassWord then
-           SyncBypassChat(TextBar.Text)
+           if BypassModeScript then
+              SyncBypassChatTwoMode(TextBar.Text)
+           else
+              SyncBypassChat(TextBar.Text)
+        end
 	else
 	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
     end
