@@ -6992,9 +6992,9 @@ if sethidden then
 		local hum  = Instance.new("Humanoid")
 		local animation = Instance.new("Model")
 		local humanoidanimation = Instance.new("Humanoid")
-		test.Parent = game:Getservice("Workspace")
+		test.Parent = game:GetService("Workspace")
 		hum.Parent = test
-		animation.Parent = game:Getservice("Workspace")
+		animation.Parent = game:GetService("Workspace")
 		humanoidanimation.Parent = animation
 
 		lplr.Character = test
@@ -7024,6 +7024,9 @@ if sethidden then
 	else
 		ErrorPrompt('Incompatible Exploit','Your exploit does not support this command (missing sethiddenproperty)')
 	end
+end
+if cmd == "discordusername" then
+copy("Tora#4172")
 end
 -- limit
 end
@@ -7238,6 +7241,7 @@ cmds[#cmds + 1] = {Text = "[200] " .. tostring(prefix) .. "infjump",Title = "Inf
 cmds[#cmds + 1] = {Text = "[201] " .. tostring(prefix) .. "btools",Title = "🤷"}
 cmds[#cmds + 1] = {Text = "[202] " .. tostring(prefix) .. "immortal",Title = "you are immortal, can't die"}
 cmds[#cmds + 1] = {Text = "[203] " .. tostring(prefix) .. "headless",Title = "remove your head to make it look like a real headless"}
+cmds[#cmds + 1] = {Text = "[204] " .. tostring(prefix) .. "discordusername",Title = "copy my discord username"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7263,7 +7267,7 @@ end
 
 local Developer = {
       Title = "Developer:";
-      Rivanda_Cheater = "Rivanda_Cheater (C4#4172) (YT: Entity)";
+      Rivanda_Cheater = "Rivanda_Cheater (Tora#4172) (YT: Entity)";
       CookieProgamming = "CookieProgamming (alt)";
 }
 
@@ -7378,7 +7382,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [07/06/2023] \n\n[CONTENT] \n[+] added 3 new command \n[+] added tool detection in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? add my discord: C4#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [07/06/2023] \n\n[CONTENT] \n[+] added 3 new command \n[+] added tool detection in esp \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
