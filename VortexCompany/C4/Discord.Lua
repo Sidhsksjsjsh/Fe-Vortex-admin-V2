@@ -531,6 +531,7 @@ CB.TextWrapped             = true
 CB.FontSize                = 'Size24'
 CB.Font                    = 'SourceSansBold'
 CB.Draggable = true
+CB.ClearTextOnFocus = false
 
 CB.MouseEnter:Connect(function()
 CB.BackgroundTransparency = 0.5
