@@ -2767,7 +2767,7 @@ function GetClosestPlayerFromCursor()
 	return found
 end
 
-local SpecialPlayerCases = {
+SpecialPlayerCases = {
 	["all"] = function(speaker) return Players:GetPlayers() end,
 	["others"] = function(speaker)
 		local plrs = {}
