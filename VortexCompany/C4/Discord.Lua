@@ -939,6 +939,7 @@ TextBarExecutor.Visible = false
 
 TextBar.Visible = false
 BarSent.Visible = false
+ToggleBypassMode.Visible = false
 
 U1.Size                    = UDim2.new(0,200,0,30)
 U1.BackgroundTransparency  = 0.5
@@ -3831,6 +3832,7 @@ function DisplayUI(UIname)
       if UIname == "chatbypass" then
       TextBar.Visible = true
       BarSent.Visible = true
+      ToggleBypassMode.Visible = true
    end
       if UIname == "exc" then
       TextBarExecutor.Visible = true
@@ -3893,6 +3895,7 @@ function RemoveDisplayUI(UIname)
       if UIname == "chatbypass" then
       TextBar.Visible = false
       BarSent.Visible = false
+      ToggleBypassMode.Visible = false
    end
    if UIname == "exc" then
       TextBarExecutor.Visible = false
