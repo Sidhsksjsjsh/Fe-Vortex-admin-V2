@@ -1469,19 +1469,19 @@ local chat = BypassWord
     for i = 1, #chat do
         local chara = chat:sub(i,i)
         if string.lower(chara) == "a" then
-            chara = "á"
+            chara = "á𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "o" then
-            chara = "ồ"
+            chara = "ồ𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "i" then
-            chara = "ì"
+            chara = "ì𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "u" then
-            chara = "ú"
+            chara = "ú𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "e" then
-            chara = "ệ"
+            chara = "ệ𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "d" then
-            chara = "đ"
+            chara = "đ𐌑𝖔 ͜ ͣ "
         elseif string.lower(chara) == "y" then
-            chara = "ỷ"
+            chara = "ỷ𐌑𝖔 ͜ ͣ "
 	elseif string.lower(chara) == " " then
             chara = " "
 	elseif string.lower(chara) == "" then
@@ -1514,11 +1514,7 @@ end
 
 BarSent.MouseButton1Down:Connect(function()
 	if BypassWord then
-           if BypassModeScript then
-              SyncBypassChatTwoMode(TextBar.Text)
-           else
               SyncBypassChat(TextBar.Text)
-        end
 	else
 	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
     end
@@ -3832,7 +3828,7 @@ function DisplayUI(UIname)
       if UIname == "chatbypass" then
       TextBar.Visible = true
       BarSent.Visible = true
-      ToggleBypassMode.Visible = true
+      ToggleBypassMode.Visible = false
    end
       if UIname == "exc" then
       TextBarExecutor.Visible = true
