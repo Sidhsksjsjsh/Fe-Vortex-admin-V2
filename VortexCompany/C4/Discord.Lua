@@ -2739,16 +2739,16 @@ function tools(plr)
 end
 
 
-local WorldToScreen = function(Object)
+function WorldToScreen(Object)
 	local ObjectVector = game:GetService("Workspace").CurrentCamera:WorldToScreenPoint(Object.Position)
 	return Vector2.new(ObjectVector.X, ObjectVector.Y)
 end
 
-local MousePositionToVector2 = function()
+function MousePositionToVector2()
 	return Vector2.new(Mouse.X, Mouse.Y)
 end
 
-local GetClosestPlayerFromCursor = function()
+function GetClosestPlayerFromCursor()
 	local found = nil
 	local ClosestDistance = math.huge
 	for i, v in pairs(Players:GetPlayers()) do
