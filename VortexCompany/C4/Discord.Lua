@@ -1392,7 +1392,7 @@ for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants
 if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
 game:GetService("RunService").Heartbeat:connect(function()
 v.Velocity = Vector3.new(0,35,0)
-wait(0.5)
+wait()
 end)
 end
 end
@@ -2719,6 +2719,150 @@ function getRoot(char)
 	return rootPart
 end
 
+function PetHat_R15AndR6(HatId)
+    local plr = speaker
+    local char = plr.Character
+
+local lp = speaker
+
+
+for i, v in pairs(char:GetChildren()) do
+    if v:IsA("BallSocketConstraint") then
+        v:Destroy()
+    end
+end
+
+for i, v in pairs(char:GetChildren()) do
+    if v:IsA("HingeConstraint") then
+        v:Destroy()
+    end
+end
+
+local HatNameDetection = game:GetObjects("rbxassetid://".. HatId)[1].Name
+local hat = HatNameDetection
+
+char[hat].Archivable = true
+local fake = char[hat]:Clone()
+fake.Parent = char
+fake.Handle.Transparency = 1
+
+
+
+
+    local car = char[hat]
+
+
+
+    local att1 = Instance.new("Attachment",car.Handle)
+
+    local ap = Instance.new("AlignPosition",car.Handle)
+    ap.Attachment0 = att1
+    ap.Attachment1 = att1
+    ap.RigidityEnabled = true 
+
+
+    local ao = Instance.new("AlignOrientation",car.Handle) 
+    ao.Attachment0 = att1
+    ao.Attachment1 = att1
+    ao.RigidityEnabled = true
+    
+    car.Handle.AccessoryWeld:Destroy()
+
+        local BP = Instance.new("BodyPosition", car.Handle)
+        local BG = Instance.new("BodyGyro", car.Handle)
+        RunService.Stepped:Connect(function()
+          BP.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+          BP.Position = char["HumanoidRootPart"].Position + Vector3.new(5, 1.8, 3)
+          BG.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+          BG.CFrame = char["HumanoidRootPart"].CFrame
+        end)
+end
+--[[
+function PetHat_R6(HatId)
+local hatid = HatId --must be wearing hat
+local hatname = game:GetObjects("rbxassetid://".. hatid)[1].Name
+
+
+local unanchoredparts = {}
+local movers = {}
+local tog = true
+local move = false
+local Player = speaker
+local Character = Player.Character
+local mov = {};
+local mov2 = {};
+
+local Hats = {Hat1  = Character:WaitForChild(hatname),
+}
+
+
+
+
+for i,v in next, Hats do
+v.Handle.AccessoryWeld:Remove()
+for _,mesh in next, v:GetDescendants() do
+if mesh:IsA("Mesh") or mesh:IsA("SpecialMesh") then
+
+end
+end
+end
+
+function ftp(str)
+local pt = {};
+if str ~= 'me' and str ~= 'random' then
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.Name:lower():find(str:lower()) then
+table.insert(pt, v);
+end
+end
+elseif str == 'me' then
+table.insert(pt, plr);
+elseif str == 'random' then
+table.insert(pt, Players:GetPlayers()[math.random(1, #Players:GetPlayers())]);
+end
+return pt;
+end
+
+local function align(i,v)
+local att0 = Instance.new("Attachment", i)
+att0.Position = Vector3.new(0,0,0)
+local att1 = Instance.new("Attachment", v)
+att1.Position = Vector3.new(0,0,0)
+local AP = Instance.new("AlignPosition", i)
+AP.Attachment0 = att0
+AP.Attachment1 = att1
+AP.RigidityEnabled = false
+AP.ReactionForceEnabled = false
+AP.ApplyAtCenterOfMass = false
+AP.MaxForce = 9999999
+AP.MaxVelocity = math.huge
+AP.Responsiveness = 65
+local AO = Instance.new("AlignOrientation", i)
+AO.Attachment0 = att0
+AO.Attachment1 = att1
+AO.ReactionTorqueEnabled = false
+AO.PrimaryAxisOnly = false
+AO.MaxTorque = 9999999
+AO.MaxAngularVelocity = math.huge
+AO.Responsiveness = 50
+end
+
+
+
+
+align(Hats.Hat1.Handle, Character["Torso"])
+
+
+
+Hats.Hat1.Handle.Attachment.Rotation = Vector3.new(0,0,0)
+   
+
+Character:WaitForChild("Torso"):FindFirstChild("Attachment").Name = "Attachment1"
+       Character:WaitForChild("Torso").Attachment1.Position = Vector3.new(4.5, -1, 3)    
+
+-- made by Creatar#4019 aca Creatar aca RoBloit
+end
+--]]
 function CameraMode(ModeType)
        if ModeType == "fpp" then
            speaker.CameraMode = "LockFirstPerson"
@@ -7351,6 +7495,15 @@ ErrorPrompt("FE Glitcher ( R6 )", result)
 end
 end
 end
+if cmd == "pet" then
+local var = string.sub(msg,space+1)
+ForceBodyPart()
+if isNumber(var) then
+PetHat_R15AndR6(tonumber(var))
+else
+ErrorPrompt("Required Number","only supports numbers 1-10")
+end
+end
 -- limit
 end
 -- end
@@ -7561,11 +7714,12 @@ cmds[#cmds + 1] = {Text = "[197] " .. tostring(prefix) .. "stand",Title = "stand
 cmds[#cmds + 1] = {Text = "[198] " .. tostring(prefix) .. "unstand",Title = ""}
 cmds[#cmds + 1] = {Text = "[199] " .. tostring(prefix) .. "exit",Title = "take you out of the game."}
 cmds[#cmds + 1] = {Text = "[200] " .. tostring(prefix) .. "infjump",Title = "Infinite jump"}
-cmds[#cmds + 1] = {Text = "[201] " .. tostring(prefix) .. "btools",Title = "🤷"}
+cmds[#cmds + 1] = {Text = "[201] " .. tostring(prefix) .. "btools",Title = "builder tools"}
 cmds[#cmds + 1] = {Text = "[202] " .. tostring(prefix) .. "immortal",Title = "you are immortal, can't die"}
 cmds[#cmds + 1] = {Text = "[203] " .. tostring(prefix) .. "headless",Title = "remove your head to make it look like a real headless"}
 cmds[#cmds + 1] = {Text = "[204] " .. tostring(prefix) .. "discordusername",Title = "copy my discord username"}
 cmds[#cmds + 1] = {Text = "[205] " .. tostring(prefix) .. "glitcher",Title = "Fe script work R6 and R15"}
+cmds[#cmds + 1] = {Text = "[206] " .. tostring(prefix) .. "pet [hat id]",Title = "turn your accessories into pets"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
