@@ -4891,7 +4891,6 @@ local arrow = "> "
 local Arrow_2 = " <"
 CB.FocusLost:Connect(function(Enter)
    if Enter then
-	CB.Text = arrow .. prefix .. CB.Text .. Arrow_2
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
 end
@@ -4953,7 +4952,7 @@ local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 	kill(speaker,Players[v])
-success("managed to kill","killed " .. Players[v])
+success("managed to kill","killed " .. tostring(Players[v]))
 end
 end
 if cmd == "inspect" then
@@ -4962,7 +4961,7 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[v].UserId)
-notify("command notifcation","inspect " .. Players[v] .. " (" .. Players[v].Userid .. ")")
+notify("command notifcation","inspect " .. tostring(Players[v]) .. " (" .. tostring(Players[v].Userid) .. ")")
 end
 end
 if cmd == "bring" then
@@ -5005,7 +5004,7 @@ wait()
 getout(game.Players.LocalPlayer, game.Players[Target])
 wait()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
-notify("FE bring","bring " .. var)
+notify("FE bring","bring " .. tostring(Players[v]))
 end
 end
 if cmd == "esp" then
@@ -5063,7 +5062,7 @@ local otherRoot = getTorso(Players[v].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 end
     RapeStart = RunService.Stepped:Connect(Looptp)
-notify("Ambatukam","Banging " .. var)
+notify("Ambatukam","Banging " .. tostring(Players[v]))
 end
 end
 if cmd == "unbang" then
@@ -5082,7 +5081,7 @@ local function Loopwalk()
 speaker.Character.Humanoid:MoveTo(Players[v].Character.HumanoidRootPart.Position)
 end
     Follow = RunService.Stepped:Connect(Loopwalk)
-notify("follow","Following " .. var)
+notify("follow","Following " .. tostring(Players[v]))
 end
 end
 if cmd == "loopgoto" then
@@ -5093,7 +5092,7 @@ local function Looptp()
 speaker.Character.HumanoidRootPart.CFrame = Players[v].Character.HumanoidRootPart.CFrame - Players[v].Character.HumanoidRootPart.CFrame.LookVector*0
 end
     Loopgoto = RunService.Stepped:Connect(Looptp)
-notify("loop goto","loop go to " .. var)
+notify("loop goto","loop go to " .. tostring(Players[v]))
 end
 end
 if cmd == "looptween" then
@@ -5108,20 +5107,16 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
-notify("loop tweening","Loop tweening to " .. var)
+notify("loop tweening","Loop tweening to " .. tostring(Players[v]))
 end
 end
 if cmd == "goto" then
 local var = string.sub(msg,space+1)
-local player = game.Players.LocalPlayer
-for i,v in pairs(game.Players:GetChildren()) do
-if (string.sub(string.lower(v.Name),1,string.len(var))) == string.lower(var) then
-var = v.Name
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+speaker.Character.HumanoidRootPart.CFrame = Players[v].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+notify("Teleporting","teleporting you to " .. tostring(Players[v]))
 end
-end
-
-speaker.Character.HumanoidRootPart.CFrame = Players[var].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
-notify("Teleporting","teleporting you to " .. var)
 end
 if cmd == "tweento" then
 local var = string.sub(msg,space+1)
@@ -5132,7 +5127,7 @@ local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPa
 
 
 {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
-notify("Teleporting","tweening you to " .. var)
+notify("Teleporting","tweening you to " .. tostring(Players[v]))
 end
 end
 if cmd == "walkto" then
@@ -5140,7 +5135,7 @@ local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 speaker.Character.Humanoid:MoveTo(Players[v].Character.HumanoidRootPart.Position)
-notify("walking to","walk you to " .. var)
+notify("walking to","walk you to " .. tostring(Players[v]))
 end
 end
 if cmd == "unfollow" then
@@ -5452,7 +5447,7 @@ if headSit then headSit:Disconnect() end
 				headSit:Disconnect()
 			end
 		end)
-notify("Headsit","sitting on the " .. Players[v] .. " head")
+notify("Headsit","sitting on the " .. tostring(Players[v]) .. " head")
 end
 end
 if cmd == "spy" then
@@ -5470,7 +5465,7 @@ viewing = Players[v]
 			workspace.CurrentCamera.CameraSubject = viewing.Character
 		end
 		viewChanged = workspace.CurrentCamera:GetPropertyChangedSignal("CameraSubject"):Connect(viewChangedFunc)
-		notify("spy","Spying " .. Players[v])
+		notify("spy","Spying " .. tostring(Players[v]))
 end
 end
 if cmd == "unspy" then
@@ -5514,7 +5509,7 @@ local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 attach(speaker,Players[v])
-notify("give tool","attached: " .. Players[v])
+notify("give tool","attached: " .. tostring(Players[v]))
 end
 end
 if cmd == "enablestate" then
@@ -5660,7 +5655,7 @@ local dates = {}
 		local splitDates = string.split(date,"-")
 		table.insert(dates,Players[v].Name.." joined: "..splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
-	notify(Players[v] .. " Account Age",chatString .. " (" .. Players[v].AccountAge .. " days old)")
+	notify(tostring(Players[v]) .. " Account Age",chatString .. " (" .. tostring(Players[v].AccountAge) .. " days old)")
 end
 end
 if cmd == "blockhats" then
@@ -5942,14 +5937,14 @@ if cmd == "compliment" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-ProtocolResponse("compliment",Players[v])
+ProtocolResponse("compliment",tostring(Players[v]))
 end
 end
 if cmd == "insult" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-ProtocolResponse("insult",Players[v])
+ProtocolResponse("insult",tostring(Players[v]))
 end
 end
 if cmd == "reach" then
@@ -6141,7 +6136,7 @@ local char = Players[v].Character
 			return notify("Getposition Error","Missing character")
 		end
 		local roundedPos = math.round(pos.X) .. ", " .. math.round(pos.Y) .. ", " .. math.round(pos.Z)
-		notify(Players[v] .. " Position","Current Position " .. roundedPos)
+		notify(tostring(Players[v]) .. " Position","Current Position " .. roundedPos)
 end
 end
 if cmd == "copypos" then
@@ -6364,13 +6359,13 @@ local playerIsAlrFriend = Players:FindFirstChild(Players[v])
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
     if isFriend then
-        warning("is friend","You are already friends with " .. Players[v])
+        warning("is friend","You are already friends with " .. tostring(Players[v]))
         return
     end
 end
 
 speaker:RequestFriendship(Players[v])
-success("Send Friend Request","Friend request sent to " .. Players[v])
+success("Send Friend Request","Friend request sent to " .. tostring(Players[v]))
 end)
 
 if not respon then
@@ -6385,7 +6380,7 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 local respon, result = pcall(function()
 speaker:RevokeFriendship(Players[v])
-notify("Unfriend","you are no longer friends with " .. Players[v])
+notify("Unfriend","you are no longer friends with " .. tostring(Players[v]))
 end)
 
 if not respon then
@@ -6609,7 +6604,7 @@ if cmd == "copyid" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-copy("" .. Players[v].UserId .. "")
+copy("" .. tostring(Players[v].UserId) .. "")
 notify("Copy UserId","Copied to clipboard")
 end
 end
@@ -7193,9 +7188,9 @@ lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + playe
 end)
 
 if Players:FindFirstChild(Players[v]) then
-notify("Orbit","Orbiting " .. Players[v] .. ".")
+notify("Orbit","Orbiting " .. tostring(Players[v]) .. ".")
 else
-ErrorPrompt("Player not found","We couldn't find the player named " .. Players[v])
+ErrorPrompt("Player not found","We couldn't find the player named " .. tostring(Players[v]))
 end
 end
 end
