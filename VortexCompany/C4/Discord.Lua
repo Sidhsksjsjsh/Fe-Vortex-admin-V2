@@ -1469,19 +1469,19 @@ local chat = BypassWord
     for i = 1, #chat do
         local chara = chat:sub(i,i)
         if string.lower(chara) == "a" then
-            chara = "𐌑á𐌑𝖔 ͜ ͣ " -- á
+            chara = "á𐌑𝖔 ͜ ͣ " -- á
         elseif string.lower(chara) == "o" then
-            chara = "𐌑ồ𐌑𝖔 ͜ ͣ " -- ồ
+            chara = "ồ𐌑𝖔 ͜ ͣ " -- ồ
         elseif string.lower(chara) == "i" then
-            chara = "𐌑ì𐌑𝖔 ͜ ͣ " -- ì
+            chara = "ì𐌑𝖔 ͜ ͣ " -- ì
         elseif string.lower(chara) == "u" then
-            chara = "𐌑ú𐌑𝖔 ͜ ͣ " -- ú
+            chara = "ú𐌑𝖔 ͜ ͣ " -- ú
         elseif string.lower(chara) == "e" then
-            chara = "𐌑ệ𐌑𝖔 ͜ ͣ " -- ệ
+            chara = "ệ𐌑𝖔 ͜ ͣ " -- ệ
         elseif string.lower(chara) == "d" then
-            chara = "𐌑đ𐌑𝖔 ͜ ͣ " -- đ
+            chara = "đ𐌑𝖔 ͜ ͣ " -- đ
         elseif string.lower(chara) == "y" then
-            chara = "𐌑ỷ𐌑𝖔 ͜ ͣ " -- ỷ
+            chara = "ỷ𐌑𝖔 ͜ ͣ " -- ỷ
 	elseif string.lower(chara) == " " then
             chara = " " -- 
 	elseif string.lower(chara) == "" then
@@ -2834,7 +2834,7 @@ SpecialPlayerCases = {
 		local players = Players:GetPlayers()
 		local localplayer = Players.LocalPlayer
 		table.remove(players, table.find(players, localplayer))
-		return {players[math.random(1,#players)]}
+		return players[math.random(1,#players)]
 	end,
 	["%%(.+)"] = function(speaker,args)
 		local returns = {}
@@ -5043,6 +5043,12 @@ end
 if cmd == "clip" then
 if Noclipping then
 		Noclipping:Disconnect()
+		-- speaker.Character.Humanoid.Jump = true
+		for _, child in pairs(speaker.Character:GetDescendants()) do
+                   if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+			child.CanCollide = true
+		end
+	end
 	end
 	Clip = true
 success("noclipping","noclip disabled")
@@ -5114,7 +5120,7 @@ if cmd == "goto" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-speaker.Character.HumanoidRootPart.CFrame = Players[v].Character.HumanoidRootPart.CFrame - Players[var].Character.HumanoidRootPart.CFrame.LookVector*0
+speaker.Character.HumanoidRootPart.CFrame = Players[v].Character.HumanoidRootPart.CFrame - Players[v].Character.HumanoidRootPart.CFrame.LookVector*0
 notify("Teleporting","teleporting you to " .. tostring(Players[v]))
 end
 end
