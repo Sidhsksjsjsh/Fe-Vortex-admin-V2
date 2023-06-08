@@ -2468,7 +2468,7 @@ end)
 function executeHTTPS(_link_)
      local respon, result = pcall(function()
      loadstring(game:HttpGet(_link_))()
-     notify("Executed!","script executed successfully.")
+     notify("Script Executed!","script executed successfully.")
      end)
      
      if not respon then
@@ -7338,13 +7338,19 @@ end
 if cmd == "discordusername" then
 copy("Tora#4172")
 end
---[[ if cmd == "-?-" then
-local var = string.sub(msg,space+1)
-local variable = getPlayer(var, speaker)
-	for i,v in pairs(variable) do
-            notify("Player found","Player " .. tostring(Players[v]))
-	end
-end --]]
+if cmd == "glitcher" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastefy.ga/qqTUbyGK/raw")
+end)
+
+if not respon then
+if r15(speaker) then
+ErrorPrompt("FE Glitcher ( R15 )", result)
+else
+ErrorPrompt("FE Glitcher ( R6 )", result)
+end
+end
+end
 -- limit
 end
 -- end
@@ -7559,6 +7565,7 @@ cmds[#cmds + 1] = {Text = "[201] " .. tostring(prefix) .. "btools",Title = "🤷
 cmds[#cmds + 1] = {Text = "[202] " .. tostring(prefix) .. "immortal",Title = "you are immortal, can't die"}
 cmds[#cmds + 1] = {Text = "[203] " .. tostring(prefix) .. "headless",Title = "remove your head to make it look like a real headless"}
 cmds[#cmds + 1] = {Text = "[204] " .. tostring(prefix) .. "discordusername",Title = "copy my discord username"}
+cmds[#cmds + 1] = {Text = "[205] " .. tostring(prefix) .. "glitcher",Title = "Fe script work R6 and R15"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7699,7 +7706,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/06/2023] \n\n[CONTENT] \n[+] You can now write the player's display name in the command bar \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [08/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
