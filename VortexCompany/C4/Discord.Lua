@@ -1469,19 +1469,19 @@ local chat = BypassWord
     for i = 1, #chat do
         local chara = chat:sub(i,i)
         if string.lower(chara) == "a" then
-            chara = "á𐌑𝖔 ͜ ͣ " -- á
+            chara = "𐌑á𐌑𝖔 ͜ ͣ " -- á
         elseif string.lower(chara) == "o" then
-            chara = "ồ𐌑𝖔 ͜ ͣ " -- ồ
+            chara = "𐌑ồ𐌑𝖔 ͜ ͣ " -- ồ
         elseif string.lower(chara) == "i" then
-            chara = "ì𐌑𝖔 ͜ ͣ " -- ì
+            chara = "𐌑ì𐌑𝖔 ͜ ͣ " -- ì
         elseif string.lower(chara) == "u" then
-            chara = "ú𐌑𝖔 ͜ ͣ " -- ú
+            chara = "𐌑ú𐌑𝖔 ͜ ͣ " -- ú
         elseif string.lower(chara) == "e" then
-            chara = "ệ𐌑𝖔 ͜ ͣ " -- ệ
+            chara = "𐌑ệ𐌑𝖔 ͜ ͣ " -- ệ
         elseif string.lower(chara) == "d" then
-            chara = "đ𐌑𝖔 ͜ ͣ " -- đ
+            chara = "𐌑đ𐌑𝖔 ͜ ͣ " -- đ
         elseif string.lower(chara) == "y" then
-            chara = "ỷ𐌑𝖔 ͜ ͣ " -- ỷ
+            chara = "𐌑ỷ𐌑𝖔 ͜ ͣ " -- ỷ
 	elseif string.lower(chara) == " " then
             chara = " " -- 
 	elseif string.lower(chara) == "" then
