@@ -7829,19 +7829,20 @@ end
     end)
 end
 
-Players.PlayerAdded:Connect(function(plr)
-if ESPenabled then
-		repeat wait(1) until plr.Character and getRoot(plr.Character)
-		ESP(plr)
-	end
-end)
-
 for _, ProtocolPlayer in pairs(Players:GetChildren()) do
      if ProtocolPlayer.ClassName == "Player" then
          ProtocolGetChatSystem(ProtocolPlayer)
      end
 end
 
+
+Players.PlayerAdded:Connect(function(plr)
+ProtocolGetChatSystem(plr)
+if ESPenabled then
+		repeat wait(1) until plr.Character and getRoot(plr.Character)
+		ESP(plr)
+	end
+end)
 -- Define variables
 local introGui = Instance.new("ScreenGui")
 local introFrame = Instance.new("Frame")
