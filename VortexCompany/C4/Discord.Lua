@@ -1464,28 +1464,40 @@ SyncTeleportScreen:Destroy()
 end
 
 function SyncBypassChat(BypassWord)
-local chat = BypassWord
+local chat = BypassWord:lower()
     local tabl = {}
     for i = 1, #chat do
         local chara = chat:sub(i,i)
-        if string.lower(chara) == "a" then
-            chara = "𐌑á" -- á
-        elseif string.lower(chara) == "o" then
-            chara = "𐌑ồ" -- ồ
-        elseif string.lower(chara) == "i" then
-            chara = "𐌑ì" -- ì
-        elseif string.lower(chara) == "u" then
-            chara = "𐌑ú" -- ú
-        elseif string.lower(chara) == "e" then
-            chara = "𐌑ệ" -- ệ
-        elseif string.lower(chara) == "d" then
-            chara = "𐌑đ" -- đ
-        elseif string.lower(chara) == "y" then
-            chara = "𐌑ỷ" -- ỷ
+        if string.lower(chara) == "fuck" then
+            chara = "fu𐌑𝖔 ͜ ͣ c𐌑ḳ" -- 𐌑á
+        elseif string.lower(chara) == "bitch" then
+            chara = "b𐌑ì𐌑𝖔 ͜ ͣ t𐌑ch" -- 𐌑ồ
+        elseif string.lower(chara) == "cum" then
+            chara = "c𐌑úm" -- 𐌑ì
+        elseif string.lower(chara) == "shit" then
+            chara = "sh𐌑ìt" -- 𐌑ú
+        elseif string.lower(chara) == "sex" then
+            chara = "s𐌑ệ𐌑x" -- 𐌑ệ
+        elseif string.lower(chara) == "dick" then
+            chara = "d𐌑ì𐌑ck" -- 𐌑đ
+        elseif string.lower(chara) == "penis" then
+            chara = "p𐌑ện𐌑i𐌑𝖔 ͜ ͣ s" -- 𐌑ỷ
 	elseif string.lower(chara) == " " then
             chara = " " -- 
-	elseif string.lower(chara) == "" then
-            chara = "{?}" -- 
+	elseif string.lower(chara) == "cock" then
+            chara = "c𐌑o𐌑ck" -- 
+	elseif string.lower(chara) == "tits" then
+            chara = "t𐌑ì𐌑ts" -- 
+        elseif string.lower(chara) == "boobs" then
+            chara = "b𐌑ồồ𐌑bs" -- 
+        elseif string.lower(chara) == "suck" then
+            chara = "s𐌑ú𐌑ck" -- 
+        elseif string.lower(chara) == "asshole" then
+            chara = "á𐌑ss𐌑h𐌑𝖔 ͜ ͣ ồle" -- 
+        elseif string.lower(chara) == "ass" then
+            chara = "á𐌑s𐌑𝖔 ͜ ͣ s" -- 
+        elseif string.lower(chara) == "pussy" then
+            chara = "p𐌑us𐌑s𐌑𝖔 ͜ ͣ y" -- 
         end
         table.insert(tabl, chara)
     end
