@@ -2489,6 +2489,34 @@ function executeHTTPS(_link_)
      end
 end
 
+function executeOBJECTS(rbxID)
+     local respon, result = pcall(function()
+     loadstring(game:GetObjects("rbxassetid://" .. tostring(rbxID))[1].Source)()
+     notify("Asset Id Executed!","Asset Id executed successfully.")
+     end)
+     
+     if not respon then
+    -- notify(result)
+     ErrorPrompt("Failed to load asset id", result)
+     end
+end
+
+function xray(v)
+	if v then
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChildOfClass('Humanoid') and not i.Parent.Parent:FindFirstChildOfClass('Humanoid') then
+				i.LocalTransparencyModifier = 0.5
+			end
+		end
+	else
+		for _,i in pairs(workspace:GetDescendants()) do
+			if i:IsA("BasePart") and not i.Parent:FindFirstChildOfClass('Humanoid') and not i.Parent.Parent:FindFirstChildOfClass('Humanoid') then
+				i.LocalTransparencyModifier = 0
+			end
+		end
+	end
+end
+
 local epicm = 0
 
 -- local NotifyV1 = executeHTTPS("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua")
@@ -5212,27 +5240,40 @@ end
 if cmd == "bang" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
-	for i,v in pairs(variable) do
-Anim = Instance.new("Animation")
-Anim.AnimationId = "rbxassetid://148840371"
-track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
-track:Play()
-track:AdjustSpeed(10)
-local function Looptp()
-local bangOffet = CFrame.new(0, 0, 1.1)
-local otherRoot = getTorso(Players[v].Character)
+	for _, v in pairs(variable) do
+		bangAnim = Instance.new("Animation")
+		if not r15(speaker) then
+			bangAnim.AnimationId = "rbxassetid://148840371"
+		else
+			bangAnim.AnimationId = "rbxassetid://5918726674"
+		end
+		bang = speaker.Character:FindFirstChildOfClass('Humanoid'):LoadAnimation(bangAnim)
+		bang:Play(.1, 1, 1)
+		bang:AdjustSpeed(16)
+		local bangplr = Players[v].Name
+		bangDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(function()
+			bangLoop = bangLoop:Disconnect()
+			bang:Stop()
+			bangAnim:Destroy()
+			bangDied:Disconnect()
+		end)
+		local bangOffet = CFrame.new(0, 0, 1.1)
+		bangLoop = RunService.Stepped:Connect(function()
+			pcall(function()
+				local otherRoot = getTorso(Players[bangplr].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
-end
-    RapeStart = RunService.Stepped:Connect(Looptp)
+			end)
+		end)
+	end
 notify("Ambatukam","Banging " .. tostring(Players[v]))
 end
 end
 if cmd == "unbang" then
-if RapeStart then
-		RapeStart:Disconnect()
-                track:Stop()
-		Anim:Destroy()
-		notify("Ambatukam","Stop Banging")
+if bangLoop then
+		bangLoop = bangLoop:Disconnect()
+		bangDied:Disconnect()
+		bang:Stop()
+		bangAnim:Destroy()
 	end
 end
 if cmd == "follow" then
@@ -7125,11 +7166,11 @@ Spin.MaxTorque = Vector3.new(0, math.huge, 0)
 Spin.AngularVelocity = Vector3.new(0,var,0)
 end
 if cmd == "unspin" then
-if speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity") then
-speaker.Character.HumanoidRootPart:FindFirstChild("BodyAngularVelocity"):Destroy()
-else
-ErrorPrompt("Unspin error","{nil}")
-end
+for i,v in pairs(getRoot(speaker.Character):GetChildren()) do
+		if v.Name == "Spinning" then
+			v:Destroy()
+		end
+	end
 end
 if cmd == "collide" then
 local var = string.sub(msg,space+1)
@@ -7530,9 +7571,18 @@ if SayMessageRequest then
     end
 end
 end
-if cmd == "netles" then
+if cmd == "netless" then
 ForceBodyPart()
 success("Netless Activated","run this command after character reset.")
+end
+if cmd == "xray" then
+xray(true)
+end
+if cmd == "unxray" then
+xray(false)
+end
+if cmd == "f3x" then
+executeOBJECTS("6695644299")
 end
 -- limit
 end
@@ -7752,7 +7802,9 @@ cmds[#cmds + 1] = {Text = "[205] " .. tostring(prefix) .. "glitcher",Title = "Fe
 cmds[#cmds + 1] = {Text = "[206] " .. tostring(prefix) .. "pet [hat id]",Title = "turn your accessories into pets"}
 cmds[#cmds + 1] = {Text = "[207] " .. tostring(prefix) .. "clag",Title = "make the players on your server lag or crash."}
 cmds[#cmds + 1] = {Text = "[208] " .. tostring(prefix) .. "netless",Title = "Fe netless"}
-
+cmds[#cmds + 1] = {Text = "[209] " .. tostring(prefix) .. "xray",Title = "make all objects invisible so you can see through them"}
+cmds[#cmds + 1] = {Text = "[210] " .. tostring(prefix) .. "unxray",Title = "make all objects visible so you cant see through them"}
+cmds[#cmds + 1] = {Text = "[211] " .. tostring(prefix) .. "f3x",Title = "Fe F3X"}
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
@@ -7893,7 +7945,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [11/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] Fixed netless bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [12/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -8035,7 +8087,15 @@ info("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game
 end
 end)
 
-game.Players.PlayerRemoving:Connect(function(Player)
+Players.PlayerRemoving:Connect(function(Player)
+if ESPenabled or CHMSenabled or COREGUI:FindFirstChild(player.Name..'_LC') then
+		for i,v in pairs(COREGUI:GetChildren()) do
+			if v.Name == Player.Name..'_ESP' or v.Name == Player.Name..'_LC' or v.Name == Player.Name..'_CHMS' then
+				v:Destroy()
+			end
+		end
+	end
+
 if speaker:IsFriendsWith(Player.UserId) then
 friendsingame = friendsingame + -1
 if friendsingame < 0 then
