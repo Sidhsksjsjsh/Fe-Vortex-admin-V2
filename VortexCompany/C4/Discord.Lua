@@ -5264,7 +5264,6 @@ local variable = getPlayer(var, speaker)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 			end)
 		end)
-	end
 notify("Ambatukam","Banging " .. tostring(Players[v]))
 end
 end
@@ -8088,14 +8087,13 @@ end
 end)
 
 Players.PlayerRemoving:Connect(function(Player)
-if ESPenabled or CHMSenabled or COREGUI:FindFirstChild(player.Name..'_LC') then
+if ESPenabled or COREGUI:FindFirstChild(player.Name..'_LC') then
 		for i,v in pairs(COREGUI:GetChildren()) do
 			if v.Name == Player.Name..'_ESP' or v.Name == Player.Name..'_LC' or v.Name == Player.Name..'_CHMS' then
 				v:Destroy()
 			end
 		end
 	end
-
 if speaker:IsFriendsWith(Player.UserId) then
 friendsingame = friendsingame + -1
 if friendsingame < 0 then
@@ -8141,4 +8139,4 @@ if game:IsLoaded() then
     onScriptLoaded()
 end
 --]]
-Anticheat_Bypass()
+-- Anticheat_Bypass()
