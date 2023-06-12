@@ -7583,6 +7583,15 @@ end
 if cmd == "f3x" then
 executeOBJECTS("6695644299")
 end
+if cmd == "nameless" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/CsKA3L8Z")
+end)
+
+if not respon then
+ErrorPrompt("FE Nameless V2 Error", result)
+end
+end
 -- limit
 end
 -- end
@@ -7804,6 +7813,8 @@ cmds[#cmds + 1] = {Text = "[208] " .. tostring(prefix) .. "netless",Title = "Fe 
 cmds[#cmds + 1] = {Text = "[209] " .. tostring(prefix) .. "xray",Title = "make all objects invisible so you can see through them"}
 cmds[#cmds + 1] = {Text = "[210] " .. tostring(prefix) .. "unxray",Title = "make all objects visible so you cant see through them"}
 cmds[#cmds + 1] = {Text = "[211] " .. tostring(prefix) .. "f3x",Title = "Fe F3X"}
+cmds[#cmds + 1] = {Text = "[212] " .. tostring(prefix) .. "nameless",Title = "Fe"}
+
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
@@ -7944,7 +7955,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [12/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [12/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
