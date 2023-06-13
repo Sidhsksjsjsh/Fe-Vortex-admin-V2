@@ -380,6 +380,7 @@ local Players = game.Players
 local GuiService = game:GetService("GuiService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
+local hb = RunService.Heartbeat
 local COREGUI = game:GetService("CoreGui")
 local ESPenabled = false
 local Mouse = speaker:GetMouse()
@@ -394,7 +395,7 @@ local httprequest = (syn and syn.request) or (http and http.request) or http_req
 local queue_on_teleport = syn and syn.queue_on_teleport or queue_on_teleport
 local sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
 local gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
-local CharInject = true
+local tpwalking = false
 local NetworkClient = game:GetService("NetworkClient")
 local currentToolSize = ""
 local currentGripPos = ""
@@ -7591,6 +7592,108 @@ if not respon then
 ErrorPrompt("FE Nameless V2 Error", result)
 end
 end
+if cmd == "speedboost" then
+tpwalking = true
+local chr = speaker.Character
+local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+if hum.MoveDirection.Magnitude > 0 then
+chr:TranslateBy(hum.MoveDirection)
+end
+end
+ 
+ 
+speaker.Character.Animate.Disabled = true
+local Char = speaker.Character
+local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+ 
+ 
+for i,v in next, Hum:GetPlayingAnimationTracks() do
+v:AdjustSpeed(0)
+end
+end
+if cmd == "grabhats" then
+local char = speaker.Character
+
+for i, v in pairs(char:GetChildren()) do
+    if v:IsA("BallSocketConstraint") then
+        v:Destroy()
+    end
+end
+
+for i, v in pairs(char:GetChildren()) do
+    if v:IsA("HingeConstraint") then
+        v:Destroy()
+    end
+end
+
+for i, v in pairs(char.Humanoid:GetAccessories()) do
+local hat = v.Name
+
+char[hat].Archivable = true
+local fake = char[hat]:Clone()
+fake.Parent = char
+fake.Handle.Transparency = 1
+
+local hold = false
+local enabled = false
+
+char[hat].Handle.AccessoryWeld:Destroy()
+
+local tool = Instance.new("Tool", speaker.Backpack)
+tool.RequiresHandle = true
+tool.CanBeDropped = false
+tool.Name = hat
+
+local handle = Instance.new("Part", tool)
+handle.Name = "Handle"
+handle.Size = Vector3.new(1, 1, 1)
+handle.Massless = true
+handle.Transparency = 1
+
+local positions = {
+    forward = tool.GripForward,
+    pos = tool.GripPos,
+    right = tool.GripRight,
+    up = tool.GripUp
+}
+
+tool.Equipped:connect(function()
+ hold = true
+end)
+
+tool.Unequipped:connect(function()
+   hold = false
+end)
+
+tool.Activated:connect(function()
+    if enabled == false then
+        enabled = true
+        tool.GripForward = Vector3.new(-0.976,0,-0.217)
+    tool.GripPos = Vector3.new(.95,-0.76,1.4)
+    tool.GripRight = Vector3.new(0.217,0, 0.976)
+    tool.GripUp = Vector3.new(0,1,0)
+    wait(.8)
+    tool.GripForward = positions.forward
+    tool.GripPos = positions.pos
+    tool.GripRight = positions.right
+    tool.GripUp = positions.up
+    enabled = false
+    end
+end)
+
+hb:connect(function()
+    pcall(function()
+       char[hat].Handle.Velocity = Vector3.new(30, 0, 0)
+if hold == false then
+    char[hat].Handle.CFrame = fake.Handle.CFrame
+elseif hold == true then
+    char[hat].Handle.CFrame = handle.CFrame
+    end
+end)
+end)
+end
+end
 -- limit
 end
 -- end
@@ -7813,6 +7916,8 @@ cmds[#cmds + 1] = {Text = "[209] " .. tostring(prefix) .. "xray",Title = "make a
 cmds[#cmds + 1] = {Text = "[210] " .. tostring(prefix) .. "unxray",Title = "make all objects visible so you cant see through them"}
 cmds[#cmds + 1] = {Text = "[211] " .. tostring(prefix) .. "f3x",Title = "Fe F3X"}
 cmds[#cmds + 1] = {Text = "[212] " .. tostring(prefix) .. "nameless",Title = "Fe"}
+cmds[#cmds + 1] = {Text = "[213] " .. tostring(prefix) .. "speedboost",Title = "make your speed quite fast and activate the noclip"}
+cmds[#cmds + 1] = {Text = "[214] " .. tostring(prefix) .. "eathats",Title = "eat your accessories"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -7954,7 +8059,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [12/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [13/06/2023] \n\n[CONTENT] \n[+] added 2 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
