@@ -2453,7 +2453,7 @@ function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
 	l.MaxSpeed = maxspeed
 	l.ThrustP = thrustp
 	l.Name = name
-	l.Target = Players[targetplr].Character.HumanoidRootPart.Position
+	l.Target = Players[targetplr].Character.HumanoidRootPart
 	l:Fire()
 end
 
