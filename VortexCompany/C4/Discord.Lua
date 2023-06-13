@@ -7744,7 +7744,7 @@ cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopspeed",Title = "
 cmds[#cmds + 1] = {Text = "[31] " .. tostring(prefix) .. "loopjump [jump]",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[32] " .. tostring(prefix) .. "unloopjump",Title = "no text"}
 cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "fling [username]",Title = "Fling target"}
-cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "loopfling [username]",Title = "Fling continuously until the target dies"}
+cmds[#cmds + 1] = {Text = "[33] " .. tostring(prefix) .. "unfling",Title = "stops fling"}
 cmds[#cmds + 1] = {Text = "[34] " .. tostring(prefix) .. "headsit [username]",Title = "sit at nigga head🤡🤙"}
 cmds[#cmds + 1] = {Text = "[35] " .. tostring(prefix) .. "nosit",Title = "disable sit"}
 cmds[#cmds + 1] = {Text = "[36] " .. tostring(prefix) .. "unnosit",Title = "enable sit"}
@@ -8071,7 +8071,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [13/06/2023] \n\n[CONTENT] \n[+] added 2 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [14/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
