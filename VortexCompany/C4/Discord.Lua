@@ -2017,7 +2017,7 @@ local material = {
 }
 
 local MaterialMark = ""
-
+--[[
 function SetAsAMaterial(name)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("Part") then
@@ -2174,7 +2174,7 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
         end
     end
 end
-
+--]]
 local shapes = {
 	"Ball",
 	"Block",
@@ -2444,6 +2444,18 @@ Github.Text = ""
 end
 end
 end)
+
+function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
+	local l = Instance.new("RocketPropulsion")
+	l.Parent = speaker.Character.HumanoidRootPart
+	l.CartoonFactor = 1
+	l.MaxThrust = maxthrust
+	l.MaxSpeed = maxspeed
+	l.ThrustP = thrustp
+	l.Name = name
+	l.Target = targetplr.Character.HumanoidRootPart
+	l:Fire()
+end
 
 WeatherApiKey.FocusLost:Connect(function(InterfaceEnterCity)
 if InterfaceEnterCity then
@@ -5607,34 +5619,18 @@ if cmd == "fling" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
-Flings_IX = RunService.Stepped:Connect(TouchFling)
-wait(0.1)
-speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)
-wait(0.1)
-speaker.Character.HumanoidRootPart.CFrame = Rect
-Flings_IX:Disconnect()
+RocketPropulsion(800000,1000,400000,v,"Fling")
 notify("Fling",'Flinged!')
 end
 end
-if cmd == "loopfling" then
-local var = string.sub(msg,space+1)
-local variable = getPlayer(var, speaker)
-	for i,v in pairs(variable) do
-local ostatus = 0
-Rect = CFrame.new(speaker.Character.HumanoidRootPart.Position)
-Flings_IIX = RunService.Stepped:Connect(TouchFling)
-
-repeat wait()
-ostatus = Players[v].Character.Humanoid.Health
-speaker.Character.HumanoidRootPart.CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)
-until Ostatus == 0
-
-speaker.Character.HumanoidRootPart.CFrame = Rect
-Flings_IIX:Disconnect()
-
-   notify("Loop bring",'Killed')
-end
+if cmd == "unfling" then
+	if speaker.Character.HumanoidRootPart.Fling then
+		for i,v in pairs(speaker.Character:GetDescendants()) do
+			if v.Name == "Fling" and v:IsA("RocketPropulsion") then
+				v:Destroy()
+			end
+		end
+	end
 end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
@@ -5950,7 +5946,7 @@ if setfpscap then
 end
 if cmd == "antiteleport" then
 if not hookmetamethod then 
-		return ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
+		return ErrorPrompt("Incompatible Exploit","Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
 	end
 	local TeleportService = TeleportService
 	local oldhmmi
@@ -7373,34 +7369,26 @@ if cmd == "orbit" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-local player = Players[v].Character.HumanoidRootPart --- enter players name there (do it)
-local lpr = speaker.Character.HumanoidRootPart
-local speed = orbit.speed
-local radius = orbit.radius
-local eclipse = orbit.eclipse
-local rotation = CFrame.Angles(0,0,0) --only works for unanchored parts (not localplayer)
-local sin, cos = math.sin, math.cos
-local rotspeed = math.pi*2/speed
-eclipse = eclipse * radius
--- local runservice = game:GetService('RunService')
-local rot = 0
-OrbitRaycast = RunService.Stepped:connect(function(t, dt)
-rot = rot + dt * rotspeed
-lpr.CFrame = rotation * CFrame.new(sin(rot)*eclipse, 0, cos(rot)*radius) + player.Position
-end)
+RocketPropulsion(5000,100,5000,v,"OrbitMove")
 
 if Players:FindFirstChild(Players[v]) then
 notify("Orbit","Orbiting " .. tostring(Players[v]) .. ".")
 else
 ErrorPrompt("Player not found","We couldn't find the player named " .. tostring(Players[v]))
+for i,v in pairs(speaker.Character:GetDescendants()) do
+		if v.Name == "OrbitMove" then
+			v:Destroy()
+		end
+	end
 end
 end
 end
 if cmd == "unorbit" then
-if OrbitRaycast then
-   OrbitRaycast:Disconnect()
-   notify("Orbit","Orbit disabled")
-end
+for i,v in pairs(speaker.Character:GetDescendants()) do
+		if v.Name == "OrbitMove" then
+			v:Destroy()
+		end
+	end
 end
 if cmd == "orbitspeed" then
 local var = string.sub(msg,space+1)
@@ -7612,7 +7600,7 @@ for i,v in next, Hum:GetPlayingAnimationTracks() do
 v:AdjustSpeed(0)
 end
 end
-if cmd == "grabhats" then
+if cmd == "eathats" then
 local char = speaker.Character
 
 for i, v in pairs(char:GetChildren()) do
@@ -7692,6 +7680,27 @@ elseif hold == true then
     end
 end)
 end)
+end
+end
+if cmd == "fecheck" then
+if game:GetService("Workspace").FilteringEnabled == true then
+		warning("Filtering is Enabled", "FE is enabled!")
+	else
+		warning("Filtering is Disabled", "FE is disabled. Consider using a different script.")
+	end
+end
+if cmd == "mute" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+            ProtocolSendChat("/mute " .. tostring(Players[v]))
+end
+end
+if cmd == "unmute" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+            ProtocolSendChat("/unmute " .. tostring(Players[v]))
 end
 end
 -- limit
@@ -7918,6 +7927,9 @@ cmds[#cmds + 1] = {Text = "[211] " .. tostring(prefix) .. "f3x",Title = "Fe F3X"
 cmds[#cmds + 1] = {Text = "[212] " .. tostring(prefix) .. "nameless",Title = "Fe"}
 cmds[#cmds + 1] = {Text = "[213] " .. tostring(prefix) .. "speedboost",Title = "make your speed quite fast and activate the noclip"}
 cmds[#cmds + 1] = {Text = "[214] " .. tostring(prefix) .. "eathats",Title = "eat your accessories"}
+cmds[#cmds + 1] = {Text = "[215] " .. tostring(prefix) .. "fecheck",Title = "Check FE"}
+cmds[#cmds + 1] = {Text = "[216] " .. tostring(prefix) .. "mute [plr]",Title = "mute player chat"}
+cmds[#cmds + 1] = {Text = "[217] " .. tostring(prefix) .. "unmute [plr]",Title = "unmute player chat"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
