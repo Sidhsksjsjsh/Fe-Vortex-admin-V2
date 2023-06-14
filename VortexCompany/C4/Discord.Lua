@@ -88,6 +88,12 @@ end
 -- noKick() < Removed
 Pause()
 
+local dorjekwjosjksk = Instance.new("Sound")
+dorjekwjosjksk.SoundId = "rbxassetid://216917652"
+dorjekwjosjksk.Parent = game:GetService("SoundService")
+dorjekwjosjksk.Name = "Notify Sound"
+dorjekwjosjksk:Play()
+
 -- Define the GUI
 settingsGui = Instance.new("ScreenGui")
 settingsGui.Name = "SettingsGui"
@@ -327,6 +333,7 @@ function notify(title, content)
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
+	dorjekwjosjksk:Play()
 end
 
 function info(title, content)
@@ -335,6 +342,7 @@ function info(title, content)
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072944922", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
+	dorjekwjosjksk:Play()
 end
 
 function ErrorPrompt(title, content)
@@ -343,6 +351,7 @@ function ErrorPrompt(title, content)
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072920609", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
+	dorjekwjosjksk:Play()
 end
 
 function success(title, content)
@@ -351,6 +360,7 @@ function success(title, content)
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9073052584", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
+	dorjekwjosjksk:Play()
 end
 
 function warning(title, content)
@@ -359,6 +369,7 @@ function warning(title, content)
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072448788", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
+	dorjekwjosjksk:Play()
 end
 
 function ToggleNotify(title, content, for_false, for_true)
@@ -372,6 +383,7 @@ NotifyV1:Notify(
             Callback(for_false)
 	end
 end})
+	dorjekwjosjksk:Play()
 end
 
 local cmds = {}
@@ -411,7 +423,7 @@ local UserInputService = game:GetService("UserInputService")
 local ContextActionService = game:GetService("ContextActionService")
 local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
-local Character = speaker.Character
+local countb = 0
 local HumanModCons = {}
 local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
@@ -1055,6 +1067,10 @@ end
 function SetPartPosition(PartName, SecondPartPos, PartColor) -- BlockMark
 	game:GetService("Workspace"):FindFirstChild(PartName).CFrame = CFrame.new(SecondPartPos)
 	game:GetService("Workspace"):FindFirstChild(PartName).BrickColor = BrickColor.new(PartColor or "Bright red")
+end
+
+fade = function(obj, len, props)
+    TweenService:Create(obj, TweenInfo.new(len, Enum.EasingStyle.Sine), props):Play()
 end
 
 function getEquippedTool(player)
@@ -7702,6 +7718,38 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
             ProtocolSendChat("/unmute " .. tostring(Players[v]))
 end
+end
+if cmd == "highlightpart" then
+fade(highlights.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+        notify("Highlight","Unanchored Highlighted")
+for _,part in pairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+            local selectionBox = Instance.new("SelectionBox")
+            selectionBox.Adornee = part
+            selectionBox.Color3 = Color3.new(1,0,0)
+            selectionBox.Parent = part
+        end
+        end
+end
+if cmd == "unhighlightpart" then
+fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
+        local a_4 = {
+    notify("Highlight","Unanchored Un-Highlighted")
+    for _,part in pairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+            if part:FindFirstChild("SelectionBox") then
+            part.SelectionBox:Destroy()
+            end
+        end
+end
+end
+if cmd == "countpart" then
+    for index, part in pairs(game.workspace:GetDescendants()) do
+    if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
+        countb = countb + 1
+    end
+    end
+    notify("All parts checked","found " .. countb .. " that are unanchored")
 end
 -- limit
 end
