@@ -5648,6 +5648,25 @@ if cmd == "unfling" then
 		end
 	end
 end
+if cmd == "tempfling" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
+wait(0.2)
+RocketPropulsion(800000,1000,400000,v,"Fling")
+wait(3)
+if speaker.Character.HumanoidRootPart.Fling then
+		for i,v in pairs(speaker.Character:GetDescendants()) do
+			if v.Name == "Fling" and v:IsA("RocketPropulsion") then
+				v:Destroy()
+			end
+		end
+	end
+end
+wait(0.1)
+speaker.Character.HumanoidRootpart.CFrame = LPost
+end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
@@ -7700,9 +7719,9 @@ end
 end
 if cmd == "fecheck" then
 if game:GetService("Workspace").FilteringEnabled == true then
-		warning("Filtering is Enabled", "FE is enabled!")
+		warning("FE is Enabled", "FE is enabled!")
 	else
-		warning("Filtering is Disabled", "FE is disabled. Consider using a different script.")
+		warning("FE is Disabled", "FE is disabled. Consider using a different script.")
 	end
 end
 if cmd == "mute" then
@@ -7720,7 +7739,7 @@ local variable = getPlayer(var, speaker)
 end
 end
 if cmd == "highlightpart" then
-fade(highlights.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
+-- fade(highlights.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
         notify("Highlight","Unanchored Highlighted")
 for _,part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
@@ -7732,7 +7751,7 @@ for _,part in pairs(workspace:GetDescendants()) do
         end
 end
 if cmd == "unhighlightpart" then
-fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
+-- fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
         notify("Highlight","Unanchored Un-Highlighted")
     for _,part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
@@ -7977,6 +7996,7 @@ cmds[#cmds + 1] = {Text = "[214] " .. tostring(prefix) .. "eathats",Title = "eat
 cmds[#cmds + 1] = {Text = "[215] " .. tostring(prefix) .. "fecheck",Title = "Check FE"}
 cmds[#cmds + 1] = {Text = "[216] " .. tostring(prefix) .. "mute [plr]",Title = "mute player chat"}
 cmds[#cmds + 1] = {Text = "[217] " .. tostring(prefix) .. "unmute [plr]",Title = "unmute player chat"}
+cmds[#cmds + 1] = {Text = "[218] " .. tostring(prefix) .. "tempfling [plr]",Title = "fling the player until he dies"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
