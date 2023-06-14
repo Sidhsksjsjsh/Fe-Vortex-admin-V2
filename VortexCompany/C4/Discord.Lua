@@ -1180,7 +1180,7 @@ for i,_ in pairs(InterfaceCoordFunction) do
 end)
 end
 end
-
+--[[
 function RotationData(RDataImg, TitleNameScript)
 local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
 local OBU = Instance.new('ImageLabel', DataAnimate)
@@ -1402,7 +1402,7 @@ OBU:Destroy()
 end
 
 -- RotationData("13030104160","Loading Admin...")
-
+--]]
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
 if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
@@ -1491,7 +1491,7 @@ local chat = BypassWord:lower()
         elseif string.lower(chara) == "i" then
             chara = "𐌑ì" -- 𐌑ì
         elseif string.lower(chara) == "u" then
-            chara = "𐌑ú" -- 𐌑ú
+            chara = "𐌑ú𐌑𝖔 ͜ ͣ " -- 𐌑ú
         elseif string.lower(chara) == "e" then
             chara = "𐌑e" -- 𐌑ệ
         elseif string.lower(chara) == "d" then
@@ -5099,6 +5099,83 @@ CB.TextTransparency = 0.7
 end)
 --]]
 
+function unfling()
+if NoclippingFling then
+		NoclippingFling:Disconnect()
+		-- speaker.Character.Humanoid.Jump = true
+		for _, child in pairs(speaker.Character:GetDescendants()) do
+                   if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+			child.CanCollide = true
+		end
+	end
+	end
+	Clip = true
+if flingDied then
+		flingDied:Disconnect()
+	end
+	flinging = false
+	wait(.1)
+	local speakerChar = speaker.Character
+	if not speakerChar or not getRoot(speakerChar) then return end
+	for i,v in pairs(getRoot(speakerChar):GetChildren()) do
+		if v.ClassName == 'BodyAngularVelocity' then
+			v:Destroy()
+		end
+	end
+	for _, child in pairs(speakerChar:GetDescendants()) do
+		if child.ClassName == "Part" or child.ClassName == "MeshPart" then
+			child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+		end
+	end
+end
+
+function fling()
+flinging = false
+	for _, child in pairs(speaker.Character:GetDescendants()) do
+		if child:IsA("BasePart") then
+			child.CustomPhysicalProperties = PhysicalProperties.new(math.huge, 0.3, 0.5)
+		end
+	end
+	Clip = false
+	wait(0.1)
+	local function NoclipLoopForFling()
+		if Clip == false and speaker.Character ~= nil then
+			for _, child in pairs(speaker.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	NoclippingFling = RunService.Stepped:Connect(NoclipLoopForFling)
+	wait(.1)
+	local bambam = Instance.new("BodyAngularVelocity")
+	bambam.Name = randomString()
+	bambam.Parent = getRoot(speaker.Character)
+	bambam.AngularVelocity = Vector3.new(0,99999,0)
+	bambam.MaxTorque = Vector3.new(0,math.huge,0)
+	bambam.P = math.huge
+	local Char = speaker.Character:GetChildren()
+	for i, v in next, Char do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+			v.Massless = true
+			v.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+	flinging = true
+	local function flingDiedF()
+		unfling()
+	end
+	flingDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(flingDiedF)
+	repeat
+		bambam.AngularVelocity = Vector3.new(0,99999,0)
+		wait(.2)
+		bambam.AngularVelocity = Vector3.new(0,0,0)
+		wait(.1)
+	until flinging == false
+end
+
 local arrow = "> "
 local Arrow_2 = " <"
 CB.FocusLost:Connect(function(Enter)
@@ -5654,6 +5731,7 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 wait(0.2)
+fling()
 RocketPropulsion(800000,1000,400000,v,"Fling")
 wait(3)
 if speaker.Character.HumanoidRootPart.Fling then
@@ -5665,6 +5743,7 @@ if speaker.Character.HumanoidRootPart.Fling then
 	end
 end
 wait(0.1)
+unfling()
 speaker.Character.HumanoidRootpart.CFrame = LPost
 end
 if cmd == "headsit" then
@@ -8138,7 +8217,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [14/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [14/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
