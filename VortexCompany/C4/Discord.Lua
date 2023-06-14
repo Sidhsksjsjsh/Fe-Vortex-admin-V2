@@ -88,7 +88,7 @@ end
 -- noKick() < Removed
 Pause()
 
-local dorjekwjosjksk = Instance.new("Sound")
+dorjekwjosjksk = Instance.new("Sound")
 dorjekwjosjksk.SoundId = "rbxassetid://216917652"
 dorjekwjosjksk.Parent = game:GetService("SoundService")
 dorjekwjosjksk.Name = "Notify Sound"
@@ -7733,8 +7733,7 @@ for _,part in pairs(workspace:GetDescendants()) do
 end
 if cmd == "unhighlightpart" then
 fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
-        local a_4 = {
-    notify("Highlight","Unanchored Un-Highlighted")
+        notify("Highlight","Unanchored Un-Highlighted")
     for _,part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
             if part:FindFirstChild("SelectionBox") then
