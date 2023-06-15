@@ -7262,7 +7262,7 @@ end
 if cmd == "nowall" then    
 for i,v in pairs(workspace:GetDescendants()) do
 	if v:IsA("BasePart") and v.Transparency == 1 then
-	   v.CanCollide = false
+	   v:Destroy()
 	end
     end
 end
@@ -7848,6 +7848,19 @@ if cmd == "countpart" then
     end
     notify("All parts checked","found " .. countb .. " that are unanchored")
 end
+if cmd == "r6" then
+local respon, result = pcall(function()
+if r15(speaker) then
+executeHTTPS("https://pastebin.com/raw/9wJepMwY")
+else
+warning("Rig Type","Your character rig is already R6, can't change.")
+end
+end)
+
+if not respon then
+ErrorPrompt("Rig Type Changer", result)
+end
+end
 -- limit
 end
 -- end
@@ -8076,6 +8089,7 @@ cmds[#cmds + 1] = {Text = "[215] " .. tostring(prefix) .. "fecheck",Title = "Che
 cmds[#cmds + 1] = {Text = "[216] " .. tostring(prefix) .. "mute [plr]",Title = "mute player chat"}
 cmds[#cmds + 1] = {Text = "[217] " .. tostring(prefix) .. "unmute [plr]",Title = "unmute player chat"}
 cmds[#cmds + 1] = {Text = "[218] " .. tostring(prefix) .. "tempfling [plr]",Title = "fling the player until he dies"}
+cmds[#cmds + 1] = {Text = "[219] " .. tostring(prefix) .. "r6",Title = "change your character rig to R6"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8217,7 +8231,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [14/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [15/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
