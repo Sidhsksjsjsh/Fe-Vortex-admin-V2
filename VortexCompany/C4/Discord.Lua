@@ -7852,7 +7852,8 @@ end
 if cmd == "r6" then
 local respon, result = pcall(function()
 if r15(speaker) then
-executeHTTPS("https://pastebin.com/raw/9wJepMwY")
+notify("Loading","Hold on a sec")
+executeHTTPS("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua")
 else
 warning("Rig Type","Your character rig is already R6, can't change.")
 end
