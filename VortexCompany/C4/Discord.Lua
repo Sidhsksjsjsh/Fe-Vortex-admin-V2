@@ -1502,7 +1502,7 @@ local chat = BypassWord:lower()
             chara = "𐌑y" -- 𐌑ỷ
 	elseif string.lower(chara) == " " then
             chara = " " -- 
-	elseif string.lower(chara) == "c" then
+	elseif string.lower(chara) == "f" then
             chara = "𐌑f" --[[
 	elseif string.lower(chara) == "tits" then
             chara = "t𐌑ì𐌑ts" -- 
