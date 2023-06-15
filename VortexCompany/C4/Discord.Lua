@@ -13,7 +13,9 @@ _G.Settings = {
       kick = true,
       RemovePaused = false,
       username = true,
+      LocalBotChatFunc = true
 }
+-- _G.Settings.LocalBotChatFunc
 -- _G.Settings.device
 -- _G.Settings.username
 if not game:IsLoaded() then
@@ -5905,36 +5907,33 @@ end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
 local OfficialMusic = {
-       ["paradisefalls"] = 1837879082,
-       ["stadiumrave"] = 1846368080,
-       ["crabrave"] = 5410086218,
-       ["hijacket"] = 1842559618,
-       ["wonderfullday"] = 1843382633,
-       ["bloodpop"] = 6823597327,
-       ["sunrise"] = 1837324500
+       paradisefalls = 1837879082,
+       stadiumrave = 1846368080,
+       crabrave = 5410086218,
+       hijacket = 1842559618,
+       wonderfullday = 1843382633,
+       bloodpop = 6823597327,
+       sunrise = 1837324500
 }
 
-local T1 = "Paradise Falls"
-local T2 = "Stadium Rave"
-local T3 = "Crab Rave"
-local T4 = "Hijacket"
-local T5 = "Wonderfull Day"
-local T6 = "Blood Pop"
-local T7 = "Sunrise Workout"
-
-local MusicText = {
-       ["paradisefalls"] = T1,
-       ["stadiumrave"] = T2,
-       ["crabrave"] = T3,
-       ["hijacket"] = T4,
-       ["wonderfullday"] = T5,
-       ["bloodpop"] = T6,
-       ["sunrise"] = T7
+local TextMusic = {
+      paradisefalls = "Paradise Falls",
+      stadiumrave = "Stadium Rave",
+      crabrave = "Crab Rave",
+      hijacket = "Hijacket",
+      wonderfulday = "Wonderful Day",
+      bloodpop = "BloodPop",
+      sunrise = "Sunrise"
 }
 
 local respond, result = pcall(function()
+if var == TextMusic[var] or TextMusic[var] == var then
+music(OfficialMusic[var])
+success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
+else
 music(var)
 success("now playing ",MusicName .. " (" .. var .. ")")
+end
 end)
 
 if not respond then
@@ -7627,7 +7626,7 @@ if sethidden then
 		if not r15(speaker) then
 			hum2.HipHeight = 0
 		else
-			hum2.HipHeight = 2.19
+			hum2.HipHeight = 3
 		end
 	else
 		ErrorPrompt('Incompatible Exploit','Your exploit does not support this command (missing sethiddenproperty)')
@@ -7819,7 +7818,7 @@ end
 end
 if cmd == "highlightpart" then
 -- fade(highlights.Parent.label, 0.25, {TextColor3 = c3(52, 189, 98)})
-        notify("Highlight","Unanchored Highlighted")
+        notify("Highlight (Secret Command)","Unanchored Highlighted")
 for _,part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
             local selectionBox = Instance.new("SelectionBox")
@@ -7831,7 +7830,7 @@ for _,part in pairs(workspace:GetDescendants()) do
 end
 if cmd == "unhighlightpart" then
 -- fade(highlights.Parent.label, 0.25, {TextColor3 = c3w})
-        notify("Highlight","Unanchored Un-Highlighted")
+        notify("Highlight (Secret Command)","Unanchored Un-Highlighted")
     for _,part in pairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Anchored == false and part:IsDescendantOf(speaker.Character) == false and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false and part:FindFirstChild("Weld") == nil then --// Checks Part Properties
             if part:FindFirstChild("SelectionBox") then
@@ -7847,6 +7846,8 @@ if cmd == "countpart" then
     end
     end
     notify("All parts checked","found " .. countb .. " that are unanchored")
+    wait(0.1)
+    countb = 0
 end
 if cmd == "r6" then
 local respon, result = pcall(function()
@@ -7860,6 +7861,14 @@ end)
 if not respon then
 ErrorPrompt("Rig Type Changer", result)
 end
+end
+if cmd == "disbot" then
+_G.Settings.LocalBotChatFunc = false
+info("Assistant Bot","Disabled")
+end
+if cmd == "enabot" then
+_G.Settings.LocalBotChatFunc = true
+info("Assistant Bot","Enabled")
 end
 -- limit
 end
@@ -8090,6 +8099,7 @@ cmds[#cmds + 1] = {Text = "[216] " .. tostring(prefix) .. "mute [plr]",Title = "
 cmds[#cmds + 1] = {Text = "[217] " .. tostring(prefix) .. "unmute [plr]",Title = "unmute player chat"}
 cmds[#cmds + 1] = {Text = "[218] " .. tostring(prefix) .. "tempfling [plr]",Title = "fling the player until he dies"}
 cmds[#cmds + 1] = {Text = "[219] " .. tostring(prefix) .. "r6",Title = "change your character rig to R6"}
+cmds[#cmds + 1] = {Text = "[220] " .. tostring(prefix) .. "countpart",Title = "count all unanchored part"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8194,7 +8204,11 @@ end
         end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
+            if _G.Settings.LocalBotChatFunc then
             ProtocolSendChat("what?") -- roblox chat anti-detect
+            else
+            warning("Bot is disabled","The bot will not answer if someone calls your name.")
+            end
         end
     end)
 end
