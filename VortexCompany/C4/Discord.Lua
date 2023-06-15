@@ -1491,7 +1491,7 @@ local chat = BypassWord:lower()
         elseif string.lower(chara) == "i" then
             chara = "𐌑ì" -- 𐌑ì
         elseif string.lower(chara) == "u" then
-            chara = "𐌑ú𐌑𝖔 ͜ ͣ " -- 𐌑ú
+            chara = "𐌑ú" -- 𐌑ú
         elseif string.lower(chara) == "e" then
             chara = "𐌑e" -- 𐌑ệ
         elseif string.lower(chara) == "d" then
@@ -1500,8 +1500,8 @@ local chat = BypassWord:lower()
             chara = "𐌑y" -- 𐌑ỷ
 	elseif string.lower(chara) == " " then
             chara = " " -- 
-	--[[elseif string.lower(chara) == "cock" then
-            chara = "c𐌑o𐌑ck" -- 
+	elseif string.lower(chara) == "c" then
+            chara = "𐌑c" --[[
 	elseif string.lower(chara) == "tits" then
             chara = "t𐌑ì𐌑ts" -- 
         elseif string.lower(chara) == "boobs" then
