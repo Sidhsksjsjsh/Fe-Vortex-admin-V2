@@ -1503,7 +1503,7 @@ local chat = BypassWord:lower()
 	elseif string.lower(chara) == " " then
             chara = " " -- 
 	elseif string.lower(chara) == "c" then
-            chara = "𐌑c" --[[
+            chara = "𐌑f" --[[
 	elseif string.lower(chara) == "tits" then
             chara = "t𐌑ì𐌑ts" -- 
         elseif string.lower(chara) == "boobs" then
@@ -5733,7 +5733,7 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 wait(0.2)
-fling()
+-- fling()
 RocketPropulsion(800000,1000,400000,v,"Fling")
 wait(3)
 if speaker.Character.HumanoidRootPart.Fling then
@@ -5745,7 +5745,7 @@ if speaker.Character.HumanoidRootPart.Fling then
 	end
 end
 wait(0.1)
-unfling()
+-- unfling()
 speaker.Character.HumanoidRootpart.CFrame = LPost
 end
 if cmd == "headsit" then
@@ -7853,7 +7853,7 @@ if cmd == "r6" then
 local respon, result = pcall(function()
 if r15(speaker) then
 notify("Loading","Hold on a sec")
-executeHTTPS("https://raw.githubusercontent.com/Imagnir/r6_anims_for_r15/main/r6_anims.lua")
+executeHTTPS("https://pastebin.com/raw/9wJepMwY")
 else
 warning("Rig Type","Your character rig is already R6, can't change.")
 end
@@ -7870,6 +7870,25 @@ end
 if cmd == "enabot" then
 _G.Settings.LocalBotChatFunc = true
 info("Assistant Bot","Enabled")
+end
+if cmd == "antiafk" then
+local GC = getconnections or get_signal_cons
+	if GC then
+		for i,v in pairs(GC(speaker.Idled)) do
+			if v["Disable"] then
+				v["Disable"](v)
+			elseif v["Disconnect"] then
+				v["Disconnect"](v)
+			end
+		end
+	else
+		speaker.Idled:Connect(function()
+			local VirtualUser = game:GetService("VirtualUser")
+			VirtualUser:CaptureController()
+			VirtualUser:ClickButton2(Vector2.new())
+		end)
+	end
+	notify('Anti Idle','Anti idle is enabled')
 end
 -- limit
 end
@@ -8101,6 +8120,7 @@ cmds[#cmds + 1] = {Text = "[217] " .. tostring(prefix) .. "unmute [plr]",Title =
 cmds[#cmds + 1] = {Text = "[218] " .. tostring(prefix) .. "tempfling [plr]",Title = "fling the player until he dies"}
 cmds[#cmds + 1] = {Text = "[219] " .. tostring(prefix) .. "r6",Title = "change your character rig to R6"}
 cmds[#cmds + 1] = {Text = "[220] " .. tostring(prefix) .. "countpart",Title = "count all unanchored part"}
+cmds[#cmds + 1] = {Text = "[221] " .. tostring(prefix) .. "antiafk",Title = "anti afk"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8246,7 +8266,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [15/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed netless bug \n[🛠️] bang now supports R15 character rigs! \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [16/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Secret Command \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
