@@ -3960,6 +3960,16 @@ Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=940996062
 Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=941000007"
 game.Players.LocalPlayer.Character.Humanoid.Jump = true
 end
+	if AnimName == "tmp" then
+		Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=4211409027"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=4211409027"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=4211412518"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=421141570"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=421141025"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=4211406184"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=4211407659"
+game.Players.LocalPlayer.Character.Humanoid.Jump = true
+end
 end
 
 function StartServerhop()
