@@ -539,7 +539,7 @@ CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
 CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
-CB.Position                = UDim2.new(0.5,-100,0,-20)
+CB.Position                = UDim2.new(0.5,-100,0,-50)
 CB.Text                    = "Command name"
 CB.TextColor3              = Color3.new(1,1,1)
 CB.TextStrokeTransparency  = 1
@@ -551,11 +551,11 @@ CB.ClearTextOnFocus = false
 CB.Name = "COMMAND BAR"
 
 function OpenCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",1,true)
+        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",2,true)
 end
 
 function CloseCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,-7),"In","Linear",1,true)
+        CB:TweenPosition(UDim2.new(0.5,-100,0,-30),"In","Linear",2,true)
 end
 
 OpenCmdBar()
