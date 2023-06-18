@@ -5745,7 +5745,7 @@ LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
 wait(0.2)
 -- fling()
 RocketPropulsion(800000,1000,400000,v,"Fling")
-wait(3)
+wait(1)
 if speaker.Character.HumanoidRootPart.Fling then
 		for i,v in pairs(speaker.Character:GetDescendants()) do
 			if v.Name == "Fling" and v:IsA("RocketPropulsion") then
@@ -6535,7 +6535,7 @@ local var = string.sub(msg,space+1)
         if var then
             local name = var
             for _, descendant in ipairs(workspace:GetDescendants()) do
-                if descendant:IsA("ClickDetector") and descendant.Name == name then
+                if descendant:IsA("ClickDetector") and descendant.Name:lower() == name then
                     fireclickdetector(descendant)
                 end
             end
@@ -6610,7 +6610,7 @@ local V_C2 = "╚═══════════════❖••❖══
 local notes = V_C1 .. "\n Notes by: " .. tostring(speaker.Name) .. " (" .. tostring(speaker.DisplayName) .. ") \n" .. V_C2 .. "\n\n" .. var .. "\n\n# AI_write stop \n\n# VortexFile end \n\n# Attempt to index nil with 'ProtocolAI(start)' - line 7890 (ERROR: 587)"
 ProtocolSave(tostring(speaker.DisplayName) .. " Notes.txt", notes)
 ShakeData("13030062874")
-warning("The note has been saved to a folder.","notes are saved to your executor folder.")
+info("The note has been saved to a folder.","notes are saved to your executor folder.")
 end
 if cmd == "parttp" then
 loadstring(game:HttpGet("https://pastebin.com/raw/aYRmhsMG"))()
@@ -7261,7 +7261,7 @@ notify("Time Played",GetTimePlayed())
 end
 if cmd == "domainhub" then
 local respon, result = pcall(function()
-executeHTTPS("https://pastebin.com/raw/udQLpt5d.lua") -- without .lua
+executeHTTPS("https://pastebin.com/raw/udQLpt5d") -- without .lua
 end)
 
 if not respon then
@@ -7271,7 +7271,7 @@ end
 if cmd == "nowall" then    
 for i,v in pairs(workspace:GetDescendants()) do
 	if v:IsA("BasePart") and v.Transparency == 1 then
-	   v:Destroy()
+	   v.CanCollide = false
 	end
     end
 end
@@ -7432,6 +7432,7 @@ Lighting.FogEnd = 100000
 	for i,v in pairs(Lighting:GetDescendants()) do
 		if v:IsA("Atmosphere") then
 			v:Destroy()
+			info("fog","Fog Removed")
 		end
 	end
 end
