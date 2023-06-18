@@ -539,7 +539,7 @@ CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
 CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
-CB.Position                = UDim2.new(0.5,-100,0,50)
+CB.Position                = UDim2.new(0.5,-100,0,-20)
 CB.Text                    = "Command name"
 CB.TextColor3              = Color3.new(1,1,1)
 CB.TextStrokeTransparency  = 1
@@ -550,9 +550,21 @@ CB.Draggable = true
 CB.ClearTextOnFocus = false
 CB.Name = "COMMAND BAR"
 
+function OpenCmdBar()
+        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",1,true)
+end
+
+function CloseCmdBar()
+        CB:TweenPosition(UDim2.new(0.5,-100,0,-7),"In","Linear",1,true)
+end
+
+OpenCmdBar()
+-- CB.Changed:Connect(updatePosition)
+
 CB.MouseEnter:Connect(function()
-CB.BackgroundTransparency = 0.5
-CB.TextTransparency = 0
+  CB.BackgroundTransparency = 0.5
+  CB.TextTransparency = 0
+  OpenCmdBar()
 end)
 
 Control_1.Size                    = UDim2.new(0,200,0,30)
@@ -1415,7 +1427,7 @@ end)
 end
 end
 end
-
+--[[
 function ESPName(toggle)
 if toggle == "disable" then
 _G.Settings.username = false
@@ -1424,7 +1436,7 @@ if toggle == "enable" then
 _G.Settings.username = true
 end
 end
-
+]]
 function FindInTable(tbl,val)
 	if tbl == nil then return false end
 	for _,v in pairs(tbl) do
@@ -1915,11 +1927,11 @@ Domain.FriendJoined.Visible = true
     tween:Play()
   end
 end
-
+--[[
 function Punish(ooo)
 	speaker:kick(ooo)
 end
-
+]]
 function Executor()
 if identifyexecutor then
     return identifyexecutor()
@@ -3048,7 +3060,7 @@ SpecialPlayerCases = {
 		local players = Players:GetPlayers()
 		local localplayer = Players.LocalPlayer
 		table.remove(players, table.find(players, localplayer))
-		return players[math.random(1,#players)]
+		return players[math.random(1, #players)]
 	end,
 	["%%(.+)"] = function(speaker,args)
 		local returns = {}
@@ -5194,6 +5206,7 @@ CB.FocusLost:Connect(function(Enter)
    if Enter then
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
+	CloseCmdBar()
 end
 end)
 
@@ -5756,7 +5769,7 @@ if speaker.Character.HumanoidRootPart.Fling then
 end
 wait(0.1)
 -- unfling()
-speaker.Character.HumanoidRootpart.CFrame = LPost
+speaker.Character.HumanoidRootPart.CFrame = LPost
 end
 if cmd == "headsit" then
 local var = string.sub(msg,space+1)
