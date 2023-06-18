@@ -551,11 +551,11 @@ CB.ClearTextOnFocus = false
 CB.Name = "COMMAND BAR"
 
 function OpenCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",2,true)
+        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",5,true)
 end
 
 function CloseCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,-30),"In","Linear",2,true)
+        CB:TweenPosition(UDim2.new(0.5,-100,0,-30),"In","Linear",5,true)
 end
 
 OpenCmdBar()
