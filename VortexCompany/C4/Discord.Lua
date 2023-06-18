@@ -7901,6 +7901,120 @@ local GC = getconnections or get_signal_cons
 	end
 	notify('Anti Idle','Anti idle is enabled')
 end
+if cmd == "russiankick" then
+local respon, result = pcall(function()
+if r15(speaker) then
+info("Russian Kick (R15)","Loading...")
+executeHTTPS("https://pastebin.com/raw/XHi228Ln")
+else
+info("Russian Kick (R6)","Loading...")
+executeHTTPS("https://pastebin.com/raw/qtgTPwYm")
+end
+end)
+
+if not respon then
+if r15(speaker) then
+ErrorPrompt("FE Russian Kick (R15)", result)
+else
+ErrorPrompt("FE Russian Kick (R6)", result)
+end
+end
+end
+if cmd == "rtx" then
+-- Roblox Graphics Enhancher
+local light = game.Lighting
+for i, v in pairs(light:GetChildren()) do
+v:Destroy()
+end
+
+local ter = workspace.Terrain
+local color = Instance.new("ColorCorrectionEffect")
+local bloom = Instance.new("BloomEffect")
+local sun = Instance.new("SunRaysEffect")
+local blur = Instance.new("BlurEffect")
+
+color.Parent = light
+bloom.Parent = light
+sun.Parent = light
+blur.Parent = light
+
+-- enable or disable shit
+
+local config = {
+
+Terrain = true;
+ColorCorrection = true;
+Sun = true;
+Lighting = true;
+BloomEffect = true;
+
+}
+
+-- settings {
+
+color.Enabled = false
+color.Contrast = 0.15
+color.Brightness = 0.1
+color.Saturation = 0.25
+color.TintColor = Color3.fromRGB(255, 222, 211)
+
+bloom.Enabled = false
+bloom.Intensity = 0.1
+
+sun.Enabled = false
+sun.Intensity = 0.2
+sun.Spread = 1
+
+bloom.Enabled = false
+bloom.Intensity = 0.05
+bloom.Size = 32
+bloom.Threshold = 1
+
+blur.Enabled = false
+blur.Size = 6
+
+-- settings }
+
+
+if config.ColorCorrection then
+color.Enabled = true
+end
+
+
+if config.Sun then
+sun.Enabled = true
+end
+
+
+if config.Terrain then
+-- settings {
+ter.WaterColor = Color3.fromRGB(10, 10, 24)
+ter.WaterWaveSize = 0.1
+ter.WaterWaveSpeed = 22
+ter.WaterTransparency = 0.9
+ter.WaterReflectance = 0.05
+-- settings }
+end
+
+
+if config.Lighting then
+-- settings {
+light.Ambient = Color3.fromRGB(0, 0, 0)
+light.Brightness = 4
+light.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+light.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+light.ExposureCompensation = 0
+light.FogColor = Color3.fromRGB(132, 132, 132)
+light.GlobalShadows = true
+light.OutdoorAmbient = Color3.fromRGB(112, 117, 128)
+light.Outlines = false
+-- settings }
+end
+end
+if cmd == "psyhub" then
+notify("Psy Hub","Loading...")
+executeOBJECTS("3014051754")
+end
 -- limit
 end
 -- end
@@ -8132,6 +8246,9 @@ cmds[#cmds + 1] = {Text = "[218] " .. tostring(prefix) .. "tempfling [plr]",Titl
 cmds[#cmds + 1] = {Text = "[219] " .. tostring(prefix) .. "r6",Title = "change your character rig to R6"}
 cmds[#cmds + 1] = {Text = "[220] " .. tostring(prefix) .. "countpart",Title = "count all unanchored part"}
 cmds[#cmds + 1] = {Text = "[221] " .. tostring(prefix) .. "antiafk",Title = "anti afk"}
+cmds[#cmds + 1] = {Text = "[222] " .. tostring(prefix) .. "russiankick",Title = "russian kick animation (credit Dark Eccentric on YT)"}
+cmds[#cmds + 1] = {Text = "[223] " .. tostring(prefix) .. "rtx",Title = "change your roblox graphics to be good"}
+cmds[#cmds + 1] = {Text = "[224] " .. tostring(prefix) .. "psyhub",Title = "Psy Hub"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8277,7 +8394,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [16/06/2023] \n\n[CONTENT] \n[+] added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Secret Command \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [18/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] fixed nowall bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
