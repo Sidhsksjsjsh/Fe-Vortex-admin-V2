@@ -539,7 +539,7 @@ CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
 CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
-CB.Position                = UDim2.new(0.5,-100,0,-50)
+CB.Position                = UDim2.new(0.5,-100,0,50)
 CB.Text                    = "Command name"
 CB.TextColor3              = Color3.new(1,1,1)
 CB.TextStrokeTransparency  = 1
@@ -564,7 +564,7 @@ OpenCmdBar()
 CB.MouseEnter:Connect(function()
   CB.BackgroundTransparency = 0.5
   CB.TextTransparency = 0
-  OpenCmdBar()
+  -- OpenCmdBar()
 end)
 
 Control_1.Size                    = UDim2.new(0,200,0,30)
@@ -5206,7 +5206,7 @@ CB.FocusLost:Connect(function(Enter)
    if Enter then
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
-	CloseCmdBar()
+	-- CloseCmdBar()
 end
 end)
 
@@ -5767,7 +5767,7 @@ if speaker.Character.HumanoidRootPart.Fling then
 		end
 	end
 end
-wait(0.1)
+wait()
 -- unfling()
 speaker.Character.HumanoidRootPart.CFrame = LPost
 end
