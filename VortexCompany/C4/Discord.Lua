@@ -914,24 +914,30 @@ ToggleBypass.MouseButton1Down:Connect(function()
      end
 end)
 -- ToggleBypassMode
-local BypassModeScript = false
+local AutoSendScript = false
 ToggleBypassMode.Size                    = UDim2.new(0,200,0,30)
 ToggleBypassMode.BackgroundTransparency  = 0.5
 ToggleBypassMode.BackgroundColor         = BrickColor.new('Fossil')
 ToggleBypassMode.BorderSizePixel         = 0
 ToggleBypassMode.Position                = UDim2.new(0.5,-100,0,90)
-ToggleBypassMode.Text                    = "Bypass Mode: 1"
+ToggleBypassMode.Text                    = "Auto Send: False"
 ToggleBypassMode.TextColor3              = Color3.new(1,1,1)
 ToggleBypassMode.TextStrokeTransparency  = 1
 ToggleBypassMode.TextWrapped             = true
 ToggleBypassMode.FontSize                = 'Size24'
 ToggleBypassMode.Font                    = 'SourceSansBold'
 ToggleBypassMode.MouseButton1Down:Connect(function()
-	BypassModeScript = not BypassModeScript
-		if BypassModeScript then
-			ToggleBypassMode.Text                    = "Current mode 1"
+	AutoSendScript = not AutoSendScript
+		if AutoSendScript then
+			ToggleBypassMode.Text                    = "Auto Send: True"
+			BarSent.Visible = false
+                        ToggleBypass:TweenPosition(UDim2.new(0.5,-100,0,30),"In","Linear",0.,true)
+			ToggleBypassMode:TweenPosition(UDim2.new(0.5,-100,0,60),"In","Linear",0,true)
 			else
-			ToggleBypassMode.Text                    = "Current Mode 2"
+			ToggleBypassMode.Text                    = "Auto Send: False"
+			BarSent.Visible = true
+                        ToggleBypass:TweenPosition(UDim2.new(0.5,-100,0,60),"In","Linear",0,true)
+			ToggleBypassMode:TweenPosition(UDim2.new(0.5,-100,0,90),"In","Linear",0,true)
      end
 end)
 
@@ -1555,11 +1561,25 @@ local message = string.lower(text)
 end
 --]]
 BarSent.MouseButton1Down:Connect(function()
+if AutoSendScript == false then
 	if BypassWord then
               SyncBypassChat(TextBar.Text)
 	else
 	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
     end
+  end
+end)
+
+TextBar.FocusLost:Connect(function(EnterText)
+if AutoSendScript == true then
+   if EnterText then
+	if BypassWord then
+           SyncBypassChat(TextBar.Text)
+	else
+	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
+    end
+   end
+end
 end)
 
 local espParts = {}
@@ -4064,7 +4084,7 @@ function DisplayUI(UIname)
       if UIname == "chatbypass" then
       TextBar.Visible = true
       BarSent.Visible = true
-      ToggleBypassMode.Visible = false
+      ToggleBypassMode.Visible = true
    end
       if UIname == "exc" then
       TextBarExecutor.Visible = true
@@ -5950,7 +5970,7 @@ local TextMusic = {
 }
 
 local respond, result = pcall(function()
-if var == TextMusic[var] or TextMusic[var] == var then
+if not isNumber(var) then
 music(OfficialMusic[var])
 success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
 else
@@ -5966,6 +5986,14 @@ end
 if cmd == "nomusic" then
 game:GetService("SoundService"):FindFirstChild("Sound").Volume = 0
 success("Client Music","music disabled")
+end
+if cmd == "volume" then
+var = string.sub(msg,space+1)
+if game:GetService("SoundService"):FindFirstChild("Sound") then
+game:GetService("SoundService"):FindFirstChild("Sound").Volume = tonumber(var)
+else
+ErrorPrompt("Error","You haven't played any music yet.")
+end
 end
 if cmd == "anim" then
 local var = string.sub(msg,space+1)
@@ -8262,6 +8290,7 @@ cmds[#cmds + 1] = {Text = "[221] " .. tostring(prefix) .. "antiafk",Title = "ant
 cmds[#cmds + 1] = {Text = "[222] " .. tostring(prefix) .. "russiankick",Title = "russian kick animation (credit Dark Eccentric on YT)"}
 cmds[#cmds + 1] = {Text = "[223] " .. tostring(prefix) .. "rtx",Title = "change your roblox graphics to be good"}
 cmds[#cmds + 1] = {Text = "[224] " .. tostring(prefix) .. "psyhub",Title = "Psy Hub"}
+cmds[#cmds + 1] = {Text = "[225] " .. tostring(prefix) .. "volume [number]",Title = "set the music volume"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8407,7 +8436,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [18/06/2023] \n\n[CONTENT] \n[+] added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] fixed nowall bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [19/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] Added toggle auto send to chat bypass UI \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] fixed nowall bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
