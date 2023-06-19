@@ -2499,8 +2499,6 @@ end)
 local LastPositionPrimary = nil
 local HumanoidPrimaryPart = speaker.Character.PrimaryPart
 function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
-	_G.Settings.FreezeFling = true
-	LastPositionPrimary = HumanoidPrimaryPart.CFrame
 	local l = Instance.new("RocketPropulsion")
 	l.Parent = speaker.Character.HumanoidRootPart
 	l.CartoonFactor = 1
@@ -2510,12 +2508,6 @@ function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
 	l.Name = name
 	l.Target = Players[targetplr].Character.HumanoidRootPart
 	l:Fire()
-	repeat wait()
-          HumanoidPrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
-		LastPositionPrimary = HumanoidPrimaryPart.CFrame
-		HumanoidPrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-		HumanoidPrimaryPart.CFrame = LastPositionPrimary
-	until _G.Settings.FreezeFling == false
 end
 
 WeatherApiKey.FocusLost:Connect(function(InterfaceEnterCity)
@@ -5673,7 +5665,6 @@ wait(0.2)
 -- fling()
 RocketPropulsion(800000,1000,400000,v,"Fling")
 wait(1)
-_G.Settings.FreezeFling = false
 if speaker.Character.HumanoidRootPart.Fling then
 		for i,v in pairs(speaker.Character:GetDescendants()) do
 			if v.Name == "Fling" and v:IsA("RocketPropulsion") then
