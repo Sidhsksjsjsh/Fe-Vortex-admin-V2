@@ -5509,45 +5509,6 @@ end
 success("loop tweening","looptween disabled")
 end
 if cmd == "fly" then
-if _G.Settings.device == "" then
-local NotificationBindable = Instance.new("BindableFunction")
-local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
-game.StarterGui:SetCore("SendNotification", {
-Title = Title;
-Text = Text;
-Icon = "";
-Duration = Duration;
-Button1 = Button1Text;
-Button2 = Button2Text;
-Callback = NotificationBindable;
-})
-end
-
-
-NotificationBindable.OnInvoke = function(result)
-if result == "Mobile" then
-        _G.Settings.device = "Mobile"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY()
-	U1.Visible = true
-        U2.Visible = true
-        U3.Visible = true
-        U4.Visible = true
-	notify("Mobile FLY","FLY enabled for mobile devices")
-   end
-   if result == "PC" then
-        _G.Settings.device = "PC"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY()
-        notify("PC FLY","FLY enabled for PC devices")
-   end
-end
-Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
-end
 if _G.Settings.device == "Mobile" then
 NOFLY()
 	wait()
@@ -5606,45 +5567,6 @@ local ch = speaker.Character
 		end
 	end)
 
-	if _G.Settings.device == "" then
-local NotificationBindable = Instance.new("BindableFunction")
-local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
-game.StarterGui:SetCore("SendNotification", {
-Title = Title;
-Text = Text;
-Icon = "";
-Duration = Duration;
-Button1 = Button1Text;
-Button2 = Button2Text;
-Callback = NotificationBindable;
-})
-end
-
-
-NotificationBindable.OnInvoke = function(result)
-if result == "Mobile" then
-        _G.Settings.device = "Mobile"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY()
-	U1.Visible = true
-        U2.Visible = true
-        U3.Visible = true
-        U4.Visible = true
-	notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for mobile devices, RESET and type " .. prefix .. "unfly to hide controller")
-   end
-   if result == "PC" then
-        _G.Settings.device = "PC"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY()
-        notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for PC devices")
-   end
-end
-Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
-end
 	if _G.Settings.device == "Mobile" then
 NOFLY()
 	wait()
@@ -5677,45 +5599,6 @@ U4.Visible = false
 notify("FLY","FLY disabled")
 end
 if cmd == "vfly" then
-if _G.Settings.device == "" then
-local NotificationBindable = Instance.new("BindableFunction")
-local Msgreq = function(Title,Text,Duration,Button1Text,Button2Text)
-game.StarterGui:SetCore("SendNotification", {
-Title = Title;
-Text = Text;
-Icon = "";
-Duration = Duration;
-Button1 = Button1Text;
-Button2 = Button2Text;
-Callback = NotificationBindable;
-})
-end
-
-
-NotificationBindable.OnInvoke = function(result)
-if result == "Mobile" then
-        _G.Settings.device = "Mobile"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY(true)
-	U1.Visible = true
-        U2.Visible = true
-        U3.Visible = true
-        U4.Visible = true
-	notify("Mobile Vehicle FLY","VEHICLE FLY enabled for mobile devices")
-   end
-   if result == "PC" then
-        _G.Settings.device = "PC"
-	saveSettings()
-        NOFLY()
-	wait()
-	sFLY(true)
-        notify("PC Vehicle FLY","VEHICLE FLY enabled for PC devices")
-   end
-end
-Msgreq("Device CAPTCHA","What device are you using?",999999999,"Mobile","PC")
-end
 if _G.Settings.device == "Mobile" then
 NOFLY()
 	wait()
@@ -8056,6 +7939,9 @@ if cmd == "psyhub" then
 notify("Psy Hub","Loading...")
 executeOBJECTS("3014051754")
 end
+if cmd == "annoychat" then
+ProtocolSendChat(" ⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻")
+end
 -- limit
 end
 -- end
@@ -8395,7 +8281,7 @@ end
         end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
-            if _G.Settings.LocalBotChatFunc then
+            if _G.Settings.LocalBotChatFunc == true then
             ProtocolSendChat("what?") -- roblox chat anti-detect
             else
             warning("Bot is disabled","The bot will not answer if someone calls your name.")
@@ -8602,6 +8488,13 @@ getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.Chil
 end)
 
 local PastedSources = false
+
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
+   _G.Settings.device = "Mobile"
+else
+   _G.Settings.device = "PC"
+end
+
 --[[
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
