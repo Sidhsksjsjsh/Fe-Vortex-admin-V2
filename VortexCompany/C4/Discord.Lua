@@ -27,7 +27,7 @@ if not game:IsLoaded() then
     MessageCore:Destroy()
 end
 local a = "Vortex Admin"
-local b = "PrefixFile.lua"
+local b = "SettingsFile.lua"
 function saveSettings()
     local c = game:GetService("HttpService")
     local d = c:JSONEncode(_G.Settings)
