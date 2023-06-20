@@ -7945,6 +7945,204 @@ end
 if cmd == "annoychat" then
 ProtocolSendChat(" ⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻")
 end
+if cmd == "robuxtroll" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/BHjfPXC6")
+end)
+
+if not respon then
+ErrorPrompt("FE Robux Troll Error", result)
+end
+end
+if cmd == "bombvest" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/S7vdifqp")
+end)
+
+if not respon then
+ErrorPrompt("FE Bomb Vest Error", result)
+end
+end
+if cmd == "grabv3" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/TPZXG8fH")
+end)
+
+if not respon then
+ErrorPrompt("FE Grab V3 Error", result)
+end
+end
+if cmd == "grabv4" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/7zK1Swpt")
+end)
+
+if not respon then
+ErrorPrompt("FE Grab V4 Error", result)
+end
+end
+if cmd == "anir15" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/MenK10Ak")
+end)
+
+if not respon then
+ErrorPrompt("FE R15 Animation Error", result)
+end
+end
+if cmd == "anir6" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/Ydt76Kep")
+end)
+
+if not respon then
+ErrorPrompt("FE R6 Animation Error", result)
+end
+end
+if cmd == "arosia" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/Nwit6ZqP")
+end)
+
+if not respon then
+ErrorPrompt("FE Arosia GUI Error", result)
+end
+end
+if cmd == "clown" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/0uJXBEmN")
+end)
+
+if not respon then
+ErrorPrompt("FE Clown Error", result)
+end
+end
+if cmd == "coolerkids" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/GGQeWXSL")
+end)
+
+if not respon then
+ErrorPrompt("FE Cooler Kids Error", result)
+end
+end
+if cmd == "equinox" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/scYFbHQb")
+end)
+
+if not respon then
+ErrorPrompt("FE Equinox Error", result)
+end
+end
+if cmd == "hypertotal" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/aYdepQa0")
+end)
+
+if not respon then
+ErrorPrompt("FE HyperTotal Error", result)
+end
+end
+if cmd == "opfinality" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/fG5b1zrM")
+end)
+
+if not respon then
+ErrorPrompt("FE OPFinality GUI Error", result)
+end
+end
+if cmd == "ophub" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/r7DuWSt7")
+end)
+
+if not respon then
+ErrorPrompt("FE OPHub GUI Error", result)
+end
+end
+if cmd == "roxploit" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/ZkhCcaa5")
+end)
+
+if not respon then
+ErrorPrompt("FE RoXploit GUI Error", result)
+end
+end
+if cmd == "rosehub" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/1BJj0fB4")
+end)
+
+if not respon then
+ErrorPrompt("FE Rose Hub GUI Error", result)
+end
+end
+if cmd == "sernhub" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/8sD7V8xp")
+end)
+
+if not respon then
+ErrorPrompt("FE Sern Hub Error", result)
+end
+end
+if cmd == "topk3k" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/bEmmF8UH")
+end)
+
+if not respon then
+ErrorPrompt("FE TOPK3K GUI Error", result)
+end
+end
+if cmd == "beerus" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/c1TGDAKC")
+end)
+
+if not respon then
+ErrorPrompt("FE beerus Error", result)
+end
+end
+if cmd == "ace" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/fA4XSTY1")
+end)
+
+if not respon then
+ErrorPrompt("FE Ace Error", result)
+end
+end
+if cmd == "beast" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/0AH8SZTJ")
+end)
+
+if not respon then
+ErrorPrompt("FE Beast Error", result)
+end
+end
+if cmd == "assasin" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/bKu2GuzN")
+end)
+
+if not respon then
+ErrorPrompt("FE Assasin Error", result)
+end
+end
+if cmd == "dssj4" then
+local respon, result = pcall(function()
+executeHTTPS("https://pastebin.com/raw/pfdud8wK")
+end)
+
+if not respon then
+ErrorPrompt("FE DSSJ4 Error", result)
+end
+end
 -- limit
 end
 -- end
@@ -8180,6 +8378,30 @@ cmds[#cmds + 1] = {Text = "[222] " .. tostring(prefix) .. "russiankick",Title = 
 cmds[#cmds + 1] = {Text = "[223] " .. tostring(prefix) .. "rtx",Title = "change your roblox graphics to be good"}
 cmds[#cmds + 1] = {Text = "[224] " .. tostring(prefix) .. "psyhub",Title = "Psy Hub"}
 cmds[#cmds + 1] = {Text = "[225] " .. tostring(prefix) .. "volume [number]",Title = "set the music volume"}
+cmds[#cmds + 1] = {Text = "[226] " .. tostring(prefix) .. "robuxtroll",Title = ""}
+cmds[#cmds + 1] = {Text = "[227] " .. tostring(prefix) .. "bombvest",Title = ""}
+cmds[#cmds + 1] = {Text = "[228] " .. tostring(prefix) .. "grabv3",Title = ""}
+cmds[#cmds + 1] = {Text = "[229] " .. tostring(prefix) .. "grabv4",Title = ""}
+cmds[#cmds + 1] = {Text = "[230] " .. tostring(prefix) .. "anir15",Title = ""}
+cmds[#cmds + 1] = {Text = "[231] " .. tostring(prefix) .. "anir6",Title = ""}
+cmds[#cmds + 1] = {Text = "[232] " .. tostring(prefix) .. "arosia",Title = ""}
+cmds[#cmds + 1] = {Text = "[233] " .. tostring(prefix) .. "clown",Title = ""}
+cmds[#cmds + 1] = {Text = "[234] " .. tostring(prefix) .. "coolerkids",Title = ""}
+cmds[#cmds + 1] = {Text = "[235] " .. tostring(prefix) .. "equinox",Title = ""}
+cmds[#cmds + 1] = {Text = "[236] " .. tostring(prefix) .. "hypertotal",Title = ""}
+cmds[#cmds + 1] = {Text = "[237] " .. tostring(prefix) .. "opfinality",Title = ""}
+cmds[#cmds + 1] = {Text = "[238] " .. tostring(prefix) .. "ophub",Title = ""}
+cmds[#cmds + 1] = {Text = "[239] " .. tostring(prefix) .. "roxploit",Title = ""}
+cmds[#cmds + 1] = {Text = "[240] " .. tostring(prefix) .. "rosehub",Title = ""}
+cmds[#cmds + 1] = {Text = "[241] " .. tostring(prefix) .. "sernhub",Title = ""}
+cmds[#cmds + 1] = {Text = "[242] " .. tostring(prefix) .. "topk3k",Title = ""}
+cmds[#cmds + 1] = {Text = "[243] " .. tostring(prefix) .. "beerus",Title = ""}
+cmds[#cmds + 1] = {Text = "[244] " .. tostring(prefix) .. "ace",Title = ""}
+cmds[#cmds + 1] = {Text = "[245] " .. tostring(prefix) .. "beast",Title = ""}
+cmds[#cmds + 1] = {Text = "[246] " .. tostring(prefix) .. "assasin",Title = ""}
+cmds[#cmds + 1] = {Text = "[247] " .. tostring(prefix) .. "dssj4",Title = ""}
+
+
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -8325,7 +8547,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [19/06/2023] \n\n[CONTENT] \n[+] added 1 new command \n[+] Added toggle auto send to chat bypass UI \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] fixed nowall bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [20/06/2023] \n\n[CONTENT] \n[+] added 22 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
