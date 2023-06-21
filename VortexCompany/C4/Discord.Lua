@@ -541,7 +541,7 @@ CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
 CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
-CB.Position                = UDim2.new(0.5,-100,0,50)
+CB.Position                = UDim2.new(0.5,-100,0,-50) -- 50
 CB.Text                    = "Command name"
 CB.TextColor3              = Color3.new(1,1,1)
 CB.TextStrokeTransparency  = 1
@@ -553,11 +553,11 @@ CB.ClearTextOnFocus = false
 CB.Name = "COMMAND BAR"
 
 function OpenCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,50),"In","Linear",0.3,true)
+        TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,50)}):Play()
 end
 
 function CloseCmdBar()
-        CB:TweenPosition(UDim2.new(0.5,-100,0,-30),"In","Linear",0.3,true)
+        TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,-50)}):Play()
 end
 
 OpenCmdBar()
@@ -4279,7 +4279,7 @@ end
 
 
 function respawn(plr)
-	if invisRunning then TurnVisible() end
+	-- if invisRunning then TurnVisible() end
 	local char = plr.Character
 	if char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid"):ChangeState(15) end
 	char:ClearAllChildren()
