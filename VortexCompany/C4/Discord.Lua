@@ -559,7 +559,11 @@ end
 function CloseCmdBar()
         TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,-50)}):Play()
 end
-
+--[[
+function ChangePosCmdBar(UIParent,posto) -- UDim2.new(0.5,-100,0,-50)
+        TweenService:Create(UIParent, TweenInfo.new(0.50), {Position = posto}):Play()
+end
+--]]
 OpenCmdBar()
 -- CB.Changed:Connect(updatePosition)
 
@@ -1604,7 +1608,7 @@ function partAdded(part)
 		partEspTrigger = nil
 	end
 end
-
+--[[
 local ToolFunc_2 = ""
 local DeleteParts = {}
 local partDeleteTrigger = nil
@@ -1664,7 +1668,7 @@ function partBypassed(part)
 		partBypassTrigger = nil
 	end
 end
-
+--]]
 --[[
 function DebugPrint(SynText)
 print(SynText)
@@ -3902,7 +3906,7 @@ function Serverhop()
 end
  
 function CheckServers()
-    local respon, result = pcall(function()
+    -- local respon, result = pcall(function()
     local x = {}
     for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
         if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
@@ -3915,11 +3919,11 @@ function CheckServers()
     else
         return "Protocol:cantfind"
     end
-    end)
+    -- end)
     
-    if not respon then
-    ErrorPrompt("Serverhop", result)
-    end
+    -- if not respon then
+    -- ErrorPrompt("Serverhop", result)
+    -- end
 end
 
 function AnimationExtension(AnimName)
@@ -4011,14 +4015,17 @@ function StartServerhop()
 	local ServerChecker = CheckServers()
 	if ServerChecker == "Protocol:cantfind" then
 	ErrorPrompt("Cant find a server for u","We couldn't find a server")
+        OpenCmdBar()
 	end
 	if ServerChecker == "Protocol:found" then
 	success("Joining..","Joining server " .. tostring(ServerSize_A777))
+        CloseCmdBar()
 	end
 	wait(1)
 	local Check2 = Serverhop()
 	if Check2 == "Protocol:cantfind" then
 	ErrorPrompt("Cant find a server for u","We couldn't find a server")
+        OpenCmdBar()
 	end
 end
 
@@ -5778,6 +5785,7 @@ local respon, result = pcall(function()
 notify("Rejoin server","Rejoining...")
 wait()
 RejoinServer()
+CloseCmdBar()
 if (queue_on_teleport) then
 	if Executor() == "Arceus X" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
@@ -6561,6 +6569,7 @@ end
 if cmd == "serverhop" then
 local respon, result = pcall(function()
 notify("Serverhop","Teleporting you to another server")
+CloseCmdBar()
 StartServerhop()
 if (queue_on_teleport) then
 	if Executor() == "Arceus X" then
