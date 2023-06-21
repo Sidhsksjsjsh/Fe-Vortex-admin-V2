@@ -5840,7 +5840,7 @@ local OfficialMusic = {
        stadiumrave = 1846368080,
        crabrave = 5410086218,
        hijacket = 1842559618,
-       wonderfullday = 1843382633,
+       wonderfulday = 1843382633,
        bloodpop = 6823597327,
        sunrise = 1837324500
 }
@@ -6904,11 +6904,7 @@ local var = string.sub(msg,space+1)
 AnimationExtension(var)
 end
 if cmd == "date" then
-function Clock()
-    return os.date()
-end
-
-notify("Time",Clock())
+notify("Time",os.date())
 end
 if cmd == "animationgui" then
 local respon, result = pcall(function()
@@ -7347,7 +7343,7 @@ end
 end
 if cmd == "fling2" then
 local respon, result = pcall(function()
-ToggleNotify("Choice","would you like to run our custom touch fling script?",executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI"),executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ToggleFling/main/Roblox/Script.lua"))
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ToggleFling/main/Roblox/Script.lua")
 end)
 
 if not respon then
