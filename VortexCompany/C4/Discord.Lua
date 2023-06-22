@@ -412,8 +412,10 @@ local queue_on_teleport = syn and syn.queue_on_teleport or queue_on_teleport
 local sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
 local gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
 local tpwalking = false
+local walkto = false
 local NetworkClient = game:GetService("NetworkClient")
 local currentToolSize = ""
+local PathService = game:GetService("PathfindingService")
 local currentGripPos = ""
 local nameBox = nil
 local nbSelection = nil
@@ -541,7 +543,7 @@ CB.Size                    = UDim2.new(0,200,0,30)
 CB.BackgroundTransparency  = 0.5
 CB.BackgroundColor3         = Color3.new(0,0,1)
 CB.BorderSizePixel         = 0
-CB.Position                = UDim2.new(0.5,-100,0,-50) -- 50
+CB.Position                = UDim2.new(0.5,-100,0,-100) -- 50
 CB.Text                    = "Command name"
 CB.TextColor3              = Color3.new(1,1,1)
 CB.TextStrokeTransparency  = 1
@@ -557,7 +559,7 @@ function OpenCmdBar()
 end
 
 function CloseCmdBar()
-        TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,-50)}):Play()
+        TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,-100)}):Play()
 end
 --[[
 function ChangePosCmdBar(UIParent,posto) -- UDim2.new(0.5,-100,0,-50)
@@ -7255,6 +7257,7 @@ end
 if cmd == "travelto" then
 local var = string.sub(msg,space+1)
 local respon, result = pcall(function()
+CloseCmdBar()
 SynchronousGameTeleport(var,0,0) -- https://
 if (queue_on_teleport) then
 	if Executor() == "Arceus X" then
@@ -7264,6 +7267,7 @@ if (queue_on_teleport) then
 end)
 
 if not respon then
+OpenCmdBar()
 ErrorPrompt("Travel Failed",result)
 end
 end
@@ -8148,6 +8152,42 @@ if not respon then
 ErrorPrompt("FE DSSJ4 Error", result)
 end
 end
+if cmd == "pathfindfollow" then
+local var = string.sub(msg,space+1)
+walkto = false
+	wait()
+	local variable = getPlayer(args[1], speaker)
+	local hum = Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+	local path = PathService:CreatePath()
+	for i,v in pairs(variable)do
+		if Players[v].Character ~= nil then
+			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
+				speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
+				wait(.1)
+			end
+			walkto = true
+			repeat wait()
+				local success, response = pcall(function()
+					path:ComputeAsync(getRoot(speaker.Character).Position, getRoot(Players[v].Character).Position)
+					local waypoints = path:GetWaypoints()
+					local distance 
+					for waypointIndex, waypoint in pairs(waypoints) do
+						local waypointPosition = waypoint.Position
+						hum:MoveTo(waypointPosition)
+						repeat 
+							distance = (waypointPosition - hum.Parent.PrimaryPart.Position).magnitude
+							wait()
+						until
+						distance <= 5
+					end	 
+				end)
+				if not success then
+					speaker.Character:FindFirstChildOfClass('Humanoid'):MoveTo(getRoot(Players[v].Character).Position)
+				end
+			until Players[v].Character == nil or not getRoot(Players[v].Character) or walkto == false
+		end
+	end
+end
 -- limit
 end
 -- end
@@ -8405,7 +8445,7 @@ cmds[#cmds + 1] = {Text = "[244] " .. tostring(prefix) .. "ace",Title = ""}
 cmds[#cmds + 1] = {Text = "[245] " .. tostring(prefix) .. "beast",Title = ""}
 cmds[#cmds + 1] = {Text = "[246] " .. tostring(prefix) .. "assasin",Title = ""}
 cmds[#cmds + 1] = {Text = "[247] " .. tostring(prefix) .. "dssj4",Title = ""}
-
+cmds[#cmds + 1] = {Text = "[248] " .. tostring(prefix) .. "pathfindfollow [plr]",Title = "follow player using pathfinding"}
 
 
 for v = 1, #cmds do
