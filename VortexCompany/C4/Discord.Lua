@@ -939,13 +939,13 @@ ToggleBypassMode.MouseButton1Down:Connect(function()
 		if AutoSendScript then
 			ToggleBypassMode.Text                    = "Auto Send: True"
 			BarSent.Visible = false
-                        ToggleBypass:TweenPosition(UDim2.new(0.5,-100,0,30),"In","Linear",0.,true)
-			ToggleBypassMode:TweenPosition(UDim2.new(0.5,-100,0,60),"In","Linear",0,true)
+                        ChangePosInterface(ToggleBypass,UDim2.new(0.5,-100,0,30))
+			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,60))
 			else
 			ToggleBypassMode.Text                    = "Auto Send: False"
 			BarSent.Visible = true
-                        ToggleBypass:TweenPosition(UDim2.new(0.5,-100,0,60),"In","Linear",0,true)
-			ToggleBypassMode:TweenPosition(UDim2.new(0.5,-100,0,90),"In","Linear",0,true)
+                        ChangePosInterface(ToggleBypass,UDim2.new(0.5,-100,0,60))
+			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,90))
      end
 end)
 
