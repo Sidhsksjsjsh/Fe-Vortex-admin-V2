@@ -561,11 +561,11 @@ end
 function CloseCmdBar()
         TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,-100)}):Play()
 end
---[[
-function ChangePosCmdBar(UIParent,posto) -- UDim2.new(0.5,-100,0,-50)
+-- ChangePosInterface(ui,UDim2.new(0.5,-100,0,-50))
+function ChangePosInterface(UIParent,posto) -- UDim2.new(0.5,-100,0,-50)
         TweenService:Create(UIParent, TweenInfo.new(0.50), {Position = posto}):Play()
 end
---]]
+
 OpenCmdBar()
 -- CB.Changed:Connect(updatePosition)
 
