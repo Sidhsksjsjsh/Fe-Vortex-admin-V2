@@ -8156,7 +8156,7 @@ if cmd == "pathfindfollow" then
 local var = string.sub(msg,space+1)
 walkto = false
 	wait()
-	local variable = getPlayer(args[1], speaker)
+	local variable = getPlayer(var, speaker)
 	local hum = Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
 	local path = PathService:CreatePath()
 	for i,v in pairs(variable)do
@@ -8187,6 +8187,9 @@ walkto = false
 			until Players[v].Character == nil or not getRoot(Players[v].Character) or walkto == false
 		end
 	end
+end
+if cmd == "unpathfindfollow" then
+walkto = false
 end
 -- limit
 end
