@@ -498,7 +498,7 @@ FT1.TextWrapped             = true
 FT1.FontSize                = 'Size24'
 FT1.Font                    = 'SourceSansBold'
 FT1.Draggable = true
-FT1.Name = "PART TELEPORT"
+FT1.Name = "FLING TARGET UI"
 
 FT2.Size                    = UDim2.new(0,200,0,30)
 FT2.BackgroundTransparency  = 0.5
@@ -512,6 +512,14 @@ FT2.TextWrapped             = true
 FT2.FontSize                = 'Size24'
 FT2.Font                    = 'SourceSansBold'
 
+Interface_Visible(FT1,false)
+Interface_Visible(FT2,false)
+
+--[[
+FT2.MouseButton1Down:Connect(function()
+
+end)
+--]]
 PV1.Size                    = UDim2.new(0,200,0,30)
 PV1.BackgroundTransparency  = 0.5
 PV1.BackgroundColor         = BrickColor.new('Fossil')
@@ -4127,6 +4135,10 @@ function DisplayUI(UIname)
       if UIname == "fps" then
       UI_A2.Visible = true
    end
+      if UIname == "targetfling" then
+      Interface_Visible(FT1,true)
+      Interface_Visible(FT2,true)
+   end
       if UIname == "chatbypass" then
       TextBar.Visible = true
       BarSent.Visible = true
@@ -4198,6 +4210,10 @@ function RemoveDisplayUI(UIname)
    if UIname == "exc" then
       TextBarExecutor.Visible = false
       BarButtonExecute.Visible = false
+   end
+      if UIname == "targetfling" then
+      Interface_Visible(FT1,false)
+      Interface_Visible(FT2,false)
    end
       if UIname == "part" then
       Interface_Visible(Exit_4, false)
@@ -5279,6 +5295,27 @@ end)
 local SPrefix = ""
 
 local Rect = CFrame.new(0, 0, 0)
+
+FT2.MouseButton1Down:Connect(function()
+local variable = getPlayer(FT1.Text, speaker)
+	for i,v in pairs(variable) do
+LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
+wait(0.2)
+_G.Settings.PastedSources = true
+RocketPropulsion(800000,1000,400000,v,"Fling")
+wait(1)
+if speaker.Character.HumanoidRootPart.Fling then
+		for i,v in pairs(speaker.Character:GetDescendants()) do
+			if v.Name == "Fling" and v:IsA("RocketPropulsion") then
+				v:Destroy()
+			end
+		end
+	end
+end
+wait()
+_G.Settings.PastedSources = false
+speaker.Character.HumanoidRootPart.CFrame = LPost
+end)
 
 CB.FocusLost:Connect(function(Execute) -- prefix disabled
    if Execute then -- 1
