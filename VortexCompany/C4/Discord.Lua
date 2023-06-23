@@ -14,7 +14,8 @@ _G.Settings = {
       RemovePaused = false,
       username = true,
       LocalBotChatFunc = true,
-      FreezeFling = false
+      FreezeFling = false,
+      PastedSources = false
 }
 -- _G.Settings.FreezeFling
 -- _G.Settings.LocalBotChatFunc
@@ -479,8 +480,37 @@ local CB                         = Instance.new('TextBox', GUI_MAIN)
 local PV1                         = Instance.new('TextBox', GUI_MAIN)
 local PV2                         = Instance.new('TextBox', PV)
 local PV3                         = Instance.new('TextButton', PV)
+-- fling target
+local FT1                         = Instance.new('TextBox', GUI_MAIN)
+local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
+
+FT1.Size                    = UDim2.new(0,200,0,30)
+FT1.BackgroundTransparency  = 0.5
+FT1.BackgroundColor         = BrickColor.new('Fossil')
+FT1.BorderSizePixel         = 0
+FT1.Position                = UDim2.new(0.5,-100,0,0)
+FT1.Text                    = "display name"
+FT1.TextColor3              = Color3.new(1,1,1)
+FT1.TextStrokeTransparency  = 1
+FT1.TextWrapped             = true
+FT1.FontSize                = 'Size24'
+FT1.Font                    = 'SourceSansBold'
+FT1.Draggable = true
+FT1.Name = "PART TELEPORT"
+
+FT2.Size                    = UDim2.new(0,200,0,30)
+FT2.BackgroundTransparency  = 0.5
+FT2.BackgroundColor         = BrickColor.new('Fossil')
+FT2.BorderSizePixel         = 0
+FT2.Position                = UDim2.new(0.5,-100,0,30)
+FT2.Text                    = "FLING"
+FT2.TextColor3              = Color3.new(1,1,1)
+FT2.TextStrokeTransparency  = 1
+FT2.TextWrapped             = true
+FT2.FontSize                = 'Size24'
+FT2.Font                    = 'SourceSansBold'
 
 PV1.Size                    = UDim2.new(0,200,0,30)
 PV1.BackgroundTransparency  = 0.5
@@ -1703,10 +1733,11 @@ function RandomVectorRange(a, b, c)
 	return Vector3.new(RandomNumberRange(a), RandomNumberRange(b), RandomNumberRange(c))
 end
 
-local DesyncTypesFlings = {}
-function TouchFling()
-		DesyncTypesFlings[1] = speaker.Character.HumanoidRootPart.CFrame
-		DesyncTypesFlings[2] = speaker.Character.HumanoidRootPart.AssemblyLinearVelocity
+local DesyncTypes = {}
+RunService.Heartbeat:Connect(function()
+	if _G.Settings.PastedSources == true then
+		DesyncTypes[1] = speaker.Character.HumanoidRootPart.CFrame
+		DesyncTypes[2] = speaker.Character.HumanoidRootPart.AssemblyLinearVelocity
 
 		local SpoofThis = speaker.Character.HumanoidRootPart.CFrame
 
@@ -1717,9 +1748,12 @@ function TouchFling()
 
 		speaker.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
 
-		speaker.Character.HumanoidRootPart.CFrame = DesyncTypesFlings[1]
-		speaker.Character.HumanoidRootPart.AssemblyLinearVelocity = DesyncTypesFlings[2]
-end
+		RunService.RenderStepped:Wait()
+
+		speaker.Character.HumanoidRootPart.CFrame = DesyncTypes[1]
+		speaker.Character.HumanoidRootPart.AssemblyLinearVelocity = DesyncTypes[2]
+	end
+end)
 
 function Tall()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
@@ -8768,23 +8802,22 @@ else
    _G.Settings.device = "PC"
 end
 
---[[
 local VortexHook = nil
 VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
-	if PastedSources == true then
+	if _G.Settings.PastedSources == true then
 		if not checkcaller() then
-			if key == "CFrame" and PastedSources == true and speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character:FindFirstChild("Humanoid") and speaker.Character:FindFirstChild("Humanoid").Health > 0 then
+			if key == "CFrame" and _G.Settings.PastedSources == true and speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character:FindFirstChild("Humanoid") and speaker.Character:FindFirstChild("Humanoid").Health > 0 then
 				if self == speaker.Character.HumanoidRootPart then
-					return DesyncTypesFlings[1] or CFrame.new()
+					return DesyncTypes[1] or CFrame.new()
 				elseif self == speaker.Character.Head then
-					return DesyncTypesFlings[1] and DesyncTypesFlings[1] + Vector3.new(0, speaker.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
+					return DesyncTypes[1] and DesyncTypes[1] + Vector3.new(0, speaker.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
 				end
 			end
 		end
 	end
 	return VortexHook(self, key)
 end))
---
+--[[
 
 local _L = {}
 _L.timestamp = tick()
