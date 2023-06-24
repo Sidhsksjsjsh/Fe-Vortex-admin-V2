@@ -930,7 +930,7 @@ BarSent.BackgroundTransparency  = 0.5
 BarSent.BackgroundColor         = BrickColor.new('Fossil')
 BarSent.BorderSizePixel         = 0
 BarSent.Position                = UDim2.new(0.5,-100,0,30)
-BarSent.Text                    = "Send [Bypass: ON]"
+BarSent.Text                    = "Send [Bypass: AUTO]"
 BarSent.TextColor3              = Color3.new(1,1,1)
 BarSent.TextStrokeTransparency  = 1
 BarSent.TextWrapped             = true
@@ -1545,7 +1545,47 @@ wait(1)
 SyncTeleportScreen:Destroy()
 end
 
-function SyncBypassChat(BypassWord)
+local replace = { 
+      ass = "𐌑á⁥⁥⁥⁥ѕѕ",
+      cum = "с⁥⁥⁥𐌑úm",
+      cock = "с𐌑ồсk",
+      fuck = "fu𐌑𝖔 ͜ ͣ c𐌑ḳ",
+      asshole = "𐌑áѕѕh𐌑ồl𐌑e",
+      rape = "r𐌑áр𐌑e",
+      boobs = "𐌑Вo𐌑𝖔 ͜ ͣ ob𐌑s",
+      titties = "Т𐌑ìtt𐌑ìes",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
+      hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
+      porn = "р𐌑ồrn",
+      nigga = "n𐌑ìgg⁥𐌑á",
+      penis = "р𐌑еn⁥𐌑ìs",
+      beaner = "𐌑bе𐌑аn⁥е𐌑r",
+      thot = "th𐌑ồt",
+      xxx = "xxx",
+      hentai = "h𐌑ent𐌑ái",
+      bitch = "b𐌑ìtch⁥⁥⁥⁥",
+      bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
+      shit = "sh𐌑ìt",
+      kys = "kys",
+      butthole = "b𐌑útth𐌑ồle",
+      masturbate = "m𐌑ást𐌑úrb𐌑at𐌑e",
+      bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
+      blowjob = "bl𐌑ồwj𐌑ồb",
+      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
+      cs = "с𐌑ồсk s𐌑úсkеr",
+      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
+      dick = "d𐌑ìc𐌑k",
+      dogshit = "d𐌑ồgsh𐌑ìt",
+      tits = "t𐌑ìts",
+      pussy = "p𐌑ússy"
+}
+
+function SyncBypassChat(str)
+local chat = str:lower()
+return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy)
+end
+
+function BP_SyncBypassChat(BypassWord)
 local chat = BypassWord:lower()
     local tabl = {}
     for i = 1, #chat do
@@ -1590,6 +1630,13 @@ local chat = BypassWord:lower()
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat, "All")
 end
 --[[
+local replace = { "𐌑á⁥⁥⁥⁥ѕѕ", "с⁥⁥⁥⁥um", "сосk", "fu𐌑𝖔 ͜ ͣ c𐌑ḳ", "аѕѕһоlе", "rаре", "Вoobs", "Тitties", "s⁥⁥⁥⁥⁥⁥ех", "һое", "рогn", "п⁥iɡ⁥ɡ⁥а", "реп⁥is", "bеаn⁥ег", "ТН⁥⁥⁥⁥⁥ОТ", "ΧΧΧ", "НЕΝТАӀ", "ВI⁥⁥⁥⁥⁥⁥TСН", "ВIT⁥⁥⁥⁥⁥⁥⁥СНEЅ", "ЅНIТ", "К⁥⁥⁥⁥⁥YЅ", "ВUТТ⁥⁥⁥⁥НOLЕ", "МАЅТURВАТЕ", "big black со⁥⁥⁥сk", "Вӏоwjob", "Віtеѕ уоur сосk", "сосk suсkеr", "f⁥аt а⁥ѕѕ һое" }
+
+function SyncBypassChat(str)
+
+end
+--]]
+--[[
 function SyncBypassChatTwoMode(text)
 local keywords = { "ass", "cum", "cock", "fuck", "asshole", "rape", "boobs", "titties", "sex", "hoe", "porn", "nigga", "penis", "beaner", "thot", "xxx", "hentai", "bitch", "bitches", "shit", "kys", "butthole", "masturbate", "big black cock", "blowjob", "bites your cock", "cock sucker", "fat ass hoe" } --Keyword
 local replace = { "а⁥⁥⁥⁥ѕѕ", "с⁥⁥⁥⁥um", "сосk", "fu𐌑𝖔 ͜ ͣ c𐌑ḳ", "аѕѕһоlе", "rаре", "Вoobs", "Тitties", "s⁥⁥⁥⁥⁥⁥ех", "һое", "рогn", "п⁥iɡ⁥ɡ⁥а", "реп⁥is", "bеаn⁥ег", "ТН⁥⁥⁥⁥⁥ОТ", "ΧΧΧ", "НЕΝТАӀ", "ВI⁥⁥⁥⁥⁥⁥TСН", "ВIT⁥⁥⁥⁥⁥⁥⁥СНEЅ", "ЅНIТ", "К⁥⁥⁥⁥⁥YЅ", "ВUТТ⁥⁥⁥⁥НOLЕ", "МАЅТURВАТЕ", "big black со⁥⁥⁥сk", "Вӏоwjob", "Віtеѕ уоur сосk", "сосk suсkеr", "f⁥аt а⁥ѕѕ һое" } 
@@ -1609,7 +1656,7 @@ end
 BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
-              SyncBypassChat(TextBar.Text)
+              game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(SyncBypassChat(TextBar.Text),"All")
 	else
 	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
     end
@@ -1620,7 +1667,7 @@ TextBar.FocusLost:Connect(function(EnterText)
 if AutoSendScript == true then
    if EnterText then
 	if BypassWord then
-           SyncBypassChat(TextBar.Text)
+           game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(SyncBypassChat(TextBar.Text),"All")
 	else
 	   game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(TextBar.Text, "All")
     end
