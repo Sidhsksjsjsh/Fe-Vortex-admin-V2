@@ -949,6 +949,7 @@ ToggleBypass.TextStrokeTransparency  = 1
 ToggleBypass.TextWrapped             = true
 ToggleBypass.FontSize                = 'Size24'
 ToggleBypass.Font                    = 'SourceSansBold'
+ToggleBypass.Visible = false
 ToggleBypass.MouseButton1Down:Connect(function()
 	BypassWord = not BypassWord
 		if BypassWord then
@@ -965,7 +966,7 @@ ToggleBypassMode.Size                    = UDim2.new(0,200,0,30)
 ToggleBypassMode.BackgroundTransparency  = 0.5
 ToggleBypassMode.BackgroundColor         = BrickColor.new('Fossil')
 ToggleBypassMode.BorderSizePixel         = 0
-ToggleBypassMode.Position                = UDim2.new(0.5,-100,0,90)
+ToggleBypassMode.Position                = UDim2.new(0.5,-100,0,60)
 ToggleBypassMode.Text                    = "Auto Send: False"
 ToggleBypassMode.TextColor3              = Color3.new(1,1,1)
 ToggleBypassMode.TextStrokeTransparency  = 1
@@ -983,7 +984,7 @@ ToggleBypassMode.MouseButton1Down:Connect(function()
 			ToggleBypassMode.Text                    = "Auto Send: False"
 			BarSent.Visible = true
                         ChangePosInterface(ToggleBypass,UDim2.new(0.5,-100,0,60))
-			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,90))
+			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,60))
      end
 end)
 
@@ -8673,7 +8674,7 @@ end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
             if _G.Settings.LocalBotChatFunc == true then
-            ProtocolSendChat("what?") -- roblox chat anti-detect
+            ProtocolSendChat("[Bot]: what?") -- roblox chat anti-detect
             else
             warning("Bot is disabled","The bot will not answer if someone calls your name.")
             end
@@ -8713,7 +8714,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [20/06/2023] \n\n[CONTENT] \n[+] added 22 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [25/06/2023] \n\n[CONTENT] \n[+] added 1 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
