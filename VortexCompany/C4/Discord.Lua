@@ -4172,9 +4172,10 @@ function ProtocolLoopFPS(Frame)
       UI_A2.Text = Frame
 end
 
-RunService.RenderStepped:Connect(function(frame)
+RunService.RenderStepped:Connect(function()
         ProtocolLoopPING()
-	ProtocolLoopFPS(math.round(1/frame))
+        -- local FPS = game:GetService("Workspace"):GetRealPhysicsFPS()
+	ProtocolLoopFPS(math.floor(game:GetService("Workspace"):GetRealPhysicsFPS()))
 end)
 
 function DisplayUI(UIname)
