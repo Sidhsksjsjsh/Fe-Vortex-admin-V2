@@ -979,7 +979,7 @@ ToggleBypassMode.MouseButton1Down:Connect(function()
 			ToggleBypassMode.Text                    = "Auto Send: True"
 			BarSent.Visible = false
                         ChangePosInterface(ToggleBypass,UDim2.new(0.5,-100,0,30))
-			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,60))
+			ChangePosInterface(ToggleBypassMode,UDim2.new(0.5,-100,0,30))
 			else
 			ToggleBypassMode.Text                    = "Auto Send: False"
 			BarSent.Visible = true
@@ -1549,13 +1549,14 @@ end
 local replace = { 
       ass = "𐌑á⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥𐌑úm",
-      cock = "с𐌑ồсk",
-      fuck = "fu𐌑𝖔 ͜ ͣ c𐌑ḳ",
+      cock = "с𐌑ồс𐌑k",
+      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
       asshole = "𐌑áѕѕh𐌑ồl𐌑e",
       rape = "r𐌑áр𐌑e",
       boobs = "𐌑Вo𐌑𝖔 ͜ ͣ ob𐌑s",
       titties = "Т𐌑ìtt𐌑ìes",
-      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑х𐌑",
+      sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
       hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
       porn = "р𐌑ồrn",
       nigga = "n𐌑ìgg⁥𐌑á",
