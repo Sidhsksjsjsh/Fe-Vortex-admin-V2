@@ -8890,11 +8890,12 @@ end)
 
 -- identify_Label_Script
 -- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
-ChangeSizeInterface(Phase1,UDim2.new(0, #Phase1.Text * 12, 0, 30))
-
+ChangeSizeInterface(Phase1,UDim2.new(0, #identify_Label_Script * 12, 0, 30))
+wait(0.1)
 local dogshitlen = string.len(identify_Label_Script)
 for i=1,dogshitlen do
     Phase1.Text                    = string.sub(identify_Label_Script,1,i)
+    wait(0.001)
 end
 
 Players.PlayerRemoving:Connect(function(Player)
