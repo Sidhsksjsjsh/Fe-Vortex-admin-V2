@@ -8339,15 +8339,15 @@ Phase1.Visible = true
 end
 if cmd == "pos_1" then
 local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(tonumber(var), -100, 0, 0))
+Phase1.Position                = UDim2.new(tonumber(var), -100, 0, 0)
 end
 if cmd == "pos_2" then
 local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(0.5, tonumber(var), 0, 0))
+Phase1.Position                = UDim2.new(0.5, tonumber(var), 0, 0)
 end
 if cmd == "pos_3" then
 local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(0.5, -100, tonumber(var), 0))
+Phase1.Position                = UDim2.new(0.5, -100, tonumber(var), 0)
 end
 if cmd == "pos_4" then
 local var = string.sub(msg,space+1)
