@@ -8361,8 +8361,8 @@ if cmd == "pos" then
 local var = string.sub(msg,space+1)
 ChangePosInterface(Phase1,UDim2.new(0.5, -100, 0, tonumber(var)))
 end
-if cmd == "getinterfacepos" then
-copy("" .. tostring(Phase1.Position) .. "")
+if cmd == "getinterfacesize" then
+copy("" .. tostring(Phase1.Size) .. "")
 notify("Copied","To clipboard.")
 end
 -- limit
