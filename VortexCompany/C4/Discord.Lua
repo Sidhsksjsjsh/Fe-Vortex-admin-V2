@@ -8319,7 +8319,7 @@ walkto = false
 end
 if cmd == "cmdpos" then
 local var = string.sub(msg,space+1)
-ChangePosInterface(CB,UDim2.new(0.5,-100,0,tonumber(var)))
+ChangePosInterface(CB,UDim2.new(tonumber(var)))
 end
 if cmd == "getinterfacepos" then
 copy("" .. tostring(CB.Position) .. "")
