@@ -8317,8 +8317,13 @@ walkto = false
 		end
 	end
 end
-if cmd == "unpathfindfollow" then
-walkto = false
+if cmd == "cmdpos" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(CB,UDim2.new(0.5,-100,0,tonumber(var)))
+end
+if cmd == "getinterfacepos" then
+copy("" .. tostring(CB.Position) .. "")
+notify("Copied","To clipboard.")
 end
 -- limit
 end
