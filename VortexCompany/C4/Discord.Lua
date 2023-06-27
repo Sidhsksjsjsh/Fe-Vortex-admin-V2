@@ -502,8 +502,8 @@ Phase1.TextWrapped             = true
 Phase1.FontSize                = 'Size24'
 Phase1.Font                    = 'SourceSansBold'
 Phase1.Draggable = true
-Phase1.Name = "TESTING LABEL"
-Phase1.Visible = false
+Phase1.Name = "Admin-Label"
+Phase1.Visible = true
 
 FT1.Size                    = UDim2.new(0,200,0,30)
 FT1.BackgroundTransparency  = 0.5
@@ -8339,49 +8339,6 @@ walkto = false
 			until Players[v].Character == nil or not getRoot(Players[v].Character) or walkto == false
 		end
 	end
-end
-if cmd == "cmp" then
-Phase1.Visible = true
-end
-if cmd == "size_1" then
-local var = string.sub(msg,space+1) -- 0,200,0,30
-ChangeSizeInterface(Phase1,UDim2.new(tonumber(var), 200, 0, 30))
-end
-if cmd == "size_2" then
-local var = string.sub(msg,space+1)
-ChangeSizeInterface(Phase1,UDim2.new(0, tonumber(var), 0, 30))
-end
-if cmd == "size_3" then
-local var = string.sub(msg,space+1)
-ChangeSizeInterface(Phase1,UDim2.new(0, 200, tonumber(var), 30))
-end
-if cmd == "size_4" then
-local var = string.sub(msg,space+1)
-ChangeSizeInterface(Phase1,UDim2.new(0, 200, 0, tonumber(var)))
-end
-if cmd == "pos_1" then
-local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(tonumber(var), -100, 0, 0))
-end
-if cmd == "pos_2" then
-local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(0.5, tonumber(var), 0, 0))
-end
-if cmd == "pos_3" then
-local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(0.5, -100, tonumber(var), 0))
-end
-if cmd == "pos_4" then
-local var = string.sub(msg,space+1)
-ChangePosInterface(Phase1,UDim2.new(0.5, -100, 0, tonumber(var)))
-end
-if cmd == "getinterfacesize" then
-copy("" .. tostring(Phase1.Size) .. "")
-notify("Copied","To clipboard.")
-end
-if cmd == "getinterfacepos" then
-copy("" .. tostring(Phase1.Position) .. "")
-notify("Copied","To clipboard.")
 end
 -- limit
 end
