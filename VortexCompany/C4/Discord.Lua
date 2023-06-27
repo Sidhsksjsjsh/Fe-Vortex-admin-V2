@@ -486,6 +486,23 @@ local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
+local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
+
+Phase1.Size                    = UDim2.new(0,200,0,30)
+Phase1.BackgroundTransparency  = 0.5
+Phase1.BackgroundColor         = BrickColor.new('Fossil')
+Phase1.BorderSizePixel         = 0
+Phase1.Position                = UDim2.new(0.5,-100,0,0)
+Phase1.Text                    = "Testing Label"
+Phase1.TextColor3              = Color3.new(1,1,1)
+Phase1.TextStrokeTransparency  = 1
+Phase1.TextWrapped             = true
+Phase1.FontSize                = 'Size24'
+Phase1.Font                    = 'SourceSansBold'
+Phase1.Draggable = true
+Phase1.Name = "TESTING LABEL"
+Phase1.Visible = false
+
 FT1.Size                    = UDim2.new(0,200,0,30)
 FT1.BackgroundTransparency  = 0.5
 FT1.BackgroundColor         = BrickColor.new('Fossil')
@@ -8317,12 +8334,27 @@ walkto = false
 		end
 	end
 end
-if cmd == "cmdpos" then
+if cmd == "cmp" then
+Phase1.Visible = true
+end
+if cmd == "pos_1" then
 local var = string.sub(msg,space+1)
-ChangePosInterface(CB,UDim2.new(tonumber(var)))
+ChangePosInterface(Phase1,UDim2.new(tonumber(var), -100, 0, 0))
+end
+if cmd == "pos_2" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(0.5, tonumber(var), 0, 0))
+end
+if cmd == "pos_3" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(0.5, -100, tonumber(var), 0))
+end
+if cmd == "pos_4" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(0.5, -100, 0, tonumber(var)))
 end
 if cmd == "getinterfacepos" then
-copy("" .. tostring(CB.Position) .. "")
+copy("" .. tostring(Phase1.Position) .. "")
 notify("Copied","To clipboard.")
 end
 -- limit
