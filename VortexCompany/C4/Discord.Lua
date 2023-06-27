@@ -490,12 +490,14 @@ local SOSKWKWK = "2.3.5"
 
 local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
+local identify_Label_Script = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+
 Phase1.Size                    = UDim2.new(0,0,0,30)
 Phase1.BackgroundTransparency  = 1
 Phase1.BackgroundColor         = BrickColor.new('Fossil')
 Phase1.BorderSizePixel         = 0
 Phase1.Position                = UDim2.new(0.5,-322,0,385)
-Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+Phase1.Text                    = ""
 Phase1.TextColor3              = Color3.new(1,1,1) -- Offline
 Phase1.TextStrokeTransparency  = 1
 Phase1.TextWrapped             = true
@@ -8886,8 +8888,15 @@ info("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game
 end
 end)
 
-Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+-- identify_Label_Script
+-- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
 ChangeSizeInterface(Phase1,UDim2.new(0, #Phase1.Text * 12, 0, 30))
+wait(0.1)
+local len = string.len(identify_Label_Script)
+for i=1,len do
+    Phase1.Text = string.sub(identify_Label_Script,1,i)
+    wait(0.001)
+end
 
 Players.PlayerRemoving:Connect(function(Player)
 if ESPenabled or COREGUI:FindFirstChild(player.Name..'_LC') then
