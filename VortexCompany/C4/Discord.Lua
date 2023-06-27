@@ -8357,12 +8357,28 @@ if cmd == "size_4" then
 local var = string.sub(msg,space+1)
 ChangeSizeInterface(Phase1,UDim2.new(0, 200, 0, tonumber(var)))
 end
-if cmd == "pos" then
+if cmd == "pos_1" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(tonumber(var), -100, 0, 0))
+end
+if cmd == "pos_2" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(0.5, tonumber(var), 0, 0))
+end
+if cmd == "pos_3" then
+local var = string.sub(msg,space+1)
+ChangePosInterface(Phase1,UDim2.new(0.5, -100, tonumber(var), 0))
+end
+if cmd == "pos_4" then
 local var = string.sub(msg,space+1)
 ChangePosInterface(Phase1,UDim2.new(0.5, -100, 0, tonumber(var)))
 end
 if cmd == "getinterfacesize" then
 copy("" .. tostring(Phase1.Size) .. "")
+notify("Copied","To clipboard.")
+end
+if cmd == "getinterfacepos" then
+copy("" .. tostring(Phase1.Position) .. "")
 notify("Copied","To clipboard.")
 end
 -- limit
