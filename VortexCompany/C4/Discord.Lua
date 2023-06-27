@@ -486,15 +486,17 @@ local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
+local SOSKWKWK = "2.3.5"
+
 local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
-Phase1.Size                    = UDim2.new(0,200,0,30)
-Phase1.BackgroundTransparency  = 0.5
+Phase1.Size                    = UDim2.new(0,0,0,30)
+Phase1.BackgroundTransparency  = 1
 Phase1.BackgroundColor         = BrickColor.new('Fossil')
 Phase1.BorderSizePixel         = 0
-Phase1.Position                = UDim2.new(0.5,-100,0,0)
-Phase1.Text                    = "Testing Label"
-Phase1.TextColor3              = Color3.new(1,1,1)
+Phase1.Position                = UDim2.new(0.5,-322,0,385)
+Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+Phase1.TextColor3              = Color3.new(1,1,1) -- Offline
 Phase1.TextStrokeTransparency  = 1
 Phase1.TextWrapped             = true
 Phase1.FontSize                = 'Size24'
@@ -8926,6 +8928,9 @@ info("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game
 -- print(friendsingame..' are in this server')
 end
 end)
+
+Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+ChangeSizeInterface(Phase1,UDim2.new(0, #Phase1.Text * 12, 0, 30))
 
 Players.PlayerRemoving:Connect(function(Player)
 if ESPenabled or COREGUI:FindFirstChild(player.Name..'_LC') then
