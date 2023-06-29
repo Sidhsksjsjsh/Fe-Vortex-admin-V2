@@ -4203,6 +4203,13 @@ end
 
 function ProtocolLoopFPS(Frame)
       UI_A2.Text = Frame
+      if tonumber(Frame) < 30 then
+           UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
+        end
+        if tonumber(Frame) < 10 then
+           UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
+           UI_A2.Text = "⚠️" .. Frame .. "⚠️"
+        end
 end
 
 RunService.RenderStepped:Connect(function()
