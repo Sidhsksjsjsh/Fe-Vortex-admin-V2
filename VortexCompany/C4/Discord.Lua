@@ -4200,14 +4200,14 @@ function ProtocolLoopPING()
       local Current_Ping = tonumber(string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1])
       UI_A1.Text = tostring(Current_Ping)
       if Current_Ping < 500 then
-         UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
+         UI_A1.TextColor3 = Color3.fromRGB(0, 255, 0)
       end
       if Current_Ping > 500 then
-         UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
+         UI_A1.TextColor3 = Color3.fromRGB(245, 205, 48)
       end
       if Current_Ping > 1000 then
-         UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
-         UI_A1.Text = "⚠️ " .. tostring(Current_Ping) .. " ⚠️"
+         UI_A1.TextColor3 = Color3.fromRGB(196, 40, 28)
+         UI_A1.Text = "⚠️ " .. tostring(Current_Ping) .. "ms ⚠️"
       end
 end
 
