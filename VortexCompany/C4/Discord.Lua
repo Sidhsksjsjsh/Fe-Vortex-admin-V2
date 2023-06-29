@@ -4198,12 +4198,14 @@ UI_A2.Visible = false
 
 function ProtocolLoopPING()
       local Current_Ping = tonumber(string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1])
-      UI_A1.Text = tostring(Current_Ping)
+     -- UI_A1.Text = tostring(Current_Ping)
       if Current_Ping < 500 then
          UI_A1.TextColor3 = Color3.fromRGB(0, 255, 0)
+         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 500 then
          UI_A1.TextColor3 = Color3.fromRGB(245, 205, 48)
+         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 1000 then
          UI_A1.TextColor3 = Color3.fromRGB(196, 40, 28)
@@ -4212,12 +4214,14 @@ function ProtocolLoopPING()
 end
 
 function ProtocolLoopFPS(Frame)
-      UI_A2.Text = Frame
+      -- UI_A2.Text = Frame
       if tonumber(Frame) > 30 then
            UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
+           UI_A2.Text = Frame
         end
       if tonumber(Frame) < 30 then
            UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
+           UI_A2.Text = Frame
         end
         if tonumber(Frame) < 10 then
            UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
