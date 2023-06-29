@@ -4197,18 +4197,31 @@ UI_A2.TextWrapped = true
 UI_A2.Visible = false
 
 function ProtocolLoopPING()
-      local Current_Ping = string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1] .. "ms"
+      local Current_Ping = tonumber(string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), " ")[1])
       UI_A1.Text = tostring(Current_Ping)
+      if Current_Ping < 500 then
+         UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
+      end
+      if Current_Ping > 500 then
+         UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
+      end
+      if Current_Ping > 1000 then
+         UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
+         UI_A1.Text = "⚠️ " .. tostring(Current_Ping) .. " ⚠️"
+      end
 end
 
 function ProtocolLoopFPS(Frame)
       UI_A2.Text = Frame
+      if tonumber(Frame) > 30 then
+           UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
+        end
       if tonumber(Frame) < 30 then
            UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
         end
         if tonumber(Frame) < 10 then
            UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
-           UI_A2.Text = "⚠️" .. Frame .. "⚠️"
+           UI_A2.Text = "⚠️ " .. Frame .. " ⚠️"
         end
 end
 
