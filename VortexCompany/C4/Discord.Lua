@@ -486,7 +486,7 @@ local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
-local SOSKWKWK = "2.3.5"
+local SOSKWKWK = "2.3.6"
 
 local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
@@ -1578,9 +1578,9 @@ local replace = {
       fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
       asshole = "𐌑áѕѕh𐌑ồl𐌑e",
       rape = "r𐌑áр𐌑e",
-      boobs = "𐌑Вo𐌑𝖔 ͜ ͣ ob𐌑s",
+      boobs = "𐌑bo𐌑𝖔 ͜ ͣ ob𐌑s",
       titties = "Т𐌑ìtt𐌑ìes",
-      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑х𐌑",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑",
       sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
       hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
       porn = "р𐌑ồrn",
@@ -1602,7 +1602,7 @@ local replace = {
       cs = "с𐌑ồсk s𐌑úсkеr",
       fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
       dick = "d𐌑ìc𐌑k",
-      dogshit = "d𐌑ồgsh𐌑ìt",
+      dogshit = "d𐌑ồg sh𐌑ìt",
       tits = "t𐌑ìts",
       pussy = "p𐌑ússy",
       sperm = "sp𐌑er𐌑m",
@@ -1612,12 +1612,15 @@ local replace = {
       kontol = "k𐌑o𐌑nt𐌑ol",
       ngentot = "ng𐌑en𐌑to𐌑t",
       jembut = "j𐌑emb𐌑út",
-      bangsat = "b𐌑ángs𐌑át" -- Indonesian bad words
+      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìst",
+      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
+      hub = "h𐌑úb"
 }
 
 function SyncBypassChat(str)
 local chat = str:lower()
-return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat)
+return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub)
 end
 
 function BP_SyncBypassChat(BypassWord)
@@ -8770,7 +8773,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [25/06/2023] \n\n[CONTENT] \n[+] added 1 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [01/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
