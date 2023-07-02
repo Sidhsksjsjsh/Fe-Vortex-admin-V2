@@ -1615,7 +1615,9 @@ local replace = {
       bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
       terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìst",
       discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
-      hub = "h𐌑úb"
+      hub = "h𐌑úb",
+      cyka = "c𐌑yk𐌑á",
+      blyat = "bl𐌑y𐌑át"
 }
 
 function SyncBypassChat(str)
