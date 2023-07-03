@@ -486,7 +486,7 @@ local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
-local SOSKWKWK = "2.3.7"
+local SOSKWKWK = "2.3.8"
 
 local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
@@ -1578,9 +1578,9 @@ local replace = {
       fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
       asshole = "𐌑áѕѕh𐌑ồl𐌑e",
       rape = "r𐌑áр𐌑e",
-      boobs = "𐌑bo𐌑𝖔 ͜ ͣ ob𐌑s",
+      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ ob𐌑s",
       titties = "Т𐌑ìtt𐌑ìes",
-      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
       sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
       hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
       porn = "р𐌑ồrn",
@@ -1595,7 +1595,7 @@ local replace = {
       shit = "sh𐌑ìt",
       kys = "kys",
       butthole = "b𐌑útth𐌑ồle",
-      masturbate = "m𐌑ást𐌑úrb𐌑at𐌑e",
+      masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e",
       bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
       blowjob = "bl𐌑ồwj𐌑ồb",
       byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
@@ -1605,24 +1605,27 @@ local replace = {
       dogshit = "d𐌑ồg sh𐌑ìt",
       tits = "t𐌑ìts",
       pussy = "p𐌑ússy",
-      sperm = "sp𐌑er𐌑m",
-      sperma = "sp𐌑erm𐌑á", -- Indonesian dirty words
+      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑m",
+      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
       memek = "m𐌑em𐌑ek",
       sepong = "s𐌑ep𐌑on𐌑g",
       kontol = "k𐌑o𐌑nt𐌑ol",
       ngentot = "ng𐌑en𐌑to𐌑t",
       jembut = "j𐌑emb𐌑út",
       bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
-      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìst",
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìsts",
       discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
       hub = "h𐌑úb",
       cyka = "c𐌑yk𐌑á",
-      blyat = "bl𐌑y𐌑át"
+      blyat = "bl𐌑y𐌑át",
+      gay = "g𐌑áy",
+      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
+      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e"
 }
 
 function SyncBypassChat(str)
 local chat = str:lower()
-return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat)
+return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride)
 end
 
 function BP_SyncBypassChat(BypassWord)
@@ -8775,7 +8778,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [01/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] There isn't any.. \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [03/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed some bugs🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
