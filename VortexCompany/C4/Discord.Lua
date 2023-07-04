@@ -259,7 +259,7 @@ Pause()
 saveSettings()
 end)
 --[[
-local WarningGenerator = game:GetService("CoreGui")
+-- local WarningGenerator = game:GetService("CoreGui")
 
 local game = game
 local workspace = workspace
@@ -299,12 +299,12 @@ local function Create(instance, properties, children)
     return obj;
 end
 
-function ErrorPrompt_(title, Message, buttonname)
+function BP_Prompt(title, Message, buttonname)
     if getrenv then
-        local ErrorPrompt = getrenv().require(WarningGenerator:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
+        local ErrorPrompt = getrenv().require(game:GetService("CoreGui"):WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
         local prompt = ErrorPrompt.new("Default",{HideErrorCode = true})
-        local ErrorStoarge = Create("ScreenGui",{Parent = WarningGenerator,ResetOnSpawn = false})
-        local thread = running()
+        local ErrorStoarge = Create("ScreenGui",{Parent = game:GetService("CoreGui"),ResetOnSpawn = false})
+        local thread = coroutine.running()
         prompt:setParent(ErrorStoarge)
         prompt:setErrorTitle(title)
         prompt:updateButtons({{
@@ -313,14 +313,14 @@ function ErrorPrompt_(title, Message, buttonname)
                 prompt:_close()
                 ErrorStoarge:Destroy()
                 if thread then
-                    resume(thread)
+                    coroutine.resume(thread)
                 end
             end,
             Primary = true
         }}, 'Default')
         prompt:_open(Message)
         if thread then
-            yield(thread)
+            coroutine.yield(thread)
         end
     else
         warn(Message)
@@ -328,7 +328,7 @@ function ErrorPrompt_(title, Message, buttonname)
 end
 
 -- ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
-]]
+--]]
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 
@@ -3221,7 +3221,7 @@ SpecialPlayerCases = {
 		end
 		return returns
 	end,
-	["random"] = function(speaker,args,currentList)
+	["random"] = function(speaker)
 		local players = Players:GetPlayers()
 		local localplayer = Players.LocalPlayer
 		table.remove(players, table.find(players, localplayer))
@@ -7589,7 +7589,7 @@ end
 if cmd == "emotegui" then
 local respon, result = pcall(function()
 executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
-notify("Keybind",'press "," or comma')
+notify("Keybind",'press comma')
 end)
 
 if not respon then
@@ -8381,6 +8381,9 @@ end
 -- limit
 end
 -- end
+if string.sub(msg,1,1) == prefix then
+ErrorPrompt("Forbidden Prefix","prefix is ​​not supported in the command bar.")
+end
 end)
 
 cmds[#cmds + 1] = {Text = "[1] " .. tostring(prefix) .. "print [text]",Title = "useless"}
@@ -8735,14 +8738,14 @@ end
             ProtocolBlockCount = ProtocolBlockCount+1
             notify(ProtocolBlockCount .. " Players have blocked you.")
         end
-        if ProtocolChat == "AYO" or ProtocolChat == "YO" or ProtocolChat == "AY" or ProtocolChat == "ayo" or ProtocolChat == "ay" or ProtocolChat == "yo" then
+        if ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" then
             wait(1)
             ProtocolSendChat("")
         end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
             if _G.Settings.LocalBotChatFunc == true then
-            ProtocolSendChat("[Bot]: what?") -- roblox chat anti-detect
+            ProtocolSendChat("hm?") -- roblox chat anti-detect
             else
             warning("Bot is disabled","The bot will not answer if someone calls your name.")
             end
