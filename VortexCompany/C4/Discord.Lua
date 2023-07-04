@@ -22,7 +22,7 @@ _G.Settings = {
 -- _G.Settings.device
 -- _G.Settings.username
 if not game:IsLoaded() then
-    local MessageCore = Instance.new("Message", Workspace)
+    local MessageCore = Instance.new("Message", game:GetService("Workspace"))
     MessageCore.Text = "Vortex is waiting for the game to load"
     game.Loaded:Wait()
     MessageCore.Text = "game loaded successfully"
