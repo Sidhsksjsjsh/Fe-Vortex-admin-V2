@@ -505,7 +505,7 @@ Phase1.FontSize                = 'Size24'
 Phase1.Font                    = 'SourceSansBold'
 Phase1.Draggable = true
 Phase1.Name = "Admin-Label"
-Phase1.Visible = true
+Phase1.Visible = false
 
 FT1.Size                    = UDim2.new(0,200,0,30)
 FT1.BackgroundTransparency  = 0.5
@@ -8785,7 +8785,7 @@ introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 introFrame.Parent = introGui
 
 title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [03/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed some bugs🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+title.Text = "Vortex UPDATE LIST: [07/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 title.Size = UDim2.new(1, 0, 1, 0)
 title.Position = UDim2.new(0, 0, 0, 0)
 title.BackgroundColor3 = Color3.new(0, 0, 0)
