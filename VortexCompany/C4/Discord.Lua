@@ -558,7 +558,7 @@ FT1.FontSize                = 'Size24'
 FT1.Font                    = 'SourceSansBold'
 FT1.Draggable = false
 FT1.Name = "FLING TARGET UI"
-dragify(FT1)
+-- dragify(FT1)
 
 FT2.Size                    = UDim2.new(0,200,0,30)
 FT2.BackgroundTransparency  = 0.5
@@ -593,7 +593,7 @@ PV1.FontSize                = 'Size24'
 PV1.Font                    = 'SourceSansBold'
 PV1.Draggable = false
 PV1.Name = "PART TELEPORT"
-dragify(PV1)
+-- dragify(PV1)
 
 PV2.Size                    = UDim2.new(0,200,0,30)
 PV2.BackgroundTransparency  = 0.5
@@ -692,7 +692,7 @@ Control_1.FontSize                = 'Size24'
 Control_1.Font                    = 'SourceSansBold'
 Control_1.Draggable = false
 Control_1.Name = "FREECAM CONTROLLER"
-dragify(Control_1)
+-- dragify(Control_1)
 
 Control_2.Size                    = UDim2.new(0,200,0,30)
 Control_2.BackgroundTransparency  = 0.5
@@ -742,7 +742,7 @@ Control_UP.TextWrapped             = true
 Control_UP.FontSize                = 'Size24'
 Control_UP.Font                    = 'SourceSansBold'
 Control_UP.Draggable = false
-dragify(Control_UP)
+-- dragify(Control_UP)
 
 Control_Down.Size                    = UDim2.new(0,200,0,30)
 Control_Down.BackgroundTransparency  = 0.5
@@ -789,7 +789,7 @@ InFile.FontSize                = 'Size24'
 InFile.Font                    = 'SourceSansBold'
 InFile.Draggable = false
 InFile.Name = "FILE SAVER"
-dragify(InFile)
+-- dragify(InFile)
 
 SaveOMG.Size                    = UDim2.new(0,200,0,30)
 SaveOMG.BackgroundTransparency  = 0.5
@@ -828,7 +828,7 @@ Github.FontSize                = 'Size24'
 Github.Font                    = 'SourceSansBold'
 Github.Draggable = false
 Github.Name = "GITHUB USERNAME UI"
-dragify(Github)
+-- dragify(Github)
 
 WeatherCity.Size                    = UDim2.new(0,200,0,30)
 WeatherCity.BackgroundTransparency  = 0.5
@@ -843,7 +843,7 @@ WeatherCity.FontSize                = 'Size24'
 WeatherCity.Font                    = 'SourceSansBold'
 WeatherCity.Draggable = false
 WeatherCity.Name = "CITY NAME UI"
-dragify(WeatherCity)
+-- dragify(WeatherCity)
 
 WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
@@ -870,7 +870,7 @@ WhisperBox.FontSize                = 'Size24'
 WhisperBox.Font                    = 'SourceSansBold'
 WhisperBox.Draggable = false
 WhisperBox.Name = "WHISPER UI"
-dragify(WhisperBox)
+-- dragify(WhisperBox)
 
 WhisperButton.Size                    = UDim2.new(0,200,0,30)
 WhisperButton.BackgroundTransparency  = 0.5
@@ -927,7 +927,7 @@ Path.FontSize                = 'Size24'
 Path.Font                    = 'SourceSansBold'
 Path.Draggable = false
 Path.Name = "PART or PATH NAME"
-dragify(Path)
+-- dragify(Path)
 
 ChoosePart.Size                    = UDim2.new(0,200,0,30)
 ChoosePart.BackgroundTransparency  = 0.5
@@ -997,7 +997,7 @@ TextBar.FontSize                = 'Size24'
 TextBar.Font                    = 'SourceSansBold'
 TextBar.Draggable = false
 TextBar.Name = "CHAT BYPASS UI"
-dragify(TextBar)
+-- dragify(TextBar)
 
 BarSent.Size                    = UDim2.new(0,200,0,30)
 BarSent.BackgroundTransparency  = 0.5
@@ -1075,7 +1075,7 @@ TextBarExecutor.FontSize                = 'Size24'
 TextBarExecutor.Font                    = 'SourceSansBold'
 TextBarExecutor.Draggable = false
 TextBarExecutor.Name = "LINK EXECUTE"
-dragify(TextBarExecutor)
+-- dragify(TextBarExecutor)
 
 BarButtonExecute.Size                    = UDim2.new(0,200,0,30)
 BarButtonExecute.BackgroundTransparency  = 0.5
@@ -4307,15 +4307,18 @@ function DisplayUI(UIname)
       if UIname == "targetfling" then
       Interface_Visible(FT1,true)
       Interface_Visible(FT2,true)
+      dragify(FT1)
    end
       if UIname == "chatbypass" then
       TextBar.Visible = true
       BarSent.Visible = true
       ToggleBypassMode.Visible = true
+      dragify(TextBar)
    end
       if UIname == "exc" then
       TextBarExecutor.Visible = true
       BarButtonExecute.Visible = true
+      dragify(TextBarExecutor)
    end
       if UIname == "part" then
       Interface_Visible(Exit_4, true)
@@ -4323,22 +4326,26 @@ function DisplayUI(UIname)
       Interface_Visible(ChoosePart, true)
       Interface_Visible(Path, true)
       fuckingFrame.Visible = true
-		selectPart()
+      selectPart()
+      dragify(Path)
    end
       if UIname == "whisper" then
       Interface_Visible(WhisperButton, true)
       Interface_Visible(WhisperPlayer, true)
       Interface_Visible(WhisperBox, true)
+      dragify(WhisperBox)
    end
       if UIname == "file" then
       Interface_Visible(SaveOMG, true)
       Interface_Visible(FileName, true)
       Interface_Visible(InFile, true)
+      dragify(Infile)
    end
       if UIname == "prt" then
       Interface_Visible(PV1, true)
       Interface_Visible(PV2, true)
       Interface_Visible(PV3, true)
+      dragify(PV1)
    end
       if UIname == "all" then
       UI_A1.Visible = true
