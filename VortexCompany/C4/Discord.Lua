@@ -436,6 +436,44 @@ local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
+
+function dragify(Frame)
+    dragToggle = nil
+    dragSpeed = 1
+    dragInput = nil
+    dragStart = nil
+    dragPos = nil
+    function updateInput(input)
+        Delta = input.Position - dragStart
+        Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+        TweenService:Create(Frame, TweenInfo.new(0.25), {Position = Position}):Play()
+    end
+    Frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        if UserInputService:GetFocusedTextBox() == nil then
+            dragToggle = true
+            dragStart = input.Position
+            startPos = Frame.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragToggle = false
+                end
+            end)
+                end
+        end
+    end)
+    Frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragToggle then
+            updateInput(input)
+        end
+    end)
+end
+
 local GUI_MAIN                           = Instance.new('ScreenGui', game.CoreGui)
 local U1                         = Instance.new('TextButton', GUI_MAIN)
 local U2                         = Instance.new('TextButton', U1)
@@ -518,8 +556,9 @@ FT1.TextStrokeTransparency  = 1
 FT1.TextWrapped             = true
 FT1.FontSize                = 'Size24'
 FT1.Font                    = 'SourceSansBold'
-FT1.Draggable = true
+FT1.Draggable = false
 FT1.Name = "FLING TARGET UI"
+dragify(FT1)
 
 FT2.Size                    = UDim2.new(0,200,0,30)
 FT2.BackgroundTransparency  = 0.5
@@ -552,8 +591,9 @@ PV1.TextStrokeTransparency  = 1
 PV1.TextWrapped             = true
 PV1.FontSize                = 'Size24'
 PV1.Font                    = 'SourceSansBold'
-PV1.Draggable = true
+PV1.Draggable = false
 PV1.Name = "PART TELEPORT"
+dragify(PV1)
 
 PV2.Size                    = UDim2.new(0,200,0,30)
 PV2.BackgroundTransparency  = 0.5
@@ -609,9 +649,10 @@ CB.TextStrokeTransparency  = 1
 CB.TextWrapped             = true
 CB.FontSize                = 'Size24'
 CB.Font                    = 'SourceSansBold'
-CB.Draggable = true
+CB.Draggable = false
 CB.ClearTextOnFocus = false
 CB.Name = "COMMAND BAR"
+dragify(CB)
 
 function OpenCmdBar()
         TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,50)}):Play()
@@ -649,8 +690,9 @@ Control_1.TextStrokeTransparency  = 1
 Control_1.TextWrapped             = true
 Control_1.FontSize                = 'Size24'
 Control_1.Font                    = 'SourceSansBold'
-Control_1.Draggable = true
+Control_1.Draggable = false
 Control_1.Name = "FREECAM CONTROLLER"
+dragify(Control_1)
 
 Control_2.Size                    = UDim2.new(0,200,0,30)
 Control_2.BackgroundTransparency  = 0.5
@@ -699,7 +741,8 @@ Control_UP.TextStrokeTransparency  = 1
 Control_UP.TextWrapped             = true
 Control_UP.FontSize                = 'Size24'
 Control_UP.Font                    = 'SourceSansBold'
-Control_UP.Draggable = true
+Control_UP.Draggable = false
+dragify(Control_UP)
 
 Control_Down.Size                    = UDim2.new(0,200,0,30)
 Control_Down.BackgroundTransparency  = 0.5
@@ -744,8 +787,9 @@ InFile.TextStrokeTransparency  = 1
 InFile.TextWrapped             = true
 InFile.FontSize                = 'Size24'
 InFile.Font                    = 'SourceSansBold'
-InFile.Draggable = true
+InFile.Draggable = false
 InFile.Name = "FILE SAVER"
+dragify(InFile)
 
 SaveOMG.Size                    = UDim2.new(0,200,0,30)
 SaveOMG.BackgroundTransparency  = 0.5
@@ -782,8 +826,9 @@ Github.TextStrokeTransparency  = 1
 Github.TextWrapped             = true
 Github.FontSize                = 'Size24'
 Github.Font                    = 'SourceSansBold'
-Github.Draggable = true
+Github.Draggable = false
 Github.Name = "GITHUB USERNAME UI"
+dragify(Github)
 
 WeatherCity.Size                    = UDim2.new(0,200,0,30)
 WeatherCity.BackgroundTransparency  = 0.5
@@ -796,8 +841,9 @@ WeatherCity.TextStrokeTransparency  = 1
 WeatherCity.TextWrapped             = true
 WeatherCity.FontSize                = 'Size24'
 WeatherCity.Font                    = 'SourceSansBold'
-WeatherCity.Draggable = true
+WeatherCity.Draggable = false
 WeatherCity.Name = "CITY NAME UI"
+dragify(WeatherCity)
 
 WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
@@ -822,8 +868,9 @@ WhisperBox.TextStrokeTransparency  = 1
 WhisperBox.TextWrapped             = true
 WhisperBox.FontSize                = 'Size24'
 WhisperBox.Font                    = 'SourceSansBold'
-WhisperBox.Draggable = true
+WhisperBox.Draggable = false
 WhisperBox.Name = "WHISPER UI"
+dragify(WhisperBox)
 
 WhisperButton.Size                    = UDim2.new(0,200,0,30)
 WhisperButton.BackgroundTransparency  = 0.5
@@ -878,8 +925,9 @@ Path.TextStrokeTransparency  = 1
 Path.TextWrapped             = true
 Path.FontSize                = 'Size24'
 Path.Font                    = 'SourceSansBold'
-Path.Draggable = true
+Path.Draggable = false
 Path.Name = "PART or PATH NAME"
+dragify(Path)
 
 ChoosePart.Size                    = UDim2.new(0,200,0,30)
 ChoosePart.BackgroundTransparency  = 0.5
@@ -947,8 +995,9 @@ TextBar.TextStrokeTransparency  = 1
 TextBar.TextWrapped             = true
 TextBar.FontSize                = 'Size24'
 TextBar.Font                    = 'SourceSansBold'
-TextBar.Draggable = true
+TextBar.Draggable = false
 TextBar.Name = "CHAT BYPASS UI"
+dragify(TextBar)
 
 BarSent.Size                    = UDim2.new(0,200,0,30)
 BarSent.BackgroundTransparency  = 0.5
@@ -1024,8 +1073,9 @@ TextBarExecutor.TextStrokeTransparency  = 1
 TextBarExecutor.TextWrapped             = true
 TextBarExecutor.FontSize                = 'Size24'
 TextBarExecutor.Font                    = 'SourceSansBold'
-TextBarExecutor.Draggable = true
+TextBarExecutor.Draggable = false
 TextBarExecutor.Name = "LINK EXECUTE"
+dragify(TextBarExecutor)
 
 BarButtonExecute.Size                    = UDim2.new(0,200,0,30)
 BarButtonExecute.BackgroundTransparency  = 0.5
