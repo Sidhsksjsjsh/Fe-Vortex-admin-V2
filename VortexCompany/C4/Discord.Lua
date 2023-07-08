@@ -1149,8 +1149,8 @@ U5.Size                    = UDim2.new(0,200,0,30)
 U5.BackgroundTransparency  = 0.5
 U5.BackgroundColor         = BrickColor.new('Fossil')
 U5.BorderSizePixel         = 0
-U5.Position                = UDim2.new(0.5,-100,0,0)
-U5.Text                    = "↑"
+U5.Position                = UDim2.new(0.5,-100,0,120)
+U5.Text                    = "UP"
 U5.TextColor3              = Color3.new(1,1,1)
 U5.TextStrokeTransparency  = 1
 U5.TextWrapped             = true
@@ -1162,8 +1162,8 @@ U6.Size                    = UDim2.new(0,200,0,30)
 U6.BackgroundTransparency  = 0.5
 U6.BackgroundColor         = BrickColor.new('Fossil')
 U6.BorderSizePixel         = 0
-U6.Position                = UDim2.new(0.5,-100,0,30)
-U6.Text                    = "↓"
+U6.Position                = UDim2.new(0.5,-100,0,150)
+U6.Text                    = "DOWN"
 U6.TextColor3              = Color3.new(1,1,1)
 U6.TextStrokeTransparency  = 1
 U6.TextWrapped             = true
@@ -2942,7 +2942,7 @@ WhisperButton.MouseButton1Down:Connect(function()
 end)
         function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
-        game.Players.LocalPlayer:Kick("\nRejoining...")
+       -- game.Players.LocalPlayer:Kick("\nRejoining...")
         wait()
         game:GetService('TeleportService'):Teleport(game.PlaceId, speaker)
     else
@@ -5776,6 +5776,8 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
+        U5.Visible = true
+        U6.Visible = true
 	notify("mobile FLY","FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
@@ -5834,6 +5836,8 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
+        U5.Visible = true
+        U6.Visible = true
 	notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
@@ -5855,6 +5859,8 @@ U1.Visible = false
 U2.Visible = false
 U3.Visible = false
 U4.Visible = false
+U5.Visible = false
+U6.Visible = false
 notify("FLY","FLY disabled")
 end
 if cmd == "vfly" then
@@ -5866,6 +5872,8 @@ NOFLY()
         U2.Visible = true
         U3.Visible = true
         U4.Visible = true
+        U5.Visible = true
+        U6.Visible = true
         notify("Mobile Vehicle FLY","VEHICLE FLY enabled for mobile devices")
 end
 if _G.Settings.device == "PC" then
