@@ -1317,7 +1317,7 @@ UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 UIAspectRatioConstraint.Parent = UIListLayout
 
 MainCmdbar.Name = 'MainCmdbar'
-MainCmdbar.Parent = ScreenGui
+MainCmdbar.Parent = VortexUICmd
 MainCmdbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 MainCmdbar.BackgroundTransparency = 1
 MainCmdbar.Position = UDim2.new(2.885, 0, 0.61, 0)
@@ -9092,14 +9092,14 @@ VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [10/07/2023]","[CONTENT] \n
 })
 
 -- ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
-
+--[[
 -- Create a tween for the intro frame to slide onto the screen
 local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Position = UDim2.new(0, 0, 0, 0)})
 
 -- Start the tween
 tween:Play()
-
+--]]
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
 
 -- ErrorPrompt("Announcement from staff", "Roblox has released a new anti-cheat called byfron and we have bypassed that anti-cheat, relax, it will not be detected.", "OK")
