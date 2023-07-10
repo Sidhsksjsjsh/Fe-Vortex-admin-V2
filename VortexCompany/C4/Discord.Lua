@@ -331,6 +331,8 @@ end
 --]]
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+getgenv().IrisAd = true
+local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 function notify(title, content)
 	NotifyV1:Notify(
@@ -408,7 +410,7 @@ local vehicleflyspeed = 1
 local flinging = false
 local oofing = false
 local TeleportService = game:GetService("TeleportService")
-local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request)
+local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
 local queue_on_teleport = syn and syn.queue_on_teleport or queue_on_teleport
 local sethidden = sethiddenproperty or set_hidden_property or set_hidden_prop
 local gethidden = gethiddenproperty or get_hidden_property or get_hidden_prop
@@ -436,6 +438,92 @@ local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
+--[[
+function LyricsMusic(musicname)
+repeat task.wait() until game:IsLoaded()
+
+if not getgenv().executedHi then
+	getgenv().executedHi = true
+else
+	return
+end
+local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
+
+local songName,plr
+local debounce = false
+
+getgenv().stopped = false
+
+local function sendMessage(text)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "All")
+end
+
+
+game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents:WaitForChild('OnMessageDoneFiltering').OnClientEvent:Connect(function(msgdata)
+	if plr ~= nil and (msgdata.FromSpeaker == plr or msgdata.FromSpeaker == game:GetService('Players').LocalPlayer.Name) then
+		if string.lower(msgdata.Message) == '>stop' then
+			getgenv().stopped = true
+			debounce = true
+			task.wait(3)
+			debounce = false
+		end
+	end
+	if debounce or not string.match(msgdata.Message, '>lyrics ') or string.gsub(msgdata.Message, '>lyrics', '') == '' or game:GetService('Players')[msgdata.FromSpeaker] == game:GetService('Players').LocalPlayer then
+		return
+	end
+	debounce = true
+	local speaker = msgdata.FromSpeaker
+	local msg = string.lower(msgdata.Message):gsub('>lyrics ', ''):gsub('"', ''):gsub(' by ','/')
+	local speakerDisplay = game:GetService('Players')[speaker].DisplayName
+	plr = game:GetService('Players')[speaker].Name
+	songName = string.gsub(msg, " ", ""):lower()
+	local response
+    local suc,er = pcall(function()
+	response = httprequest({
+		Url = "https://lyrist.vercel.app/api/" .. songName,
+		Method = "GET",
+	})
+    end)
+    if not suc then
+	notify('Unexpected error','please retry')
+	task.wait(3)
+	debounce = false
+	return
+    end
+	local lyricsData = game:GetService('HttpService'):JSONDecode(response.Body)
+	local lyricsTable = {}
+	if lyricsData.error and lyricsData.error == "Lyrics Not found" then
+		debounce = true
+		sendMessage('Lyrics were not found')
+		task.wait(3)
+		debounce = false
+		return
+	end
+	for line in string.gmatch(lyricsData.lyrics, "[^\n]+") do
+		table.insert(lyricsTable, line)
+	end
+	sendMessage('Fetched lyrics')
+	task.wait(2)
+	notify('Playing song requested by ' .. speakerDisplay .. ','You can stop it by typing "/stop"')
+	task.wait(3)
+	for i, line in ipairs(lyricsTable) do
+		if getgenv().stopped then
+			getgenv().stopped = false
+			break
+		end
+		sendMessage(line)
+		task.wait(4.7)
+	end
+	task.wait(3)
+	debounce = false
+	sendMessage('Ended. You can request songs again.')
+end)
+
+notify("Tutorial",'I am a lyrics bot! Type ">lyrics SongName" and I will sing the song for you!')
+task.wait(2)
+notify("Tutorial",'You can also do ">lyrics SongName by Author"')
+end
+--]]
 
 function dragify(Frame)
     dragToggle = nil
@@ -651,6 +739,8 @@ CB.FontSize                = 'Size24'
 CB.Font                    = 'SourceSansBold'
 CB.Draggable = false
 CB.ClearTextOnFocus = false
+CB.Visible = false
+
 CB.Name = "COMMAND BAR"
 dragify(CB)
 
@@ -1169,6 +1259,162 @@ U6.TextStrokeTransparency  = 1
 U6.TextWrapped             = true
 U6.FontSize                = 'Size24'
 U6.Font                    = 'SourceSansBold'
+
+_G.ToggleKey = 'E'
+
+local VortexUICmd = Instance.new('ScreenGui')
+local Main = Instance.new('ImageLabel')
+local Title = Instance.new('TextLabel')
+local ScrollingFrame = Instance.new('ScrollingFrame')
+local UIListLayout = Instance.new('UIListLayout')
+local UIAspectRatioConstraint = Instance.new('UIAspectRatioConstraint')
+local MainCmdbar = Instance.new('ImageLabel')
+local TextBox = Instance.new('TextBox')
+local Example = Instance.new('TextLabel')
+
+local char = speaker.Character
+
+VortexUICmd.Parent = COREGUI
+
+Main.Name = 'Main'
+Main.Parent = VortexUICmd
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.BackgroundTransparency = 1
+Main.Position = UDim2.new(0.99, 0, 0.652, 0)
+Main.Size = UDim2.new(0, 189, 0, 212)
+Main.Image = 'rbxassetid://3570695787'
+Main.ImageColor3 = Color3.fromRGB(20, 20, 20)
+Main.ScaleType = Enum.ScaleType.Slice
+Main.SliceCenter = Rect.new(100, 100, 100, 100)
+Main.SliceScale = 0.120
+
+Title.Name = 'Title'
+Title.Parent = Main
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1
+Title.Position = UDim2.new(-0.383801281, 0, 0.385744482, 0)
+Title.Rotation = 90
+Title.TextScaled = false
+Title.Size = UDim2.new(0, 165, 0, 48)
+Title.Font = Enum.Font.SourceSans
+Title.Text = "V        O        R        T        E        X" -- V       2
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 14
+
+ScrollingFrame.Parent = Main
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0.121894635, 0, 0.0822094604, 0)
+ScrollingFrame.Size = UDim2.new(0, 165, 0, 194)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 5, 0)
+ScrollingFrame.ScrollBarThickness = 3
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+UIAspectRatioConstraint.Parent = UIListLayout
+
+MainCmdbar.Name = 'MainCmdbar'
+MainCmdbar.Parent = ScreenGui
+MainCmdbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainCmdbar.BackgroundTransparency = 1
+MainCmdbar.Position = UDim2.new(2.885, 0, 0.61, 0)
+MainCmdbar.Size = UDim2.new(0, 249, 0, 37)
+MainCmdbar.Image = 'rbxassetid://3570695787'
+MainCmdbar.ImageColor3 = Color3.fromRGB(20, 20, 20)
+MainCmdbar.ScaleType = Enum.ScaleType.Slice
+MainCmdbar.SliceCenter = Rect.new(100, 100, 100, 100)
+MainCmdbar.SliceScale = 2
+
+TextBox.Parent = MainCmdbar
+TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BackgroundTransparency = 1
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.02, 0, 0, 0)
+TextBox.Size = UDim2.new(0, 203, 0, 37)
+TextBox.Font = Enum.Font.SourceSansLight
+TextBox.Text = ''
+TextBox.TextColor3 = Color3.fromRGB(229, 229, 229)
+TextBox.TextSize = 17
+TextBox.TextWrapped = true
+TextBox.TextXAlignment = Enum.TextXAlignment.Left
+
+Example.Name = 'Example'
+Example.Parent = Main
+Example.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+Example.BackgroundTransparency = 1
+Example.BorderSizePixel = 0
+Example.Position = UDim2.new(-2.04146218, 0, 0.0974030718, 0)
+Example.Size = UDim2.new(0, 175, 0, 19)
+Example.ZIndex = 2
+Example.Font = Enum.Font.SourceSans
+Example.Text = 'Tora#4172'
+Example.TextColor3 = Color3.fromRGB(180, 180, 180)
+Example.TextScaled = true
+Example.TextSize = 14
+Example.TextStrokeColor3 = Color3.fromRGB(244, 244, 244)
+Example.TextTransparency = 1
+Example.TextWrapped = true
+Example.TextXAlignment = Enum.TextXAlignment.Left
+
+function newcmd(TextBox)
+    local TextLabel = Instance.new('TextLabel')
+    TextLabel.Parent = ScrollingFrame
+    TextLabel.Name = 'Command'
+    TextLabel.Text = TextBox
+    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.BackgroundTransparency = 1.000
+    TextLabel.BorderSizePixel = 0
+    TextLabel.Size = UDim2.new(0, 237, 0, 23)
+    TextLabel.Font = Enum.Font.SourceSans 
+    TextLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+    TextLabel.TextSize = 16
+    TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+end
+
+newcmd('print [Value]')
+
+spawn(function()
+    TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
+end)
+TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
+wait(1.5)
+TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
+TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
+
+speaker:GetMouse().KeyDown:Connect(function(key)
+	if key == _G.ToggleKey then
+	    wait()
+	    TextBox:CaptureFocus()
+	    spawn(function()
+	        TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
+	    end)
+	    TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
+	end
+end)
+
+TextBox.FocusLost:Connect(function()
+    TextBox.Text = ''
+    TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
+    TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
+end)
+
+Main.MouseEnter:Connect(function()
+    spawn(function()
+        TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
+    end)
+    TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
+end)
+
+Main.MouseLeave:Connect(function()
+    TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
+    TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
+end)
+
+-- TextBox.FocusLost:Connect(function(cmd)
+
 
 repeat wait() until speaker.Character
 
@@ -5460,7 +5706,7 @@ end
 
 local arrow = "> "
 local Arrow_2 = " <"
-CB.FocusLost:Connect(function(Enter)
+TextBox.FocusLost:Connect(function(Enter)
    if Enter then
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
@@ -5493,10 +5739,10 @@ _G.Settings.PastedSources = false
 speaker.Character.HumanoidRootPart.CFrame = LPost
 end)
 
-CB.FocusLost:Connect(function(Execute) -- prefix disabled
+TextBox.FocusLost:Connect(function(Execute) -- prefix disabled
    if Execute then -- 1
-local msg = CB.Text:lower()
-if string.sub(CB.Text,1,3) == "/e " then
+local msg = TextBox.Text:lower()
+if string.sub(TextBox.Text,1,3) == "/e " then
 msg = string.sub(msg,4)
 end
 -- if string.sub(msg,1,1) == prefix then -- 2
@@ -8709,6 +8955,7 @@ cmds[#cmds + 1] = {Text = "[248] " .. tostring(prefix) .. "pathfindfollow [plr]"
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
        warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
+       newcmd(tostring(cmds[v].Text))
 end
 --[[
 function GetPlayer(String)
@@ -8832,52 +9079,17 @@ if ESPenabled then
 		ESP(plr)
 	end
 end)
--- Define variables
-local introGui = Instance.new("ScreenGui")
-local introFrame = Instance.new("Frame")
-local closeButton = Instance.new("TextButton")
-local title = Instance.new("TextLabel")
 
--- Set up the intro GUI
-introGui.Name = "IntroGui"
-introGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+-- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
--- Set up the intro frame
-introFrame.Name = "IntroFrame"
-introFrame.Size = UDim2.new(1, 0, 1, 0)
-introFrame.Position = UDim2.new(0, 0, 0, 0)
-introFrame.BackgroundColor3 = Color3.new(1, 1, 1)
-introFrame.Parent = introGui
-
-title.Name = "Text"
-title.Text = "Vortex UPDATE LIST: [07/07/2023] \n\n[CONTENT] \n[+] added 3 bypass words to the chat \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
-title.Size = UDim2.new(1, 0, 1, 0)
-title.Position = UDim2.new(0, 0, 0, 0)
-title.BackgroundColor3 = Color3.new(0, 0, 0)
-title.TextColor3 = Color3.new(1, 1, 1)
-title.Parent = introFrame
-
--- Set up the close button
-closeButton.Name = "CloseButton"
-closeButton.Text = "Close"
-closeButton.Size = UDim2.new(0, 200, 0, 50)
-closeButton.Position = UDim2.new(0.5, -100, 0.9, 0)
-closeButton.BackgroundColor3 = Color3.new(0, 0, 0)
-closeButton.TextColor3 = Color3.new(1, 1, 1)
-closeButton.Parent = introFrame
-
--- Set up the close button's functionality
-closeButton.MouseButton1Click:Connect(function()
-    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    local tween = game:GetService("TweenService"):Create(introFrame, tweenInfo, {Position = UDim2.new(0, 0, 1, 0)})
-    
-    -- Start the tween and destroy the intro GUI when it's finished
-    -- tptool_A1()
-    tween:Play()
-    tween.Completed:Connect(function()
-        introGui:Destroy()
-    end)
-end)
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [10/07/2023]","[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Bypass Fluxus Security system \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+    MainSettings = {
+        Orientation = "Left",
+        VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
+        HiddenSize  = UDim2.new(0, 0, 0.5, 0),
+        TweenTime   = 0.8
+    },
+})
 
 -- ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
 
