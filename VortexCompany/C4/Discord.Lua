@@ -1374,7 +1374,7 @@ function newcmd(TextBox)
     TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 end
 
-newcmd('print [Value]')
+-- newcmd('print [Value]')
 
 spawn(function()
     TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
@@ -1872,6 +1872,123 @@ local replace = {
       cum = "с⁥⁥⁥𐌑úm",
       cock = "с𐌑ồс𐌑k",
       fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
+      asshole = "𐌑áѕѕh𐌑ol𐌑e𐌑𝖔 ͜ ͣ ",
+      rape = "r𐌑áр𐌑e",
+      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ o𐌑𝖔 ͜ ͣ b𐌑s𐌑𝖔 ͜ ͣ ",
+      titties = "Т𐌑ìtt𐌑ìes",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑𝖔 ͜ ͣ ",
+      sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
+      hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
+      porn = "р𐌑ồrn",
+      nigga = "n𐌑ìgg⁥𐌑á",
+      penis = "р𐌑еn⁥𐌑ìs",
+      beaner = "𐌑bе𐌑аn⁥е𐌑r",
+      thot = "th𐌑ồt",
+      xxx = "xxx",
+      hentai = "h𐌑ent𐌑ái",
+      bitch = "b𐌑ìtch𐌑𝖔 ͜ ͣ ⁥⁥⁥⁥",
+      bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
+      shit = "sh𐌑ìt𐌑𝖔 ͜ ͣ ",
+      kys = "kys",
+      butthole = "b𐌑útth𐌑ồle",
+      masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e𐌑𝖔 ͜ ͣ ",
+      bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
+      blowjob = "bl𐌑ồwj𐌑ồb",
+      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
+      cs = "с𐌑ồсk s𐌑úсkеr",
+      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
+      dick = "d𐌑ìc𐌑k",
+      dogshit = "d𐌑ồgsh𐌑ìt𐌑𝖔 ͜ ͣ ",
+      tits = "t𐌑ìts",
+      pussy = "p𐌑ússy",
+      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑m𐌑𝖔 ͜ ͣ ",
+      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
+      memek = "m𐌑em𐌑ek",
+      sepong = "s𐌑ep𐌑on𐌑g",
+      kontol = "k𐌑o𐌑nt𐌑ol",
+      ngentot = "ng𐌑en𐌑to𐌑t",
+      jembut = "j𐌑emb𐌑út",
+      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìs𐌑𝖔 ͜ ͣ t𐌑𝖔 ͜ ͣ ",
+      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
+      hub = "h𐌑úb",
+      cyka = "c𐌑yk𐌑á",
+      blyat = "bl𐌑y𐌑át",
+      gay = "g𐌑áy",
+      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
+      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e",
+      i = "i",
+      love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
+      you = "yo𐌑ú",
+      tiktok = "t𐌑ìkt𐌑ok"
+}
+--[[
+local replaceCAPS = { 
+      ass = "𐌑á⁥⁥⁥⁥ѕѕ",
+      cum = "с⁥⁥⁥𐌑úm",
+      cock = "с𐌑ồс𐌑k",
+      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
+      asshole = "𐌑áѕѕh𐌑ol𐌑e",
+      rape = "r𐌑áр𐌑e",
+      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ ob𐌑s",
+      titties = "Т𐌑ìtt𐌑ìes",
+      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
+      sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
+      hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
+      porn = "р𐌑ồrn",
+      nigga = "n𐌑ìgg⁥𐌑á",
+      penis = "р𐌑еn⁥𐌑ìs",
+      beaner = "𐌑bе𐌑аn⁥е𐌑r",
+      thot = "th𐌑ồt",
+      xxx = "xxx",
+      hentai = "h𐌑ent𐌑ái",
+      bitch = "b𐌑ìtch⁥⁥⁥⁥",
+      bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
+      shit = "sh𐌑ìt",
+      kys = "kys",
+      butthole = "b𐌑útth𐌑ồle",
+      masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e",
+      bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
+      blowjob = "bl𐌑ồwj𐌑ồb",
+      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
+      cs = "с𐌑ồсk s𐌑úсkеr",
+      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
+      dick = "d𐌑ìc𐌑k",
+      dogshit = "d𐌑ồg sh𐌑ìt",
+      tits = "t𐌑ìts",
+      pussy = "p𐌑ússy",
+      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑m",
+      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
+      memek = "m𐌑em𐌑ek",
+      sepong = "s𐌑ep𐌑on𐌑g",
+      kontol = "k𐌑o𐌑nt𐌑ol",
+      ngentot = "ng𐌑en𐌑to𐌑t",
+      jembut = "j𐌑emb𐌑út",
+      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìsts",
+      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
+      hub = "h𐌑úb",
+      cyka = "c𐌑yk𐌑á",
+      blyat = "bl𐌑y𐌑át",
+      gay = "g𐌑áy",
+      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
+      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e",
+      i = "i",
+      love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
+      you = "yo𐌑ú",
+      tiktok = "t𐌑ìkt𐌑ok"
+--]]
+
+function SyncBypassChat(str)
+local chat = str:lower()
+return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok)
+end
+--[[
+local replaceCAPS = { 
+      ass = "𐌑á⁥⁥⁥⁥ѕѕ",
+      cum = "с⁥⁥⁥𐌑úm",
+      cock = "с𐌑ồс𐌑k",
+      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
       asshole = "𐌑áѕѕh𐌑ol𐌑e",
       rape = "r𐌑áр𐌑e",
       boobs = "𐌑Bo𐌑𝖔 ͜ ͣ ob𐌑s",
@@ -1923,11 +2040,11 @@ local replace = {
       tiktok = "t𐌑ìkt𐌑ok"
 }
 
-function SyncBypassChat(str)
-local chat = str:lower()
-return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok)
+function CAPS_BYPASS(str)
+local Caps_Chat = str:lower()
+Caps_Chat:gsub("ASS",replaceCAPS.)
 end
-
+--]]
 function BP_SyncBypassChat(BypassWord)
 local chat = BypassWord:lower()
     local tabl = {}
