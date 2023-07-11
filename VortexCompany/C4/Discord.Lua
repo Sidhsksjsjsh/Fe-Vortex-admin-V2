@@ -8806,6 +8806,15 @@ walkto = false
 		end
 	end
 end
+if cmd == "laugh" then
+ProtocolSendChat("/e laugh")
+end
+if cmd == "point" then
+ProtocolSendChat("/e point")
+end
+if cmd == "cheer" then
+ProtocolSendChat("/e cheer")
+end
 -- limit
 end
 -- end
@@ -9067,7 +9076,9 @@ cmds[#cmds + 1] = {Text = "[245] " .. tostring(prefix) .. "beast",Title = ""}
 cmds[#cmds + 1] = {Text = "[246] " .. tostring(prefix) .. "assasin",Title = ""}
 cmds[#cmds + 1] = {Text = "[247] " .. tostring(prefix) .. "dssj4",Title = ""}
 cmds[#cmds + 1] = {Text = "[248] " .. tostring(prefix) .. "pathfindfollow [plr]",Title = "follow player using pathfinding"}
-
+cmds[#cmds + 1] = {Text = "[249] " .. tostring(prefix) .. "laugh",Title = "laughing"}
+cmds[#cmds + 1] = {Text = "[250] " .. tostring(prefix) .. "cheer",Title = "cherring"}
+cmds[#cmds + 1] = {Text = "[251] " .. tostring(prefix) .. "point",Title = "point🤦"}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9199,7 +9210,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [10/07/2023]","[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Bypass Fluxus Security system \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [11/07/2023]","[CONTENT] \n[+] Added 3 new commands \n[+] Public Chat AI (UI toggle E or R) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed UI Dragging function bugs (FOR PC) \n[-] Fixed UI Size and Position (FOR MOBILE) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
@@ -9272,6 +9283,12 @@ end
 end)
 --]]
 -- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
+
+UserInputService.InputBegan:Connect(function(KeyPressed)
+  if KeyPressed.KeyCode == Enum.KeyCode.R or KeyPressed.KeyCode == Enum.KeyCode.E then
+     ErrorPrompt("Bad HTTPS","Error Maintenance")
+  end
+end)
 
 local restnotify = true
 
