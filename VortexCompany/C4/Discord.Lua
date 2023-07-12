@@ -400,6 +400,7 @@ local GuiService = game:GetService("GuiService")
 local HttpService = game:GetService("HttpService")
 local RunService = game:GetService("RunService")
 local hb = RunService.Heartbeat
+local VoiceChatService = game:GetService("VoiceChatService")
 local COREGUI = game:GetService("CoreGui")
 local ESPenabled = false
 local Mouse = speaker:GetMouse()
@@ -434,7 +435,7 @@ local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local countb = 0
 local HumanModCons = {}
-local friendsonline = #speaker:GetFriendsOnline()
+-- local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
 Blur.Size = 0 -- 12
@@ -3025,7 +3026,7 @@ if InterfaceEnter then
 if Github.Text then
 local username = Github.Text
 
-local options = {
+local options = httprequest{
     Url = "https://api.github.com/users/" .. username,
     Method = "GET",
     Headers = {
@@ -3071,7 +3072,7 @@ if WeatherApiKey.Text then
 local city = WeatherCity.Text or "New York"
 local apiKey = WeatherApiKey.Text
 
-local options = {
+local options = httprequest{
     Url = "http://api.openweathermap.org/data/2.5/weather?q=" .. city .. "&appid=" .. apiKey,
     Method = "GET",
     Headers = {
@@ -7618,7 +7619,7 @@ local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 	end
 end
 if cmd == "fakedata" then
-local options = {
+local options = httprequest{
     Url = "https://jsonplaceholder.typicode.com/users",
     Method = "GET",
     Headers = {
@@ -7633,8 +7634,8 @@ if success then
     for _, user in ipairs(users) do
         print("User ID: " .. user.id)
         print("Username: " .. user.username)
-	notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
-	ErrorPrompt("Fake data generator", "User ID: " .. user.id .. "\nUsername: " .. user.username, "OK")
+	-- notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
+	ErrorPrompt("Fake data generator","User ID: " .. user.id .. "\nUsername: " .. user.username)
     end
 else
     -- notify("Error making request: " .. tostring(result))
@@ -8814,6 +8815,17 @@ ProtocolSendChat("/e point")
 end
 if cmd == "cheer" then
 ProtocolSendChat("/e cheer")
+end
+if cmd == "vccheck" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+           if VoiceChatService:IsVoiceEnabledForUserIdAsync(Players[v].UserId) then
+              notify(tostring(Players[v]) .. " VC Checks","This player has voice chat enabled")
+         else
+              notify(tostring(Players[v]) .. " VC Checks","This player does not have voice chat enabled")
+          end
+    end
 end
 -- limit
 end
