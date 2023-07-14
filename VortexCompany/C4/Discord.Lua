@@ -1910,7 +1910,7 @@ local replace = {
       ngentot = "ng𐌑en𐌑to𐌑t",
       jembut = "j𐌑emb𐌑út",
       bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
-      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìs𐌑𝖔 ͜ ͣ t𐌑𝖔 ͜ ͣ ",
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìs𐌑𝖔 ͜ ͣ t𐌑𝖔 ͜ ͣ s",
       discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
       hub = "h𐌑úb",
       cyka = "c𐌑yk𐌑á",
@@ -6773,7 +6773,14 @@ end
 end
 if cmd == "clogs" then
 local respon, result = pcall(function()
+if not speaker.PlayerGui:FindFirstChild("ChatGui") then
 executeHTTPS("https://pastebin.com/raw/CB3Jghvb")
+else
+speaker.PlayerGui:FindFirstChild("ChatGui").Frame.LogPanel.Visible = true
+speaker.PlayerGui:FindFirstChild("ChatGui").Frame.Close.Visible = true
+speaker.PlayerGui:FindFirstChild("ChatGui").Frame.Mini.Visible = true
+speaker.PlayerGui:FindFirstChild("ChatGui").Frame.Log.Visible = true
+end
 end)
 
 if not respon then
@@ -7084,7 +7091,7 @@ if speaker.Character then
 	end
 end
 if cmd == "noterrain" then
-game:GetService("Workspace"):FindFirstChild('Terrain'):Destroy()
+game:GetService("Workspace"):FindFirstChild('Terrain'):Clear()
 end
 if cmd == "firecd" then
 local var = string.sub(msg,space+1)
@@ -9222,7 +9229,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [11/07/2023]","[CONTENT] \n[+] Added 3 new commands \n[+] Public Chat AI (UI toggle E or R) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed UI Dragging function bugs (FOR PC) \n[-] Fixed UI Size and Position (FOR MOBILE) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [14/07/2023]","[CONTENT] \n[?] None.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Chatlogs bug (Team, Whisper) \n[-] Fixed Chat AI bug (UI Problem) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
