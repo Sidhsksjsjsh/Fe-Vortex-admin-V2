@@ -1390,6 +1390,7 @@ speaker:GetMouse().KeyDown:Connect(function(key)
 	    wait()
 	    TextBox:CaptureFocus()
 	    spawn(function()
+                Blur.Size = 7
 	        TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
 	    end)
 	    TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
@@ -1398,18 +1399,21 @@ end)
 
 TextBox.FocusLost:Connect(function()
     TextBox.Text = ''
+    Blur.Size = 0
     TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
     TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
 end)
 
 Main.MouseEnter:Connect(function()
     spawn(function()
+        Blur.Size = 7.5
         TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
     end)
     TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
 end)
 
 Main.MouseLeave:Connect(function()
+    Blur.Size = 0
     TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
     TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
 end)
@@ -1921,7 +1925,9 @@ local replace = {
       i = "i",
       love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
       you = "yo𐌑ú",
-      tiktok = "t𐌑ìkt𐌑ok"
+      tiktok = "t𐌑ìkt𐌑ok",
+      condom = "c𐌑𝖔 ͜ ͣ o𐌑n𐌑do𐌑m",
+      suck = "s𐌑úc𐌑𝖔 ͜ ͣ k"
 }
 --[[
 local replaceCAPS = { 
@@ -1982,7 +1988,7 @@ local replaceCAPS = {
 
 function SyncBypassChat(str)
 local chat = str:lower()
-return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok)
+return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok):gsub("condom",replace.condom):gsub("suck",replace.suck)
 end
 --[[
 local replaceCAPS = { 
@@ -4865,7 +4871,8 @@ local _AnimName = ""
 function _Anims(id)
 AnimService = Instance.new("Animation")
 AnimService.AnimationId = "rbxassetid://" .. id
-ServiceStart = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimService)
+AnimService.Name = "Custom Animation"
+ServiceStart = speaker.Character.Humanoid:LoadAnimation(AnimService)
 ServiceStart:Play()
 ServiceStart:AdjustSpeed(1)
 
@@ -8824,15 +8831,31 @@ if cmd == "cheer" then
 ProtocolSendChat("/e cheer")
 end
 if cmd == "vccheck" then
-local var = string.sub(msg,space+1)
-local variable = getPlayer(var, speaker)
-	for i,v in pairs(variable) do
-           if VoiceChatService:IsVoiceEnabledForUserIdAsync(Players[v].UserId) then
+if VoiceChatService:IsVoiceEnabledForUserIdAsync(speaker.UserId) then
               notify(tostring(Players[v]) .. " VC Checks","This player has voice chat enabled")
          else
               notify(tostring(Players[v]) .. " VC Checks","This player does not have voice chat enabled")
           end
-    end
+ end
+if cmd == "sad" then
+_Anims("180612465")
+wait(1.5)
+speaker.Character.Animate.Disabled = true
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(0)
+	end
+end
+if cmd == "unsad" then
+AnimService:Destroy()
+ServiceStart:Stop()
+speaker.Character.Animate.Disabled = false
+local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
+	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
+	for _, v in pairs(ActiveTracks) do
+		v:AdjustSpeed(1)
+	end
 end
 -- limit
 end
@@ -9098,6 +9121,8 @@ cmds[#cmds + 1] = {Text = "[248] " .. tostring(prefix) .. "pathfindfollow [plr]"
 cmds[#cmds + 1] = {Text = "[249] " .. tostring(prefix) .. "laugh",Title = "laughing"}
 cmds[#cmds + 1] = {Text = "[250] " .. tostring(prefix) .. "cheer",Title = "cherring"}
 cmds[#cmds + 1] = {Text = "[251] " .. tostring(prefix) .. "point",Title = "point🤦"}
+cmds[#cmds + 1] = {Text = "[252] " .. tostring(prefix) .. "sad",Title = "i lost my gf:("}
+cmds[#cmds + 1] = {Text = "[253] " .. tostring(prefix) .. "unsad",Title = "Nothing."}
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
@@ -9229,7 +9254,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [14/07/2023]","[CONTENT] \n[?] None.. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Chatlogs bug (Team, Whisper) \n[-] Fixed Chat AI bug (UI Problem) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [15/07/2023]","[CONTENT] \n[+] Added 2 new fucking commands. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Chatlogs bug (Team, Whisper) \n[-] Fixed Chat AI bug (UI Problem) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
