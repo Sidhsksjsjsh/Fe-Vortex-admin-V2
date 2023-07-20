@@ -1879,21 +1879,21 @@ local replace = {
       fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
       asshole = "𐌑áѕѕh𐌑ol𐌑e𐌑𝖔 ͜ ͣ ",
       rape = "r𐌑áр𐌑e",
-      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ o𐌑𝖔 ͜ ͣ b𐌑s𐌑",
+      boobs = "𐌑B𐌑o𐌑𝖔 ͜ ͣ o𐌑𝖔 ͜ ͣ b𐌑s",
       titties = "Т𐌑ìtt𐌑ìes",
       sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ хs",
       sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
       hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
-      porn = "р𐌑ồrn",
+      porn = "р𐌑o𐌑r𐌑n",
       nigga = "n𐌑ìgg⁥𐌑á",
       penis = "р𐌑еn⁥𐌑ìs",
       beaner = "𐌑bе𐌑аn⁥е𐌑r",
       thot = "th𐌑ồt",
       xxx = "xxx",
       hentai = "h𐌑ent𐌑ái",
-      bitch = "b𐌑ìtch𐌑𝖔 ͜ ͣ ⁥⁥⁥⁥",
+      bitch = "b𐌑ì𐌑t𐌑c𐌑h⁥⁥⁥⁥",
       bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
-      shit = "sh𐌑ìt𐌑𝖔 ͜ ͣ ",
+      shit = "s𐌑h𐌑ì𐌑t",
       kys = "kys",
       butthole = "b𐌑útth𐌑ồle",
       masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e𐌑𝖔 ͜ ͣ ",
@@ -1903,7 +1903,7 @@ local replace = {
       cs = "с𐌑ồсk s𐌑úсkеr",
       fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
       dick = "d𐌑ìc𐌑k",
-      dogshit = "d𐌑ồg sh𐌑ìts",
+      dogshit = "d𐌑o𐌑g𐌑s𐌑h𐌑ì𐌑t",
       tits = "t𐌑ìts",
       pussy = "p𐌑ússy",
       sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑ms",
@@ -2242,11 +2242,27 @@ function getstring(begin)
 	end
 	return AA
 end
-
+--[[
 function ProtocolCheck(FileName)
     isfile(FileName)     
 end
+--]]
 
+function ExplodePart(partname)
+local Explode = Instance.new("Explosion",game:GetService("Workspace"))
+Explode.Position = partname.Position
+Explode.BlastPressure = 4000000
+Explode.BlastRadius = 40000000
+Explode.ExplosionType = 2
+Explode.DestroyJointRadiusPercent = 1
+end
+--[[
+function ForceField(nameshit)
+local ff = Instance.new("ForceField",nameshit.Parent)
+wait(2)
+ff:Destroy()
+end
+--]]
 function RandomNumberRange(a)
 	return math.random(-a * 100, a * 100) / 100
 end
@@ -7365,7 +7381,8 @@ for i,v in pairs(workspace:GetDescendants()) do
 				wait(.1)
 			end
 			wait(gotopartDelay)
-			v.CFrame = getRoot(speaker.Character).CFrame
+                        TweenService:Create(v, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0),{CFrame = getRoot(speaker.Character).CFrame}):Play()
+			-- v.CFrame = getRoot(speaker.Character).CFrame
 		end
 	end
 end
@@ -7414,14 +7431,14 @@ Short()
 end
 if cmd == "snipe" then
 local SyncArgs = string.sub(msg,space+1)
-if SyncArgs[1] == nil then
+if SyncArgs == nil then
             return
         end
         local Thumbnail = ""
         local UserID = 0
-        local PlaceID = 0
-        if string.find(SyncArgs[1], "%a") then
-            local UserInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://api.roblox.com/users/get-by-username?username="..SyncArgs[1], true))
+        local PlaceID = game.PlaceId
+        if string.find(SyncArgs, "%a") then
+            local UserInfo = game:GetService("HttpService"):JSONDecode(game:HttpGet("https://api.roblox.com/users/get-by-username?username="..SyncArgs, true))
             if UserInfo["success"] == false then
                 ErrorPrompt("Snipe","Failed!, Invalid username")
                 return
@@ -7437,11 +7454,9 @@ if SyncArgs[1] == nil then
         else
             Thumbnail = ThumbnailInfo.Url
         end
-        if SyncArgs[2] == nil then
+        if PlaceID == nil then
             warning("No PlaceID","No PlaceID, defaulting to current place id...")
             PlaceID = game.PlaceId
-        elseif tonumber(SyncArgs[2]) ~= nil and not string.find(SyncArgs[2], "%a") then
-            PlaceID = SyncArgs[2]
         else
             ErrorPrompt("Fail","Failed!, Invalid PlaceID")
             return
@@ -7882,6 +7897,7 @@ local var = string.sub(msg,space+1)
 for i,v in pairs(game.Workspace:GetDescendants()) do
         if v:IsA("BasePart") then
             if v.Name:lower() == var then
+                ExplodePart(v)
                 v:Destroy()
             end
         end
@@ -8832,30 +8848,21 @@ ProtocolSendChat("/e cheer")
 end
 if cmd == "vccheck" then
 if VoiceChatService:IsVoiceEnabledForUserIdAsync(speaker.UserId) then
-              notify(tostring(Players[v]) .. " VC Checks","This player has voice chat enabled")
+              notify("VC Checks","This player has voice chat enabled")
          else
-              notify(tostring(Players[v]) .. " VC Checks","This player does not have voice chat enabled")
+              notify("VC Checks","This player does not have voice chat enabled")
           end
  end
 if cmd == "sad" then
 _Anims("180612465")
 wait(1.5)
 speaker.Character.Animate.Disabled = true
-local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
-	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
-	for _, v in pairs(ActiveTracks) do
-		v:AdjustSpeed(0)
-	end
+ServiceStart:AdjustSpeed(0)
 end
 if cmd == "unsad" then
 AnimService:Destroy()
 ServiceStart:Stop()
-speaker.Character.Animate.Disabled = false
-local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
-	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
-	for _, v in pairs(ActiveTracks) do
-		v:AdjustSpeed(1)
-	end
+ServiceStart:AdjustSpeed(1)
 end
 -- limit
 end
@@ -9254,7 +9261,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [15/07/2023]","[CONTENT] \n[+] Added 2 new fucking commands. \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Chatlogs bug (Team, Whisper) \n[-] Fixed Chat AI bug (UI Problem) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [20/07/2023]","[CONTENT] \n[+] Improved Chat bypass \n[+] Added bringpart animation (thx Zaptopic#0425) \n[+] Added dpart Explosion effect (thx Zaptopic#0425) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Chat AI \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
