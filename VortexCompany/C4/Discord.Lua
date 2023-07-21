@@ -332,7 +332,7 @@ end
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 getgenv().IrisAd = true
-local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+-- local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 function notify(title, content)
 	NotifyV1:Notify(
@@ -9260,7 +9260,7 @@ if ESPenabled then
 end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
-
+--[[
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [20/07/2023]","[CONTENT] \n[+] Improved Chat bypass \n[+] Added bringpart animation (thx Zaptopic#0425) \n[+] Added dpart Explosion effect (thx Zaptopic#0425) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Chat AI \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
@@ -9269,7 +9269,7 @@ VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [20/07/2023]","[CONTENT] \n
         TweenTime   = 0.8
     },
 })
-
+--]]
 -- ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
 --[[
 -- Create a tween for the intro frame to slide onto the screen
