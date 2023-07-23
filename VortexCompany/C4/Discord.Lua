@@ -9415,7 +9415,7 @@ end
 end
 end)
 -- DebugPrint(':5783: Debug Error \n:4278: Attempt to index nil with "DebuggingSensorAPI"')
-
+--[[
 speaker.PlayerGui.Chat.Frame.ChatChannelParentFrame.Frame_MessageLogDisplay.Scroller.ChildAdded:Connect(function(msg)
    msg.TextLabel.TextColor3 = Color3.new(0, 255, 0)
 end)
@@ -9425,7 +9425,7 @@ if COREGUI:FindFirstChild("BubbleChat") then
      bubble.Parent.BackgroundColor3 = Color3.new(1, 0.85098, 0)
    end)
 end
-
+]]
 getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
         RejoinServer()
