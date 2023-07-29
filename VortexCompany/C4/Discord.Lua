@@ -6431,7 +6431,7 @@ wait()
 RejoinServer()
 CloseCmdBar()
 if (queue_on_teleport) then
-	if Executor() == "Arceus X" then
+	if Executor() == "Arceus X" or Executor() == "Hydrogen" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
 		end
 	end
@@ -7223,7 +7223,7 @@ notify("Serverhop","Teleporting you to another server")
 CloseCmdBar()
 StartServerhop()
 if (queue_on_teleport) then
-	if Executor() == "Arceus X" then
+	if Executor() == "Arceus X" or Executor() == "Hydrogen" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
 		end
 	end
@@ -7909,7 +7909,7 @@ local respon, result = pcall(function()
 CloseCmdBar()
 SynchronousGameTeleport(var,0,0) -- https://
 if (queue_on_teleport) then
-	if Executor() == "Arceus X" then
+	if Executor() == "Arceus X" or Executor() == "Hydrogen" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
 		end
 	end
