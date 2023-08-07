@@ -332,7 +332,7 @@ end
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 getgenv().IrisAd = true
--- local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 function notify(title, content)
 	NotifyV1:Notify(
@@ -8031,9 +8031,11 @@ speaker.CameraMinZoomDistance = tonumber(var)
 end
 if cmd == "fixcam" then
 game.Workspace.CurrentCamera.CameraType = "Fixed"
+notify("Camera","Fixing Camera...")
 wait(0.5)
 game.Workspace.CurrentCamera.CameraSubject = speaker.Character:FindFirstChildWhichIsA('Humanoid')
 game.Workspace.CurrentCamera.CameraType = "Custom"
+notify("Camera","The camera was successfully fixed")
 end
 if cmd == "sturdy" then
 local respon, result = pcall(function()
@@ -8151,9 +8153,18 @@ if cmd == "exit" then
 ToggleNotify("Confirm","Are you sure you want to exit the game?",print("NO"),game:shutdown())
 end
 if cmd == "infjump" then
-UserInputService.JumpRequest:connect(function()
+if infjumpsystem then 
+   infjumpsystem:Disconnect() 
+end
+
+infjumpsystem = UserInputService.JumpRequest:connect(function()
 	speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
 end)
+end
+if cmd == "uninfjump" then
+if infjumpsystem then 
+   infjumpsystem:Disconnect() 
+end
 end
 if cmd == "btools" then
 for i = 1, 4 do
@@ -8864,6 +8875,9 @@ AnimService:Destroy()
 ServiceStart:Stop()
 ServiceStart:AdjustSpeed(1)
 end
+if cmd == "keybind" then
+ErrorPrompt("Keybind Error","Keybind error, please DM this issue to the developer of this script. (Tora4172#0)")
+end
 -- limit
 end
 -- end
@@ -9130,11 +9144,25 @@ cmds[#cmds + 1] = {Text = "[250] " .. tostring(prefix) .. "cheer",Title = "cherr
 cmds[#cmds + 1] = {Text = "[251] " .. tostring(prefix) .. "point",Title = "point🤦"}
 cmds[#cmds + 1] = {Text = "[252] " .. tostring(prefix) .. "sad",Title = "i lost my gf:("}
 cmds[#cmds + 1] = {Text = "[253] " .. tostring(prefix) .. "unsad",Title = "Nothing."}
+cmds[#cmds + 1] = {Text = "[254] " .. tostring(prefix) .. "keybind [Keybind] [Cmd name]",Title = "Fuck command"}
+cmds[#cmds + 1] = {Text = "[255] " .. tostring(prefix) .. "uninfjump",Title = "disable infinite jump"}
+
+_G.RemoveSymbols = {
+   blank = ""
+}
+
+function Bypassedshit(word)
+return word:gsub("[",_G.RemoveSymbols.blank):gsub("]",_G.RemoveSymbols.blank):gsub("1",_G.RemoveSymbols.blank):gsub("2",_G.RemoveSymbols.blank):gsub("3",_G.RemoveSymbols.blank):gsub("4",_G.RemoveSymbols.blank):gsub("5",_G.RemoveSymbols.blank):gsub("6",_G.RemoveSymbols.blank):gsub("7",_G.RemoveSymbols.blank):gsub("8",_G.RemoveSymbols.blank):gsub("9",_G.RemoveSymbols.blank):gsub("0",_G.RemoveSymbols.blank):gsub(tostring(prefix),_G.RemoveSymbols.blank)
+end
+
+function NoPrefix(wordbitch)
+return wordbitch:gsub(tostring(prefix),_G.RemoveSymbols.blank)
+end
 
 for v = 1, #cmds do
 -- for _,v in next, #cmds do
-       warn(tostring(cmds[v].Text) .. " | " .. tostring(cmds[v].Title) .. "")
-       newcmd(tostring(cmds[v].Text))
+       warn(NoPrefix(tostring(cmds[v].Text)) .. " | " .. tostring(cmds[v].Title) .. "")
+       newcmd(Bypassedshit(tostring(cmds[v].Text)))
 end
 --[[
 function GetPlayer(String)
@@ -9156,7 +9184,7 @@ end
 --]]
 local Developer = {
       Title = "Developer:";
-      Rivanda_Cheater = "Rivanda_Cheater (Tora#4172) (YT: Entity)";
+      Rivanda_Cheater = "Rivanda_Cheater (Tora4172#0) (YT: Entity)";
       CookieProgamming = "CookieProgamming (alt)";
 }
 
@@ -9260,8 +9288,8 @@ if ESPenabled then
 end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
---[[
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [20/07/2023]","[CONTENT] \n[+] Improved Chat bypass \n[+] Added bringpart animation (thx Zaptopic#0425) \n[+] Added dpart Explosion effect (thx Zaptopic#0425) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Chat AI \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [07/08/2023]","[CONTENT] \n[+] Added keybind command (example: keybind E fly) \n[+] Added Plugin theme and color UI \n[+] Now the music has lyrics and translation (automatically) \n[+] New Chatgpt API (now we have 3 chatgpt API) \n[+] Added Custom Gui maker (VIP) (PC ONLY) (Vortex V17) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Blacklist bug (serverhop and notification problem) \n[-] Removed IP Tracker \n[-] Fixed domain hub bug \n[-] Fixed epicm command bug \n[-] Removed c.ai \n[-] Fixed chatlogs UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
@@ -9269,7 +9297,7 @@ VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [20/07/2023]","[CONTENT] \n
         TweenTime   = 0.8
     },
 })
---]]
+
 -- ProtocolSave(tostring(speaker.DisplayName) .. "_" .. Executor() .. ".exe", LOCAL_WEB_IP_HOST())
 --[[
 -- Create a tween for the intro frame to slide onto the screen
