@@ -9152,7 +9152,7 @@ _G.RemoveSymbols = {
 }
 
 function Bypassedshit(word)
-return word:gsub("[",_G.RemoveSymbols.blank):gsub("]",_G.RemoveSymbols.blank):gsub("1",_G.RemoveSymbols.blank):gsub("2",_G.RemoveSymbols.blank):gsub("3",_G.RemoveSymbols.blank):gsub("4",_G.RemoveSymbols.blank):gsub("5",_G.RemoveSymbols.blank):gsub("6",_G.RemoveSymbols.blank):gsub("7",_G.RemoveSymbols.blank):gsub("8",_G.RemoveSymbols.blank):gsub("9",_G.RemoveSymbols.blank):gsub("0",_G.RemoveSymbols.blank):gsub(tostring(prefix),_G.RemoveSymbols.blank)
+return word:gsub("",_G.RemoveSymbols.blank):gsub("",_G.RemoveSymbols.blank):gsub("1",_G.RemoveSymbols.blank):gsub("2",_G.RemoveSymbols.blank):gsub("3",_G.RemoveSymbols.blank):gsub("4",_G.RemoveSymbols.blank):gsub("5",_G.RemoveSymbols.blank):gsub("6",_G.RemoveSymbols.blank):gsub("7",_G.RemoveSymbols.blank):gsub("8",_G.RemoveSymbols.blank):gsub("9",_G.RemoveSymbols.blank):gsub("0",_G.RemoveSymbols.blank):gsub(tostring(prefix),_G.RemoveSymbols.blank)
 end
 
 function NoPrefix(wordbitch)
