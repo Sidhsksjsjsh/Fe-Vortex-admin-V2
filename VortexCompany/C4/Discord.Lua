@@ -435,6 +435,7 @@ local gotopartDelay = 0.1
 local TweenService = game:GetService("TweenService")
 local countb = 0
 local HumanModCons = {}
+local frozenParts = {}
 -- local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
@@ -8878,6 +8879,38 @@ end
 if cmd == "keybind" then
 ErrorPrompt("Keybind Error","Keybind error, please DM this issue to the developer of this script. (Tora4172#0)")
 end
+if cmd == "tpua" then
+local var = string.sub(msg,space+1)
+if sethidden then
+		local variable = getPlayer(var, speaker)
+		for i,v in pairs(variable) do
+			local Forces = {}
+			for _,part in pairs(workspace:GetDescendants()) do
+				if Players[v].Character:FindFirstChild('Head') and part:IsA("BasePart" or "UnionOperation" or "Model") and part.Anchored == false and not part:IsDescendantOf(speaker.Character) and part.Name == "Torso" == false and part.Name == "Head" == false and part.Name == "Right Arm" == false and part.Name == "Left Arm" == false and part.Name == "Right Leg" == false and part.Name == "Left Leg" == false and part.Name == "HumanoidRootPart" == false then
+					for i,c in pairs(part:GetChildren()) do
+						if c:IsA("BodyPosition") or c:IsA("BodyGyro") then
+							c:Destroy()
+						end
+					end
+					local ForceInstance = Instance.new("BodyPosition")
+					ForceInstance.Parent = part
+					ForceInstance.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+					table.insert(Forces, ForceInstance)
+					if not table.find(frozenParts,part) then
+						table.insert(frozenParts,part)
+					end
+				end
+			end
+			for i,c in pairs(Forces) do
+				c.Position = Players[v].Character.Head.Position
+			end
+		end
+	else
+		notify('Incompatible Exploit','Your exploit does not support this command (missing sethiddenproperty)')
+	end
+
+notify("Black hole Created","touch part to make a black hole")
+end
 -- limit
 end
 -- end
@@ -9146,6 +9179,7 @@ cmds[#cmds + 1] = {Text = "[252] " .. tostring(prefix) .. "sad",Title = "i lost 
 cmds[#cmds + 1] = {Text = "[253] " .. tostring(prefix) .. "unsad",Title = "Nothing."}
 cmds[#cmds + 1] = {Text = "[254] " .. tostring(prefix) .. "keybind [Keybind] [Cmd name]",Title = "Fuck command"}
 cmds[#cmds + 1] = {Text = "[255] " .. tostring(prefix) .. "uninfjump",Title = "disable infinite jump"}
+cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua",Title = "black hole"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9289,7 +9323,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [07/08/2023]","[CONTENT] \n[+] Added keybind command (example: keybind E fly) \n[+] Added Plugin theme and color UI \n[+] Now the music has lyrics and translation (automatically) \n[+] New Chatgpt API (now we have 3 chatgpt API) \n[+] Added Custom Gui maker (VIP) (PC ONLY) (Vortex V17) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed Blacklist bug (serverhop and notification problem) \n[-] Removed IP Tracker \n[-] Fixed domain hub bug \n[-] Fixed epicm command bug \n[-] Removed c.ai \n[-] Fixed chatlogs UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [08/08/2023]","[CONTENT] \n[+] new command \n[+] Added Bypass for Adonis anti cheat (namecheckcaller, newcclosure and cclosure, namecallinstance) (automatically run when detected adonis) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
