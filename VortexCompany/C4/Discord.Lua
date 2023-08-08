@@ -9179,7 +9179,7 @@ cmds[#cmds + 1] = {Text = "[252] " .. tostring(prefix) .. "sad",Title = "i lost 
 cmds[#cmds + 1] = {Text = "[253] " .. tostring(prefix) .. "unsad",Title = "Nothing."}
 cmds[#cmds + 1] = {Text = "[254] " .. tostring(prefix) .. "keybind [Keybind] [Cmd name]",Title = "Fuck command"}
 cmds[#cmds + 1] = {Text = "[255] " .. tostring(prefix) .. "uninfjump",Title = "disable infinite jump"}
-cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua",Title = "black hole"}
+cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua [player name]",Title = "black hole"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9404,6 +9404,20 @@ UserInputService.InputBegan:Connect(function(KeyPressed)
 end)
 
 local restnotify = true
+
+_G.RGB = {
+   R = 0,
+   G = 0,
+   B = 0
+}
+
+RunService.RenderStepped:Connect(function()
+_G.RGB.R = (math.sin(game:GetService("Workspace").DistributedGameTime/2)/2)+0.5
+_G.RGB.G = (math.sin(game:GetService("Workspace").DistributedGameTime)/2)+0.5
+_G.RGB.B = (math.sin(game:GetService("Workspace").DistributedGameTime*1.5)/2)+0.5
+-- colorx = Color3.fromRGB(r, g, b)
+Title.TextColor3 = Color3.fromRGB(_G.RGB.R, _G.RGB.G, _G.RGB.B)
+end)
 
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
 local seconds = math.floor(workspace.DistributedGameTime)
