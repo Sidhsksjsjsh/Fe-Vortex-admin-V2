@@ -4650,15 +4650,15 @@ function ProtocolLoopPING()
      -- UI_A1.Text = tostring(Current_Ping)
       if Current_Ping < 500 then
          UI_A1.TextColor3 = Color3.fromRGB(0, 255, 0)
-         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
+         UI_A1.Text = "ping: " .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 500 then
          UI_A1.TextColor3 = Color3.fromRGB(245, 205, 48)
-         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
+         UI_A1.Text = "ping: " .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 1000 then
          UI_A1.TextColor3 = Color3.fromRGB(196, 40, 28)
-         UI_A1.Text = "⚠️ " .. tostring(Current_Ping) .. "ms ⚠️"
+         UI_A1.Text = "⚠️ ping: " .. tostring(Current_Ping) .. "ms ⚠️"
       end
 end
 
@@ -4666,15 +4666,15 @@ function ProtocolLoopFPS(Frame)
       -- UI_A2.Text = Frame
       if tonumber(Frame) > 30 then
            UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
-           UI_A2.Text = Frame
+           UI_A2.Text = "fps: " .. tostring(Frame)
         end
       if tonumber(Frame) < 30 then
            UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
-           UI_A2.Text = Frame
+           UI_A2.Text = "fps: " .. tostring(Frame)
         end
         if tonumber(Frame) < 10 then
            UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
-           UI_A2.Text = "⚠️ " .. Frame .. " ⚠️"
+           UI_A2.Text = "⚠️ fps: " .. Frame .. " ⚠️"
         end
 end
 
@@ -9401,6 +9401,15 @@ UserInputService.InputBegan:Connect(function(KeyPressed)
   if KeyPressed.KeyCode == Enum.KeyCode.R or KeyPressed.KeyCode == Enum.KeyCode.E then
      ErrorPrompt("Bad HTTPS","Error Maintenance")
   end
+  if KeyPressed.KeyCode == Enum.KeyCode.Q then
+	wait()
+	TextBox:CaptureFocus()
+	 spawn(function()
+          Blur.Size = 7
+           TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
+	   end)
+	    TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
+	end
 end)
 
 local restnotify = true
