@@ -6099,11 +6099,7 @@ local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 local function TweenTo()
-local TweenService = game:GetService("TweenService")
-local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-
-
-{CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
+TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
 notify("loop tweening","Loop tweening to " .. tostring(Players[v]))
@@ -6121,11 +6117,7 @@ if cmd == "tweento" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-local TweenService = game:GetService("TweenService")
-local Tw = TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), 
-
-
-{CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
+TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 notify("Teleporting","tweening you to " .. tostring(Players[v]))
 end
 end
@@ -6641,15 +6633,15 @@ if setfpscap then
 		elseif num > 0 then
 			setfpscap(num)
 		else
-			return ErrorPrompt("ERROR","Please provide a number above 0 or 'none'.")
+			ErrorPrompt("ERROR","Please provide a number above 0 or 'none'.")
 		end
 	else
-		return ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing setfpscap)")
+		ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing setfpscap)")
 	end
 end
 if cmd == "antiteleport" then
 if not hookmetamethod then 
-		return ErrorPrompt("Incompatible Exploit","Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
+		ErrorPrompt("Incompatible Exploit","Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
 	end
 	local TeleportService = TeleportService
 	local oldhmmi
@@ -6657,9 +6649,9 @@ if not hookmetamethod then
 	oldhmmi = hookmetamethod(game, "__index", function(self, method)
 		if self == TeleportService then
 			if method:lower() == "teleport" then
-				return ErrorPrompt("Error","Expected ':' not '.' calling member function Kick")
+				ErrorPrompt("Error","Expected ':' not '.' calling member function Kick")
 			elseif method == "TeleportToPlaceInstance" then
-				return ErrorPrompt("Error","Expected ':' not '.' calling member function TeleportToPlaceInstance")
+				ErrorPrompt("Error","Expected ':' not '.' calling member function TeleportToPlaceInstance")
 			end
 		end
 		return oldhmmi(self, method)
