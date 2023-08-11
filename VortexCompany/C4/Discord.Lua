@@ -4650,15 +4650,15 @@ function ProtocolLoopPING()
      -- UI_A1.Text = tostring(Current_Ping)
       if Current_Ping < 500 then
          UI_A1.TextColor3 = Color3.fromRGB(0, 255, 0)
-         UI_A1.Text = "ping: " .. tostring(Current_Ping) .. "ms"
+         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 500 then
          UI_A1.TextColor3 = Color3.fromRGB(245, 205, 48)
-         UI_A1.Text = "ping: " .. tostring(Current_Ping) .. "ms"
+         UI_A1.Text = "" .. tostring(Current_Ping) .. "ms"
       end
       if Current_Ping > 1000 then
          UI_A1.TextColor3 = Color3.fromRGB(196, 40, 28)
-         UI_A1.Text = "⚠️ ping: " .. tostring(Current_Ping) .. "ms ⚠️"
+         UI_A1.Text = "⚠️ " .. tostring(Current_Ping) .. "ms ⚠️"
       end
 end
 
@@ -4666,15 +4666,15 @@ function ProtocolLoopFPS(Frame)
       -- UI_A2.Text = Frame
       if tonumber(Frame) > 30 then
            UI_A2.TextColor3 = Color3.fromRGB(0, 255, 0)
-           UI_A2.Text = "fps: " .. tostring(Frame)
+           UI_A2.Text = "fps: " .. tostring(Frame) .. " | "
         end
       if tonumber(Frame) < 30 then
            UI_A2.TextColor3 = Color3.fromRGB(245, 205, 48)
-           UI_A2.Text = "fps: " .. tostring(Frame)
+           UI_A2.Text = "fps: " .. tostring(Frame) .. " | "
         end
         if tonumber(Frame) < 10 then
            UI_A2.TextColor3 = Color3.fromRGB(196, 40, 28)
-           UI_A2.Text = "⚠️ fps: " .. Frame .. " ⚠️"
+           UI_A2.Text = "⚠️ fps: " .. Frame .. " ⚠️ | "
         end
 end
 
@@ -6099,7 +6099,7 @@ local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 local function TweenTo()
-TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
+TweenService:Create(speaker.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 end
     LoopTween = RunService.Stepped:Connect(TweenTo)
 notify("loop tweening","Loop tweening to " .. tostring(Players[v]))
@@ -6117,7 +6117,7 @@ if cmd == "tweento" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-TweenService:Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
+TweenService:Create(speaker.Character.HumanoidRootPart, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out,0,false,0), {CFrame = CFrame.new(Players[v].Character.HumanoidRootPart.Position)}):Play()
 notify("Teleporting","tweening you to " .. tostring(Players[v]))
 end
 end
@@ -6643,15 +6643,15 @@ if cmd == "antiteleport" then
 if not hookmetamethod then 
 		ErrorPrompt("Incompatible Exploit","Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
 	end
-	local TeleportService = TeleportService
+	local TeleportService = game:GetService('TeleportService')
 	local oldhmmi
 	local oldhmmnc
 	oldhmmi = hookmetamethod(game, "__index", function(self, method)
 		if self == TeleportService then
 			if method:lower() == "teleport" then
-				ErrorPrompt("Error","Expected ':' not '.' calling member function Kick")
+				ErrorPrompt("Teleportation has been blocked","Expected ':' not '.' calling member function Kick")
 			elseif method == "TeleportToPlaceInstance" then
-				ErrorPrompt("Error","Expected ':' not '.' calling member function TeleportToPlaceInstance")
+				ErrorPrompt("Teleportation has been blocked","Expected ':' not '.' calling member function TeleportToPlaceInstance")
 			end
 		end
 		return oldhmmi(self, method)
@@ -8903,6 +8903,16 @@ if sethidden then
 
 notify("Black hole Created","touch part to make a black hole")
 end
+if cmd == "flagwars" then
+local respon, result = pcall(function()
+notify("Injecting..","please wait 15 seconds")
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/FlagWars/main/Roblox/Script.lua")
+end)
+
+if not respon then
+ErrorPrompt("Flag Wars Script", result)
+end
+end
 -- limit
 end
 -- end
@@ -9172,6 +9182,7 @@ cmds[#cmds + 1] = {Text = "[253] " .. tostring(prefix) .. "unsad",Title = "Nothi
 cmds[#cmds + 1] = {Text = "[254] " .. tostring(prefix) .. "keybind [Keybind] [Cmd name]",Title = "Fuck command"}
 cmds[#cmds + 1] = {Text = "[255] " .. tostring(prefix) .. "uninfjump",Title = "disable infinite jump"}
 cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua [player name]",Title = "black hole"}
+cmds[#cmds + 1] = {Text = "[257] " .. tostring(prefix) .. "flagwars",Title = "flag wars script"}
 
 _G.RemoveSymbols = {
    blank = ""
