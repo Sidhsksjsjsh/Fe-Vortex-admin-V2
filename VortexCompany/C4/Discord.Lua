@@ -2143,6 +2143,18 @@ if AutoSendScript == true then
 end
 end)
 
+local coreGuiTypeNames = {
+	-- predefined aliases
+	["inventory"] = Enum.CoreGuiType.Backpack,
+	["leaderboard"] = Enum.CoreGuiType.PlayerList,
+	["emotes"] = Enum.CoreGuiType.EmotesMenu
+}
+
+-- Load the full list of enums
+for _, enumItem in ipairs(Enum.CoreGuiType:GetEnumItems()) do
+	coreGuiTypeNames[enumItem.Name:lower()] = enumItem
+end
+
 local espParts = {}
 local partEspTrigger = nil
 function partAdded(part)
@@ -8913,6 +8925,32 @@ if not respon then
 ErrorPrompt("Flag Wars Script", result)
 end
 end
+if cmd == "enable" then
+local var = string.sub(msg,space+1)
+	if var then
+		if var:lower() == "reset" then
+			StarterGui:SetCore("ResetButtonCallback", true)
+		else
+			local coreGuiType = coreGuiTypeNames[var:lower()]
+			if coreGuiType then
+				game:GetService("StarterGui"):SetCoreGuiEnabled(coreGuiType, true)
+			end
+		end
+	end
+end
+if cmd == "disable" then
+local var = string.sub(msg,space+1)
+	if var then
+		if var:lower() == "reset" then
+			StarterGui:SetCore("ResetButtonCallback", false)
+		else
+			local coreGuiType = coreGuiTypeNames[var:lower()]
+			if coreGuiType then
+				game:GetService("StarterGui"):SetCoreGuiEnabled(coreGuiType, false)
+			end
+		end
+	end
+end
 -- limit
 end
 -- end
@@ -9183,6 +9221,8 @@ cmds[#cmds + 1] = {Text = "[254] " .. tostring(prefix) .. "keybind [Keybind] [Cm
 cmds[#cmds + 1] = {Text = "[255] " .. tostring(prefix) .. "uninfjump",Title = "disable infinite jump"}
 cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua [player name]",Title = "black hole"}
 cmds[#cmds + 1] = {Text = "[257] " .. tostring(prefix) .. "flagwars",Title = "flag wars script"}
+cmds[#cmds + 1] = {Text = "[258] " .. tostring(prefix) .. "enable [inventory / leaderboard / emotes]",Title = "enable roblox coregui"}
+cmds[#cmds + 1] = {Text = "[259] " .. tostring(prefix) .. "disable [inventory / leaderboard / emotes]",Title = "disable roblox coregui"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9326,7 +9366,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [08/08/2023]","[CONTENT] \n[+] new command \n[+] Added Bypass for Adonis anti cheat (namecheckcaller, newcclosure and cclosure, namecallinstance) (automatically run when detected adonis) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [12/08/2023]","[CONTENT] \n[+] 3 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
