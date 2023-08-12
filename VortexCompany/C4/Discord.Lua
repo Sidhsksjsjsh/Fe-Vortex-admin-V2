@@ -8964,6 +8964,25 @@ if cmd == "ffcd" then
 local var = string.sub(msg,space+1)
 _G.ForceFieldCooldown = tonumber(var)
 end
+if cmd == "bring" then
+if Bringplayerrunservice then
+Bringplayerrunservice:Disconnect()
+end
+
+Bringplayerrunservice = RunService.RenderStepped:Connect(function()
+    for _, v in next, Players:GetPlayers() do
+        if v ~= speaker then
+            -- print(v)
+            v.Character.HumanoidRootPart.CFrame = speaker.Character.HumanoidRootPart.CFrame * CFrame.new(2.2,0.5,-3)
+        end
+    end
+    end)
+end
+if cmd == "unbring" then
+if Bringplayerrunservice then
+Bringplayerrunservice:Disconnect()
+end
+end
 -- limit
 end
 -- end
@@ -8979,7 +8998,7 @@ cmds[#cmds + 1] = {Text = "[4] " .. tostring(prefix) .. "stun",Title = "enable P
 cmds[#cmds + 1] = {Text = "[5] " .. tostring(prefix) .. "unstun",Title = "disable PlatformStand"}
 cmds[#cmds + 1] = {Text = "[6] " .. tostring(prefix) .. "kill [username]",Title = "kill nigga🤑😍😍"}
 cmds[#cmds + 1] = {Text = "[7] " .. tostring(prefix) .. "inspect [username]",Title = "view item"}
-cmds[#cmds + 1] = {Text = "[8] " .. tostring(prefix) .. "bring [username]",Title = "bring nigga to ur position"}
+cmds[#cmds + 1] = {Text = "[?] " .. tostring(prefix) .. "[ Command Deleted ]",Title = "Deleted"}
 cmds[#cmds + 1] = {Text = "[9] " .. tostring(prefix) .. "esp",Title = "know where a nigga hide"}
 cmds[#cmds + 1] = {Text = "[10] " .. tostring(prefix) .. "unesp",Title = "know where a nigga hide"}
 cmds[#cmds + 1] = {Text = "[11] " .. tostring(prefix) .. "noclip",Title = "everyone: Happymod LOL🤡"}
@@ -9238,6 +9257,8 @@ cmds[#cmds + 1] = {Text = "[258] " .. tostring(prefix) .. "enable [inventory / l
 cmds[#cmds + 1] = {Text = "[259] " .. tostring(prefix) .. "disable [inventory / leaderboard / emotes]",Title = "disable roblox coregui"}
 cmds[#cmds + 1] = {Text = "[260] " .. tostring(prefix) .. "ff [player name]",Title = "ForceField Effect"}
 cmds[#cmds + 1] = {Text = "[261] " .. tostring(prefix) .. "ffcd [number]",Title = "ForceField Cooldown"}
+cmds[#cmds + 1] = {Text = "[262] " .. tostring(prefix) .. "bring",Title = "bring all player to ur CFrame"}
+cmds[#cmds + 1] = {Text = "[263] " .. tostring(prefix) .. "unbring",Title = "stop bring"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9381,7 +9402,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [12/08/2023]","[CONTENT] \n[+] 3 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [12/08/2023]","[CONTENT] \n[+] Added 4 new commands (Ty ToxicTDX on GitHub) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
