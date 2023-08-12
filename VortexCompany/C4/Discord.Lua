@@ -2261,6 +2261,7 @@ function ProtocolCheck(FileName)
 end
 --]]
 
+_G.ForceFieldCooldown = 0
 function ExplodePart(partname)
 local Explode = Instance.new("Explosion",game:GetService("Workspace"))
 Explode.Position = partname.Position
@@ -2269,14 +2270,14 @@ Explode.BlastRadius = 0
 Explode.ExplosionType = 2
 Explode.DestroyJointRadiusPercent = 1
 end
---[[
-function ForceField(nameshit)
+
+function ForceField(nameshit,cdff)
 local ff = Instance.new("ForceField")
 ff.Parent = nameshit
-wait(2)
-ff:Destroy()
+wait(tonumber(cdff))
+ff:Remove()
 end
---]]
+
 function RandomNumberRange(a)
 	return math.random(-a * 100, a * 100) / 100
 end
@@ -8952,6 +8953,17 @@ local var = string.sub(msg,space+1)
 		end
 	end
 end
+if cmd == "ff" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+         ForceField(Players[v].Character,_G.ForceFieldCooldown)
+end
+end
+if cmd == "ffcd" then
+local var = string.sub(msg,space+1)
+_G.ForceFieldCooldown = tonumber(var)
+end
 -- limit
 end
 -- end
@@ -9224,6 +9236,8 @@ cmds[#cmds + 1] = {Text = "[256] " .. tostring(prefix) .. "tpua [player name]",T
 cmds[#cmds + 1] = {Text = "[257] " .. tostring(prefix) .. "flagwars",Title = "flag wars script"}
 cmds[#cmds + 1] = {Text = "[258] " .. tostring(prefix) .. "enable [inventory / leaderboard / emotes]",Title = "enable roblox coregui"}
 cmds[#cmds + 1] = {Text = "[259] " .. tostring(prefix) .. "disable [inventory / leaderboard / emotes]",Title = "disable roblox coregui"}
+cmds[#cmds + 1] = {Text = "[260] " .. tostring(prefix) .. "ff [player name]",Title = "ForceField Effect"}
+cmds[#cmds + 1] = {Text = "[261] " .. tostring(prefix) .. "ffcd [number]",Title = "ForceField Cooldown"}
 
 _G.RemoveSymbols = {
    blank = ""
