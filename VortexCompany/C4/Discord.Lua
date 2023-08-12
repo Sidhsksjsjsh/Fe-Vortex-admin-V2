@@ -2261,7 +2261,7 @@ function ProtocolCheck(FileName)
 end
 --]]
 
-_G.ForceFieldCooldown = 0
+_G.ForceFieldCooldown = 30
 function ExplodePart(partname)
 local Explode = Instance.new("Explosion",game:GetService("Workspace"))
 Explode.Position = partname.Position
@@ -2272,10 +2272,21 @@ Explode.DestroyJointRadiusPercent = 1
 end
 
 function ForceField(nameshit,cdff)
+local Hint = Instance.new("Hint", game:GetService("Workspace"))
 local ff = Instance.new("ForceField")
 ff.Parent = nameshit
-wait(tonumber(cdff))
+for i = 1, tonumber(cdff) do
+    if cdff < 60 then
+       Hint.Text = "ForceField Cooldown " .. i .. "s"
+    elseif cdff > 59 then
+       Hint.Text = "ForceField Cooldown " .. i .. "m"
+    elseif cdff > 3600 then
+       Hint.Text = "ForceField Cooldown " .. i .. "hr"
+end
+    wait(1)
+end
 ff:Remove()
+Hint:Destroy()
 end
 
 function RandomNumberRange(a)
