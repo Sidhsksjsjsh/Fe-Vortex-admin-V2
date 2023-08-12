@@ -2276,11 +2276,11 @@ local Hint = Instance.new("Hint", game:GetService("Workspace"))
 local ff = Instance.new("ForceField")
 ff.Parent = nameshit
 for i = 1, tonumber(cdff) do
-    if cdff < 60 then
+    if i < 60 then
        Hint.Text = "ForceField Cooldown " .. i .. "s"
-    elseif cdff > 59 then
+    elseif i > 59 then
        Hint.Text = "ForceField Cooldown " .. i .. "m"
-    elseif cdff > 3600 then
+    elseif i > 3600 then
        Hint.Text = "ForceField Cooldown " .. i .. "hr"
 end
     wait(1)
@@ -5926,15 +5926,18 @@ local var = string.sub(msg,space+1)
 print(var)
 end
 if cmd == "reset" then
-game.Players.LocalPlayer.Character:BreakJoints()
+speaker.Character:BreakJoints()
+ExplodePart(speaker.Character.HumanoidRootPart)
 success("Reset character","Reset Character")
 end
 if cmd == "respawn" then
 respawn(speaker)
+ExplodePart(speaker.Character.HumanoidRootPart)
 success("respawn character","Respawning")
 end
 if cmd == "refresh" then
 refresh(speaker)
+ExplodePart(speaker.Character.HumanoidRootPart)
 success("refresh character","Refreshing")
 end
 if cmd == "unrotate" then
@@ -6426,18 +6429,18 @@ end
 end
 if cmd == "enablestate" then
 local var = string.sub(msg,space+1)
-local x = var
+local x = var:lower()
 	if not tonumber(x) then
-		local x = Enum.HumanoidStateType[var]
+		local x = Enum.HumanoidStateType[var:lower()]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, true)
 notify("state enabled","current state: " .. var)
 end
 if cmd == "disablestate" then
 local var = string.sub(msg,space+1)
-local x = var
+local x = var:lower()
 	if not tonumber(x) then
-		local x = Enum.HumanoidStateType[var]
+		local x = Enum.HumanoidStateType[var:lower()]
 	end
 	speaker.Character:FindFirstChildOfClass("Humanoid"):SetStateEnabled(x, false)
 notify("😘","state disabled")
@@ -6666,7 +6669,7 @@ if setfpscap then
 end
 if cmd == "antiteleport" then
 if not hookmetamethod then 
-		ErrorPrompt("Incompatible Exploit","Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
+		ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing hookmetamethod)")
 	end
 	local TeleportService = game:GetService('TeleportService')
 	local oldhmmi
