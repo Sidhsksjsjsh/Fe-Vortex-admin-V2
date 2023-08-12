@@ -744,7 +744,7 @@ CB.ClearTextOnFocus = false
 CB.Visible = false
 
 CB.Name = "COMMAND BAR"
-dragify(CB)
+-- dragify(CB)
 
 function OpenCmdBar()
         TweenService:Create(CB, TweenInfo.new(0.50), {Position = UDim2.new(0.5,-100,0,50)}):Play()
@@ -2265,13 +2265,14 @@ function ExplodePart(partname)
 local Explode = Instance.new("Explosion",game:GetService("Workspace"))
 Explode.Position = partname.Position
 Explode.BlastPressure = 4000000
-Explode.BlastRadius = 40000000
+Explode.BlastRadius = 0
 Explode.ExplosionType = 2
 Explode.DestroyJointRadiusPercent = 1
 end
 --[[
 function ForceField(nameshit)
-local ff = Instance.new("ForceField",nameshit.Parent)
+local ff = Instance.new("ForceField")
+ff.Parent = nameshit
 wait(2)
 ff:Destroy()
 end
@@ -9456,6 +9457,26 @@ UserInputService.InputBegan:Connect(function(KeyPressed)
 end)
 
 local restnotify = true
+
+if os.date("%m %d") == "01 01" then
+   notify("ChatGPT","Happy New Year!")
+elseif os.date("%m %d") == "02 14" then
+   notify("ChatGPT","Valentine Day! ♥️💖💘")
+elseif os.date("%m %d") == "03 08" then
+   notify("ChatGPT","Happy International Women's day!")
+elseif os.date("%m %d") == "04 01" then
+   notify("ChatGPT","April fools for assholes.")
+elseif os.date("%m %d") == "05 01" then
+   notify("ChatGPT","Happy International Labor Day!")
+elseif os.date("%m %d") == "12 24" then
+   notify("ChatGPT","CHRISTMAS TOMORROW! NOW IS CHRISTMAS EVE")
+elseif os.date("%m %d") == "12 25" then
+   notify("ChatGPT","Merry Christmas to those who celebrate it!")
+elseif os.date("%m %d") == "01 29" then
+   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our developer, wish you good health")
+elseif os.date("%m %d") == "08 17" then
+   notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
+end
 
 _G.RGB = {
    R = 0,
