@@ -6515,7 +6515,8 @@ local OfficialMusic = {
        hijacket = 1842559618,
        wonderfulday = 1843382633,
        bloodpop = 6823597327,
-       sunrise = 1837324500
+       sunrise = 1837324500,
+       cintanyaaku = 14417854633
 }
 
 local TextMusic = {
@@ -6525,7 +6526,8 @@ local TextMusic = {
       hijacket = "Hijacket",
       wonderfulday = "Wonderful Day",
       bloodpop = "BloodPop",
-      sunrise = "Sunrise"
+      sunrise = "Sunrise",
+      cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto"
 }
 
 local respond, result = pcall(function()
