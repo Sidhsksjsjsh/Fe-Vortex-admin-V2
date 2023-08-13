@@ -8934,6 +8934,8 @@ end
 if cmd == "flagwars" then
 local respon, result = pcall(function()
 notify("Injecting..","please wait 15 seconds")
+Anticheat_Bypass()
+wait()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/FlagWars/main/Roblox/Script.lua")
 end)
 
@@ -9416,7 +9418,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [12/08/2023]","[CONTENT] \n[+] Added 4 new commands (Ty ToxicTDX on GitHub) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [13/08/2023]","[CONTENT] \n[+] Added Flag Wars anti-cheat bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
@@ -9525,6 +9527,12 @@ elseif os.date("%m %d") == "01 29" then
    notify("ChatGPT | Birthday🎉🎊","Happy birthday to our developer, wish you good health")
 elseif os.date("%m %d") == "08 17" then
    notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
+elseif os.date("%m %d") == "03 10" then
+   notify("ChatGPT | Birthday🎉🎊","Happy birthday to my sister, wish you good health")
+elseif os.date("%m %d") == "02 15" then
+   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our staff, wish you good health")
+elseif os.date("%m %d") == "10 05" then
+   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our UI Designer / Admin / Moderator, wish you good health")
 end
 
 _G.RGB = {
