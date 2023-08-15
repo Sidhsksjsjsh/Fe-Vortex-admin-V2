@@ -1474,7 +1474,7 @@ function getEquippedTool(player)
         if polvus ~= nil then
             return "[ " .. tostring(polvus.Name) .. " ]"
         else
-            return "[ No tool ]"
+            return "[ None ]"
         end
     end
 
@@ -9001,6 +9001,18 @@ if Bringplayerrunservice then
 Bringplayerrunservice:Disconnect()
 end
 end
+if cmd == "wfs" then
+local respon, result = pcall(function()
+notify("Injecting..","please wait 15 seconds")
+Anticheat_Bypass()
+wait()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Turtle-Hub/main/WFS/WeaponFightingSimulator/Script.lua")
+end)
+
+if not respon then
+ErrorPrompt("Weapon Fighting Simulator Script", result)
+end
+end
 -- limit
 end
 -- end
@@ -9277,6 +9289,7 @@ cmds[#cmds + 1] = {Text = "[260] " .. tostring(prefix) .. "ff [player name]",Tit
 cmds[#cmds + 1] = {Text = "[261] " .. tostring(prefix) .. "ffcd [number]",Title = "ForceField Cooldown"}
 cmds[#cmds + 1] = {Text = "[262] " .. tostring(prefix) .. "bring",Title = "bring all player to ur CFrame"}
 cmds[#cmds + 1] = {Text = "[263] " .. tostring(prefix) .. "unbring",Title = "stop bring"}
+cmds[#cmds + 1] = {Text = "[264] " .. tostring(prefix) .. "wfs",Title = "Weapon Fighting Simulator"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9420,7 +9433,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [13/08/2023]","[CONTENT] \n[+] Added Flag Wars anti-cheat bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed patched commands (58 total patched commands) \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [15/08/2023]","[CONTENT] \n[+] Added Weapon Fighting Simulator script \n[+] Added Weapon Fighting Simulator anti-cheat bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Feedback feature \n[-] Removed Invisible Name \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
