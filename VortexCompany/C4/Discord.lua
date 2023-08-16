@@ -436,6 +436,7 @@ local TweenService = game:GetService("TweenService")
 local countb = 0
 local HumanModCons = {}
 local frozenParts = {}
+local Leaker = gethiddenproperty or get_hidden_prop
 -- local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
@@ -9013,12 +9014,33 @@ if not respon then
 ErrorPrompt("Weapon Fighting Simulator Script", result)
 end
 end
+if cmd == "location" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do
+local respon, result = pcall(function()
+  local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
+  local ParsedCountry = Thing[gethiddenproperty(v, "CountryRegionCodeReplicate")]
+ -- local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
+end)
+
+if not respon then
+--Leaker = gethiddenproperty or get_hidden_prop
+   local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
+   local ParsedCountry = Thing[Leaker(v, "CountryRegionCodeReplicate")]
+  --local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
+end
+
+end
+end
 -- limit
 end
 -- end
-if string.sub(msg,1,1) == prefix then
-ErrorPrompt("Forbidden Prefix","prefix is ​​not supported in the command bar.")
-end
+--if string.sub(msg,1,1) == prefix then
+--ErrorPrompt("Forbidden Prefix","prefix is ​​not supported in the command bar.")
+--end
 end)
 
 cmds[#cmds + 1] = {Text = "[1] " .. tostring(prefix) .. "print [text]",Title = "useless"}
@@ -9290,6 +9312,7 @@ cmds[#cmds + 1] = {Text = "[261] " .. tostring(prefix) .. "ffcd [number]",Title 
 cmds[#cmds + 1] = {Text = "[262] " .. tostring(prefix) .. "bring",Title = "bring all player to ur CFrame"}
 cmds[#cmds + 1] = {Text = "[263] " .. tostring(prefix) .. "unbring",Title = "stop bring"}
 cmds[#cmds + 1] = {Text = "[264] " .. tostring(prefix) .. "wfs",Title = "Weapon Fighting Simulator"}
+cmds[#cmds + 1] = {Text = "[265] " .. tostring(prefix) .. "location [player name]",Title = "PLAYER LOCATION TRACKING!!"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9433,7 +9456,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [15/08/2023]","[CONTENT] \n[+] Added Weapon Fighting Simulator script \n[+] Added Weapon Fighting Simulator anti-cheat bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed Feedback feature \n[-] Removed Invisible Name \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [16/08/2023]","[CONTENT] \n[+] NEW SPECIAL COMMAND!? \n[+] HttpService Bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] None \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
