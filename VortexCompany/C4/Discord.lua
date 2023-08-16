@@ -9018,20 +9018,20 @@ if cmd == "location" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-local respon, result = pcall(function()
+--local respon, result = pcall(function()
   local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
   local ParsedCountry = Thing[gethiddenproperty(v, "CountryRegionCodeReplicate")]
  -- local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
-end)
+--end)
 
-if not respon then
+--[[if not respon then
 --Leaker = gethiddenproperty or get_hidden_prop
    local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
    local ParsedCountry = Thing[Leaker(v, "CountryRegionCodeReplicate")]
   --local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
-end
+end]]
 
 end
 end
