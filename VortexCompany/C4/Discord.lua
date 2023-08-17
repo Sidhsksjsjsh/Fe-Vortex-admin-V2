@@ -334,9 +334,12 @@ local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/Bocu
 getgenv().IrisAd = true
 --local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
+local Virtual = {}
+Virtual.VirtualIcon = ""
+
 function notify(title, content)
 	NotifyV1:Notify(
-               {Title = title or "command notification", Description = content},
+               {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -345,7 +348,7 @@ end
 
 function info(title, content)
 	NotifyV1:Notify(
-               {Title = title or "command information", Description = content},
+               {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072944922", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -354,7 +357,7 @@ end
 
 function ErrorPrompt(title, content)
 	NotifyV1:Notify(
-               {Title = title or "failed to execute command", Description = content},
+               {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072920609", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -363,7 +366,7 @@ end
 
 function success(title, content)
 	NotifyV1:Notify(
-               {Title = title or "command executed successfully", Description = content},
+               {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9073052584", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -372,7 +375,7 @@ end
 
 function warning(title, content)
 	NotifyV1:Notify(
-               {Title = title or "command warning", Description = content},
+               {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
                {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"},
                {Image = "http://www.roblox.com/asset/?id=9072448788", ImageColor = Color3.fromRGB(255, 84, 84)}
         )
@@ -381,7 +384,7 @@ end
 
 function ToggleNotify(title, content, for_false, for_true)
 NotifyV1:Notify(
-    {Title = title, Description = content},
+    {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "option"},
     {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State)
 	if State == true then
@@ -436,7 +439,7 @@ local TweenService = game:GetService("TweenService")
 local countb = 0
 local HumanModCons = {}
 local frozenParts = {}
-Leaker = gethiddenproperty or get_hidden_prop
+-- Leaker = gethiddenproperty or get_hidden_prop
 -- local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", game.Lighting)
@@ -3376,6 +3379,12 @@ local LOCAL_WEB = tostring(game:HttpGet("https://api.ipify.org", true))
     else
        return "Chrome Error ':404: website not found ' or under maintenance"
     end
+end
+
+function GetRegionPlayer()
+  local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
+  local ParsedCountry = Thing[gethiddenproperty(speaker, "CountryRegionCodeReplicate")]
+    return ParsedCountry
 end
 
 -- Define a function to create a notification with tweening
@@ -9548,29 +9557,99 @@ end)
 local restnotify = true
 
 if os.date("%m %d") == "01 01" then
-   notify("ChatGPT","Happy New Year!")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Selamat Tahun Baru!")
+		Virtual.VirtualIcon = " 🎆 "
+else
+      notify("ChatGPT","Happy New Year!")
+		Virtual.VirtualIcon = " 🎆 "
+end
 elseif os.date("%m %d") == "02 14" then
-   notify("ChatGPT","Valentine Day! ♥️💖💘")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","hari Valentine! ♥️💖💘")
+		Virtual.VirtualIcon = " ♥️❤️ "
+else
+      notify("ChatGPT","Valentine Day! ♥️💖💘")
+		Virtual.VirtualIcon = " ♥️❤️ "
+end
 elseif os.date("%m %d") == "03 08" then
-   notify("ChatGPT","Happy International Women's day!")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Selamat Hari Perempuan Internasional!")
+		Virtual.VirtualIcon = " 🧖 "
+else
+      notify("ChatGPT","Happy International Women's day!")
+		Virtual.VirtualIcon = " 🧖 "
+end
 elseif os.date("%m %d") == "04 01" then
-   notify("ChatGPT","April fools for assholes.")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Asu.")
+		Virtual.VirtualIcon = " 🖕 "
+else
+      notify("ChatGPT","April fools for assholes.")
+		Virtual.VirtualIcon = " 🖕 "
+end
 elseif os.date("%m %d") == "05 01" then
-   notify("ChatGPT","Happy International Labor Day!")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Selamat Hari Buruh Internasional!")
+		Virtual.VirtualIcon = " ⛏️🔪 "
+else
+      notify("ChatGPT","Happy International Labor Day!")
+		Virtual.VirtualIcon = " ⛏️🔪 "
+end
 elseif os.date("%m %d") == "12 24" then
-   notify("ChatGPT","CHRISTMAS TOMORROW! NOW IS CHRISTMAS EVE")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","BESOK NATAL! SEKARANG ADALAH MALAM NATAL")
+		Virtual.VirtualIcon = " 🎄 "
+else
+      notify("ChatGPT","CHRISTMAS TOMORROW! NOW IS CHRISTMAS EVE")
+		Virtual.VirtualIcon = " 🎄 "
+end
 elseif os.date("%m %d") == "12 25" then
-   notify("ChatGPT","Merry Christmas to those who celebrate it!")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Merry Christmas bagi yang merayakannya!")
+		Virtual.VirtualIcon = " 🎄 "
+else
+      notify("ChatGPT","Merry Christmas to those who celebrate it!")
+		Virtual.VirtualIcon = " 🎄 "
+end
 elseif os.date("%m %d") == "01 29" then
-   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our developer, wish you good health")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT | Hari ulang tahun🎉🎊","Selamat ulang tahun untuk pengembang kami, semoga Anda sehat")
+		Virtual.VirtualIcon = " 🎂 "
+else
+      notify("ChatGPT | Birthday🎉🎊","Happy birthday to our developer, wish you good health")
+		Virtual.VirtualIcon = " 🎂 "
+end
 elseif os.date("%m %d") == "08 17" then
-   notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT","Selamat 17 Agustus untuk Indonesia! semoga menang di kontesnya")
+		Virtual.VirtualIcon = " 17 "
+else
+      notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
+		Virtual.VirtualIcon = " 17 "
+end
 elseif os.date("%m %d") == "03 10" then
-   notify("ChatGPT | Birthday🎉🎊","Happy birthday to my sister, wish you good health")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT | Hari ulang tahun🎉🎊","Selamat ulang tahun adikku, semoga sehat selalu")
+else
+      notify("ChatGPT | Birthday🎉🎊","Happy birthday to my sister, wish you good health")
+end
 elseif os.date("%m %d") == "02 15" then
-   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our staff, wish you good health")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT | Hari ulang tahun🎉🎊","Selamat ulang tahun staff kami, semoga sehat selalu")
+		Virtual.VirtualIcon = " 🎂🛠️ "
+else
+      notify("ChatGPT | Birthday🎉🎊","Happy birthday to our staff, wish you good health")
+		Virtual.VirtualIcon = " 🎂🛠️ "
+end
 elseif os.date("%m %d") == "10 05" then
-   notify("ChatGPT | Birthday🎉🎊","Happy birthday to our UI Designer / Admin / Moderator, wish you good health")
+   if GetRegionPlayer() == "Indonesia" then
+      notify("ChatGPT | Hari ulang tahun🎉🎊","Selamat ulang tahun untuk Desainer UI kami, semoga Anda sehat")
+		Virtual.VirtualIcon = " 🎂 "
+else
+      notify("ChatGPT | Birthday🎉🎊","Happy birthday to our UI Designer, wish you good health")
+		Virtual.VirtualIcon = " 🎂 "
+end
 end
 
 _G.RGB = {
