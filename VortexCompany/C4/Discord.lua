@@ -9623,10 +9623,10 @@ end
 elseif os.date("%m %d") == "08 17" then
    if GetRegionPlayer() == "Indonesia" then
       notify("ChatGPT","Selamat 17 Agustus untuk Indonesia! semoga menang di kontesnya")
-		Virtual.VirtualIcon = " 17 "
+		Virtual.VirtualIcon = " 17 Agustus"
 else
       notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
-		Virtual.VirtualIcon = " 17 "
+		Virtual.VirtualIcon = " 17th August"
 end
 elseif os.date("%m %d") == "03 10" then
    if GetRegionPlayer() == "Indonesia" then
@@ -9650,6 +9650,8 @@ else
       notify("ChatGPT | Birthday🎉🎊","Happy birthday to our UI Designer, wish you good health")
 		Virtual.VirtualIcon = " 🎂 "
 end
+else
+	Virtual.VirtualIcon = " ? "
 end
 
 _G.RGB = {
