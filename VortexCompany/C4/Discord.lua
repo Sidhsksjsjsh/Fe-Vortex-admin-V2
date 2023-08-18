@@ -9540,9 +9540,9 @@ end)
 -- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
 UserInputService.InputBegan:Connect(function(KeyPressed)
-  if KeyPressed.KeyCode == Enum.KeyCode.R or KeyPressed.KeyCode == Enum.KeyCode.E then
-     ErrorPrompt("Bad HTTPS","Error Maintenance")
-  end
+--  if KeyPressed.KeyCode == Enum.KeyCode.R or KeyPressed.KeyCode == Enum.KeyCode.E then
+--     ErrorPrompt("Bad HTTPS","Error Maintenance")
+--  end
   if KeyPressed.KeyCode == Enum.KeyCode.Q then
 	wait()
 	TextBox:CaptureFocus()
@@ -9553,6 +9553,8 @@ UserInputService.InputBegan:Connect(function(KeyPressed)
 	    TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
 	end
 end)
+
+notify("UI toggle","Press Q to open the UI.")
 
 local restnotify = true
 
