@@ -2173,6 +2173,7 @@ function partAdded(part)
 			a.Size = part.Size
 			a.Transparency = 0.3
 			a.Color = BrickColor.new("Lime green")
+			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
 		end
 	else
 		partEspTrigger:Disconnect()
