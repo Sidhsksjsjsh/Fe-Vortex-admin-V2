@@ -332,7 +332,7 @@ end
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 getgenv().IrisAd = true
---local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 local Virtual = {}
 Virtual.VirtualIcon = ""
@@ -9024,25 +9024,23 @@ if not respon then
 ErrorPrompt("Weapon Fighting Simulator Script", result)
 end
 end
-if cmd == "location" then
+if cmd == "name" then
 local var = string.sub(msg,space+1)
-local variable = getPlayer(var, speaker)
-	for i,v in pairs(variable) do
---local respon, result = pcall(function()
-  local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
-  local ParsedCountry = Thing[gethiddenproperty(v, "CountryRegionCodeReplicate")]
- -- local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
---end)
+speaker.Name = var
+notify("Fake Username","currently username: " .. var)
+end
+if cmd == "displayname" then
+local var = string.sub(msg,space+1)
+speaker.DisplayName = var
+notify("Fake Display name","Currently display name: " .. var)
+end
+if cmd == "sillysimon" then
+local respon, result = pcall(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/SillySimonSays/main/CheatingTool.lua")
+end)
 
---[[if not respon then
---Leaker = gethiddenproperty or get_hidden_prop
-   local Thing = game:GetService("HttpService"):JSONDecode(game:HttpGet("http://country.io/names.json"))
-   local ParsedCountry = Thing[Leaker(v, "CountryRegionCodeReplicate")]
-  --local SayMessageRequest = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-ProtocolSendChat(tostring(Players[v]).." is from "..tostring(ParsedCountry).." 🌐")
-end]]
-
+if not respon then
+ErrorPrompt("Silly Simon Says Script", result)
 end
 end
 -- limit
@@ -9322,7 +9320,9 @@ cmds[#cmds + 1] = {Text = "[261] " .. tostring(prefix) .. "ffcd [number]",Title 
 cmds[#cmds + 1] = {Text = "[262] " .. tostring(prefix) .. "bring",Title = "bring all player to ur CFrame"}
 cmds[#cmds + 1] = {Text = "[263] " .. tostring(prefix) .. "unbring",Title = "stop bring"}
 cmds[#cmds + 1] = {Text = "[264] " .. tostring(prefix) .. "wfs",Title = "Weapon Fighting Simulator"}
-cmds[#cmds + 1] = {Text = "[265] " .. tostring(prefix) .. "location [player name]",Title = "PLAYER LOCATION TRACKING!!"}
+cmds[#cmds + 1] = {Text = "[265] " .. tostring(prefix) .. "name [value]",Title = "change ur username"}
+cmds[#cmds + 1] = {Text = "[266] " .. tostring(prefix) .. "displayname [value]",Title = "change ur display name"}
+cmds[#cmds + 1] = {Text = "[267] " .. tostring(prefix) .. "sillysimon",Title = "Super silly simon says game script"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9465,8 +9465,8 @@ if ESPenabled then
 end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
---[[
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [16/08/2023]","[CONTENT] \n[+] NEW SPECIAL COMMAND!? \n[+] HttpService Bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[?] None \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [19/08/2023]","[CONTENT] \n[+] New commands!? \n[+] HttpService Bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed update notification bug \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
@@ -9626,10 +9626,10 @@ end
 elseif os.date("%m %d") == "08 17" then
    if GetRegionPlayer() == "Indonesia" then
       notify("ChatGPT","Selamat 17 Agustus untuk Indonesia! semoga menang di kontesnya")
-		Virtual.VirtualIcon = " 17 Agustus"
+		Virtual.VirtualIcon = " MERDEKA!"
 else
       notify("ChatGPT","Happy 17th August for Indonesia! hope you win in the contest")
-		Virtual.VirtualIcon = " 17th August"
+		Virtual.VirtualIcon = " INDEPENDENT!"
 end
 elseif os.date("%m %d") == "03 10" then
    if GetRegionPlayer() == "Indonesia" then
