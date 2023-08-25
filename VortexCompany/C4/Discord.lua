@@ -6667,17 +6667,17 @@ speaker.DevEnableMouseLock = true
 end
 if cmd == "setfpscap" then
 local var = string.sub(msg,space+1)
-if setfpscap then
+if setfpscap and type(setfpscap) == "function" then
 		local num = var or 1e6
 		if num == 'none' then
-			setfpscap(1e6)
+			return setfpscap(1e6)
 		elseif num > 0 then
-			setfpscap(num)
+			return setfpscap(num)
 		else
-			ErrorPrompt("ERROR","Please provide a number above 0 or 'none'.")
+			notify('Invalid argument', "Please provide a number above 0 or 'none'.")
 		end
 	else
-		ErrorPrompt("Incompatible Exploit","Your exploit does not support this command (missing setfpscap)")
+		notify('Incompatible Exploit', 'Your exploit does not support this command (missing setfpscap)')
 	end
 end
 if cmd == "antiteleport" then
@@ -9043,6 +9043,25 @@ if not respon then
 ErrorPrompt("Silly Simon Says Script", result)
 end
 end
+if cmd == "nccam" then
+local sc = (debug and debug.setconstant) or setconstant
+	local gc = (debug and debug.getconstants) or getconstants
+	if not sc or not getgc or not gc then
+		notify('Incompatible Exploit', 'Your exploit does not support this command (missing setconstant or getconstants or getgc)')
+	end
+	local pop = speaker.PlayerScripts.PlayerModule.CameraModule.ZoomController.Popper
+	for _, v in pairs(getgc()) do
+		if type(v) == 'function' and getfenv(v).script == pop then
+			for i, v1 in pairs(gc(v)) do
+				if tonumber(v1) == .25 then
+					sc(v, i, 0)
+				elseif tonumber(v1) == 0 then
+					sc(v, i, .25)
+				end
+			end
+		end
+	end
+end
 -- limit
 end
 -- end
@@ -9323,6 +9342,7 @@ cmds[#cmds + 1] = {Text = "[264] " .. tostring(prefix) .. "wfs",Title = "Weapon 
 cmds[#cmds + 1] = {Text = "[265] " .. tostring(prefix) .. "name [value]",Title = "change ur username"}
 cmds[#cmds + 1] = {Text = "[266] " .. tostring(prefix) .. "displayname [value]",Title = "change ur display name"}
 cmds[#cmds + 1] = {Text = "[267] " .. tostring(prefix) .. "sillysimon",Title = "Super silly simon says game script"}
+cmds[#cmds + 1] = {Text = "[268] " .. tostring(prefix) .. "nccam",Title = "Noclip Camera"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9466,7 +9486,7 @@ end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [19/08/2023]","[CONTENT] \n[+] New commands!? \n[+] HttpService Bypass \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed update notification bug \n[-] Removed Discord API and Webhook \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [25/08/2023]","[CONTENT] \n[+] new better setfpscap command \n[+] new 'nccam' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
