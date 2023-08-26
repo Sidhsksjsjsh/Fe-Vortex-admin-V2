@@ -6671,7 +6671,7 @@ if setfpscap and type(setfpscap) == "function" then
 		local num = var or 1e6
 		if num == 'none' then
 			return setfpscap(1e6)
-		elseif num > 0 then
+		elseif tonumber(num) > 0 then
 			return setfpscap(num)
 		else
 			notify('Invalid argument', "Please provide a number above 0 or 'none'.")
