@@ -4490,6 +4490,13 @@ local TpTool = Instance.new("Tool")
 	TpTool.RequiresHandle = true
 	TpTool.Parent = speaker.Backpack
 	TpTool.ToolTip = "Teleport to place you want"
+	local handle = Instance.new("Part")
+              handle.Name = "Handle"
+              handle.Size = Vector3.new(1, 5, 1)
+              handle.BrickColor = BrickColor.new("Bright yellow")
+              handle.Anchored = false
+              handle.CanCollide = false
+              handle.Parent = TpTool
 	TpTool.Activated:Connect(function()
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
