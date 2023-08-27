@@ -2158,7 +2158,7 @@ local coreGuiTypeNames = {
 for _, enumItem in ipairs(Enum.CoreGuiType:GetEnumItems()) do
 	coreGuiTypeNames[enumItem.Name:lower()] = enumItem
 end
-
+--[[
 local AUGPROPESP = Instance.new("BillboardGui")
 local AUGSHOWESPPROP = Instance.new("TextLabel",AUGPROPESP) ---- new instances to make the billboard gui and the textlabel
  
@@ -2180,7 +2180,7 @@ AUGSHOWESPPROP.TextSize = 20
 AUGSHOWESPPROP.TextColor3 = Color3.fromRGB(1,1,1)
 -- AUGPROPESP.Visible = false
 AUGSHOWESPPROP.Visible = false
-
+]]
 local espParts = {}
 local partEspTrigger = nil
 function partAdded(part)
@@ -2196,18 +2196,59 @@ function partAdded(part)
 			a.Transparency = 0.3
 			a.Color = BrickColor.new("Lime green")
 			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
-			--AUGPROPESP.Visible = true
-                        AUGSHOWESPPROP.Visible = true
-			if part:FindFirstChild("BETA PART ESP LABEL") == nil then
-                          AUGSHOWESPPROP.Text = "[ " .. tostring(part.Name) .. " ]"
-                          AUGPROPESP:Clone().Parent = part
-			end
 		end
 	else
 		partEspTrigger:Disconnect()
 		partEspTrigger = nil
 	end
 end
+
+function FlyToolForMobile()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "FLY TOOL [ false ]"
+tool.Parent = speaker.Backpack
+tool.Equipped:Connect(function()
+	NOFLY()
+	wait()
+	sFLY()
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+        U5.Visible = true
+        U6.Visible = true
+	tool.Name = "FLY TOOL [ true ]"
+end)
+tool.Unequipped:Connect(function()
+	NOFLY()
+        U1.Visible = false
+        U2.Visible = false
+        U3.Visible = false
+        U4.Visible = false
+        U5.Visible = false
+        U6.Visible = false
+	tool.Name = "FLY TOOL [ false ]"
+end)
+end
+
+function FlyToolForPC()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "FLY TOOL [ false ]"
+tool.Parent = speaker.Backpack
+tool.Equipped:Connect(function()
+	NOFLY()
+	wait()
+	sFLY()
+	tool.Name = "FLY TOOL [ true ]"
+end)
+tool.Unequipped:Connect(function()
+	NOFLY()
+        tool.Name = "FLY TOOL [ false ]"
+end)
+end
+
 --[[
 local ToolFunc_2 = ""
 local DeleteParts = {}
@@ -4446,7 +4487,7 @@ end
 function tptool_A1()
 local TpTool = Instance.new("Tool")
 	TpTool.Name = "Teleport Tool"
-	TpTool.RequiresHandle = false
+	TpTool.RequiresHandle = true
 	TpTool.Parent = speaker.Backpack
 	TpTool.ToolTip = "Teleport to place you want"
 	TpTool.Activated:Connect(function()
@@ -9090,6 +9131,13 @@ local sc = (debug and debug.setconstant) or setconstant
 		end
 	end
 end
+if cmd == "flytool" then
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
+   FlyToolForMobile()
+else
+   FlyToolForPC()
+end
+end
 -- limit
 end
 -- end
@@ -9371,6 +9419,8 @@ cmds[#cmds + 1] = {Text = "[265] " .. tostring(prefix) .. "name [value]",Title =
 cmds[#cmds + 1] = {Text = "[266] " .. tostring(prefix) .. "displayname [value]",Title = "change ur display name"}
 cmds[#cmds + 1] = {Text = "[267] " .. tostring(prefix) .. "sillysimon",Title = "Super silly simon says game script"}
 cmds[#cmds + 1] = {Text = "[268] " .. tostring(prefix) .. "nccam",Title = "Noclip Camera"}
+cmds[#cmds + 1] = {Text = "[269] " .. tostring(prefix) .. "ccam",Title = "clip Camera"}
+cmds[#cmds + 1] = {Text = "[270] " .. tostring(prefix) .. "flytool",Title = "Fly toggle but its tool"}
 
 _G.RemoveSymbols = {
    blank = ""
