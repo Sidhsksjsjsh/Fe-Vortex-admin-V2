@@ -2159,6 +2159,28 @@ for _, enumItem in ipairs(Enum.CoreGuiType:GetEnumItems()) do
 	coreGuiTypeNames[enumItem.Name:lower()] = enumItem
 end
 
+local AUGPROPESP = Instance.new("BillboardGui")
+local AUGSHOWESPPROP = Instance.new("TextLabel",AUGPROPESP) ---- new instances to make the billboard gui and the textlabel
+ 
+ 
+ 
+AUGPROPESP.Name = "BETA PART ESP LABEL"; ---- properties of the esp
+AUGPROPESP.ResetOnSpawn = false
+AUGPROPESP.AlwaysOnTop = true;
+AUGPROPESP.LightInfluence = 0;
+AUGPROPESP.Size = UDim2.new(1.75, 0, 1.75, 0); -- here
+AUGSHOWESPPROP.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+AUGSHOWESPPROP.Text = ""
+AUGSHOWESPPROP.Size = UDim2.new(0,100,0,100);
+AUGSHOWESPPROP.BorderSizePixel = 4;
+AUGSHOWESPPROP.BorderColor3 = Color3.new(255,255,255)
+AUGSHOWESPPROP.BorderSizePixel = 0
+AUGSHOWESPPROP.Font = "GothamSemibold"
+AUGSHOWESPPROP.TextSize = 20
+AUGSHOWESPPROP.TextColor3 = Color3.fromRGB(1,1,1)
+AUGPROPESP.Visible = false
+AUGSHOWESPPROP.Visible = false
+
 local espParts = {}
 local partEspTrigger = nil
 function partAdded(part)
@@ -2174,6 +2196,12 @@ function partAdded(part)
 			a.Transparency = 0.3
 			a.Color = BrickColor.new("Lime green")
 			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
+			AUGPROPESP.Visible = true
+                        AUGSHOWESPPROP.Visible = true
+			if part:FindFirstChild("BETA PART ESP LABEL") == nil then
+                          AUGSHOWESPPROP.Text = "[ " .. tostring(part.Name) .. " ]"
+                          AUGPROPESP:Clone().Parent = part
+			end
 		end
 	else
 		partEspTrigger:Disconnect()
@@ -9541,13 +9569,13 @@ gui.LightInfluence = 0;
 gui.Size = UDim2.new(1.75, 0, 1.75, 0);
 esp.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
 esp.Text = ""
-esp.Size = UDim2.new(0.0001, 0.00001, 0.0001, 0.00001);
+esp.Size = UDim2.new(0,100,0,100);
 esp.BorderSizePixel = 4;
-esp.BorderColor3 = Color3.new(esp_settings.colour)
+esp.BorderColor3 = Color3.new(255,255,255)
 esp.BorderSizePixel = 0
 esp.Font = "GothamSemibold"
-esp.TextSize = esp_settings.textsize
-esp.TextColor3 = Color3.fromRGB(esp_settings.colour) -- text colour
+esp.TextSize = 20
+esp.TextColor3 = Color3.fromRGB(1,1,1) -- text colour
  
 RunService.RenderStepped:Connect(function() ---- loops faster than a while loop :)
     for i,v in pairs(Players:GetPlayers()) do
