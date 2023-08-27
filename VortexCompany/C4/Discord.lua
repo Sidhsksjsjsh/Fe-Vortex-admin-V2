@@ -2178,7 +2178,7 @@ AUGSHOWESPPROP.BorderSizePixel = 0
 AUGSHOWESPPROP.Font = "GothamSemibold"
 AUGSHOWESPPROP.TextSize = 20
 AUGSHOWESPPROP.TextColor3 = Color3.fromRGB(1,1,1)
-AUGPROPESP.Visible = false
+-- AUGPROPESP.Visible = false
 AUGSHOWESPPROP.Visible = false
 
 local espParts = {}
@@ -2196,7 +2196,7 @@ function partAdded(part)
 			a.Transparency = 0.3
 			a.Color = BrickColor.new("Lime green")
 			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
-			AUGPROPESP.Visible = true
+			--AUGPROPESP.Visible = true
                         AUGSHOWESPPROP.Visible = true
 			if part:FindFirstChild("BETA PART ESP LABEL") == nil then
                           AUGSHOWESPPROP.Text = "[ " .. tostring(part.Name) .. " ]"
