@@ -4484,6 +4484,7 @@ local PlayerState = {} do
 	end
 end
 
+-- local ToggleRotateHandleMesh = false
 function tptool_A1()
 local TpTool = Instance.new("Tool")
 	TpTool.Name = "Teleport Tool"
@@ -4492,7 +4493,7 @@ local TpTool = Instance.new("Tool")
 	TpTool.ToolTip = "Teleport to place you want"
 	local handle = Instance.new("Part")
               handle.Name = "Handle"
-              handle.Size = Vector3.new(1, 5, 1)
+              handle.Size = Vector3.new(1, 1, 1)
               handle.BrickColor = BrickColor.new("Bright yellow")
               handle.Anchored = false
               handle.CanCollide = false
@@ -4501,7 +4502,7 @@ local TpTool = Instance.new("Tool")
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
 		if not Char or not HRP then
-			return ErrorPrompt("Failed to load tptool","Failed to find HumanoidRootPart")
+			ErrorPrompt("Failed to load tptool","Failed to find HumanoidRootPart")
 		end
 		HRP.CFrame = CFrame.new(Mouse.Hit.X, Mouse.Hit.Y + 3, Mouse.Hit.Z, select(4, HRP.CFrame:components()))
 	end)
