@@ -1877,7 +1877,7 @@ wait(1)
 SyncTeleportScreen:Destroy()
 end
 
-local replace = { 
+local replace_Patched = { 
       ass = "𐌑á⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥𐌑úm",
       cock = "с𐌑ồс𐌑k",
@@ -1991,6 +1991,64 @@ local replaceCAPS = {
       tiktok = "t𐌑ìkt𐌑ok"
 --]]
 
+local replace = { -- 
+      ass = "а⁥⁥⁥⁥ѕѕ",
+      cum = "с⁥⁥⁥𐌑úm",
+      cock = "сồсk",
+      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
+      asshole = "аѕѕholе",
+      rape = "rаре",
+      boobs = "воовs",
+      titties = "Тìttìes",
+      sex = "s⁥⁥⁥⁥⁥⁥ех",
+      sexy = "sе⁥⁥⁥хy",
+      hoe = "hое",
+      porn = "роrn",
+      nigga = "nìgg⁥а",
+      penis = "реn⁥ìs",
+      beaner = "bеаn⁥еr",
+      thot = "thоt",
+      xxx = "xxx",
+      hentai = "hеntаi",
+      bitch = "вìtch⁥⁥⁥⁥",
+      bitches = "вìtchеs⁥⁥⁥⁥",
+      shit = "shìt",
+      kys = "kys",
+      butthole = "вútthоle",
+      masturbate = "mástúrbаte",
+      bbc = "bìg bláck сồ⁥⁥⁥сk",
+      blowjob = "bl𐌑ồwj𐌑ồb",
+      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
+      cs = "с𐌑ồсk s𐌑úсkеr",
+      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
+      dick = "d𐌑ìc𐌑k",
+      dogshit = "d𐌑o𐌑g𐌑s𐌑h𐌑ì𐌑t",
+      tits = "t𐌑ìts",
+      pussy = "p𐌑ússy",
+      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑ms",
+      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
+      memek = "m𐌑em𐌑ek",
+      sepong = "s𐌑ep𐌑on𐌑g",
+      kontol = "k𐌑o𐌑nt𐌑ol",
+      ngentot = "ng𐌑en𐌑to𐌑t",
+      jembut = "j𐌑emb𐌑út",
+      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
+      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìs𐌑𝖔 ͜ ͣ t𐌑𝖔 ͜ ͣ s",
+      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
+      hub = "h𐌑úb",
+      cyka = "c𐌑yk𐌑á",
+      blyat = "bl𐌑y𐌑át",
+      gay = "g𐌑áy",
+      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
+      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e",
+      i = "i",
+      love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
+      you = "yo𐌑ú",
+      tiktok = "t𐌑ìkt𐌑ok",
+      condom = "c𐌑𝖔 ͜ ͣ o𐌑n𐌑do𐌑m",
+      suck = "s𐌑úc𐌑𝖔 ͜ ͣ k"
+}
+
 function SyncBypassChat(str)
 local chat = str:lower()
 return chat:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok):gsub("condom",replace.condom):gsub("suck",replace.suck)
@@ -2055,7 +2113,12 @@ local replaceCAPS = {
 function CAPS_BYPASS(str)
 local Caps_Chat = str:lower()
 Caps_Chat:gsub("ASS",replaceCAPS.)
-end
+end здравствуйте
+тест
+свинья
+сволочь
+животное
+почему все?
 --]]
 function BP_SyncBypassChat(BypassWord)
 local chat = BypassWord:lower()
@@ -2063,35 +2126,15 @@ local chat = BypassWord:lower()
     for i = 1, #chat do
         local chara = chat:sub(i,i)
         if string.lower(chara) == "a" then
-            chara = "𐌑á" -- 𐌑á
+            chara = "а" -- 𐌑á
         elseif string.lower(chara) == "o" then
-            chara = "𐌑o" -- 𐌑ồ
-        elseif string.lower(chara) == "i" then
-            chara = "𐌑ì" -- 𐌑ì
-        elseif string.lower(chara) == "u" then
-            chara = "𐌑ú" -- 𐌑ú
-        elseif string.lower(chara) == "e" then
-            chara = "𐌑e" -- 𐌑ệ
-        elseif string.lower(chara) == "d" then
-            chara = "𐌑đ" -- 𐌑đ
-        elseif string.lower(chara) == "y" then
-            chara = "𐌑y" -- 𐌑ỷ
-	elseif string.lower(chara) == " " then
-            chara = " " -- 
-	elseif string.lower(chara) == "f" then
-            chara = "𐌑f" --[[
-	elseif string.lower(chara) == "tits" then
-            chara = "t𐌑ì𐌑ts" -- 
-        elseif string.lower(chara) == "boobs" then
-            chara = "b𐌑ồồ𐌑bs" -- 
-        elseif string.lower(chara) == "suck" then
-            chara = "s𐌑ú𐌑ck" -- 
-        elseif string.lower(chara) == "asshole" then
-            chara = "á𐌑ss𐌑h𐌑𝖔 ͜ ͣ ồle" -- 
-        elseif string.lower(chara) == "ass" then
-            chara = "á𐌑s𐌑𝖔 ͜ ͣ s" -- 
-        elseif string.lower(chara) == "pussy" then
-            chara = "p𐌑us𐌑s𐌑𝖔 ͜ ͣ y" --]]
+            chara = "о" -- 𐌑ồ
+        elseif string.lower(chara) == "b" then
+            chara = "в" -- 𐌑ì
+        elseif string.lower(chara) == "c" then
+            chara = "с" -- 𐌑ú
+	elseif string.lower(chara) == "e" then
+            chara = "е"
         end
         table.insert(tabl, chara)
     end
