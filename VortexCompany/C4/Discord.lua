@@ -2119,7 +2119,7 @@ end здравствуйте
 сволочь
 животное
 почему все?
---]]
+--
 function BP_SyncBypassChat(BypassWord)
 local chat = BypassWord:lower()
     local tabl = {}
@@ -2143,7 +2143,7 @@ local chat = BypassWord:lower()
         chat = chat..v
     end
     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat, "All")
-end
+end]]
 --[[
 local replace = { "𐌑á⁥⁥⁥⁥ѕѕ", "с⁥⁥⁥⁥um", "сосk", "fu𐌑𝖔 ͜ ͣ c𐌑ḳ", "аѕѕһоlе", "rаре", "Вoobs", "Тitties", "s⁥⁥⁥⁥⁥⁥ех", "һое", "рогn", "п⁥iɡ⁥ɡ⁥а", "реп⁥is", "bеаn⁥ег", "ТН⁥⁥⁥⁥⁥ОТ", "ΧΧΧ", "НЕΝТАӀ", "ВI⁥⁥⁥⁥⁥⁥TСН", "ВIT⁥⁥⁥⁥⁥⁥⁥СНEЅ", "ЅНIТ", "К⁥⁥⁥⁥⁥YЅ", "ВUТТ⁥⁥⁥⁥НOLЕ", "МАЅТURВАТЕ", "big black со⁥⁥⁥сk", "Вӏоwjob", "Віtеѕ уоur сосk", "сосk suсkеr", "f⁥аt а⁥ѕѕ һое" }
 
@@ -2359,6 +2359,51 @@ print(SynText)
     end
 --]]
 
+function TitlePlayer(title)
+if speaker.Character.Head:FindFirstChild("PLAYER TITLE") then
+	speaker.Character.Head:FindFirstChild("PLAYER TITLE"):Destroy()
+end
+
+local billboardGui = Instance.new("BillboardGui")
+billboardGui.Size = UDim2.new(1, 0, 1, 0)
+billboardGui.Adornee = speaker.Character.Head
+billboardGui.ResetOnSpawn = false
+billboardGui.Name = "PLAYER TITLE"
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, 0, 1, 0)
+textLabel.Text = title
+textLabel.BackgroundTransparency = 1
+textLabel.TextScaled = true
+textLabel.Parent = billboardGui
+
+billboardGui.Parent = speaker.Character.Head
+end
+
+function NametagPlayer(title)
+if speaker.Character:FindFirstChild("NameTag") then
+      speaker.Character:FindFirstChild("NameTag"):Destroy()
+end
+
+    if speaker.Character and not speaker.Character:FindFirstChild("NameTag") then
+        local billboardGui = Instance.new("BillboardGui", speaker.Character)
+        billboardGui.Name = "NameTag"
+        billboardGui.Size = UDim2.new(2, 0, 0.5, 0)
+        billboardGui.Adornee = speaker.Character.Head
+        billboardGui.StudsOffset = Vector3.new(0, 1, 0)
+        billboardGui.ResetOnSpawn = false
+
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.Text = title
+        textLabel.BackgroundTransparency = 1
+        textLabel.TextColor3 = Color3.new(1, 1, 1)
+        textLabel.Font = Enum.Font.SourceSansBold
+        textLabel.TextScaled = true
+        textLabel.Parent = billboardGui
+    end
+end
+
 function getstring(begin)
 	local start = begin-1
 	local AA = '' for i,v in pairs(cargs) do
@@ -2531,7 +2576,7 @@ wait(0.5)
 Humanoid:FindFirstChild("HeadScale"):Destroy()
 wait(1)
 end
-
+--[[
 local apfo_t = {"Ricky Wicky 😱", "Vortex Apple", "Egg Admino", "Amity coughed", "Where am I?", "Rickity Volcano", "walter white", "Nick Cage?!?!", "peyton real", "april fool!!"}
 local apfo_i = {"11688231017", "11339922083", "11914981726", "5783845592", "6762179979", "7846015915", "11171958623", "11308149650", "7444547410", "6093472109"}
 
@@ -3345,10 +3390,10 @@ function ProtocolSave(FileName, Config)
 	ErrorPrompt("Incompatible Exploit", "your exploit doesnt have ability to use writefile, Bad exploit🤣😂")
     end 
 end
-
+--[[
 function ProtocolRead(FileName)
         readfile(FileName)
-end
+e]]
 
 function GetTimePlayed()
 local seconds = math.floor(workspace.DistributedGameTime)
@@ -3372,7 +3417,7 @@ SaveOMG.MouseButton1Down:Connect(function()
       ProtocolSave(FileName.Text, InFile.Text)
    end
 end)
-
+--[[
 function SyncMath(math_1, ProtocolMath, math_2)
      if ProtocolMath == "+" then
         local SyncNumber_1 = math_1
@@ -3396,7 +3441,7 @@ function SyncMath(math_1, ProtocolMath, math_2)
 	notify("Math",SyncNumber_1 .. " * " .. SyncNumber_2 .. " = " .. ExecuteResultMisc)
     end
 end
-
+]]
 if _G.Settings.AutoExecuteLink == "" or _G.Settings.AutoExecuteLink == nil then
 print("error! We could not find your script (Error Auto Execute: 404)")
 else
@@ -3550,7 +3595,7 @@ function getRoot(char)
 	local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
 	return rootPart
 end
-
+--[[
 function PetHat_R15AndR6(HatId)
     local plr = speaker
     local char = plr.Character
