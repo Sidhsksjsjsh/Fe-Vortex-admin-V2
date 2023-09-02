@@ -2249,7 +2249,7 @@ end
 function FlyToolForMobile()
 local tool = Instance.new("Tool")
 tool.RequiresHandle = false
-tool.Name = "FLY TOOL [ false ]"
+tool.Name = "FLY TOOL \n[ false ]"
 tool.Parent = speaker.Backpack
 tool.Equipped:Connect(function()
 	NOFLY()
@@ -2261,7 +2261,7 @@ tool.Equipped:Connect(function()
         U4.Visible = true
         U5.Visible = true
         U6.Visible = true
-	tool.Name = "FLY TOOL [ true ]"
+	tool.Name = "FLY TOOL \n[ true ]"
 end)
 tool.Unequipped:Connect(function()
 	NOFLY()
@@ -2271,24 +2271,24 @@ tool.Unequipped:Connect(function()
         U4.Visible = false
         U5.Visible = false
         U6.Visible = false
-	tool.Name = "FLY TOOL [ false ]"
+	tool.Name = "FLY TOOL \n[ false ]"
 end)
 end
 
 function FlyToolForPC()
 local tool = Instance.new("Tool")
 tool.RequiresHandle = false
-tool.Name = "FLY TOOL [ false ]"
+tool.Name = "FLY TOOL \n[ false ]"
 tool.Parent = speaker.Backpack
 tool.Equipped:Connect(function()
 	NOFLY()
 	wait()
 	sFLY()
-	tool.Name = "FLY TOOL [ true ]"
+	tool.Name = "FLY TOOL \n[ true ]"
 end)
 tool.Unequipped:Connect(function()
 	NOFLY()
-        tool.Name = "FLY TOOL [ false ]"
+        tool.Name = "FLY TOOL \n[ false ]"
 end)
 end
 
@@ -9234,6 +9234,18 @@ else
    FlyToolForPC()
 end
 end
+if cmd == "nametag" then
+local var = string.sub(msg,space+1)
+if not speaker.Name == "Rivanda_Cheater" then
+	NametagPlayer(var)
+   end
+end
+if cmd == "title" then
+local var = string.sub(msg,space+1)
+if not speaker.Name == "Rivanda_Cheater" then
+	TitlePlayer(var)
+   end
+end
 -- limit
 end
 -- end
@@ -9517,6 +9529,8 @@ cmds[#cmds + 1] = {Text = "[267] " .. tostring(prefix) .. "sillysimon",Title = "
 cmds[#cmds + 1] = {Text = "[268] " .. tostring(prefix) .. "nccam",Title = "Noclip Camera"}
 cmds[#cmds + 1] = {Text = "[269] " .. tostring(prefix) .. "ccam",Title = "clip Camera"}
 cmds[#cmds + 1] = {Text = "[270] " .. tostring(prefix) .. "flytool",Title = "Fly toggle but its tool"}
+cmds[#cmds + 1] = {Text = "[271] " .. tostring(prefix) .. "title [value]",Title = "give you a title"}
+cmds[#cmds + 1] = {Text = "[272] " .. tostring(prefix) .. "nametag [value]",Title = "server-sided nametag?"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9659,6 +9673,11 @@ if ESPenabled then
 end)
 
 -- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+
+if speaker.Name == "Rivanda_Cheater" then
+	TitlePlayer("Developer")
+	NametagPlayer("[ Investigator Major ] " .. tostring(speaker.DisplayName))
+end
 
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [25/08/2023]","[CONTENT] \n[+] new better setfpscap command \n[+] new 'nccam' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
