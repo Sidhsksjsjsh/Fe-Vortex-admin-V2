@@ -2360,24 +2360,31 @@ print(SynText)
 --]]
 
 function TitlePlayer(title)
-if speaker.Character.Head:FindFirstChild("PLAYER TITLE") then
-	speaker.Character.Head:FindFirstChild("PLAYER TITLE"):Destroy()
+if speaker.Character.Head:FindFirstChild("tag") then
+	speaker.Character.Head:FindFirstChild("tag"):Destroy()
 end
 
-local billboardGui = Instance.new("BillboardGui")
-billboardGui.Size = UDim2.new(1, 0, 1, 0)
-billboardGui.Adornee = speaker.Character.Head
-billboardGui.ResetOnSpawn = false
-billboardGui.Name = "PLAYER TITLE"
+local len = 10
 
-local textLabel = Instance.new("TextLabel")
-textLabel.Size = UDim2.new(1, 0, 1, 0)
-textLabel.Text = title
-textLabel.BackgroundTransparency = 1
-textLabel.TextScaled = true
-textLabel.Parent = billboardGui
-
-billboardGui.Parent = speaker.Character.Head
+	local bb = Instance.new("BillboardGui")
+	bb.Parent = speaker.Character.Head
+	bb.Adornee = speaker.Character.Head
+	bb.AlwaysOnTop = true
+	bb.Enabled = true
+	bb.Size = UDim2.new(len, 0, 1.5, 0)
+	bb.Name = "tag"
+	bb.StudsOffset = Vector3.new(0, 3, 0)
+	local tl = Instance.new("TextLabel")
+	tl.Parent = bb
+	tl.Font = Enum.Font.Code
+	tl.BackgroundTransparency = 1
+	tl.TextScaled = true
+	tl.TextColor3 = Color3.new(15/255, 15/255, 15/255)
+	tl.Size = UDim2.new(1, 0, 1, 0)
+	tl.Text = title
+	tl.Name = "trutag"
+	tl.Visible = true
+	tl.ZIndex = 2
 end
 
 function NametagPlayer(title)
@@ -7748,7 +7755,7 @@ if cmd == "crosshair" then
 local Crosshair = Instance.new("ScreenGui")
 local CrosshairImage = Instance.new("ImageLabel")
 --Properties:
-Crosshair.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Crosshair.Parent = speaker:WaitForChild("PlayerGui")
  
 CrosshairImage.Parent = ScreenGui
 CrosshairImage.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -7847,7 +7854,7 @@ local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 	end
 end
 if cmd == "fakedata" then
-local options = httprequest{
+local options = HttpService:RequestAsync{
     Url = "https://jsonplaceholder.typicode.com/users",
     Method = "GET",
     Headers = {
@@ -9236,15 +9243,11 @@ end
 end
 if cmd == "nametag" then
 local var = string.sub(msg,space+1)
-if not speaker.Name == "Rivanda_Cheater" then
-	NametagPlayer(var)
-   end
+    NametagPlayer(var)
 end
 if cmd == "title" then
 local var = string.sub(msg,space+1)
-if not speaker.Name == "Rivanda_Cheater" then
-	TitlePlayer(var)
-   end
+    TitlePlayer(var)
 end
 -- limit
 end
@@ -9676,10 +9679,10 @@ end)
 
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
-	NametagPlayer("[ Investigator Major ] " .. tostring(speaker.DisplayName))
+	NametagPlayer("[ Investigator Major ] \n" .. tostring(speaker.DisplayName))
 end
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [25/08/2023]","[CONTENT] \n[+] new better setfpscap command \n[+] new 'nccam' command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [02/09/2023]","[CONTENT] \n[+] Added 2 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
