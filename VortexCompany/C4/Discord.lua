@@ -3243,13 +3243,13 @@ if InterfaceEnter then
 if Github.Text then
 local username = Github.Text
 
-local options = httprequest{
+local options = httprequest({
     Url = "https://api.github.com/users/" .. username,
     Method = "GET",
     Headers = {
         ["User-Agent"] = "Roblox"
     }
-}
+})
 
 local success, result = pcall(HttpService.RequestAsync, HttpService, options)
 
@@ -3289,13 +3289,13 @@ if WeatherApiKey.Text then
 local city = WeatherCity.Text or "New York"
 local apiKey = WeatherApiKey.Text
 
-local options = httprequest{
+local options = httprequest({
     Url = "http://api.openweathermap.org/data/2.5/weather?q=" .. city .. "&appid=" .. apiKey,
     Method = "GET",
     Headers = {
         ["Content-Type"] = "application/json"
     }
-}
+})
 
 -- Send the request
 local success, result = pcall(HttpService.RequestAsync, HttpService, options)
@@ -3750,12 +3750,10 @@ end
 function CameraMode(ModeType)
        if ModeType == "fpp" then
            speaker.CameraMode = "LockFirstPerson"
-       end
-       if ModeType == "tpp" then
+	elseif ModeType == "tpp" then
            speaker.CameraMode = "Classic"
-end
-       if not ModeType == "tpp" and not ModeType == "fpp" then
-           ErrorPrompt("string:nil","Camera mode not found, mode: " .. ModeType)
+	else
+       ErrorPrompt("string:nil","Camera mode not found, mode: " .. ModeType)
 end
 end
 
@@ -6842,9 +6840,9 @@ local var = string.sub(msg,space+1)
 if setfpscap and type(setfpscap) == "function" then
 		local num = var or 1e6
 		if num == 'none' then
-			return setfpscap(1e6)
+			setfpscap(1e6)
 		elseif tonumber(num) > 0 then
-			return setfpscap(num)
+			setfpscap(num)
 		else
 			notify('Invalid argument', "Please provide a number above 0 or 'none'.")
 		end
@@ -7854,13 +7852,13 @@ local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 	end
 end
 if cmd == "fakedata" then
-local options = HttpService:RequestAsync{
+local options = httprequest({
     Url = "https://jsonplaceholder.typicode.com/users",
     Method = "GET",
     Headers = {
         ["Content-Type"] = "application/json"
     }
-}
+})
 
 local success, result = pcall(HttpService.RequestAsync, HttpService, options)
 
@@ -7870,7 +7868,8 @@ if success then
         print("User ID: " .. user.id)
         print("Username: " .. user.username)
 	-- notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
-	ErrorPrompt("Fake data generator","User ID: " .. user.id .. "\nUsername: " .. user.username)
+	ErrorPrompt("Fake data generator (Copied)","User ID: " .. user.id .. "\nUsername: " .. user.username)
+	copy("User ID: " .. user.id .. "\nUsername: " .. user.username)
     end
 else
     -- notify("Error making request: " .. tostring(result))
@@ -9243,7 +9242,7 @@ end
 end
 if cmd == "nametag" then
 local var = string.sub(msg,space+1)
-    NametagPlayer(var)
+    NametagPlayer("[ " .. tostring(var) .. " ] \n" .. tostring(speaker.DisplayName))
 end
 if cmd == "title" then
 local var = string.sub(msg,space+1)
@@ -9682,7 +9681,7 @@ if speaker.Name == "Rivanda_Cheater" then
 	NametagPlayer("[ Investigator Major ] \n" .. tostring(speaker.DisplayName))
 end
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [02/09/2023]","[CONTENT] \n[+] Added 2 new commands \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [05/09/2023]","[CONTENT] \n[+] Added Vortex.request, Vortex.connection or Vortex.connect or Vortex:Connect and Vortex:HttpGet or Vortex:HttpRequest \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
