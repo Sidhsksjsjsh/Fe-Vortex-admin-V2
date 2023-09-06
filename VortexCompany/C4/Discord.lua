@@ -9248,6 +9248,29 @@ if cmd == "title" then
 local var = string.sub(msg,space+1)
     TitlePlayer(var)
 end
+if cmd == "discord" then
+if setclipboard then
+		copy('https://discord.gg/invite/PmBCGpCjYM')
+		notify('Discord Invite','Copied to clipboard!\ndiscord.gg/PmBCGpCjYM')
+	else
+		notify('Discord Invite','discord.gg/PmBCGpCjYM')
+	end
+	if httprequest then
+		httprequest({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = HttpService:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = HttpService:GenerateGUID(false),
+				args = {code = 'PmBCGpCjYM'}
+			})
+		})
+	end
+end
 -- limit
 end
 -- end
@@ -9318,7 +9341,7 @@ cmds[#cmds + 1] = {Text = "[55] " .. tostring(prefix) .. "unloopoof",Title = "un
 cmds[#cmds + 1] = {Text = "[56] " .. tostring(prefix) .. "enablesl",Title = "enable shift lock"}
 cmds[#cmds + 1] = {Text = "[57] " .. tostring(prefix) .. "setfpscap [number]",Title = "set fps cap"}
 cmds[#cmds + 1] = {Text = "[58] " .. tostring(prefix) .. "antiteleport",Title = "enable anti teleport bypass"}
-cmds[#cmds + 1] = {Text = "[59] " .. tostring(prefix) .. "support",Title = "copy discord invite"}
+cmds[#cmds + 1] = {Text = "[59] " .. tostring(prefix) .. "discord",Title = "copy discord invite"}
 cmds[#cmds + 1] = {Text = "[60] " .. tostring(prefix) .. "ip [country]",Title = "sshhhttt, I tracked this code using my website's server🤫🤫"}
 cmds[#cmds + 1] = {Text = "[61] " .. tostring(prefix) .. "antifling",Title = "Prevents you from being hit by a fling"}
 cmds[#cmds + 1] = {Text = "[62] " .. tostring(prefix) .. "cammode [tpp or fpp]",Title = "Camera mode."}
