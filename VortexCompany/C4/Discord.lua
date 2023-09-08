@@ -335,7 +335,7 @@ getgenv().IrisAd = true
 local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 local Virtual = {}
-Virtual.VirtualIcon = ""
+Virtual.VirtualIcon = " ★"
 
 function notify(title, content)
 	NotifyV1:Notify(
@@ -1472,6 +1472,9 @@ fade = function(obj, len, props)
     TweenService:Create(obj, TweenInfo.new(len, Enum.EasingStyle.Sine), props):Play()
 end
 
+_G.BlacklistedWebhook = {}
+_G.UrlList = {}
+
 function getEquippedTool(player)
         local char = player.Character
         local polvus = char and char:FindFirstChildWhichIsA("Tool")
@@ -1822,6 +1825,7 @@ _G.Settings.username = true
 end
 end
 ]]
+
 function FindInTable(tbl,val)
 	if tbl == nil then return false end
 	for _,v in pairs(tbl) do
@@ -5981,6 +5985,85 @@ CB.BackgroundTransparency = 75
 CB.TextTransparency = 0.7
 end)
 --]]
+--[[
+{
+    "apiMetadata": {
+        "websiteName": "MySiteAPI",
+        "baseUrl": "https://api.mysite.com",
+        "documentation": "https://docs.mysite.com"
+    },
+    "requestDetails": {
+        "endpoint": "/users/info",
+        "method": "GET",
+        "host": "api.mysite.com",
+        "cookie": {
+            "MYSESSIONID": "abcdef123456"
+        },
+        "fingerprint": "xyz7890abc",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    "response": {
+        "statusCode": 200,
+        "statusMessage": "OK",
+        "data": {
+            "userId": 987654321,
+            "username": "SampleUser",
+            "displayName": "Mr. Sample",
+            "email": "sample@mysite.com",
+            "dateJoined": "2020-01-01T00:00:00Z",
+            "bio": "Hello, I'm Mr. Sample on MySite!"
+        }
+    },
+    "meta": {
+        "timestamp": "2023-09-08T12:00:00Z",
+        "version": "1.0.2",
+        "serverId": "MS-API-01"
+    }
+}
+]]
+--_G.GenerateTable = {}
+--_G.GenerateTable.NameProvider = 'Vortex:HttpRequest({          \n[""]'
+--_G.GenerateTable.Table = "websiteName:"
+--function CopyFakeTable(website,docs,url,session,fingerprint,useragent
+--copy()
+--end
+
+--[[
+{
+    "apiMetadata": {
+        "websiteName": "MySiteAPI",
+        "baseUrl": "https://api.mysite.com",
+        "documentation": "https://docs.mysite.com"
+    },
+    "requestDetails": {
+        "endpoint": "/users/info",
+        "method": "GET",
+        "host": "api.mysite.com",
+        "cookie": {
+            "MYSESSIONID": "abcdef123456"
+        },
+        "fingerprint": "xyz7890abc",
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    },
+    "response": {
+        "statusCode": 200,
+        "statusMessage": "OK",
+        "data": {
+            "userId": 987654321,
+            "username": "SampleUser",
+            "displayName": "Mr. Sample",
+            "email": "sample@mysite.com",
+            "dateJoined": "2020-01-01T00:00:00Z",
+            "bio": "Hello, I'm Mr. Sample on MySite!"
+        }
+    },
+    "meta": {
+        "timestamp": "2023-09-08T12:00:00Z",
+        "version": "1.0.2",
+        "serverId": "MS-API-01"
+    }
+}
+]]
 
 function unfling()
 if NoclippingFling then
@@ -9281,6 +9364,62 @@ end
 if cmd == "memory" then
 notify("Total memory usage",tostring(math.round(game:GetService("Stats").GetTotalMemoryUsageMb(stats))) .. " mb")
 end
+if cmd == "httpspy" then
+notify("HTTP SPY","Using Vortex:HttpRequest and use Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod")
+				
+local old;
+old = hookfunction(request, newcclosure(function(newreq)
+if newreq.Url:find("discord") or newreq.Url:find("webhook") then
+print(newreq.Url)
+warning("Webhook detected","Blocked webhook!")
+return
+end
+return old(newreq)
+end))
+
+
+local old;
+old = hookfunction(game.HttpGet, newcclosure(function(olgame, url)
+if url:find("pastebin") then
+url = url:gsub("pastebin","pastebinp")
+elseif url:find("process") then
+warning("HTTP SPY",url)
+print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
+_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+end
+print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
+notify("HTTP SPY",url)
+_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+return old(olgame, url)
+end))
+
+setreadonly(getrawmetatable(game), false)
+
+local mt = getrawmetatable(game) or getmetatable(game)
+local __oldnamecall = mt.__namecall
+
+mt.__namecall = newcclosure(function(self, ...)
+	local args = {...}
+	local namecallmethod = getnamecallmethod()
+	
+	if self == speaker and string.lower(namecallmethod) == "kick" then
+		warning("Kick Bypassed","bitchass tried to kick you, L KICK SYSTEM")
+		wait(9e9)
+		return nil
+ 	end
+ 	return __oldnamecall(self, unpack(args))
+end)
+
+setreadonly(getrawmetatable(game), true)
+end
+if cmd == "copyurl" then
+local var = string.sub(msg,space+1)
+if (not _G.UrlList[tonumber(var)]) then
+    ErrorPrompt("error","sequence not found.")
+else
+    copy(_G.UrlList[tonumber(var)].urlHook)
+end
+end
 -- limit
 end
 -- end
@@ -9566,6 +9705,9 @@ cmds[#cmds + 1] = {Text = "[269] " .. tostring(prefix) .. "ccam",Title = "clip C
 cmds[#cmds + 1] = {Text = "[270] " .. tostring(prefix) .. "flytool",Title = "Fly toggle but its tool"}
 cmds[#cmds + 1] = {Text = "[271] " .. tostring(prefix) .. "title [value]",Title = "give you a title"}
 cmds[#cmds + 1] = {Text = "[272] " .. tostring(prefix) .. "nametag [value]",Title = "server-sided nametag?"}
+cmds[#cmds + 1] = {Text = "[273] " .. tostring(prefix) .. "memory",Title = "Early-Access"}
+cmds[#cmds + 1] = {Text = "[274] " .. tostring(prefix) .. "httpspy",Title = "Early-Access"}
+cmds[#cmds + 1] = {Text = "[275] " .. tostring(prefix) .. "copyurl [URL sequence]",Title = "url sequence will be displayed in the console when http spy is active"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9711,10 +9853,10 @@ end)
 
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
-	NametagPlayer("[ Investigator Major ] \n" .. tostring(speaker.DisplayName))
+	NametagPlayer("[ Slite Inspector ] \n" .. tostring(speaker.DisplayName))
 end
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [05/09/2023]","[CONTENT] \n[+] Added Vortex.request, Vortex.connection or Vortex.connect or Vortex:Connect and Vortex:HttpGet or Vortex:HttpRequest \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [09/09/2023]","[CONTENT] \n[+] Added Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
@@ -9902,7 +10044,7 @@ else
 		Virtual.VirtualIcon = " 🎂 "
 end
 else
-	Virtual.VirtualIcon = " ? "
+	Virtual.VirtualIcon = " ★ "
 end
 
 _G.RGB = {
