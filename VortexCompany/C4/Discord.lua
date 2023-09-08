@@ -9384,16 +9384,12 @@ if url:find("pastebin") then
 url = url:gsub("pastebin","pastebinp")
 elseif url:find("process") then
 warning("HTTP SPY",url)
+print(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 _G.UrlList[#_G.UrlList + 1] = {urlHook = url}
-wait(0.1)
-print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
---_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 end
-_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
-wait(0.1)
-print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
+print(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 notify("HTTP SPY",url)
---_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 return old(olgame, url)
 end))
 
