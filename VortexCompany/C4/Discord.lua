@@ -9365,7 +9365,7 @@ if cmd == "memory" then
 notify("Total memory usage",tostring(math.round(game:GetService("Stats").GetTotalMemoryUsageMb(stats))) .. " mb")
 end
 if cmd == "httpspy" then
-notify("HTTP SPY","Using Vortex:HttpRequest and use Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod")
+notify("HTTP SPY","Vortext's http spy V1 enabled")
 				
 local old;
 old = hookfunction(request, newcclosure(function(newreq)
@@ -9384,12 +9384,16 @@ if url:find("pastebin") then
 url = url:gsub("pastebin","pastebinp")
 elseif url:find("process") then
 warning("HTTP SPY",url)
-print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
 _G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+wait(0.1)
+print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
+--_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 end
+_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+wait(0.1)
 print(url .. "\nURL sequence: " .. tostring(#_G.UrlList))
 notify("HTTP SPY",url)
-_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
+--_G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 return old(olgame, url)
 end))
 
@@ -9853,7 +9857,7 @@ end)
 
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
-	NametagPlayer("[ Slite Inspector ] \n" .. tostring(speaker.DisplayName))
+	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
 end
 
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [09/09/2023]","[CONTENT] \n[+] Added Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
