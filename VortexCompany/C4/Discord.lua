@@ -9279,7 +9279,7 @@ if setclipboard then
 	end
 end
 if cmd == "memory" then
-notify(tostring(math.round(game:GetService("Stats").GetTotalMemoryUsageMb(stats))) .. " mb")
+notify("Total memory usage",tostring(math.round(game:GetService("Stats").GetTotalMemoryUsageMb(stats))) .. " mb")
 end
 -- limit
 end
