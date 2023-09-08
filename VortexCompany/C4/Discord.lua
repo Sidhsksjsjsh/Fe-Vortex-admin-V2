@@ -439,10 +439,11 @@ local TweenService = game:GetService("TweenService")
 local countb = 0
 local HumanModCons = {}
 local frozenParts = {}
+local stats = game:GetService("Stats")
 -- Leaker = gethiddenproperty or get_hidden_prop
 -- local friendsonline = #speaker:GetFriendsOnline()
 local Lighting = game:GetService("Lighting")
-local Blur = Instance.new("BlurEffect", game.Lighting)
+local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 -- 12
 --[[
 function LyricsMusic(musicname)
@@ -2799,6 +2800,12 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
             end
         end
     end
+end
+
+function capitalizeFirstLetter(str)
+    return str:gsub("(%a)([%w_']*)", function(first, rest)
+        return first:upper() .. rest:lower()
+    end)
 end
 
 local material = {
@@ -9242,11 +9249,11 @@ end
 end
 if cmd == "nametag" then
 local var = string.sub(msg,space+1)
-    NametagPlayer("[ " .. tostring(var) .. " ] \n" .. tostring(speaker.DisplayName))
+    NametagPlayer(capitalizeFirstLetter("[ " .. tostring(var) .. " ] \n" .. tostring(speaker.DisplayName)))
 end
 if cmd == "title" then
 local var = string.sub(msg,space+1)
-    TitlePlayer(var)
+    TitlePlayer(capitalizeFirstLetter(var))
 end
 if cmd == "discord" then
 if setclipboard then
@@ -9270,6 +9277,9 @@ if setclipboard then
 			})
 		})
 	end
+end
+if cmd == "memory" then
+notify(tostring(math.round(game:GetService("Stats").GetTotalMemoryUsageMb(stats))) .. " mb")
 end
 -- limit
 end
