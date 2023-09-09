@@ -9417,7 +9417,16 @@ local var = string.sub(msg,space+1)
 if (not _G.UrlList[tonumber(var)]) then
     ErrorPrompt("error","sequence not found.")
 else
-    copy(_G.UrlList[tonumber(var)].urlHook)
+local dates = {}
+	--warning("Wait","Hold on a sec")
+		local user = game:HttpGet("https://users.roblox.com/v1/users/"..speaker.UserId)
+		local json = HttpService:JSONDecode(user)
+		local date = json["created"]:sub(1,10)
+		local splitDates = string.split(date,"-")
+		table.insert(dates,splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
+	local chatString = table.concat(dates, ', ')
+	--notify(tostring(Players[v]) .. " Account Age",chatString .. " (" .. tostring(Players[v].AccountAge) .. " days old)")
+    copy(string.format("{\n    apiMetadata: {\n        websiteName: %s\n        baseUrl: %s\n        documentation: %s\n    },\n    requestDetails: {\n        endpoint: /users/info,\n        method: GET,\n        host: %s,\n        cookie: {\n            MYSESSIONID: %s\n        },\n        fingerprint: %s,\n        userAgent: %s\n    },\n    response: {\n        statusCode: 200,\n        statusMessage: OK,\n        data: {\n            userId: %s,\n            username: %s,\n            displayName: %s,\n            email: %s,\n            dateJoined: %s,\n            bio: %s\n        }\n    },\n    meta: {\n        timestamp: %s,\n        version: 5.0.0,\n        serverId: MS-API-01\n    }\n}","nil",_G.UrlList[tonumber(var)].urlHook,"nil",_G.UrlList[tonumber(var)].urlHook:gsub("githubusercontent","https://github.com"):gsub("pastebin","https://pastebin.com"):gsub("luarmor","https://luarmor.com"),HttpService:GenerateGUID(false),HttpService:GenerateGUID(false),Executor(),speaker.UserId,speaker.Name,speaker.DisplayName,"nil",chatString,"nil",os.date()))
 end
 end
 -- limit
