@@ -1419,7 +1419,7 @@ end)
 -- TextBox.FocusLost:Connect(function(cmd)
 
 
-repeat wait() until speaker.Character
+--repeat wait() until speaker.Character
 
 local StoredCF = speaker.Character:WaitForChild('Head').CFrame
 local IsTPing  = false
