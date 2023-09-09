@@ -5978,92 +5978,73 @@ end)
 
 local prefix = _G.Settings.prefix
 
---[[
-CB.MouseLeave:Connect(function()
-wait(3)
-CB.BackgroundTransparency = 75
-CB.TextTransparency = 0.7
-end)
---]]
---[[
-{
-    "apiMetadata": {
-        "websiteName": "MySiteAPI",
-        "baseUrl": "https://api.mysite.com",
-        "documentation": "https://docs.mysite.com"
-    },
-    "requestDetails": {
-        "endpoint": "/users/info",
-        "method": "GET",
-        "host": "api.mysite.com",
-        "cookie": {
-            "MYSESSIONID": "abcdef123456"
-        },
-        "fingerprint": "xyz7890abc",
-        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-    },
-    "response": {
-        "statusCode": 200,
-        "statusMessage": "OK",
-        "data": {
-            "userId": 987654321,
-            "username": "SampleUser",
-            "displayName": "Mr. Sample",
-            "email": "sample@mysite.com",
-            "dateJoined": "2020-01-01T00:00:00Z",
-            "bio": "Hello, I'm Mr. Sample on MySite!"
-        }
-    },
-    "meta": {
-        "timestamp": "2023-09-08T12:00:00Z",
-        "version": "1.0.2",
-        "serverId": "MS-API-01"
-    }
-}
-]]
---_G.GenerateTable = {}
---_G.GenerateTable.NameProvider = 'Vortex:HttpRequest({          \n[""]'
---_G.GenerateTable.Table = "websiteName:"
---function CopyFakeTable(website,docs,url,session,fingerprint,useragent
---copy()
---end
-
---[[
-{
-    "apiMetadata": {
-        "websiteName": "MySiteAPI",
-        "baseUrl": "https://api.mysite.com",
-        "documentation": "https://docs.mysite.com"
-    },
-    "requestDetails": {
-        "endpoint": "/users/info",
-        "method": "GET",
-        "host": "api.mysite.com",
-        "cookie": {
-            "MYSESSIONID": "abcdef123456"
-        },
-        "fingerprint": "xyz7890abc",
-        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-    },
-    "response": {
-        "statusCode": 200,
-        "statusMessage": "OK",
-        "data": {
-            "userId": 987654321,
-            "username": "SampleUser",
-            "displayName": "Mr. Sample",
-            "email": "sample@mysite.com",
-            "dateJoined": "2020-01-01T00:00:00Z",
-            "bio": "Hello, I'm Mr. Sample on MySite!"
-        }
-    },
-    "meta": {
-        "timestamp": "2023-09-08T12:00:00Z",
-        "version": "1.0.2",
-        "serverId": "MS-API-01"
-    }
-}
-]]
+--[[local animNames = { 
+	idle = 	{	
+				{ id = "http://www.roblox.com/asset/?id=507766666", weight = 1 },
+				{ id = "http://www.roblox.com/asset/?id=507766951", weight = 1 },
+				{ id = "http://www.roblox.com/asset/?id=507766388", weight = 9 }
+			},
+	walk = 	{ 	
+				{ id = "http://www.roblox.com/asset/?id=507777826", weight = 10 } 
+			}, 
+	run = 	{
+				{ id = "http://www.roblox.com/asset/?id=507767714", weight = 10 } 
+			}, 
+	swim = 	{
+				{ id = "http://www.roblox.com/asset/?id=507784897", weight = 10 } 
+			}, 
+	swimidle = 	{
+				{ id = "http://www.roblox.com/asset/?id=507785072", weight = 10 } 
+			}, 
+	jump = 	{
+				{ id = "http://www.roblox.com/asset/?id=507765000", weight = 10 } 
+			}, 
+	fall = 	{
+				{ id = "http://www.roblox.com/asset/?id=507767968", weight = 10 } 
+			}, 
+	climb = {
+				{ id = "http://www.roblox.com/asset/?id=507765644", weight = 10 } 
+			}, 
+	sit = 	{
+				{ id = "http://www.roblox.com/asset/?id=507768133", weight = 10 } 
+			},	
+	toolnone = {
+				{ id = "http://www.roblox.com/asset/?id=507768375", weight = 10 } 
+			},
+	toolslash = {
+				{ id = "http://www.roblox.com/asset/?id=522635514", weight = 10 } 
+			},
+	toollunge = {
+				{ id = "http://www.roblox.com/asset/?id=522638767", weight = 10 } 
+			},
+	wave = {
+				{ id = "http://www.roblox.com/asset/?id=507770239", weight = 10 } 
+			},
+	point = {
+				{ id = "http://www.roblox.com/asset/?id=507770453", weight = 10 } 
+			},
+	dance = {
+				{ id = "http://www.roblox.com/asset/?id=507771019", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507771955", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507772104", weight = 10 } 
+			},
+	dance2 = {
+				{ id = "http://www.roblox.com/asset/?id=507776043", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507776720", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507776879", weight = 10 } 
+			},
+	dance3 = {
+				{ id = "http://www.roblox.com/asset/?id=507777268", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507777451", weight = 10 }, 
+				{ id = "http://www.roblox.com/asset/?id=507777623", weight = 10 } 
+			},
+	laugh = {
+				{ id = "http://www.roblox.com/asset/?id=507770818", weight = 10 } 
+			},
+	cheer = {
+				{ id = "http://www.roblox.com/asset/?id=507770677", weight = 10 } 
+			},
+}]]
 
 function unfling()
 if NoclippingFling then
@@ -9426,7 +9407,7 @@ local dates = {}
 		table.insert(dates,splitDates[2].."/"..splitDates[3].."/"..splitDates[1])
 	local chatString = table.concat(dates, ', ')
 	--notify(tostring(Players[v]) .. " Account Age",chatString .. " (" .. tostring(Players[v].AccountAge) .. " days old)")
-    copy(string.format("{\n    apiMetadata: {\n        websiteName: %s\n        baseUrl: %s\n        documentation: %s\n    },\n    requestDetails: {\n        endpoint: /users/info,\n        method: GET,\n        host: %s,\n        cookie: {\n            MYSESSIONID: %s\n        },\n        fingerprint: %s,\n        userAgent: %s\n    },\n    response: {\n        statusCode: 200,\n        statusMessage: OK,\n        data: {\n            userId: %s,\n            username: %s,\n            displayName: %s,\n            email: %s,\n            dateJoined: %s,\n            bio: %s\n        }\n    },\n    meta: {\n        timestamp: %s,\n        version: 5.0.0,\n        serverId: MS-API-01\n    }\n}","nil",_G.UrlList[tonumber(var)].urlHook,"nil",_G.UrlList[tonumber(var)].urlHook:gsub("githubusercontent","https://github.com"):gsub("pastebin","https://pastebin.com"):gsub("luarmor","https://luarmor.com"),HttpService:GenerateGUID(false),HttpService:GenerateGUID(false),Executor(),speaker.UserId,speaker.Name,speaker.DisplayName,"nil",chatString,"nil",os.date()))
+    copy(string.format("{\n    apiMetadata: {\n        websiteName: %s,\n        baseUrl: %s,\n        documentation: %s\n    },\n    requestDetails: {\n        endpoint: /users/info,\n        method: GET,\n        host: %s,\n        cookie: {\n            MYSESSIONID: %s\n        },\n        fingerprint: %s,\n        userAgent: %s\n    },\n    response: {\n        statusCode: 200,\n        statusMessage: OK,\n        data: {\n            userId: %s,\n            username: %s,\n            displayName: %s,\n            email: %s,\n            dateJoined: %s,\n            bio: %s\n        }\n    },\n    meta: {\n        timestamp: %s,\n        version: 5.0.0,\n        serverId: MS-API-01\n    }\n}","nil",_G.UrlList[tonumber(var)].urlHook,"nil",_G.UrlList[tonumber(var)].urlHook:gsub("githubusercontent","https://github.com"):gsub("pastebin","https://pastebin.com"):gsub("luarmor","https://luarmor.com"),HttpService:GenerateGUID(false),HttpService:GenerateGUID(false),Executor(),speaker.UserId,speaker.Name,speaker.DisplayName,"nil",chatString,"nil",os.date()))
 end
 end
 -- limit
@@ -9716,7 +9697,7 @@ cmds[#cmds + 1] = {Text = "[271] " .. tostring(prefix) .. "title [value]",Title 
 cmds[#cmds + 1] = {Text = "[272] " .. tostring(prefix) .. "nametag [value]",Title = "server-sided nametag?"}
 cmds[#cmds + 1] = {Text = "[273] " .. tostring(prefix) .. "memory",Title = "Early-Access"}
 cmds[#cmds + 1] = {Text = "[274] " .. tostring(prefix) .. "httpspy",Title = "Early-Access"}
-cmds[#cmds + 1] = {Text = "[275] " .. tostring(prefix) .. "copyurl [URL sequence]",Title = "url sequence will be displayed in the console when http spy is active"}
+cmds[#cmds + 1] = {Text = "[275] " .. tostring(prefix) .. "copyurl [URL sequence]",Title = "url sequence will be displayed in the console when http spy is active or triggered"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -9865,7 +9846,7 @@ if speaker.Name == "Rivanda_Cheater" then
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
 end
 
-VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [09/09/2023]","[CONTENT] \n[+] Added Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed old setfpscap \n[-] Fixed mobile FLY UI bug \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
+VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [09/09/2023]","[CONTENT] \n[+] Added Vortex:newcclosure, Vortex:hookfunction, Vortex:setreadonly, Vortex:getrawmetatable, Vortex:getmetatable and Vortex:getnamecallmethod \n[+] Added 3 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed JSON response in copyurl \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
         VisibleSize = UDim2.new(0.5, 0, 0.5, 0);
