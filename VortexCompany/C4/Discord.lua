@@ -1419,19 +1419,10 @@ end)
 -- TextBox.FocusLost:Connect(function(cmd)
 
 
---repeat wait() until speaker.Character
 
---local StoredCF = speaker.Character:WaitForChild('Head').CFrame
 local IsTPing  = false
 local LPost = CFrame.new(0, 0, 0)
 	
---speaker.CharacterAdded:connect(function(Char)
---   if IsTPing then
---       IsTPing = false
---       Char:WaitForChild('Head').CFrame = StoredCF
---   end
---end)
-
 function MarkTarget()
 if game:GetService("Workspace"):FindFirstChild("BlockMark") then
 	game:GetService("Workspace"):FindFirstChild("BlockMark"):Destroy()
