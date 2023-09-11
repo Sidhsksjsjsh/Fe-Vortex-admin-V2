@@ -1461,8 +1461,8 @@ _G.DataInfoType = {}
 --function HttpGet(userLink)
 --	return game:HttpGet(userLink)
 --end
-_G.UserBio = ""
-_G.UserDate = ""
+_G.UserBio = {}
+_G.UserDate = {}
 function GetPlayerInfoByScript(dataType)
     local user = game:HttpGet("https://users.roblox.com/v1/users/" .. tostring(speaker.UserId))
     local jsonData = HttpService:JSONDecode(user)
