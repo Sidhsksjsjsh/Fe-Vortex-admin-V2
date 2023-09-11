@@ -1461,23 +1461,24 @@ _G.DataInfoType = {}
 --function HttpGet(userLink)
 --	return game:HttpGet(userLink)
 --end
-
+_G.UserBio = ""
+_G.UserDate = ""
 function GetPlayerInfoByScript(dataType)
     local user = game:HttpGet("https://users.roblox.com/v1/users/" .. tostring(speaker.UserId))
     local jsonData = HttpService:JSONDecode(user)
     
     if dataType == "getBio" then
         local bio = jsonData["bio"]
-        table.insert(_G.API_EXPLOIT.UserBio, bio)
-        return table.concat(_G.API_EXPLOIT.UserBio, ', ')
+        table.insert(_G.UserBio, bio)
+        return table.concat(_G.UserBio,', ')
 
     elseif dataType == "getCreated" then
         local date = jsonData["created"]:sub(1,10)
         local splitDates = string.split(date, "-")
         local formattedDate = tostring(splitDates[2]) .. "/" .. tostring(splitDates[3]) .. "/" .. tostring(splitDates[1])
         
-        table.insert(_G.API_EXPLOIT.UserDate, formattedDate)
-        return table.concat(_G.API_EXPLOIT.UserDate, ', ')
+        table.insert(_G.UserDate,formattedDate)
+        return table.concat(_G.UserDate,', ')
 
     else
         return "Fatal Error: Invalid JSON string or type."
