@@ -324,7 +324,7 @@ end
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 getgenv().IrisAd = true
-local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
+-- local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
 local Virtual = {}
 Virtual.VirtualIcon = " ★"
@@ -9851,7 +9851,7 @@ if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
 end
-
+--[[
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [11/09/2023]","[CONTENT] \n[+] Added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed JSON response in copyurl \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
     MainSettings = {
         Orientation = "Left",
