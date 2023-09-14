@@ -613,11 +613,11 @@ local FT2                         = Instance.new('TextButton', FT1)
 
 GUI_MAIN.Name                      = "UI INTERFACE"
 
-local SOSKWKWK = "2.3.9"
+--local SOSKWKWK = "2.3.9"
 
 local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
-local identify_Label_Script = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
+--local identify_Label_Script = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
 
 Phase1.Size                    = UDim2.new(0,0,0,30)
 Phase1.BackgroundTransparency  = 1
@@ -3356,6 +3356,8 @@ function executeHTTPS(_link_)
      ErrorPrompt("Failed to inject scripts", result)
      end
 end
+
+local Vortex = executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua")
 
 function executeOBJECTS(rbxID)
      local respon, result = pcall(function()
@@ -9428,7 +9430,7 @@ if cmd == "playerinfo" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-         Alert(tostring(Players[v]) .. " Bio",GetPlayerInfoByScript(tostring(Players[v]),"getBio"),"close",false)
+         Alert(tostring(Players[v]) .. " Bio",GetPlayerInfoByScript(tostring(Players[v]),"getBio"),"close",true)
    end
 end
 if cmd == "keypress" then
@@ -9442,6 +9444,18 @@ local var = string.sub(msg,space+1)
 		else
 			warning("Only Mobile!","This command is specifically for mobile device users.")
    end
+end
+if cmd == "nols" then
+ Vortex:BypassLoadingScreen()
+end
+if cmd == "cms" then
+local respon, result = pcall(function()
+      executeHTTPS("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/Clicker%20Mining%20Simulator.lua")
+end)
+
+if not respon then
+    ErrorPrompt("Clicker Mining Simulator Script", result)
+end
 end
 -- limit
 end
@@ -9734,6 +9748,8 @@ cmds[#cmds + 1] = {Text = "[275] " .. tostring(prefix) .. "copyurl [URL sequence
 cmds[#cmds + 1] = {Text = "[276] " .. tostring(prefix) .. "cframe [position]",Title = "Teleport to the coordination you want"}
 cmds[#cmds + 1] = {Text = "[277] " .. tostring(prefix) .. "playerinfo [player name]",Title = "Show user account bio"}
 cmds[#cmds + 1] = {Text = "[278] " .. tostring(prefix) .. "keypress [key]",Title = "will press the button you want like on a computer"}
+cmds[#cmds + 1] = {Text = "[279] " .. tostring(prefix) .. "nols",Title = "Remove Loading Screen"}
+cmds[#cmds + 1] = {Text = "[280] " .. tostring(prefix) .. "cms",Title = "Load Clicker Mining Simulator Script"}
 
 _G.RemoveSymbols = {
    blank = ""
