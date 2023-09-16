@@ -9450,12 +9450,35 @@ if cmd == "nols" then
 end
 if cmd == "cms" then
 local respon, result = pcall(function()
-      executeHTTPS("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/Clicker%20Mining%20Simulator.lua")
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/Clicker%20Mining%20Simulator.lua")
 end)
 
 if not respon then
     ErrorPrompt("Clicker Mining Simulator Script", result)
 end
+end
+if cmd == "hitbox" then --1
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var, speaker)
+	for i,v in pairs(variable) do --2
+	GameVirtualHitbox = RunService.RenderStepped:connect(function() --3
+	if Players[v].Name ~= speaker.Name then
+            pcall(function()
+                Players[v].Character.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                Players[v].Character.HumanoidRootPart.Transparency = 0.7
+                Players[v].Character.HumanoidRootPart.BrickColor = BrickColor.new("Really Green")
+                Players[v].Character.HumanoidRootPart.Material = "Neon"
+                Players[v].Character.HumanoidRootPart.CanCollide = false
+                end)
+	end
+        end)
+	end
+end
+if cmd == "unhitbox" then --1
+if GameVirtualHitbox then
+	GameVirtualHitbox:Disconnect()
+  end
 end
 -- limit
 end
@@ -10086,7 +10109,7 @@ else
 		Virtual.VirtualIcon = " 🎂 "
 end
 else
-	Virtual.VirtualIcon = " ★ "
+	Virtual.VirtualIcon = Executor()
 end
 
 _G.RGB = {
