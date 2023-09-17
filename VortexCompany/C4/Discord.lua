@@ -1298,7 +1298,7 @@ Title.Rotation = 90
 Title.TextScaled = false
 Title.Size = UDim2.new(0, 165, 0, 48)
 Title.Font = Enum.Font.SourceSans
-Title.Text = "V        O        R        T        E        X" -- V       2
+Title.Text = "VORTEX V2.0.0" -- V        O        R        T        E        X
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 14
 
@@ -3357,7 +3357,7 @@ function executeHTTPS(_link_)
      end
 end
 
-local Vortex = executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua")
+local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 
 function executeOBJECTS(rbxID)
      local respon, result = pcall(function()
@@ -6460,12 +6460,13 @@ NOFLY()
         U5.Visible = true
         U6.Visible = true
 	notify("mobile FLY","FLY enabled for mobile devices")
-end
-if _G.Settings.device == "PC" then
+elseif _G.Settings.device == "PC" then
 NOFLY()
 	wait()
 	sFLY()
         notify("PC FLY","FLY enabled for PC devices")
+else
+        ErrorPrompt(Vortex:GUID("abc",false),"Attempt to index nil with 'Device_Type'.")
 end
 end
 if cmd == "invisfling" then
@@ -10118,12 +10119,32 @@ _G.RGB = {
    B = 0
 }
 
+local text = Title.Text
+local colorIndex = 1
+
+local rgbColors = {
+    Color3.new(1, 0, 0), 
+    Color3.new(0, 1, 0),
+    Color3.new(0, 0, 1)
+}
+
 RunService.RenderStepped:Connect(function()
-_G.RGB.R = (math.sin(game:GetService("Workspace").DistributedGameTime/2)/2)+0.5
-_G.RGB.G = (math.sin(game:GetService("Workspace").DistributedGameTime)/2)+0.5
-_G.RGB.B = (math.sin(game:GetService("Workspace").DistributedGameTime*1.5)/2)+0.5
--- colorx = Color3.fromRGB(r, g, b)
-Title.TextColor3 = Color3.fromRGB(_G.RGB.R, _G.RGB.G, _G.RGB.B)
+    local newText = ""
+    for i = 1, #text do
+        local char = text:sub(i, i)
+        local newColor = rgbColors[colorIndex]
+        
+        newText = newText .. "<font color='" .. string.format("rgb(%d,%d,%d)", newColor.r*255, newColor.g*255, newColor.b*255) .. "'>" .. char .. "</font>"
+        
+        colorIndex = colorIndex + 1
+        if colorIndex > #rgbColors then
+            colorIndex = 1
+        end
+        
+        wait(0.5)
+    end
+    Title.RichText = true
+    Title.Text = newText
 end)
 
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
@@ -10210,12 +10231,14 @@ if COREGUI:FindFirstChild("BubbleChat") then
 end
 ]]
 getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
-    if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
+    if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
+        child:Destroy()
+	warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
+	warning("Disconnected","Client Disconnected, Rejoining... (please wait 1 sec)")
+	wait(1)
         RejoinServer()
     end
 end)
-
-local PastedSources = false
 
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
    _G.Settings.device = "Mobile"
@@ -10223,21 +10246,6 @@ else
    _G.Settings.device = "PC"
 end
 
-local VortexHook = nil
-VortexHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
-	if _G.Settings.PastedSources == true then
-		if not checkcaller() then
-			if key == "CFrame" and _G.Settings.PastedSources == true and speaker.Character and speaker.Character:FindFirstChild("HumanoidRootPart") and speaker.Character:FindFirstChild("Humanoid") and speaker.Character:FindFirstChild("Humanoid").Health > 0 then
-				if self == speaker.Character.HumanoidRootPart then
-					return DesyncTypes[1] or CFrame.new()
-				elseif self == speaker.Character.Head then
-					return DesyncTypes[1] and DesyncTypes[1] + Vector3.new(0, speaker.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
-				end
-			end
-		end
-	end
-	return VortexHook(self, key)
-end))
 --[[
 
 local _L = {}
