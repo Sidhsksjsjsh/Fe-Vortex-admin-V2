@@ -3357,7 +3357,7 @@ function executeHTTPS(_link_)
      end
 end
 
-local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua")
 
 function executeOBJECTS(rbxID)
      local respon, result = pcall(function()
@@ -6466,7 +6466,7 @@ NOFLY()
 	sFLY()
         notify("PC FLY","FLY enabled for PC devices")
 else
-        ErrorPrompt(Vortex:GUID("abc",false),"Attempt to index nil with 'Device_Type'.")
+        ErrorPrompt(GUID("abc",false),"Attempt to index nil with 'Device_Type'.")
 end
 end
 if cmd == "invisfling" then
@@ -9447,7 +9447,7 @@ local var = string.sub(msg,space+1)
    end
 end
 if cmd == "nols" then
- Vortex:BypassLoadingScreen()
+ BypassLoadingScreen()
 end
 if cmd == "cms" then
 local respon, result = pcall(function()
@@ -10110,7 +10110,7 @@ else
 		Virtual.VirtualIcon = " 🎂 "
 end
 else
-	Virtual.VirtualIcon = Executor()
+	Virtual.VirtualIcon = " " .. Executor()
 end
 
 _G.RGB = {
@@ -10118,34 +10118,6 @@ _G.RGB = {
    G = 0,
    B = 0
 }
-
-local text = Title.Text
-local colorIndex = 1
-
-local rgbColors = {
-    Color3.new(1, 0, 0), 
-    Color3.new(0, 1, 0),
-    Color3.new(0, 0, 1)
-}
-
-RunService.RenderStepped:Connect(function()
-    local newText = ""
-    for i = 1, #text do
-        local char = text:sub(i, i)
-        local newColor = rgbColors[colorIndex]
-        
-        newText = newText .. "<font color='" .. string.format("rgb(%d,%d,%d)", newColor.r*255, newColor.g*255, newColor.b*255) .. "'>" .. char .. "</font>"
-        
-        colorIndex = colorIndex + 1
-        if colorIndex > #rgbColors then
-            colorIndex = 1
-        end
-        
-        wait(0.5)
-    end
-    Title.RichText = true
-    Title.Text = newText
-end)
 
 RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
 local seconds = math.floor(workspace.DistributedGameTime)
