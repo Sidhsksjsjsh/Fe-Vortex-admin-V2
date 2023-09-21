@@ -15,11 +15,13 @@ _G.Settings = {
       username = true,
       LocalBotChatFunc = true,
       FreezeFling = false,
-      PastedSources = false
+      PastedSources = false,
+      banwaves = true
 }
 
 local COREGUI = game:GetService("CoreGui")
 
+-- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
 -- _G.Settings.LocalBotChatFunc
 -- _G.Settings.device
@@ -2468,6 +2470,8 @@ for i = 1, tonumber(cdff) do
        Hint.Text = "ForceField Cooldown " .. i .. "m"
     elseif i > 3600 then
        Hint.Text = "ForceField Cooldown " .. i .. "hr"
+   else
+       Alert("cooldown is non-existent","We cannot load cooldowns that are non-numerical or the cooldown is empty, \nplease fill it with the command 'ffcd 30'","",true)
 end
     wait(1)
 end
@@ -3270,7 +3274,7 @@ local options = httprequest({
     Url = "https://api.github.com/users/" .. username,
     Method = "GET",
     Headers = {
-        ["User-Agent"] = "Roblox"
+        ["User-Agent"] = Executor()
     }
 })
 
@@ -3507,13 +3511,7 @@ function IP(country)
 end
 
 function ProtocolSendChat(ProtocolChatService)
-local args = {
-    [1] = ProtocolChatService,
-    [2] = "All"
-}
-
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ProtocolChatService,"All")
 end
 
 --[[
@@ -3537,13 +3535,7 @@ end
 --]]
 
 function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
-local args = {
-    [1] = "/w " .. SyncPlayer .. " " .. ProtocolWhisperChatService,
-    [2] = "All"
-}
-
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. SyncPlayer .. " " .. ProtocolWhisperChatService,"All")
 end
 
 WhisperButton.MouseButton1Down:Connect(function()
@@ -5229,13 +5221,7 @@ function ProtocolResponse(RespondType, ProtocolPlayer)
              "i can't believe " .. ProtocolPlayer .. " are totally adorable",
              "i think " .. ProtocolPlayer .. " have extremely terrific eyebrows"
       }
-     local textstring = {
-    [1] = compliment[math.random(1, #compliment)],
-    [2] = "All"
-}
-
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(textstring))
+     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(compliment[math.random(1, #compliment)],"All")
 end
        if RespondType == "insult" then
        local insult = {
@@ -5247,13 +5233,7 @@ end
              " are as obnoxious as a dreadful puddle of vicious impertinent repellent pig spit",
              " are as dirty as a decaying repellent inferior heap of unpleasant absurd horse assholes"
       }
-     local textstring = {
-    [1] = ProtocolPlayer .. "" .. tostring(insult[math.random(1, #insult)]),
-    [2] = "All"
-}
-
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(textstring))
+     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ProtocolPlayer .. "" .. tostring(insult[math.random(1, #insult)]),"All")
 end
 end
 
@@ -6243,7 +6223,7 @@ local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
 GuiService:CloseInspectMenu()
 		GuiService:InspectPlayerFromUserId(Players[v].UserId)
-notify("command notifcation","inspect " .. tostring(Players[v]) .. " (" .. tostring(Players[v].Userid) .. ")")
+notify("command notification","inspect " .. tostring(Players[v]) .. " (" .. tostring(Players[v].Userid) .. ")")
 end
 end
 if cmd == "bring" then
@@ -6466,7 +6446,7 @@ NOFLY()
 	sFLY()
         notify("PC FLY","FLY enabled for PC devices")
 else
-        ErrorPrompt(GUID("abc",false),"Attempt to index nil with 'Device_Type'.")
+        Alert(GUID("abc and -",false),"Attempt to index nil with 'Device_Type'.","OK",false)
 end
 end
 if cmd == "invisfling" then
@@ -6805,7 +6785,7 @@ local TextMusic = {
 }
 
 local respond, result = pcall(function()
-if not isNumber(var) then
+if (not TextMusic[var]) then
 music(OfficialMusic[var])
 success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
 else
@@ -10216,6 +10196,12 @@ if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPl
    _G.Settings.device = "Mobile"
 else
    _G.Settings.device = "PC"
+end
+
+if _G.Settings.banwaves == true then
+if _G.Settings.device = "Mobile" then
+Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
+end
 end
 
 --[[
