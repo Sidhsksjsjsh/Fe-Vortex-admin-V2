@@ -2510,7 +2510,7 @@ RunService.Heartbeat:Connect(function()
 end)
 
 function Tall()
-local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+local Humanoid = speaker.Character.Humanoid
 
 function rm()
 	for i,v in pairs(Character:GetDescendants()) do
@@ -2562,7 +2562,7 @@ Humanoid:FindFirstChild("HeadScale"):Destroy()
 end
 
 function Short()
-local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+local Humanoid = speaker.Character.Humanoid
 
 local function rm()
 	for i,v in pairs(Character:GetDescendants()) do
