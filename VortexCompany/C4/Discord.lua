@@ -6446,7 +6446,7 @@ NOFLY()
 	sFLY()
         notify("PC FLY","FLY enabled for PC devices")
 else
-        Alert(GUID("abc and -",false),"Attempt to index nil with 'Device_Type'.","OK",false)
+        Alert(GUID("abc and -",true),"Attempt to index nil with 'Device_Type'.","OK",false)
 end
 end
 if cmd == "invisfling" then
@@ -6785,7 +6785,7 @@ local TextMusic = {
 }
 
 local respond, result = pcall(function()
-if (not TextMusic[var]) then
+if not isNumber(var) then
 music(OfficialMusic[var])
 success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
 else
@@ -10198,11 +10198,8 @@ else
    _G.Settings.device = "PC"
 end
 
-if _G.Settings.banwaves == true then
-if _G.Settings.device == "Mobile" then
 Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
-end
-end
+
 
 --[[
 
