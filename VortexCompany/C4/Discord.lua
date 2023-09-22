@@ -2471,7 +2471,7 @@ for i = 1, tonumber(cdff) do
     elseif i > 3600 then
        Hint.Text = "ForceField Cooldown " .. i .. "hr"
    else
-       Alert("cooldown is non-existent","We cannot load cooldowns that are non-numerical or the cooldown is empty, \nplease fill it with the command 'ffcd 30'","",true)
+       Alert("cooldown is non-existent","We cannot load cooldowns that are non-numerical or the cooldown is empty, \nplease fill it with the command 'ffcd 30'","OK",true)
 end
     wait(1)
 end
@@ -3274,7 +3274,7 @@ local options = httprequest({
     Url = "https://api.github.com/users/" .. username,
     Method = "GET",
     Headers = {
-        ["User-Agent"] = Executor()
+        ["User-Agent"] = "Roblox"
     }
 })
 
@@ -3535,7 +3535,7 @@ end
 --]]
 
 function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. SyncPlayer .. " " .. ProtocolWhisperChatService,"All")
+game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService),"All")
 end
 
 WhisperButton.MouseButton1Down:Connect(function()
@@ -5233,7 +5233,7 @@ end
              " are as obnoxious as a dreadful puddle of vicious impertinent repellent pig spit",
              " are as dirty as a decaying repellent inferior heap of unpleasant absurd horse assholes"
       }
-     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ProtocolPlayer .. "" .. tostring(insult[math.random(1, #insult)]),"All")
+     game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(ProtocolPlayer) .. "" .. tostring(insult[math.random(1, #insult)]),"All")
 end
 end
 
@@ -10199,7 +10199,7 @@ else
 end
 
 if _G.Settings.banwaves == true then
-if _G.Settings.device = "Mobile" then
+if _G.Settings.device == "Mobile" then
 Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
 end
 end
