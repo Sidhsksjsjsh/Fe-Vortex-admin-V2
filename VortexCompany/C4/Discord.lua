@@ -20,6 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
+-- bug fixed (1x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9461,11 +9462,11 @@ if GameVirtualHitbox then
 	GameVirtualHitbox:Disconnect()
   end
 end
-if cmd == "scriptview" or cmd == "sv" or cmd == "dex2" then
+if cmd == "scriptview" or cmd == "sv" or cmd == "dex2" then --COREGUI
 local respon, result = pcall(function()
 	notify("Injecting...","pls wait..")
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then -- for mobile
-local Iris = executeHTTPS("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/main/bundle.lua").Init(COREGUI)
+local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/main/bundle.lua"))().Init(COREGUI)
 local PropertyAPIDump = game.HttpService:JSONDecode(game:HttpGet("https://anaminus.github.io/rbx/json/api/latest.json"))
 
 local function GetPropertiesForInstance(Instance)
@@ -9567,12 +9568,13 @@ Iris:Connect(function()
     end
 end)
 else
---wait
+ErrorPrompt("Invalid Index","Sorry, the PC version is currently undergoing improvements.")
 end
 end)
 
 if not respon then
     ErrorPrompt("Vortex Explorer Script & Vortex Script Viewer", result)
+end
 end
 if cmd == "gameview" then
 local respon, result = pcall(function()
