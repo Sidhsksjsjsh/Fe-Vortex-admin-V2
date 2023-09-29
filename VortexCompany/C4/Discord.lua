@@ -9461,6 +9461,129 @@ if GameVirtualHitbox then
 	GameVirtualHitbox:Disconnect()
   end
 end
+if cmd == "scriptview" or cmd == "sv" or cmd == "dex2" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then -- for mobile
+local Iris = executeHTTPS("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/main/bundle.lua").Init(COREGUI)
+local PropertyAPIDump = game.HttpService:JSONDecode(game:HttpGet("https://anaminus.github.io/rbx/json/api/latest.json"))
+
+local function GetPropertiesForInstance(Instance)
+    local Properties = {}
+    for i,v in next, PropertyAPIDump do
+        if v.Class == Instance.ClassName and v.type == "Property" then
+            pcall(function()
+                Properties[v.Name] = {
+                    Value = Instance[v.Name],
+                    Type = v.ValueType,
+                }
+            end)
+        end
+    end
+    return Properties
+end
+
+local ScriptContent = [[]]
+local SelectedInstance = nil
+local Properties = {}
+
+local function CrawlInstances(Inst)
+    for _, Instance in next, Inst:GetChildren() do
+        local InstTree = Iris.Tree({Instance.Name})
+
+        Iris.SameLine() do
+            if Instance:IsA("LocalScript") or Instance:IsA("ModuleScript") then
+                if Iris.SmallButton({"View Script"}).clicked then
+                    ScriptContent = decompile(Instance)
+                end
+            end
+            if Iris.SmallButton({"View Properties"}).clicked then
+                SelectedInstance = Instance
+                Properties = GetPropertiesForInstance(Instance)
+            end
+            Iris.End()
+        end
+
+        if InstTree.state.isUncollapsed.value then
+            CrawlInstances(Instance)
+        end
+        Iris.End()
+    end
+end
+
+Iris:Connect(function()
+    local InstanceViewer = Iris.State(false)
+    local PropertyViewer = Iris.State(false)
+    local ScriptViewer = Iris.State(false)
+
+    Iris.Window({"Vortex Explorer Settings", [Iris.Args.Window.NoResize] = true}, {size = Iris.State(Vector2.new(400, 75)), position = Iris.State(Vector2.new(0, 0))}) do
+        Iris.SameLine() do
+            Iris.Checkbox({"Instance Viewer"}, {isChecked = InstanceViewer})
+            Iris.Checkbox({"Property Viewer"}, {isChecked = PropertyViewer})
+            Iris.Checkbox({"Script Viewer"}, {isChecked = ScriptViewer})
+            Iris.End()
+        end
+        Iris.End()
+    end
+
+    if InstanceViewer.value then
+        Iris.Window({"Vortex Explorer Instance Viewer", [Iris.Args.Window.NoClose] = true}, {size = Iris.State(Vector2.new(400, 300)), position = Iris.State(Vector2.new(0, 75))}) do
+            CrawlInstances(game)
+            Iris.End()
+        end
+    end
+
+    if PropertyViewer.value then
+        Iris.Window({"Vortex Explorer Property Viewer", [Iris.Args.Window.NoClose] = true}, {size = Iris.State(Vector2.new(400, 200)), position = Iris.State(Vector2.new(0, 375))}) do
+            Iris.Text({("Viewing Properties For: %s"):format(
+                SelectedInstance and SelectedInstance:GetFullName() or "UNKNOWN INSTANCE"
+            )})
+            Iris.Table({3, [Iris.Args.Table.RowBg] = true}) do
+                for PropertyName, PropDetails in next, Properties do
+                    Iris.Text({PropertyName})
+                    Iris.NextColumn()
+                    Iris.Text({PropDetails.Type})
+                    Iris.NextColumn()
+                    Iris.Text({tostring(PropDetails.Value)})
+                    Iris.NextColumn()
+                end
+                Iris.End()
+            end
+        end
+        Iris.End()
+    end
+
+    if ScriptViewer.value then
+        Iris.Window({"Vortex Explorer Script Viewer", [Iris.Args.Window.NoClose] = true}, {size = Iris.State(Vector2.new(600, 575)), position = Iris.State(Vector2.new(400, 0))}) do
+            if Iris.Button({"Copy To Clipboard"}).clicked then
+                setclipboard(ScriptContent)
+            end
+            local Lines = ScriptContent:split("\n")
+            for I, Line in next, Lines do
+                Iris.Text({Line})
+            end
+            Iris.End()
+        end
+    end
+end)
+else
+--wait
+end
+end)
+
+if not respon then
+    ErrorPrompt("Vortex Explorer Script & Vortex Script Viewer", result)
+end
+if cmd == "gameview" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://pastebin.com/raw/C39cfVy1")
+end)
+
+if not respon then
+    ErrorPrompt("Game Viewer Script",result)
+end
+end
 -- limit
 end
 -- end
@@ -9754,7 +9877,9 @@ cmds[#cmds + 1] = {Text = "[277] " .. tostring(prefix) .. "playerinfo [player na
 cmds[#cmds + 1] = {Text = "[278] " .. tostring(prefix) .. "keypress [key]",Title = "will press the button you want like on a computer"}
 cmds[#cmds + 1] = {Text = "[279] " .. tostring(prefix) .. "nols",Title = "Remove Loading Screen"}
 cmds[#cmds + 1] = {Text = "[280] " .. tostring(prefix) .. "cms",Title = "Load Clicker Mining Simulator Script"}
-
+cmds[#cmds + 1] = {Text = "[281] " .. tostring(prefix) .. "scriptview / sv / dex2",Title = "Run Vortex Explorer and Script Viewer"}
+cmds[#cmds + 1] = {Text = "[282] " .. tostring(prefix) .. "gameview",Title = "test it"}
+--cmd == "scriptview" or cmd == "sv" or cmd == "dex2"
 _G.RemoveSymbols = {
    blank = ""
 }
