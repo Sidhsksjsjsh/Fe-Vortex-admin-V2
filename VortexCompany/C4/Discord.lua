@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- bug fixed (1x)
+-- bug fixed (2x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9498,9 +9498,11 @@ local function CrawlInstances(Inst)
                     ScriptContent = decompile(Instance)
                 end
             end
-            if Iris.SmallButton({"View Properties"}).clicked then
+            if Iris.SmallButton({"View and Copy Properties"}).clicked then
                 SelectedInstance = Instance
                 Properties = GetPropertiesForInstance(Instance)
+		copy(SelectedInstance and SelectedInstance:GetFullName() or "UNKNOWN INSTANCE")
+		notify("Clipboard Assistant","Copied to clipboard!")
             end
             Iris.End()
         end
@@ -9516,12 +9518,14 @@ Iris:Connect(function()
     local InstanceViewer = Iris.State(false)
     local PropertyViewer = Iris.State(false)
     local ScriptViewer = Iris.State(false)
+    local CopyProp = Iris.State(false)
 
     Iris.Window({"Vortex Explorer Settings", [Iris.Args.Window.NoResize] = true}, {size = Iris.State(Vector2.new(400, 75)), position = Iris.State(Vector2.new(0, 0))}) do
         Iris.SameLine() do
             Iris.Checkbox({"Instance Viewer"}, {isChecked = InstanceViewer})
             Iris.Checkbox({"Property Viewer"}, {isChecked = PropertyViewer})
             Iris.Checkbox({"Script Viewer"}, {isChecked = ScriptViewer})
+	    Iris.Checkbox({"Copy Properties"}, {isChecked = ScriptViewer})
             Iris.End()
         end
         Iris.End()
@@ -9556,8 +9560,9 @@ Iris:Connect(function()
 
     if ScriptViewer.value then
         Iris.Window({"Vortex Explorer Script Viewer", [Iris.Args.Window.NoClose] = true}, {size = Iris.State(Vector2.new(600, 575)), position = Iris.State(Vector2.new(400, 0))}) do
-            if Iris.Button({"Copy To Clipboard"}).clicked then
-                setclipboard(ScriptContent)
+            if Iris.Button({"Copy Script"}).clicked then
+                copy(ScriptContent)
+		notify("Script Viewer","Copied To Clipboard")
             end
             local Lines = ScriptContent:split("\n")
             for I, Line in next, Lines do
