@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- bug fixed (3x)
+-- bug fixed (4x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2025,7 +2025,7 @@ local replace = { -- здравствуйте
       hoe = "hое",
       porn = "роrn",
       nigga = "nìgg⁥á",
-      nigger = "nìgg⁥ềr",
+      nigger = "nìgg⁥еr",
       penis = "реn⁥ìs",
       beaner = "bеаn⁥еr",
       thot = "thоt",
@@ -6431,7 +6431,7 @@ end
 success("loop tweening","looptween disabled")
 end
 if cmd == "fly" then
-if _G.Settings.device == "Mobile" then
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
 NOFLY()
 	wait()
 	sFLY()
@@ -6442,13 +6442,11 @@ NOFLY()
         U5.Visible = true
         U6.Visible = true
 	notify("mobile FLY","FLY enabled for mobile devices")
-elseif _G.Settings.device == "PC" then
+else
 NOFLY()
 	wait()
 	sFLY()
         notify("PC FLY","FLY enabled for PC devices")
-else
-        Alert(GUID("abc and -",true),"Attempt to index nil with 'Device_Type'.","OK",false)
 end
 end
 if cmd == "invisfling" then
@@ -6492,7 +6490,7 @@ local ch = speaker.Character
 		end
 	end)
 
-	if _G.Settings.device == "Mobile" then
+	if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
 NOFLY()
 	wait()
 	sFLY()
@@ -6503,8 +6501,7 @@ NOFLY()
         U5.Visible = true
         U6.Visible = true
 	notify("FE INVISIBLE FLING","INVISIBLE FLING enabled for mobile devices")
-end
-if _G.Settings.device == "PC" then
+	else
 NOFLY()
 	wait()
 	sFLY()
@@ -6528,7 +6525,7 @@ U6.Visible = false
 notify("FLY","FLY disabled")
 end
 if cmd == "vfly" then
-if _G.Settings.device == "Mobile" then
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
 NOFLY()
 	wait()
 	sFLY(true)
@@ -6539,8 +6536,7 @@ NOFLY()
         U5.Visible = true
         U6.Visible = true
         notify("Mobile Vehicle FLY","VEHICLE FLY enabled for mobile devices")
-end
-if _G.Settings.device == "PC" then
+else
 NOFLY()
 	wait()
 	sFLY(true)
@@ -9592,6 +9588,26 @@ if not respon then
     ErrorPrompt("Game Viewer Script",result)
 end
 end
+if cmd == "invisible" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://pastebin.com/raw/8vcT5yzF")
+end)
+
+if not respon then
+    ErrorPrompt("Toggle Invisible Script",result)
+end
+end
+if cmd == "hub" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/i4mitty/Peruanito.exe/main/Peruanito.exe.lua")
+end)
+
+if not respon then
+    ErrorPrompt("Script Error",result)
+end
+end
 -- limit
 end
 -- end
@@ -9887,7 +9903,9 @@ cmds[#cmds + 1] = {Text = "[279] " .. tostring(prefix) .. "nols",Title = "Remove
 cmds[#cmds + 1] = {Text = "[280] " .. tostring(prefix) .. "cms",Title = "Load Clicker Mining Simulator Script"}
 cmds[#cmds + 1] = {Text = "[281] " .. tostring(prefix) .. "scriptview / sv / dex2",Title = "Run Vortex Explorer and Script Viewer"}
 cmds[#cmds + 1] = {Text = "[282] " .. tostring(prefix) .. "gameview",Title = "test it"}
---cmd == "scriptview" or cmd == "sv" or cmd == "dex2"
+cmds[#cmds + 1] = {Text = "[283] " .. tostring(prefix) .. "invisible",Title = "toggle invisible"}
+cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "hub",Title = "i forgot"}
+
 _G.RemoveSymbols = {
    blank = ""
 }
