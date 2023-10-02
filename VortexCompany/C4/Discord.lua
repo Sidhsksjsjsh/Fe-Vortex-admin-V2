@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- bug fixed (4x)
+-- bug fixed (5x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2512,7 +2512,8 @@ RunService.Heartbeat:Connect(function()
 end)
 
 function Tall()
-local Humanoid = speaker.Character.Humanoid
+local Character = speaker.Character
+local Humanoid = Character.Humanoid
 
 function rm()
 	for i,v in pairs(Character:GetDescendants()) do
@@ -2564,7 +2565,8 @@ Humanoid:FindFirstChild("HeadScale"):Destroy()
 end
 
 function Short()
-local Humanoid = speaker.Character.Humanoid
+local Character = speaker.Character
+local Humanoid = Character.Humanoid
 
 local function rm()
 	for i,v in pairs(Character:GetDescendants()) do
