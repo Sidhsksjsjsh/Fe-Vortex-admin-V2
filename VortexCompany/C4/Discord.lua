@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- bug fixed (5x)
+-- bug fixed (6x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9428,6 +9428,7 @@ local var = string.sub(msg,space+1)
 end
 if cmd == "nols" then
  BypassLoadingScreen()
+success("Bypass","Successfully Bypassed Loading Screen")
 end
 if cmd == "cms" then
 local respon, result = pcall(function()
@@ -9600,7 +9601,7 @@ if not respon then
     ErrorPrompt("Toggle Invisible Script",result)
 end
 end
-if cmd == "hub" then
+if cmd == "peruanito" then
 local respon, result = pcall(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/i4mitty/Peruanito.exe/main/Peruanito.exe.lua")
@@ -9608,6 +9609,26 @@ end)
 
 if not respon then
     ErrorPrompt("Script Error",result)
+end
+end
+if cmd == "astronaut" or cmd == "nogravity" then
+if Astronaut then
+	Astronaut:Disconnect()
+	workspace.Gravity = oldgrav
+	speaker.Character.Humanoid.Sit = false
+end
+
+Astronaut = UserInputService.JumpRequest:connect(function()
+		wait()
+		workspace.Gravity = 0
+		speaker.Character.Humanoid.Sit = true
+	end)
+end
+if cmd == "unastronaut" or cmd == "gravity" then
+if Astronaut then
+	Astronaut:Disconnect()
+	workspace.Gravity = oldgrav
+	speaker.Character.Humanoid.Sit = false
 end
 end
 -- limit
@@ -9906,7 +9927,9 @@ cmds[#cmds + 1] = {Text = "[280] " .. tostring(prefix) .. "cms",Title = "Load Cl
 cmds[#cmds + 1] = {Text = "[281] " .. tostring(prefix) .. "scriptview / sv / dex2",Title = "Run Vortex Explorer and Script Viewer"}
 cmds[#cmds + 1] = {Text = "[282] " .. tostring(prefix) .. "gameview",Title = "test it"}
 cmds[#cmds + 1] = {Text = "[283] " .. tostring(prefix) .. "invisible",Title = "toggle invisible"}
-cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "hub",Title = "i forgot"}
+cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "peruanito",Title = "load peruanito.exe hub"}
+cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity",Title = "Float sit"}
+cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity",Title = "Normal"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -10309,9 +10332,9 @@ for i=1,dogshitlen do
 end
 
 Players.PlayerRemoving:Connect(function(Player)
-if ESPenabled or COREGUI:FindFirstChild(player..'_LC') then
+if ESPenabled or COREGUI:FindFirstChild(tostring(Player) .. '_LC') then
 		for i,v in pairs(COREGUI:GetChildren()) do
-			if v.Name == Player..'_ESP' or v.Name == Player..'_LC' or v.Name == Player..'_CHMS' then
+			if v.Name == tostring(Player) .. '_ESP' or v.Name == tostring(Player) .. '_LC' or v.Name == tostring(Player) .. '_CHMS' then
 				v:Destroy()
 			end
 		end
