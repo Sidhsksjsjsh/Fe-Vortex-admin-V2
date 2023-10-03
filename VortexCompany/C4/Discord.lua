@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- bug fixed (6x)
+-- fatal bug fixed (7x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9323,10 +9323,10 @@ local var = string.sub(msg,space+1)
 end
 if cmd == "discord" then
 if setclipboard then
-		copy('https://discord.gg/invite/PmBCGpCjYM')
-		notify('Discord Invite','Copied to clipboard!\ndiscord.gg/PmBCGpCjYM')
+		copy('https://discord.gg/ZcnSSpH63u')
+		notify('Discord Invite','Copied to clipboard!\ndiscord.gg/ZcnSSpH63u')
 	else
-		notify('Discord Invite','discord.gg/PmBCGpCjYM')
+		notify('Discord Invite','discord.gg/ZcnSSpH63u')
 	end
 	if httprequest then
 		httprequest({
@@ -9339,7 +9339,7 @@ if setclipboard then
 			Body = HttpService:JSONEncode({
 				cmd = 'INVITE_BROWSER',
 				nonce = HttpService:GenerateGUID(false),
-				args = {code = 'PmBCGpCjYM'}
+				args = {code = 'ZcnSSpH63u'}
 			})
 		})
 	end
