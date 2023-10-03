@@ -3,5 +3,5 @@ you can ask to add the command you want, give it in [Request](https://github.com
 
 did you find a bug? report in [Issue](https://github.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/issues)
 
-Join Our Discord Server!
-server: [Vortex Community](https://discord.gg/ZcnSSpH63u)
+Join Our Discord Server!  
+server : [Vortex Community](https://discord.gg/ZcnSSpH63u)
