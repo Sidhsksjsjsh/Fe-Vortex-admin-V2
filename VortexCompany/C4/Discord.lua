@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- fatal bug fixed (8x)
+-- fatal bug fixed (9x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2432,19 +2432,38 @@ end
     end
 end
 
-function getstring(begin)
-	local start = begin-1
-	local AA = '' for i,v in pairs(cargs) do
-		if i > start then
-			if AA ~= '' then
-				AA = AA .. ' ' .. v
-			else
-				AA = AA .. v
-			end
-		end
-	end
-	return AA
+function Math(expression)
+    local a, op, b = expression:match("(%d+)%s*(%p)%s*(%d+)")
+    a, b = tonumber(a), tonumber(b)
+    
+    if op == "+" then
+        return a + b
+    elseif op == "-" then
+        return a - b
+    elseif op == "*" then
+        return a * b
+    elseif op == "/" then
+        if b == 0 then
+            warning("Not Allowed","Division by zero is not allowed.")
+            return
+        end
+        return a / b
+    else
+        ErrorPrompt("Error","Invalid operator.")
+        return
+    end
 end
+
+function SyncMath(exp,avp)
+	if avp == "notify" then
+		notify("Math AI",tostring(exp) .." = " .. tostring(Math(exp)))
+	elseif avp == "chat" then
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(exp) .. " = " .. tostring(Math(exp)), "All")
+	else
+		ErrorPrompt("Invalid","Invalid send type")
+	end
+end
+
 --[[
 function ProtocolCheck(FileName)
     isfile(FileName)     
@@ -7695,10 +7714,8 @@ _G.Settings.Removed = false
 saveSettings()
 end
 if cmd == "math" then
-local SyncType_1 = string.sub(msg,space+1)
-local SyncType_2 = string.sub(msg,space+2)
-local SyncType_3 = string.sub(msg,space+3)
-SyncMath(SyncType_1, SyncType_2, SyncType_3)
+local var = string.sub(msg,space+1)
+SyncMath(var,"notify")
 end
 if cmd == "tall" then
 Tall()
@@ -8518,7 +8535,7 @@ if sethidden then
 	end
 end
 if cmd == "discordusername" then
-copy("Tora#4172")
+copy("Tora4172#0")
 end
 if cmd == "glitcher" then
 local respon, result = pcall(function()
@@ -9631,7 +9648,11 @@ if Astronaut then
 	speaker.Character.Humanoid.Sit = false
 end
 end
--- limit
+if cmd == "chatmath" or cmd == "cm" or cmd == "cmath" then --1
+local var = string.sub(msg,space+1)
+	SyncMath(var,"chat")
+end
+-- limit SyncMath(exp,avp)
 end
 -- end
 --if string.sub(msg,1,1) == prefix then
@@ -9769,7 +9790,7 @@ cmds[#cmds + 1] = {Text = "[123] " .. tostring(prefix) .. "gotopartdelay [number
 cmds[#cmds + 1] = {Text = "[124] " .. tostring(prefix) .. "bringpart [part name]",Title = "bring selected part"}
 cmds[#cmds + 1] = {Text = "[125] " .. tostring(prefix) .. "detectpart [part name]",Title = "will detect the part you selected appears"}
 cmds[#cmds + 1] = {Text = "[126] " .. tostring(prefix) .. "undetectpart",Title = "turn off ur detect part"}
-cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [number + or / or * number]",Title = "use this command if u dumb at math😂"}
+cmds[#cmds + 1] = {Text = "[127] " .. tostring(prefix) .. "math [value ex: 5 + 9]",Title = "use this command if u dumb at math😂"}
 cmds[#cmds + 1] = {Text = "[128] " .. tostring(prefix) .. "tall",Title = "Taller"}
 cmds[#cmds + 1] = {Text = "[129] " .. tostring(prefix) .. "short",Title = "short"}
 cmds[#cmds + 1] = {Text = "[130] " .. tostring(prefix) .. "snipe [username or id]",Title = "Sniping player u want."}
@@ -9930,6 +9951,7 @@ cmds[#cmds + 1] = {Text = "[283] " .. tostring(prefix) .. "invisible",Title = "t
 cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "peruanito",Title = "load peruanito.exe hub"}
 cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity",Title = "Float sit"}
 cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity",Title = "Normal"}
+cmds[#cmds + 1] = {Text = "[287] " .. tostring(prefix) .. "chatmath / cm / cmath [value ex: 5 + 9]",Title = "AI MATHEMATICS 🖕"}
 
 _G.RemoveSymbols = {
    blank = ""
