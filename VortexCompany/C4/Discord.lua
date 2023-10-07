@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- fatal bug fixed (9x)
+-- fatal bug fixed (10x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
