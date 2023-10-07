@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- fatal bug fixed (10x)
+-- fatal bug fixed (11x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -408,7 +408,7 @@ local FLYING = false
 local QEfly = true
 local iyflyspeed = 1
 local vehicleflyspeed = 1
-local flinging = false
+local workspace = game:GetService("Workspace")
 local oofing = false
 local TeleportService = game:GetService("TeleportService")
 local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
@@ -10311,8 +10311,9 @@ _G.RGB = {
    G = 0,
    B = 0
 }
-
+-- BackgroundColor3 Color3.fromRGB
 RunService.RenderStepped:Connect(function()
+Title.BackgroundColor3 = Color3.fromRGB(math.floor(((math.sin(workspace.DistributedGameTime/2)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)*255))
 Title.TextColor3 = Color3.fromRGB(math.floor(((math.sin(workspace.DistributedGameTime/2)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)*255))
 end)
 
