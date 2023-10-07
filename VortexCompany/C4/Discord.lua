@@ -9652,7 +9652,21 @@ if cmd == "chatmath" or cmd == "cm" or cmd == "cmath" then --1
 local var = string.sub(msg,space+1)
 	SyncMath(var,"chat")
 end
--- limit SyncMath(exp,avp)
+if cmd == "zombieattack" or cmd == "za" then
+local respon, result = pcall(function()
+if game.PlaceId == 1240123653 or game.PlaceId == 1632210982 then
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ZombieAttack/main/OrinHub/Script.lua")
+	else
+        ErrorPrompt("Not Supported","the game you are playing is not supported, This command only supports Zombie Attack game")
+    end
+end)
+
+if not respon then
+    ErrorPrompt("Zombie Attack Error",result)
+end
+end
+-- limit
 end
 -- end
 --if string.sub(msg,1,1) == prefix then
@@ -9952,6 +9966,7 @@ cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "peruanito",Title = "l
 cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity",Title = "Float sit"}
 cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity",Title = "Normal"}
 cmds[#cmds + 1] = {Text = "[287] " .. tostring(prefix) .. "chatmath / cm / cmath [value ex: 5 + 9]",Title = "AI MATHEMATICS 🖕"}
+cmds[#cmds + 1] = {Text = "[288] " .. tostring(prefix) .. "zombieattack / za",Title = "Run Zombie Attack GUI"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -10297,40 +10312,8 @@ _G.RGB = {
    B = 0
 }
 
-RunService.RenderStepped:Connect(function() -- simple rest notification idea by C4#4172
-local seconds = math.floor(workspace.DistributedGameTime)
-local minutes = math.floor(workspace.DistributedGameTime / 60)
-local hours = math.floor(workspace.DistributedGameTime / 60 / 60)
-local seconds = seconds - (minutes * 60)
-local minutes = minutes - (hours * 60)
-if hours == 1 and minutes == 0 and seconds == 0 then
-if restnotify then
-restnotify = false
-warning("Rest time","You have been playing for more than 1 hours, rest than you are sick \na notification will appear every 6 hours")
-restnotify = true
-end
-end
-if hours == 6 and minutes == 0 and seconds == 0 then
-if restnotify then
-restnotify = false
-warning("Rest time","You have been playing for more than 6 hours, rest than you are sick \na notification will appear every 6 hours")
-restnotify = true
-end
-end
-if hours == 12 and minutes == 0 and seconds == 0 then
-if restnotify then
-restnotify = false
-warning("Rest time","You have been playing for more than 12 hours, rest than you are sick \na notification will appear every 6 hours")
-restnotify = true
-end
-end
-if hours == 18 and minutes == 0 and seconds == 0 then
-if restnotify then
-restnotify = false
-warning("Rest time","You have been playing for more than 18 hours, rest than you are sick \na notification will appear every 6 hours")
-restnotify = true
-end
-end
+RunService.RenderStepped:Connect(function()
+Title.TextColor3 = Color3.fromRGB(math.floor(((math.sin(workspace.DistributedGameTime/2)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime)/2)+0.5)*255),math.floor(((math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)*255))
 end)
 
 local friendsingame = 0
