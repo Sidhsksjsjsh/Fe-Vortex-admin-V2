@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- fatal bug fixed (11x)
+-- (12x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -8270,7 +8270,17 @@ if TimeZones then
 end
 end
 if cmd == "bypass" then
+local var = string.sub(msg,space+1)
+local s,r = pcall(function()
 Anticheat_Bypass()
+AdonisBypass(var)
+end)
+
+if s then
+success("Anti-Cheat bypass is running 🐧","do not run this command again!")
+else
+warning("Anti-Cheat Bypass Error 🐧",r)
+end
 end
 if cmd == "epicm" then
 if game.PlaceId == 277751860 then
@@ -9853,7 +9863,7 @@ cmds[#cmds + 1] = {Text = "[171] " .. tostring(prefix) .. "fates",Title = "execu
 cmds[#cmds + 1] = {Text = "[172] " .. tostring(prefix) .. "looptime [number]",Title = "Looping"}
 cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "stop looping"}
 cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
-cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all anti-cheat"}
+cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass [V1 / V2 / V3 / Auto]",Title = "bypass all anti-cheat (including adonis)"}
 cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execute epic minigames script"}
 cmds[#cmds + 1] = {Text = "[177] " .. tostring(prefix) .. "oldrspy",Title = "execute old remote spy script"}
 cmds[#cmds + 1] = {Text = "[178] " .. tostring(prefix) .. "fling2",Title = "touch someone"}
@@ -10380,7 +10390,7 @@ else
    _G.Settings.device = "PC"
 end
 
-Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
+--Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
 
 
 --[[
