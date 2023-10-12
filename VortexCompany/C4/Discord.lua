@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (12x)
+-- (13x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2433,7 +2433,7 @@ end
 end
 
 function Math(expression)
-    local a, op, b = expression:match("(%d+)%s*(%p)%s*(%d+)")
+    local a, op, b = expression:match("(%w+)%s*(%p)%s*(%w+)")
     a, b = tonumber(a), tonumber(b)
     
     if op == "+" then
@@ -6340,7 +6340,9 @@ success("noclipping","noclip disabled")
 end
 if cmd == "bang" then
 local var = string.sub(msg,space+1)
-local variable = getPlayer(var, speaker)
+local arg1, arg2 = var:match("(%w+)%s*(%w+)")
+if isNumber(arg2) then
+local variable = getPlayer(arg1, speaker)
 	for _, v in pairs(variable) do
 		bangAnim = Instance.new("Animation")
 		if not r15(speaker) then
@@ -6350,7 +6352,7 @@ local variable = getPlayer(var, speaker)
 		end
 		bang = speaker.Character:FindFirstChildOfClass('Humanoid'):LoadAnimation(bangAnim)
 		bang:Play(.1, 1, 1)
-		bang:AdjustSpeed(16)
+		bang:AdjustSpeed(tonumber(arg2))
 		local bangplr = Players[v].Name
 		bangDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(function()
 			bangLoop = bangLoop:Disconnect()
@@ -6366,6 +6368,9 @@ local variable = getPlayer(var, speaker)
 			end)
 		end)
 notify("Ambatukam","Banging " .. tostring(Players[v]))
+end
+	else
+	ErrorPrompt("Invalid 2nd Argument","The second argument can only be a number.")
 end
 end
 if cmd == "unbang" then
@@ -9696,7 +9701,7 @@ cmds[#cmds + 1] = {Text = "[9] " .. tostring(prefix) .. "esp",Title = "know wher
 cmds[#cmds + 1] = {Text = "[10] " .. tostring(prefix) .. "unesp",Title = "know where a nigga hide"}
 cmds[#cmds + 1] = {Text = "[11] " .. tostring(prefix) .. "noclip",Title = "everyone: Happymod LOL🤡"}
 cmds[#cmds + 1] = {Text = "[12] " .. tostring(prefix) .. "clip",Title = "everyone: Happymod LOL🤡"}
-cmds[#cmds + 1] = {Text = "[13] " .. tostring(prefix) .. "bang [username]",Title = "make bitches pregnant"}
+cmds[#cmds + 1] = {Text = "[13] " .. tostring(prefix) .. "bang [username] [speed]",Title = "make bitches pregnant"}
 cmds[#cmds + 1] = {Text = "[13] " .. tostring(prefix) .. "unbang",Title = "make bitches pregnant"}
 cmds[#cmds + 1] = {Text = "[14] " .. tostring(prefix) .. "follow [username]",Title = "follow nigga or bitches"}
 cmds[#cmds + 1] = {Text = "[15] " .. tostring(prefix) .. "loopgoto [username",Title = "loop tp to nigga or bitches"}
