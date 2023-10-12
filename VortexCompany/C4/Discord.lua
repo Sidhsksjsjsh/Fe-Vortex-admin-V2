@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (13x)
+-- (14x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -437,8 +437,7 @@ local countb = 0
 local HumanModCons = {}
 local frozenParts = {}
 local stats = game:GetService("Stats")
--- Leaker = gethiddenproperty or get_hidden_prop
--- local friendsonline = #speaker:GetFriendsOnline()
+local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 -- 12
@@ -9681,6 +9680,51 @@ if not respon then
     ErrorPrompt("Zombie Attack Error",result)
 end
 end
+if cmd == "dance" then
+local dances = {"27789359","30196114","248263260","45834924","33796059","28488254","52155728"}
+	if r15(speaker) then
+		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
+	end
+	local animation = Instance.new("Animation")
+	animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
+	danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+	danceTrack.Looped = true
+	danceTrack:Play()
+end
+if cmd == "undance" then
+danceTrack:Stop()
+danceTrack:Destroy()
+end
+if cmd == "creatorid" or cmd == "ci" then
+if game.CreatorType == Enum.CreatorType.User then
+		notify("Creator Id",game.CreatorId)
+		--notify('Set ID','Set UserId to '..game.CreatorId)
+	elseif game.CreatorType == Enum.CreatorType.Group then
+		local OwnerID = GroupService:GetGroupInfoAsync(game.CreatorId).Owner.Id
+		notify("Creator Id",OwnerID)
+		--notify('Set ID','Set UserId to '..OwnerID)
+	end
+end
+if cmd == "copycreatorid" or cmd == "cci" or cmd == "copyci" then
+if game.CreatorType == Enum.CreatorType.User then
+		copy(game.CreatorId)
+		notify('Copied Creator ID to Clipboard','The Creator ID is copied to the clipboard')
+	elseif game.CreatorType == Enum.CreatorType.Group then
+		local OwnerID = GroupService:GetGroupInfoAsync(game.CreatorId).Owner.Id
+		copy(OwnerID)
+		notify('Copied Creator ID to Clipboard','The Creator ID is copied to ge clipboard')
+	end
+end
+if cmd == "setcreatorid" or cmd == "sci" or cmd == "setci" then
+if game.CreatorType == Enum.CreatorType.User then
+		speaker.UserId = game.CreatorId
+		notify('Set ID','Set UserId to '..game.CreatorId)
+	elseif game.CreatorType == Enum.CreatorType.Group then
+		local OwnerID = GroupService:GetGroupInfoAsync(game.CreatorId).Owner.Id
+		speaker.UserId = OwnerID
+		notify('Set ID','Set UserId to '..OwnerID)
+	end
+end
 -- limit
 end
 -- end
@@ -9982,6 +10026,11 @@ cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity
 cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity",Title = "Normal"}
 cmds[#cmds + 1] = {Text = "[287] " .. tostring(prefix) .. "chatmath / cm / cmath [value ex: 5 + 9]",Title = "AI MATHEMATICS 🖕"}
 cmds[#cmds + 1] = {Text = "[288] " .. tostring(prefix) .. "zombieattack / za",Title = "Run Zombie Attack GUI"}
+cmds[#cmds + 1] = {Text = "[289] " .. tostring(prefix) .. "creatorid / ci",Title = "Show Creator ID"}
+cmds[#cmds + 1] = {Text = "[290] " .. tostring(prefix) .. "copycreatorid / cci / copyci",Title = "Copy Creator ID"}
+cmds[#cmds + 1] = {Text = "[291] " .. tostring(prefix) .. "setcreatorid / sci /setci",Title = "Replace your account ID with the Creator ID of this game"}
+cmds[#cmds + 1] = {Text = "[292] " .. tostring(prefix) .. "dance",Title = "Dances"}
+cmds[#cmds + 1] = {Text = "[293] " .. tostring(prefix) .. "undance",Title = "Stop Dancing"}
 
 _G.RemoveSymbols = {
    blank = ""
