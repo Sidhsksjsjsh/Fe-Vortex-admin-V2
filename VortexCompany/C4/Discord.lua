@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (21x)
+-- (22x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2452,6 +2452,7 @@ end
 	else
 	   HSHSHSHAJSHSKJSIDJSKS:Disconnect()
 	   end
+	wait(2.5)
 	end)
 end
 
@@ -2500,6 +2501,7 @@ end
 	else
 	   KAKDNSKJSITJDJS:Disconnect()
 	   end
+	wait(2.5)
 	end)
 end
 
