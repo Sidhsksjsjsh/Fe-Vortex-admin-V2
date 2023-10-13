@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (25x)
+-- (26x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2450,7 +2450,7 @@ end
 	   tl.Text = glitchText(title)
 	   wait(0.2)
 	   tl.Text = title
-	wait(2.5)
+	wait(#title + 2.5)
 	else
 	   HSHSHSHAJSHSKJSIDJSKS:Disconnect()
 	   end
@@ -2500,7 +2500,7 @@ end
 	   textLabel.Text = glitchText(title)
 	   wait(0.2)
 	   textLabel.Text = title
-	wait(2.5)
+	wait(#title + 2.5)
 	else
 	   KAKDNSKJSITJDJS:Disconnect()
 	   end
@@ -9761,11 +9761,12 @@ local dances = {"27789359","30196114","248263260","45834924","33796059","2848825
 	if r15(speaker) then
 		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
 	end
-	local animation = Instance.new("Animation")
-	animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
-	danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
-	danceTrack.Looped = true
-	danceTrack:Play()
+	--local animation = Instance.new("Animation")
+	--animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
+	--danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+	--danceTrack.Looped = true
+	--danceTrack:Play()
+	speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(tonumber(dances[math.random(1, #dances)]))
 end
 if cmd == "undance" then
 danceTrack:Stop()
@@ -9823,10 +9824,10 @@ local variable = getPlayer(arg1, speaker)
 			bangAnim:Destroy()
 			bangDied:Disconnect()
 		end)
-		local bangOffet = CFrame.new(0, 0, -1.1)
+		local bangOffet = CFrame.new(0, 0, -1)
 		bangLoop = RunService.Stepped:Connect(function()
 			pcall(function()
-				local otherRoot = getTorso(Players[bangplr].Character.Head)
+				local otherRoot = getTorso(Players[bangplr].Character["Head"])
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 			end)
 		end)
