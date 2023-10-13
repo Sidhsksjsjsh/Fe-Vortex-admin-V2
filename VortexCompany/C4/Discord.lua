@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (17x)
+-- (18x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2384,19 +2384,14 @@ print(SynText)
 local glitchChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[]{}|;:'<>,.?/~`"
 
 local function glitchText(text)
-    if ErrorTitle then
-	ErrorTitle:Disconnect()
-    end
-
     local glitched = ""
-    ErrorTitle = RunService.RenderStepped:Connect(function()
+    for i = 1, #text do
         if math.random() < 0.3 then
             glitched = glitched .. glitchChars[math.random(#glitchChars)]
         else
             glitched = glitched .. text:sub(i, i)
-	end
-	wait(0.2)
-    end)
+        end
+    end
     return glitched
 end
 
@@ -2410,6 +2405,12 @@ end
 function TitlePlayer(title)
 if speaker.Character.Head:FindFirstChild("tag") then
 	speaker.Character.Head:FindFirstChild("tag"):Destroy()
+end
+if AJEHWKHEJEHEJEJSDJDNDJ then
+	AJEHWKHEJEHEJEJSDJDNDJ:Disconnect()
+end
+if HSHSHSHAJSHSKJSIDJSKS then
+	HSHSHSHAJSHSKJSIDJSKS:Disconnect()
 end
 
 	local bb = Instance.new("BillboardGui")
@@ -2432,23 +2433,38 @@ end
 	tl.Visible = true
 	tl.ZIndex = 2
 	
-	local rgbTitle = RunService.RenderStepped:Connect(function()
+	AJEHWKHEJEHEJEJSDJDNDJ = RunService.RenderStepped:Connect(function()
 	if speaker.Character.Head:FindFirstChild("tag") then
 	    tl.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
 	else
-	    rgbTitle:Disconnect()
+	    AJEHWKHEJEHEJEJSDJDNDJ:Disconnect()
 	end
    end)
 	
 	GenerateTitleText(tl,title)
-	tl.Text = glitchText(title)
+	
+	HSHSHSHAJSHSKJSIDJSKS = RunService.RenderStepped:Connect(function()
+	if speaker.Character.Head:FindFirstChild("tag") then
+	   tl.Text = glitchText(title)
+	   wait(0.2)
+	   tl.Text = title
+	else
+	   HSHSHSHAJSHSKJSIDJSKS:Disconnect()
+	   end
+	end)
 end
 
 function NametagPlayer(title)
 if speaker.Character:FindFirstChild("NameTag") then
       speaker.Character:FindFirstChild("NameTag"):Destroy()
 end
-
+if RAWWWWRRRSHSHDJSHSJD then
+	RAWWWWRRRSHSHDJSHSJD:Disconnect()
+end
+if KAKDNSKJSITJDJS then
+	KAKDNSKJSITJDJS:Disconnect()
+end
+	
     local billboardGui = Instance.new("BillboardGui", speaker.Character)
         billboardGui.Name = "NameTag"
         billboardGui.Size = UDim2.new(2, 0, 0.5, 0)
@@ -2465,16 +2481,25 @@ end
         textLabel.TextScaled = true
         textLabel.Parent = billboardGui
 	
-    local rgbTitle = RunService.RenderStepped:Connect(function()
+    RAWWWWRRRSHSHDJSHSJD = RunService.RenderStepped:Connect(function()
      if speaker.Character:FindFirstChild("NameTag") then
 	textLabel.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
     else
-	rgbTitle:Disconnect()
+	RAWWWWRRRSHSHDJSHSJD:Disconnect()
        end
     end)
 	
 	GenerateTitleText(textLabel,title)
-	textLabel.Text = glitchText(title)
+	
+	KAKDNSKJSITJDJS = RunService.RenderStepped:Connect(function()
+	if speaker.Character:FindFirstChild("NameTag") then
+	   textLabel.Text = glitchText(title)
+	   wait(0.2)
+	   textLabel.Text = title
+	else
+	   KAKDNSKJSITJDJS:Disconnect()
+	   end
+	end)
 end
 
 function Math(expression)
