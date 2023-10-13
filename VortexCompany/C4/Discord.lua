@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (14x)
+-- (15x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2379,19 +2379,26 @@ print(SynText)
     end
 --]]
 
-function TitlePlayer(title)
-if speaker.Character.Head:FindFirstChild("tag") then
-	speaker.Character.Head:FindFirstChild("tag"):Destroy()
+_G.VortexFunction = {}
+
+function GenerateTitleText(gui,text)
+for i=1,string.len(text) do
+    gui.Text                    = string.sub(text,1,i)
+    wait(0.001)
+end
 end
 
-local len = 10
+function TitlePlayer(title)
+if speaker.Character.Head:FindFirstChild("tag") and rgbTitle then
+	speaker.Character.Head:FindFirstChild("tag"):Destroy()
+end
 
 	local bb = Instance.new("BillboardGui")
 	bb.Parent = speaker.Character.Head
 	bb.Adornee = speaker.Character.Head
 	bb.AlwaysOnTop = true
 	bb.Enabled = true
-	bb.Size = UDim2.new(len, 0, 1.5, 0)
+	bb.Size = UDim2.new(10,0,1.5,0)
 	bb.Name = "tag"
 	bb.StudsOffset = Vector3.new(0, 3, 0)
 	local tl = Instance.new("TextLabel")
@@ -2401,19 +2408,27 @@ local len = 10
 	tl.TextScaled = true
 	tl.TextColor3 = Color3.new(15/255, 15/255, 15/255)
 	tl.Size = UDim2.new(1, 0, 1, 0)
-	tl.Text = title
+	--tl.Text = title
 	tl.Name = "trutag"
 	tl.Visible = true
 	tl.ZIndex = 2
+	GenerateTitleText(tl,title)
+
+	local rgbTitle = RunService.RenderStepped:Connect(function()
+	if speaker.Character.Head:FindFirstChild("tag") then
+	    tl.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
+	else
+	    rgbTitle:Disconnect()
+	end
+   end)
 end
 
 function NametagPlayer(title)
-if speaker.Character:FindFirstChild("NameTag") then
+if speaker.Character:FindFirstChild("NameTag") and rgbTitle then
       speaker.Character:FindFirstChild("NameTag"):Destroy()
 end
 
-    if speaker.Character and not speaker.Character:FindFirstChild("NameTag") then
-        local billboardGui = Instance.new("BillboardGui", speaker.Character)
+    local billboardGui = Instance.new("BillboardGui", speaker.Character)
         billboardGui.Name = "NameTag"
         billboardGui.Size = UDim2.new(2, 0, 0.5, 0)
         billboardGui.Adornee = speaker.Character.Head
@@ -2422,13 +2437,21 @@ end
 
         local textLabel = Instance.new("TextLabel")
         textLabel.Size = UDim2.new(1, 0, 1, 0)
-        textLabel.Text = title
+        --textLabel.Text = title
         textLabel.BackgroundTransparency = 1
         textLabel.TextColor3 = Color3.new(1, 1, 1)
         textLabel.Font = Enum.Font.SourceSansBold
         textLabel.TextScaled = true
         textLabel.Parent = billboardGui
-    end
+	GenerateTitleText(textLabel,title)
+
+    local rgbTitle = RunService.RenderStepped:Connect(function()
+     if speaker.Character:FindFirstChild("NameTag") then
+	textLabel.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
+    else
+	rgbTitle:Disconnect()
+       end
+    end)
 end
 
 function Math(expression)
