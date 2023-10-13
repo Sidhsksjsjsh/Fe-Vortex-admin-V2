@@ -2015,52 +2015,52 @@ local replace = { -- здравствуйте
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
       fuck = "fúсḳ",
-      asshole = "аѕѕholе",
+      asshole = "аѕѕholё",
       rape = "rаре",
       boobs = "воовs",
       titties = "Тìttìes",
       sex = "s⁥⁥⁥⁥⁥⁥ех",
       sexy = "sе⁥⁥⁥ху",
       hoe = "hое",
-      porn = "роrn",
-      nigga = "nìgg⁥á",
-      nigger = "nìgg⁥еr",
-      penis = "реn⁥ìs",
-      beaner = "bеаn⁥еr",
+      porn = "роrй",
+      nigga = "йìgg⁥á",
+      nigger = "йìgg⁥еr",
+      penis = "рёnìs",
+      beaner = "bеай⁥еr",
       thot = "thоt",
       xxx = "xxx",
-      hentai = "hеntаi",
+      hentai = "hейtаi",
       bitch = "вìtch⁥⁥⁥⁥",
       bitches = "вìtchеs⁥⁥⁥⁥",
       shit = "shìt",
       kys = "kys",
-      butthole = "вútthole",
-      masturbate = "mаstúrbаtе",
+      butthole = "вúttholё",
+      masturbate = "mаstúrbаtё",
       bbc = "bìg blаck ⁥⁥⁥сoсk",
       blowjob = "blowjoв",
-      byc = "Вìtеѕ уour сoсk",
-      cs = "сoсk súсkеr",
-      fah = "fаt а⁥ss hое",
+      byc = "Вìtёѕ уour сoсk",
+      cs = "сoсk súсkёr",
+      fah = "fаt а⁥ss hоё",
       dick = "dìсk",
       dogshit = "dоgshìt",
       tits = "tìts",
       pussy = "pússу",
       sperm = "spеrm",
-      sperma = "spеrmа", -- Indonesian dirty words
-      memek = "mеmеk",
-      sepong = "sеpоng",
+      sperma = "spёrmа", -- Indonesian dirty words
+      memek = "mёmёk",
+      sepong = "sёpоng",
       kontol = "kоntоl",
-      ngentot = "ngеntоt",
-      jembut = "jеmbút",
+      ngentot = "ngёntоt",
+      jembut = "jёmbút",
       bangsat = "bаngsаt", -- Indonesian bad words
-      terrorist = "tеrrоrìst",
+      terrorist = "tёrrоrìst",
       discord = "dìsсоrd",
       hub = "húb",
       cyka = "суkа",
       blyat = "blуаt",
       gay = "gаy",
-      lesbian = "lеsbìаn",
-      pride = "prìdе",
+      lesbian = "lёsbìаn",
+      pride = "prìdё",
       i = "i",
       love = "lоvе",
       you = "уоú",
@@ -2389,7 +2389,7 @@ end
 end
 
 function TitlePlayer(title)
-if speaker.Character.Head:FindFirstChild("tag") and rgbTitle then
+if speaker.Character.Head:FindFirstChild("tag") then
 	speaker.Character.Head:FindFirstChild("tag"):Destroy()
 end
 
@@ -2424,7 +2424,7 @@ end
 end
 
 function NametagPlayer(title)
-if speaker.Character:FindFirstChild("NameTag") and rgbTitle then
+if speaker.Character:FindFirstChild("NameTag") then
       speaker.Character:FindFirstChild("NameTag"):Destroy()
 end
 
