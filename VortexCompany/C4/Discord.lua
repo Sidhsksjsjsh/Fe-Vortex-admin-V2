@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (27x)
+-- (28x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9829,7 +9829,7 @@ local variable = getPlayer(arg1, speaker)
 			bangAnim:Destroy()
 			bangDied:Disconnect()
 		end)
-		local bangOffet = CFrame.new(0, 0, -1.1)
+		local bangOffet = CFrame.new(0, 0, -1.1) * CFrame.Angles(0, math.pi, 0)
 		bangLoop = RunService.Stepped:Connect(function()
 			pcall(function()
 				local otherRoot = getHead(Players[bangplr].Character)
@@ -10254,11 +10254,11 @@ ProtocolChat = string.sub(ProtocolChat,4)
 end
         if ProtocolChat == "REPORT" or ProtocolChat == "Report" or ProtocolChat == "report" then
             ProtocolReportCount = ProtocolReportCount+1
-            notify(ProtocolReportCount .. " players have reported you. Beware of being banned!")
+            notify("Report Count",ProtocolReportCount .. " players have reported you. Beware of being banned!")
         end
         if ProtocolChat == "BLOCK" or ProtocolChat == "Block" or ProtocolChat == "block" then
             ProtocolBlockCount = ProtocolBlockCount+1
-            notify(ProtocolBlockCount .. " Players have blocked you.")
+            notify("Blocked Count",ProtocolBlockCount .. " Players have blocked you.")
         end
         if ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" then
             wait(1)
