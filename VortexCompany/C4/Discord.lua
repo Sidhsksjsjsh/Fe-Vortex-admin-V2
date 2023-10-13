@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (22x)
+-- (23x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2449,10 +2449,11 @@ end
 	   tl.Text = glitchText(title)
 	   wait(0.2)
 	   tl.Text = title
+	wait(2.5)
 	else
 	   HSHSHSHAJSHSKJSIDJSKS:Disconnect()
 	   end
-	wait(2.5)
+	--wait(2.5)
 	end)
 end
 
@@ -2498,10 +2499,11 @@ end
 	   textLabel.Text = glitchText(title)
 	   wait(0.2)
 	   textLabel.Text = title
+	wait(2.5)
 	else
 	   KAKDNSKJSITJDJS:Disconnect()
 	   end
-	wait(2.5)
+	--wait(2.5)
 	end)
 end
 
