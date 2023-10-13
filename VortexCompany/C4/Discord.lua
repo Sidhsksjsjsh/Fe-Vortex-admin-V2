@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (23x)
+-- (25x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -439,6 +439,7 @@ local frozenParts = {}
 local stats = game:GetService("Stats")
 local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
+local Animate = speaker.Character.Animate
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 -- 12
 --[[
@@ -4830,7 +4831,6 @@ function CheckServers()
 end
 
 function AnimationExtension(AnimName)
-	local Animate = speaker.Character.Animate
 	if AnimName == "patrol" then
 	Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1149612882"
 Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1150842221"
@@ -9801,6 +9801,41 @@ if game.CreatorType == Enum.CreatorType.User then
 		notify('Set ID','Set UserId to '..OwnerID)
 	end
 end
+if cmd == "headbang" then
+local var = string.sub(msg,space+1)
+local arg1, arg2 = var:match("(%w+)%s*(%w+)")
+if isNumber(arg2) then
+local variable = getPlayer(arg1, speaker)
+	for _, v in pairs(variable) do
+		bangAnim = Instance.new("Animation")
+		if not r15(speaker) then
+			bangAnim.AnimationId = "rbxassetid://148840371"
+		else
+			bangAnim.AnimationId = "rbxassetid://5918726674"
+		end
+		bang = speaker.Character:FindFirstChildOfClass('Humanoid'):LoadAnimation(bangAnim)
+		bang:Play(.1, 1, 1)
+		bang:AdjustSpeed(tonumber(arg2))
+		local bangplr = Players[v].Name
+		bangDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(function()
+			bangLoop = bangLoop:Disconnect()
+			bang:Stop()
+			bangAnim:Destroy()
+			bangDied:Disconnect()
+		end)
+		local bangOffet = CFrame.new(0, 0, -1.1)
+		bangLoop = RunService.Stepped:Connect(function()
+			pcall(function()
+				local otherRoot = getTorso(Players[bangplr].Character.Head)
+				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
+			end)
+		end)
+notify("Ambatukam","Banging " .. tostring(Players[v]))
+end
+	else
+	ErrorPrompt("Invalid 2nd Argument","The second argument can only be a number.")
+end
+end
 -- limit
 end
 -- end
@@ -10107,6 +10142,7 @@ cmds[#cmds + 1] = {Text = "[290] " .. tostring(prefix) .. "copycreatorid / cci /
 cmds[#cmds + 1] = {Text = "[291] " .. tostring(prefix) .. "setcreatorid / sci /setci",Title = "Replace your account ID with the Creator ID of this game"}
 cmds[#cmds + 1] = {Text = "[292] " .. tostring(prefix) .. "dance",Title = "Dances"}
 cmds[#cmds + 1] = {Text = "[293] " .. tostring(prefix) .. "undance",Title = "Stop Dancing"}
+cmds[#cmds + 1] = {Text = "[294] " .. tostring(prefix) .. "headbang [player name / display name] [speed]",Title = "Cum Inside Her Mouth"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -10253,6 +10289,8 @@ end)
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
+	Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1132473842"
+        Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1132477671"
 end
 --[[
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [11/09/2023]","[CONTENT] \n[+] Added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed JSON response in copyurl \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
