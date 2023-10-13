@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (26x)
+-- (27x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3883,6 +3883,11 @@ end
 function getTorso(x)
 	x = x or Players.LocalPlayer.Character
 	return x:FindFirstChild("Torso") or x:FindFirstChild("UpperTorso") or x:FindFirstChild("LowerTorso") or x:FindFirstChild("HumanoidRootPart")
+end
+
+function getHead(x)
+	x = x or speaker.Character
+	return x:FindFirstChild("Head") or x:FindFirstChild("HumanoidRootPart")
 end
 
 function randomString()
@@ -9761,12 +9766,12 @@ local dances = {"27789359","30196114","248263260","45834924","33796059","2848825
 	if r15(speaker) then
 		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
 	end
-	--local animation = Instance.new("Animation")
-	--animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
-	--danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
-	--danceTrack.Looped = true
-	--danceTrack:Play()
-	speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(tonumber(dances[math.random(1, #dances)]))
+	local animation = Instance.new("Animation")
+	animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
+	danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+	danceTrack.Looped = true
+	danceTrack:Play()
+	--speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(tonumber(dances[math.random(1, #dances)]))
 end
 if cmd == "undance" then
 danceTrack:Stop()
@@ -9824,10 +9829,10 @@ local variable = getPlayer(arg1, speaker)
 			bangAnim:Destroy()
 			bangDied:Disconnect()
 		end)
-		local bangOffet = CFrame.new(0, 0, -1)
+		local bangOffet = CFrame.new(0, 0, -1.1)
 		bangLoop = RunService.Stepped:Connect(function()
 			pcall(function()
-				local otherRoot = getTorso(Players[bangplr].Character["Head"])
+				local otherRoot = getHead(Players[bangplr].Character)
 				getRoot(Players.LocalPlayer.Character).CFrame = otherRoot.CFrame * bangOffet
 			end)
 		end)
