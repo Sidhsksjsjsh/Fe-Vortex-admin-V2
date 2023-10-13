@@ -2379,7 +2379,26 @@ print(SynText)
     end
 --]]
 
-_G.VortexFunction = {}
+--_G.VortexFunction = {}
+
+local glitchChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[]{}|;:'<>,.?/~`"
+
+local function glitchText(text)
+    if ErrorTitle then
+	ErrorTitle:Disconnect()
+    end
+
+    local glitched = ""
+    ErrorTitle = RunService.RenderStepped:Connect(function()
+        if math.random() < 0.3 then
+            glitched = glitched .. glitchChars[math.random(#glitchChars)]
+        else
+            glitched = glitched .. text:sub(i, i)
+	end
+	wait(0.2)
+    end)
+    return glitched
+end
 
 function GenerateTitleText(gui,text)
 for i=1,string.len(text) do
@@ -2412,8 +2431,7 @@ end
 	tl.Name = "trutag"
 	tl.Visible = true
 	tl.ZIndex = 2
-	GenerateTitleText(tl,title)
-
+	
 	local rgbTitle = RunService.RenderStepped:Connect(function()
 	if speaker.Character.Head:FindFirstChild("tag") then
 	    tl.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
@@ -2421,6 +2439,9 @@ end
 	    rgbTitle:Disconnect()
 	end
    end)
+	
+	GenerateTitleText(tl,title)
+	tl.Text = glitchText(title)
 end
 
 function NametagPlayer(title)
@@ -2443,8 +2464,7 @@ end
         textLabel.Font = Enum.Font.SourceSansBold
         textLabel.TextScaled = true
         textLabel.Parent = billboardGui
-	GenerateTitleText(textLabel,title)
-
+	
     local rgbTitle = RunService.RenderStepped:Connect(function()
      if speaker.Character:FindFirstChild("NameTag") then
 	textLabel.TextColor3 = Color3.new((math.sin(workspace.DistributedGameTime/2)/2)+0.5,(math.sin(workspace.DistributedGameTime)/2)+0.5,(math.sin(workspace.DistributedGameTime*1.5)/2)+0.5)
@@ -2452,6 +2472,9 @@ end
 	rgbTitle:Disconnect()
        end
     end)
+	
+	GenerateTitleText(textLabel,title)
+	textLabel.Text = glitchText(title)
 end
 
 function Math(expression)
