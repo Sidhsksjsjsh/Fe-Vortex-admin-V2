@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (18x)
+-- (19x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2387,7 +2387,7 @@ local function glitchText(text)
     local glitched = ""
     for i = 1, #text do
         if math.random() < 0.3 then
-            glitched = glitched .. glitchChars[math.random(#glitchChars)]
+            glitched = glitched .. glitchChars[math.random(1,#glitchChars)]
         else
             glitched = glitched .. text:sub(i, i)
         end
