@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (28x)
+-- (29x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9842,6 +9842,16 @@ end
 	ErrorPrompt("Invalid 2nd Argument","The second argument can only be a number.")
 end
 end
+if cmd == "braveorder" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..") --loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/BraveOrder/main/.lua"))()
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/BraveOrder/main/.lua")
+end)
+
+if not respon then
+    ErrorPrompt("Script Error",result)
+end
+end
 -- limit
 end
 -- end
@@ -10149,6 +10159,7 @@ cmds[#cmds + 1] = {Text = "[291] " .. tostring(prefix) .. "setcreatorid / sci /s
 cmds[#cmds + 1] = {Text = "[292] " .. tostring(prefix) .. "dance",Title = "Dances"}
 cmds[#cmds + 1] = {Text = "[293] " .. tostring(prefix) .. "undance",Title = "Stop Dancing"}
 cmds[#cmds + 1] = {Text = "[294] " .. tostring(prefix) .. "headbang [player name / display name] [speed]",Title = "Cum Inside Her Mouth"}
+cmds[#cmds + 1] = {Text = "[295] " .. tostring(prefix) .. "braveorder",Title = "Run Brave Order Script"}
 
 _G.RemoveSymbols = {
    blank = ""
