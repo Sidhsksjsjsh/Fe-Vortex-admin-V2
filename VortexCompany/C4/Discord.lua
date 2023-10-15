@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (29x)
+-- (30x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7564,11 +7564,11 @@ if fcRunning then
 end
 if cmd == "show" then -- displayui
 local var = string.sub(msg,space+1)
-DisplayUI(var)
+DisplayUI(var:gsub(" ",""))
 end
 if cmd == "unshow" then -- nodisplayui
 local var = string.sub(msg,space+1)
-RemoveDisplayUI(var)
+RemoveDisplayUI(var:gsub(" ",""))
 end
 if cmd == "addnote" then
 local var = string.sub(msg,space+1)
@@ -9852,7 +9852,29 @@ if not respon then
     ErrorPrompt("Script Error",result)
 end
 end
--- limit
+if cmd == "ufling" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/UltimateFling/main/.lua")
+end)
+
+if not respon then
+    ErrorPrompt("Ultimate Fling Error",result)
+end
+end
+if cmd == "tfling" then
+local respon, result = pcall(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
+end)
+
+if not respon then
+    ErrorPrompt("Touch Fling Error",result)
+end
+end
+--[[
+limit 
+]]
 end
 -- end
 --if string.sub(msg,1,1) == prefix then
@@ -10160,6 +10182,8 @@ cmds[#cmds + 1] = {Text = "[292] " .. tostring(prefix) .. "dance",Title = "Dance
 cmds[#cmds + 1] = {Text = "[293] " .. tostring(prefix) .. "undance",Title = "Stop Dancing"}
 cmds[#cmds + 1] = {Text = "[294] " .. tostring(prefix) .. "headbang [player name / display name] [speed]",Title = "Cum Inside Her Mouth"}
 cmds[#cmds + 1] = {Text = "[295] " .. tostring(prefix) .. "braveorder",Title = "Run Brave Order Script"}
+cmds[#cmds + 1] = {Text = "[296] " .. tostring(prefix) .. "ufling",Title = "Run Ultimate Fling script"}
+cmds[#cmds + 1] = {Text = "[297] " .. tostring(prefix) .. "tfling",Title = "Run Touch Fling By X"}
 
 _G.RemoveSymbols = {
    blank = ""
