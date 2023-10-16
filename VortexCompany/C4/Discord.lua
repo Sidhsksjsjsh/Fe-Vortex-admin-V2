@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (32x)
+-- (33x) - final: 100
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9873,6 +9873,10 @@ end)
 if not respon then
     ErrorPrompt("Touch Fling Error",result)
 end
+end
+if cmd == "toast" then --1
+local var = string.sub(msg,space+1)
+Vortex:GlobalToast(var)
 end
 --[[
 limit 
