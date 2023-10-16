@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (31x)
+-- (32x)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3460,7 +3460,7 @@ function executeHTTPS(_link_)
      end
 end
 
-local Vortex = executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua")
+local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 
 function executeOBJECTS(rbxID)
      local respon, result = pcall(function()
