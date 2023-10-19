@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (33x) - final: 100
+-- (34x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6514,8 +6514,8 @@ if cmd == "walkto" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-speaker.Character.Humanoid:MoveTo(Players[v].Character.HumanoidRootPart.Position)
-notify("walking to","walk you to " .. tostring(Players[v]))
+Vortex:PathFinding(Players[v].Character.HumanoidRootPart.Position)
+notify("walking to","walking to " .. tostring(Players[v]))
 end
 end
 if cmd == "unfollow" then
