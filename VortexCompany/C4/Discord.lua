@@ -9878,6 +9878,19 @@ if cmd == "toast" then --1
 local var = string.sub(msg,space+1)
 Vortex:GlobalToast(var)
 end
+if cmd == "setowner" then
+local var = string.sub(msg,space+1)
+local variable = getPlayer(var,speaker)
+	for i,v in pairs(variable) do
+		Vortex:SetOwner(Players[v].Name)
+  end
+end
+if cmd == "enapet" then
+	Vortex:PetEnabled()
+end
+if cmd == "dispet" then
+	Vortex:PetDisabled()
+end
 --[[
 limit 
 ]]
@@ -10190,6 +10203,9 @@ cmds[#cmds + 1] = {Text = "[294] " .. tostring(prefix) .. "headbang [player name
 cmds[#cmds + 1] = {Text = "[295] " .. tostring(prefix) .. "braveorder",Title = "Run Brave Order Script"}
 cmds[#cmds + 1] = {Text = "[296] " .. tostring(prefix) .. "ufling",Title = "Run Ultimate Fling script"}
 cmds[#cmds + 1] = {Text = "[297] " .. tostring(prefix) .. "tfling",Title = "Run Touch Fling By X"}
+cmds[#cmds + 1] = {Text = "[298] " .. tostring(prefix) .. "setowner [player display name]",Title = "assign an owner so they can control your character like a pet"}
+cmds[#cmds + 1] = {Text = "[299] " .. tostring(prefix) .. "enapet",Title = "Enable Pet Command"}
+cmds[#cmds + 1] = {Text = "[300] " .. tostring(prefix) .. "dispet",Title = "Disable Pet Command"}
 
 _G.RemoveSymbols = {
    blank = ""
