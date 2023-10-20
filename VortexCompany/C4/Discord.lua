@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (35x) - final: 100 (JK)
+-- (36x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9855,24 +9855,16 @@ if not respon then
 end
 end
 if cmd == "ufling" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/UltimateFling/main/.lua")
 end)
-
-if not respon then
-    ErrorPrompt("Ultimate Fling Error",result)
-end
 end
 if cmd == "tfling" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/0Ben1/fe./main/Fling%20GUI")
 end)
-
-if not respon then
-    ErrorPrompt("Touch Fling Error",result)
-end
 end
 if cmd == "toast" then --1
 local var = string.sub(msg,space+1)
@@ -9890,6 +9882,12 @@ if cmd == "enapet" then
 end
 if cmd == "dispet" then
 	Vortex:PetDisabled()
+end
+if cmd == "wcs" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Wizard-Clicker-Simulator/main/Fahri.lua")
+end)
 end
 --[[
 limit 
