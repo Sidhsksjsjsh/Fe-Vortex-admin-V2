@@ -440,6 +440,7 @@ local stats = game:GetService("Stats")
 local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
 local Animate = speaker.Character.Animate
+local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 -- 12
 --[[
@@ -3449,8 +3450,6 @@ function executeHTTPS(_link_)
      ErrorPrompt("Failed to inject scripts", result)
      end
 end
-
-local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 
 function executeOBJECTS(rbxID)
      local respon, result = pcall(function()
