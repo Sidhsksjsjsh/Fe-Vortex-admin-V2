@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (37x) - final: 100 (JK)
+-- (38x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9892,6 +9892,12 @@ end
 if cmd == "cmdprompt" then
 	Vortex:ShowCommandPrompt()
 end
+if cmd == "armwrestle" or cmd == "aws" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ArmWrestleSimulator/main/Script.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -10207,6 +10213,9 @@ cmds[#cmds + 1] = {Text = "[297] " .. tostring(prefix) .. "tfling",Title = "Run 
 cmds[#cmds + 1] = {Text = "[298] " .. tostring(prefix) .. "setowner [player display name]",Title = "assign an owner so they can control your character like a pet"}
 cmds[#cmds + 1] = {Text = "[299] " .. tostring(prefix) .. "enapet",Title = "Enable Pet Command"}
 cmds[#cmds + 1] = {Text = "[300] " .. tostring(prefix) .. "dispet",Title = "Disable Pet Command"}
+cmds[#cmds + 1] = {Text = "[301] " .. tostring(prefix) .. "wcs",Title = "Run Wizard Clicker Simulator Script"}
+cmds[#cmds + 1] = {Text = "[302] " .. tostring(prefix) .. "cmdprompt",Title = "Show Vortex Command Prompt"}
+cmds[#cmds + 1] = {Text = "[303] " .. tostring(prefix) .. "armwrestle / aws",Title = "Run Arm Wrestle Simulator Script"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -10606,7 +10615,7 @@ if COREGUI:FindFirstChild("BubbleChat") then
    end)
 end
 ]]
-getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+--[[getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
         child:Destroy()
 	warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
@@ -10614,6 +10623,13 @@ getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.Chil
 	wait(1)
         RejoinServer()
     end
+end)]]
+
+game:GetService("GuiService").ErrorMessageChanged:Connect(function()
+	--warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
+	warning("Disconnected","Client Disconnected, Rejoining... (please wait 1 sec)")
+	wait(1)
+        RejoinServer()
 end)
 
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
