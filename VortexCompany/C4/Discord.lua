@@ -9898,6 +9898,9 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ArmWrestleSimulator/main/Script.lua")
 end)
 end
+if cmd == "console" then
+Vortex:ShowConsole()
+end
 --[[
 limit 
 ]]
