@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (40x) - final: 100 (JK)
+-- (41x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3379,7 +3379,7 @@ local options = httprequest({
     }
 })
 
-    local userData = HttpService:JSONDecode(result.Body)
+    local userData = HttpService:JSONDecode(options.Body)
     print("GitHub username: " .. userData.login)
     print("GitHub ID: " .. userData.id)
     info("Github Data","Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
@@ -3420,7 +3420,7 @@ local options = httprequest({
     }
 })
 
-    local weatherData = HttpService:JSONDecode(result.Body)
+    local weatherData = HttpService:JSONDecode(options.Body)
     info("temperature","Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
 end)
 else
@@ -8026,7 +8026,7 @@ local options = httprequest({
     }
 })
 
-    local users = HttpService:JSONDecode(result.Body)
+    local users = HttpService:JSONDecode(options.Body)
     for _, user in ipairs(users) do
         print("User ID: " .. user.id)
         print("Username: " .. user.username)
