@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (39x) - final: 100 (JK)
+-- (40x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3369,25 +3369,21 @@ if InterfaceEnter then
 if Github.Text then
 local username = Github.Text
 
+Vortex:CheckError(function()
 local options = httprequest({
     Url = "https://api.github.com/users/" .. username,
     Method = "GET",
     Headers = {
-        ["User-Agent"] = "Roblox"
+        --["User-Agent"] = "Roblox"
+	["Content-Type"] = "application/json"
     }
 })
 
-local success, result = pcall(HttpService.RequestAsync, HttpService, options)
-
-if success then
     local userData = HttpService:JSONDecode(result.Body)
     print("GitHub username: " .. userData.login)
     print("GitHub ID: " .. userData.id)
     info("Github Data","Github username: " .. userData.login .. "\nGithub ID: " .. userData.id)
-else
-    -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt("Request Error or API Error","Error making request", tostring(result), "ok")
-end
+end)
 else
 Github.Text = "REQUIRED GITHUB USERNAME"
 wait(3)
@@ -3415,6 +3411,7 @@ if WeatherApiKey.Text then
 local city = WeatherCity.Text or "New York"
 local apiKey = WeatherApiKey.Text
 
+Vortex:CheckError(function()
 local options = httprequest({
     Url = "http://api.openweathermap.org/data/2.5/weather?q=" .. city .. "&appid=" .. apiKey,
     Method = "GET",
@@ -3423,16 +3420,9 @@ local options = httprequest({
     }
 })
 
--- Send the request
-local success, result = pcall(HttpService.RequestAsync, HttpService, options)
-
-if success then
     local weatherData = HttpService:JSONDecode(result.Body)
     info("temperature","Current temperature in " .. city .. " is " .. tostring(weatherData.main.temp) .. " degrees Kelvin.")
-else
-    -- notify("Error making request: " .. tostring(result))
-    ErrorPrompt("Request Error or API Error","Error making request", tostring(result), "ok")
-end
+end)
 else
 WeatherApiKey.Text = "REQUIRED API KEY"
 wait(3)
@@ -8027,6 +8017,7 @@ local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 	end
 end
 if cmd == "fakedata" then
+Vortex:CheckError(function()
 local options = httprequest({
     Url = "https://jsonplaceholder.typicode.com/users",
     Method = "GET",
@@ -8035,21 +8026,14 @@ local options = httprequest({
     }
 })
 
-local success, result = pcall(HttpService.RequestAsync, HttpService, options)
-
-if success then
     local users = HttpService:JSONDecode(result.Body)
     for _, user in ipairs(users) do
         print("User ID: " .. user.id)
         print("Username: " .. user.username)
-	-- notify("User ID: " .. user.id .. "\nUsername: " .. user.username)
 	ErrorPrompt("Fake data generator (Copied)","User ID: " .. user.id .. "\nUsername: " .. user.username)
 	copy("User ID: " .. user.id .. "\nUsername: " .. user.username)
     end
-else
-    -- notify("Error making request: " .. tostring(result))
-ErrorPrompt("API Error","Error making request: " .. result)
-end
+end)
 end
 if cmd == "githubdata" then
 Github.Visible = true
@@ -8357,8 +8341,9 @@ end
 if cmd == "bypass" then
 --local var = string.sub(msg,space+1)
 local s,r = pcall(function()
-Anticheat_Bypass()
 Vortex:AdonisBypass("V3")
+wait(0.5)
+Anticheat_Bypass()
 end)
 
 if s then
