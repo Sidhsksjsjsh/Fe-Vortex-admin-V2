@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (41x) - final: 100 (JK)
+-- (42x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3440,27 +3440,17 @@ _G.KeybinList = {
 }
 
 function executeHTTPS(_link_)
-     local respon, result = pcall(function()
+     Vortex:CheckError(function()
      loadstring(game:HttpGet(_link_))()
      notify("Script Executed!","script executed successfully.")
      end)
-     
-     if not respon then
-    -- notify(result)
-     ErrorPrompt("Failed to inject scripts", result)
-     end
 end
 
 function executeOBJECTS(rbxID)
-     local respon, result = pcall(function()
+     Vortex:CheckError(function()
      loadstring(game:GetObjects("rbxassetid://" .. tostring(rbxID))[1].Source)()
      notify("Asset Id Executed!","Asset Id executed successfully.")
      end)
-     
-     if not respon then
-    -- notify(result)
-     ErrorPrompt("Failed to load asset id", result)
-     end
 end
 
 function xray(v)
@@ -6793,7 +6783,7 @@ local x = var:lower()
 notify("😘","state disabled")
 end
 if cmd == "rejoin" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 notify("Rejoin server","Rejoining...")
 wait()
 RejoinServer()
@@ -6804,10 +6794,6 @@ if (queue_on_teleport) then
 		end
 	end
 end)
-
-if not respon then
-ErrorPrompt("Rejoin", result)
-end
 end
 if cmd == "delete" then
 local var = string.sub(msg,space+1)
@@ -6877,7 +6863,7 @@ local TextMusic = {
       cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto"
 }
 
-local respond, result = pcall(function()
+Vortex:CheckError(function()
 if not isNumber(var) then
 music(OfficialMusic[var])
 success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
@@ -6886,14 +6872,12 @@ music(var)
 success("now playing ",MusicName .. " (" .. var .. ")")
 end
 end)
-
-if not respond then
-ErrorPrompt("failed to load music",result)
-end
 end
 if cmd == "nomusic" then
-game:GetService("SoundService"):FindFirstChild("Sound").Volume = 0
+Vortex:CheckError(function()
+game:GetService("SoundService"):FindFirstChild("Sound"):Destroy()
 success("Client Music","music disabled")
+end)
 end
 if cmd == "volume" then
 var = string.sub(msg,space+1)
@@ -7165,7 +7149,7 @@ if loopUse then
 end
 end
 if cmd == "clogs" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 if not speaker.PlayerGui:FindFirstChild("ChatGui") then
 executeHTTPS("https://pastebin.com/raw/CB3Jghvb")
 else
@@ -7175,10 +7159,6 @@ speaker.PlayerGui:FindFirstChild("ChatGui").Frame.Mini.Visible = true
 speaker.PlayerGui:FindFirstChild("ChatGui").Frame.Log.Visible = true
 end
 end)
-
-if not respon then
-ErrorPrompt("Chat logs error", result)
-end
 end
 if cmd == "datalimit" then
 local var = string.sub(msg,space+1)
@@ -7588,7 +7568,7 @@ saveSettings()
 ShakeData("13030078632")
 end
 if cmd == "serverhop" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 notify("Serverhop","Teleporting you to another server")
 CloseCmdBar()
 StartServerhop()
@@ -7598,10 +7578,6 @@ if (queue_on_teleport) then
 		end
 	end
 end)
-
-if not respon then
-ErrorPrompt("Serverhop", result)
-end
 end
 if cmd == "blacklist" then
 local var = string.sub(msg,space+1)
@@ -7632,7 +7608,7 @@ if cmd == "friend" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 local playerIsAlrFriend = Players:FindFirstChild(Players[v])
 if playerIsAlrFriend then
     local isFriend = speaker:IsFriendsWith(playerIsAlrFriend.UserId)
@@ -7645,26 +7621,16 @@ end
 speaker:RequestFriendship(Players[v])
 success("Send Friend Request","Friend request sent to " .. tostring(Players[v]))
 end)
-
-if not respon then
-ErrorPrompt("Friend request error", result)
--- ShakeData("13040484705")
-end
 end
 end
 if cmd == "unfriend" then
 local var = string.sub(msg,space+1)
 local variable = getPlayer(var, speaker)
 	for i,v in pairs(variable) do
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 speaker:RevokeFriendship(Players[v])
 notify("Unfriend","you are no longer friends with " .. tostring(Players[v]))
 end)
-
-if not respon then
-ErrorPrompt("Unfriend error", result)
--- ShakeData("13040484705")
-end
 end
 end
 if cmd == "debug" then
@@ -7884,31 +7850,19 @@ notify("Copy UserId","Copied to clipboard")
 end
 end
 if cmd == "dex" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua")
 end)
-
-if not respon then
-ErrorPrompt("Dex error", result)
-end
 end
 if cmd == "rspy" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
 end)
-
-if not respon then
-ErrorPrompt("Remote spy V3 error", result)
-end
 end
 if cmd == "iy" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source.lua') -- without .lua
 end)
-
-if not respon then
-ErrorPrompt("Infinite Yield error", result)
-end
 end
 if cmd == "config" then
 hub_q.Visible = true
@@ -7934,22 +7888,14 @@ if cmd == "date" then
 notify("Time",os.date())
 end
 if cmd == "animationgui" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/GamingScripter/Animation-Hub/main/Animation%20Gui")
 end)
-
-if not respon then
-ErrorPrompt("Animation", result)
-end
 end
 if cmd == "snake" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastefy.ga/tWBTcE4R/raw")
 end)
-
-if not respon then
-ErrorPrompt("FE snake", result)
-end
 end
 if cmd == "loopspeed" then
 local var = string.sub(msg,space+1)
@@ -8187,13 +8133,9 @@ for _, child in pairs(speaker.Character:GetDescendants()) do
 end
 if cmd == "bundle" then
 local var = string.sub(msg,space+1)
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 LoadBundle(var)
 end)
-
-if not respon then
-ErrorPrompt("Failed to load bundle", result)
-end
 end
 if cmd == "username" then
 local var = string.sub(msg,space+1)
@@ -8205,13 +8147,9 @@ notify("wait","wait")
 notify("Time Played",GetTimePlayed())
 end
 if cmd == "domainhub" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/udQLpt5d") -- without .lua
 end)
-
-if not respon then
-ErrorPrompt("Domain Hub (REMAKE)", result)
-end
 end
 if cmd == "nowall" then    
 for i,v in pairs(workspace:GetDescendants()) do
@@ -8309,13 +8247,9 @@ if partBringTrigger then
 end
 end
 if cmd == "fates" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua")
 end)
-
-if not respon then
-ErrorPrompt("Fates admin error", result)
-end
 end
 if cmd == "tool" then
 MysteriousTool()
@@ -8360,31 +8294,19 @@ else
 end
 end
 if cmd == "oldrspy" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Jshdjdhdkdb/main/Omgshit.lua")
 end)
-
-if not respon then
-ErrorPrompt("Remote spy V2 error", result)
-end
 end
 if cmd == "zombie" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastefy.ga/n42Ougzx/raw")
 end)
-
-if not respon then
-ErrorPrompt("Zombie script Error", result)
-end
 end
 if cmd == "fling2" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ToggleFling/main/Roblox/Script.lua")
 end)
-
-if not respon then
-ErrorPrompt("FE Touch Fling GUI Error", result)
-end
 end
 if cmd == "nofog" then
 Lighting.FogEnd = 100000
@@ -8412,43 +8334,27 @@ game.Workspace.CurrentCamera.CameraType = "Custom"
 notify("Camera","The camera was successfully fixed")
 end
 if cmd == "sturdy" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 ForceBodyPart()
 executeHTTPS("https://pastebin.com/raw/sfH0d8RW")
 end)
-
-if not respon then
-ErrorPrompt("FE Sturdy Error", result)
-end
 end
 if cmd == "emotegui" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
 notify("Keybind",'press comma')
 end)
-
-if not respon then
-ErrorPrompt("FE Emote GUI Error", result)
-end
 end
 if cmd == "fighter" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 ForceBodyPart()
 executeHTTPS("https://pastebin.com/raw/XhTSzvNU")
 end)
-
-if not respon then
-ErrorPrompt("FE Fighter Error", result)
-end
 end
 if cmd == "esp2" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/EspV2/main/Death.lua")
 end)
-
-if not respon then
-ErrorPrompt("ESP V2 Error", result)
-end
 end
 if cmd == "orbit" then
 local var = string.sub(msg,space+1)
@@ -8617,17 +8523,9 @@ if cmd == "discordusername" then
 copy("Tora4172#0")
 end
 if cmd == "glitcher" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastefy.ga/qqTUbyGK/raw")
 end)
-
-if not respon then
-if r15(speaker) then
-ErrorPrompt("FE Glitcher ( R15 )", result)
-else
-ErrorPrompt("FE Glitcher ( R6 )", result)
-end
-end
 end
 if cmd == "pet" then
 local var = string.sub(msg,space+1)
@@ -8666,13 +8564,9 @@ if cmd == "f3x" then
 executeOBJECTS("6695644299")
 end
 if cmd == "nameless" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/CsKA3L8Z")
 end)
-
-if not respon then
-ErrorPrompt("FE Nameless V2 Error", result)
-end
 end
 if cmd == "speedboost" then
 tpwalking = true
@@ -8831,7 +8725,7 @@ if cmd == "countpart" then
     countb = 0
 end
 if cmd == "r6" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 if r15(speaker) then
 notify("Loading","Hold on a sec")
 executeHTTPS("https://pastebin.com/raw/9wJepMwY")
@@ -8839,10 +8733,6 @@ else
 warning("Rig Type","Your character rig is already R6, can't change.")
 end
 end)
-
-if not respon then
-ErrorPrompt("Rig Type Changer", result)
-end
 end
 if cmd == "disbot" then
 _G.Settings.LocalBotChatFunc = false
@@ -8872,7 +8762,7 @@ local GC = getconnections or get_signal_cons
 	notify('Anti Idle','Anti idle is enabled')
 end
 if cmd == "russiankick" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 if r15(speaker) then
 info("Russian Kick (R15)","Loading...")
 executeHTTPS("https://pastebin.com/raw/XHi228Ln")
@@ -8881,14 +8771,6 @@ info("Russian Kick (R6)","Loading...")
 executeHTTPS("https://pastebin.com/raw/qtgTPwYm")
 end
 end)
-
-if not respon then
-if r15(speaker) then
-ErrorPrompt("FE Russian Kick (R15)", result)
-else
-ErrorPrompt("FE Russian Kick (R6)", result)
-end
-end
 end
 if cmd == "rtx" then
 -- Roblox Graphics Enhancher
@@ -8989,202 +8871,114 @@ if cmd == "annoychat" then
 ProtocolSendChat(" ⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻⸻")
 end
 if cmd == "robuxtroll" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/BHjfPXC6")
 end)
-
-if not respon then
-ErrorPrompt("FE Robux Troll Error", result)
-end
 end
 if cmd == "bombvest" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/S7vdifqp")
 end)
-
-if not respon then
-ErrorPrompt("FE Bomb Vest Error", result)
-end
 end
 if cmd == "grabv3" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/TPZXG8fH")
 end)
-
-if not respon then
-ErrorPrompt("FE Grab V3 Error", result)
-end
 end
 if cmd == "grabv4" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/7zK1Swpt")
 end)
-
-if not respon then
-ErrorPrompt("FE Grab V4 Error", result)
-end
 end
 if cmd == "anir15" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/MenK10Ak")
 end)
-
-if not respon then
-ErrorPrompt("FE R15 Animation Error", result)
-end
 end
 if cmd == "anir6" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/Ydt76Kep")
 end)
-
-if not respon then
-ErrorPrompt("FE R6 Animation Error", result)
-end
 end
 if cmd == "arosia" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/Nwit6ZqP")
 end)
-
-if not respon then
-ErrorPrompt("FE Arosia GUI Error", result)
-end
 end
 if cmd == "clown" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/0uJXBEmN")
 end)
-
-if not respon then
-ErrorPrompt("FE Clown Error", result)
-end
 end
 if cmd == "coolerkids" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/GGQeWXSL")
 end)
-
-if not respon then
-ErrorPrompt("FE Cooler Kids Error", result)
-end
 end
 if cmd == "equinox" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/scYFbHQb")
 end)
-
-if not respon then
-ErrorPrompt("FE Equinox Error", result)
-end
 end
 if cmd == "hypertotal" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/aYdepQa0")
 end)
-
-if not respon then
-ErrorPrompt("FE HyperTotal Error", result)
-end
 end
 if cmd == "opfinality" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/fG5b1zrM")
 end)
-
-if not respon then
-ErrorPrompt("FE OPFinality GUI Error", result)
-end
 end
 if cmd == "ophub" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/r7DuWSt7")
 end)
-
-if not respon then
-ErrorPrompt("FE OPHub GUI Error", result)
-end
 end
 if cmd == "roxploit" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/ZkhCcaa5")
 end)
-
-if not respon then
-ErrorPrompt("FE RoXploit GUI Error", result)
-end
 end
 if cmd == "rosehub" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/1BJj0fB4")
 end)
-
-if not respon then
-ErrorPrompt("FE Rose Hub GUI Error", result)
-end
 end
 if cmd == "sernhub" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/8sD7V8xp")
 end)
-
-if not respon then
-ErrorPrompt("FE Sern Hub Error", result)
-end
 end
 if cmd == "topk3k" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/bEmmF8UH")
 end)
-
-if not respon then
-ErrorPrompt("FE TOPK3K GUI Error", result)
-end
 end
 if cmd == "beerus" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/c1TGDAKC")
 end)
-
-if not respon then
-ErrorPrompt("FE beerus Error", result)
-end
 end
 if cmd == "ace" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/fA4XSTY1")
 end)
-
-if not respon then
-ErrorPrompt("FE Ace Error", result)
-end
 end
 if cmd == "beast" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/0AH8SZTJ")
 end)
-
-if not respon then
-ErrorPrompt("FE Beast Error", result)
-end
 end
 if cmd == "assasin" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/bKu2GuzN")
 end)
-
-if not respon then
-ErrorPrompt("FE Assasin Error", result)
-end
 end
 if cmd == "dssj4" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://pastebin.com/raw/pfdud8wK")
 end)
-
-if not respon then
-ErrorPrompt("FE DSSJ4 Error", result)
-end
 end
 if cmd == "pathfindfollow" then
 local var = string.sub(msg,space+1)
@@ -9285,16 +9079,12 @@ if sethidden then
 notify("Black hole Created","touch part to make a black hole")
 end
 if cmd == "flagwars" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 notify("Injecting..","please wait 15 seconds")
 Anticheat_Bypass()
 wait()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/FlagWars/main/Roblox/Script.lua")
 end)
-
-if not respon then
-ErrorPrompt("Flag Wars Script", result)
-end
 end
 if cmd == "enable" then
 local var = string.sub(msg,space+1)
@@ -9353,16 +9143,12 @@ Bringplayerrunservice:Disconnect()
 end
 end
 if cmd == "wfs" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 notify("Injecting..","please wait 15 seconds")
 Anticheat_Bypass()
 wait()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Turtle-Hub/main/WFS/WeaponFightingSimulator/Script.lua")
 end)
-
-if not respon then
-ErrorPrompt("Weapon Fighting Simulator Script", result)
-end
 end
 if cmd == "name" then
 local var = string.sub(msg,space+1)
@@ -9375,13 +9161,9 @@ speaker.DisplayName = var
 notify("Fake Display name","Currently display name: " .. var)
 end
 if cmd == "sillysimon" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/SillySimonSays/main/CheatingTool.lua")
 end)
-
-if not respon then
-ErrorPrompt("Silly Simon Says Script", result)
-end
 end
 if cmd == "nccam" then
 local sc = (debug and debug.setconstant) or setconstant
@@ -9529,14 +9311,10 @@ if cmd == "nols" then
 success("Bypass","Successfully Bypassed Loading Screen")
 end
 if cmd == "cms" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/itsnoctural/Utilities/main/Closed/Clicker%20Mining%20Simulator.lua")
 end)
-
-if not respon then
-    ErrorPrompt("Clicker Mining Simulator Script", result)
-end
 end
 if cmd == "hitbox" then --1
 local var = string.sub(msg,space+1)
@@ -9561,7 +9339,7 @@ if GameVirtualHitbox then
   end
 end
 if cmd == "scriptview" or cmd == "sv" or cmd == "dex2" then --COREGUI
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then -- for mobile
 local Iris = loadstring(game:HttpGet("https://raw.githubusercontent.com/x0581/Iris-Exploit-Bundle/main/bundle.lua"))().Init(COREGUI)
@@ -9674,40 +9452,24 @@ else
 ErrorPrompt("Invalid Index","Sorry, the PC version is currently undergoing improvements.")
 end
 end)
-
-if not respon then
-    ErrorPrompt("Vortex Explorer Script & Vortex Script Viewer", result)
-end
 end
 if cmd == "gameview" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://pastebin.com/raw/C39cfVy1")
 end)
-
-if not respon then
-    ErrorPrompt("Game Viewer Script",result)
-end
 end
 if cmd == "invisible" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://pastebin.com/raw/8vcT5yzF")
 end)
-
-if not respon then
-    ErrorPrompt("Toggle Invisible Script",result)
-end
 end
 if cmd == "peruanito" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/i4mitty/Peruanito.exe/main/Peruanito.exe.lua")
 end)
-
-if not respon then
-    ErrorPrompt("Script Error",result)
-end
 end
 if cmd == "astronaut" or cmd == "nogravity" then
 if Astronaut then
@@ -9734,7 +9496,7 @@ local var = string.sub(msg,space+1)
 	SyncMath(var,"chat")
 end
 if cmd == "zombieattack" or cmd == "za" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 if game.PlaceId == 1240123653 or game.PlaceId == 1632210982 then
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ZombieAttack/main/OrinHub/Script.lua")
@@ -9742,10 +9504,6 @@ if game.PlaceId == 1240123653 or game.PlaceId == 1632210982 then
         ErrorPrompt("Not Supported","the game you are playing is not supported, This command only supports Zombie Attack game")
     end
 end)
-
-if not respon then
-    ErrorPrompt("Zombie Attack Error",result)
-end
 end
 if cmd == "dance" then
 local dances = {"27789359","30196114","248263260","45834924","33796059","28488254","52155728"}
@@ -9829,14 +9587,10 @@ end
 end
 end
 if cmd == "braveorder" then
-local respon, result = pcall(function()
+Vortex:CheckError(function()
 	notify("Injecting...","pls wait..") --loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/BraveOrder/main/.lua"))()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/BraveOrder/main/.lua")
 end)
-
-if not respon then
-    ErrorPrompt("Script Error",result)
-end
 end
 if cmd == "ufling" then
 Vortex:CheckError(function()
