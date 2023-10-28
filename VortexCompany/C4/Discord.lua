@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (44x) - final: 100 (JK)
+-- (45x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9639,6 +9639,12 @@ end
 if cmd == "console" then
 Vortex:ShowConsole()
 end
+if cmd == "clickerfighting" or cmd == "cfs" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ClickFighterSimulator/main/SyncX/Script.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -10098,7 +10104,7 @@ if ESPenabled then
 	end
 end)
 
-if speaker.Name == "Rivanda_Cheater" then
+--[[if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
 	Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1132473842"
