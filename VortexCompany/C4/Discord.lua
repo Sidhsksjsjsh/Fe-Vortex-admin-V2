@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (42x) - final: 100 (JK)
+-- (43x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10098,13 +10098,13 @@ if ESPenabled then
 	end
 end)
 
--- title.Text = "Vortex UPDATE LIST: [10/07/2023] \n\n[CONTENT] \n[+] Latest UI \n[+] Added Chat AI (chatGPT) (BETA) \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Removed admin Label🖕 \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora#4172 \n\nNOTE: The command list is in the console. \nExecutor currently in use: " .. Executor() -- .. LOCAL_WEB_IP_HOST()
+Vortex:ScriptLoaded()
 
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
 	Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1132473842"
-        Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1132477671"
+        -- Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1132477671"
 end
 --[[
 VortexUIUPDATE.WallNotification("Vortex UPDATE LIST: [11/09/2023]","[CONTENT] \n[+] Added 1 new command \nlook in the console for new commands by clicking F9 \n\n[BALANCE] \n[-] Fixed JSON response in copyurl \n\n[EVENT] \n[?] There isn't any.. \n\n[PROMOTION / SPONSORSHIP] \n[?] There isn't any.. \n\nNeed help? dm me in discord: Tora4172#0 \n\nNOTE: The command list is in the console. \nExploit User-Agent: " .. Executor(), {
