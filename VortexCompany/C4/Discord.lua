@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (43x) - final: 100 (JK)
+-- (44x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10098,8 +10098,6 @@ if ESPenabled then
 	end
 end)
 
-Vortex:ScriptLoaded()
-
 if speaker.Name == "Rivanda_Cheater" then
 	TitlePlayer("Developer")
 	NametagPlayer("[ Elite Inspector ] \n" .. tostring(speaker.DisplayName))
@@ -10372,6 +10370,8 @@ game:GetService("GuiService").ErrorMessageChanged:Connect(function()
 	wait(1)
         RejoinServer()
 end)
+
+Vortex:ScriptLoaded()
 
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
    _G.Settings.device = "Mobile"
