@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (46x) - final: 100 (JK)
+-- (47x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -439,7 +439,6 @@ local frozenParts = {}
 local stats = game:GetService("Stats")
 local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
-local Animate = speaker.Character.Animate
 local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 -- 12
@@ -4815,6 +4814,7 @@ function CheckServers()
 end
 
 function AnimationExtension(AnimName)
+local Animate = speaker.Character.Animate
 	if AnimName == "patrol" then
 	Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1149612882"
 Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1150842221"
