@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (45x) - final: 100 (JK)
+-- (46x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9645,6 +9645,12 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/ClickFighterSimulator/main/SyncX/Script.lua")
 end)
 end
+if cmd == "animedimension" or cmd == "ad" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/AnimeDimensions/main/TurtleHub/Script.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -9963,6 +9969,8 @@ cmds[#cmds + 1] = {Text = "[300] " .. tostring(prefix) .. "dispet",Title = "Disa
 cmds[#cmds + 1] = {Text = "[301] " .. tostring(prefix) .. "wcs",Title = "Run Wizard Clicker Simulator Script"}
 cmds[#cmds + 1] = {Text = "[302] " .. tostring(prefix) .. "cmdprompt",Title = "Show Vortex Command Prompt"}
 cmds[#cmds + 1] = {Text = "[303] " .. tostring(prefix) .. "armwrestle / aws",Title = "Run Arm Wrestle Simulator Script"}
+cmds[#cmds + 1] = {Text = "[304] " .. tostring(prefix) .. "clickerfighting / cfs",Title = "Run Clicker Fighting Simulator Script"}
+cmds[#cmds + 1] = {Text = "[305] " .. tostring(prefix) .. "animedimension / ad",Title = "Run Anime Dimension Script"}
 
 _G.RemoveSymbols = {
    blank = ""
