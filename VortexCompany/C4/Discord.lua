@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (47x) - final: 100 (JK)
+-- (48x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9651,6 +9651,12 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/AnimeDimensions/main/TurtleHub/Script.lua")
 end)
 end
+if cmd == "musclelegends" or cmd == "ml" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/MuscleLegends/main/SyncX/Script.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -9971,6 +9977,7 @@ cmds[#cmds + 1] = {Text = "[302] " .. tostring(prefix) .. "cmdprompt",Title = "S
 cmds[#cmds + 1] = {Text = "[303] " .. tostring(prefix) .. "armwrestle / aws",Title = "Run Arm Wrestle Simulator Script"}
 cmds[#cmds + 1] = {Text = "[304] " .. tostring(prefix) .. "clickerfighting / cfs",Title = "Run Clicker Fighting Simulator Script"}
 cmds[#cmds + 1] = {Text = "[305] " .. tostring(prefix) .. "animedimension / ad",Title = "Run Anime Dimension Script"}
+cmds[#cmds + 1] = {Text = "[306] " .. tostring(prefix) .. "musclelegends / ml",Title = "Run Muscle Legends Script"}
 
 _G.RemoveSymbols = {
    blank = ""
