@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (48x) - final: 100 (JK)
+-- (49x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9657,6 +9657,11 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/MuscleLegends/main/SyncX/Script.lua")
 end)
 end
+if cmd == "executor" or cmd == "exploit" then
+Vortex:CheckError(function()
+     Vortex:ShowExploit()
+end)
+end
 --[[
 limit 
 ]]
@@ -9978,6 +9983,7 @@ cmds[#cmds + 1] = {Text = "[303] " .. tostring(prefix) .. "armwrestle / aws",Tit
 cmds[#cmds + 1] = {Text = "[304] " .. tostring(prefix) .. "clickerfighting / cfs",Title = "Run Clicker Fighting Simulator Script"}
 cmds[#cmds + 1] = {Text = "[305] " .. tostring(prefix) .. "animedimension / ad",Title = "Run Anime Dimension Script"}
 cmds[#cmds + 1] = {Text = "[306] " .. tostring(prefix) .. "musclelegends / ml",Title = "Run Muscle Legends Script"}
+cmds[#cmds + 1] = {Text = "[307] " .. tostring(prefix) .. "executor / exploit",Title = "Run Vortex Executor Script"}
 
 _G.RemoveSymbols = {
    blank = ""
