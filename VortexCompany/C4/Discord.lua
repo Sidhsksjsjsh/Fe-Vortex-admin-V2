@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (49x) - final: 100 (JK)
+-- (50x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -379,16 +379,12 @@ function warning(title, content)
 	dorjekwjosjksk:Play()
 end
 
-function ToggleNotify(title, content, for_false, for_true)
+function ToggleNotify(title,content,getScript)
 NotifyV1:Notify(
     {Title = tostring(title) .. " |" .. tostring(Virtual.VirtualIcon), Description = content},
     {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "option"},
     {Image = "http://www.roblox.com/asset/?id=6023426923", ImageColor = Color3.fromRGB(255, 84, 84), Callback = function(State)
-	if State == true then
-            Callback(for_true)
-	else
-            Callback(for_false)
-	end
+	getScript(State)
 end})
 	dorjekwjosjksk:Play()
 end
@@ -9662,6 +9658,12 @@ Vortex:CheckError(function()
      Vortex:ShowExploit()
 end)
 end
+if cmd == "legendofspeed" or cmd == "los" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/LegendOfSpeed/main/.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -9984,6 +9986,7 @@ cmds[#cmds + 1] = {Text = "[304] " .. tostring(prefix) .. "clickerfighting / cfs
 cmds[#cmds + 1] = {Text = "[305] " .. tostring(prefix) .. "animedimension / ad",Title = "Run Anime Dimension Script"}
 cmds[#cmds + 1] = {Text = "[306] " .. tostring(prefix) .. "musclelegends / ml",Title = "Run Muscle Legends Script"}
 cmds[#cmds + 1] = {Text = "[307] " .. tostring(prefix) .. "executor / exploit",Title = "Run Vortex Executor Script"}
+cmds[#cmds + 1] = {Text = "[308] " .. tostring(prefix) .. "legendofspeed / los",Title = "Run Legend Of Speed Script"}
 
 _G.RemoveSymbols = {
    blank = ""
