@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (51x) - final: 100 (JK)
+-- (52x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9660,8 +9660,15 @@ end)
 end
 if cmd == "legendofspeed" or cmd == "los" then
 Vortex:CheckError(function()
+ToggleNotify("Turtle Hub Or Sync X?","√ = Turtle Hub \nx = Sync X",function(v)
+if v then
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://pastebin.com/raw/h2CrKA85")
+else
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/LegendOfSpeed/main/.lua")
+end
+end)
 end)
 end
 --[[
