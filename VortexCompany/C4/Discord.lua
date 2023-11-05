@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (52x) - final: 100 (JK)
+-- (53x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7878,7 +7878,7 @@ CrosshairImage.Image = "rbxassetid://13171020627"
 end
 if cmd == "animation" then
 local var = string.sub(msg,space+1)
-AnimationExtension(var)
+AnimationExtension(var:gsub(" ",""))
 end
 if cmd == "date" then
 notify("Time",os.date())
@@ -8426,7 +8426,11 @@ local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.
 	end
 end
 if cmd == "exit" then
-ToggleNotify("Confirm","Are you sure you want to exit the game?",print("NO"),game:shutdown())
+ToggleNotify("Left Experience","Are u sure ?",function(v)
+if v then
+game:shutdown()
+end
+end)
 end
 if cmd == "infjump" then
 if infjumpsystem then 
@@ -8516,7 +8520,7 @@ if sethidden then
 	end
 end
 if cmd == "discordusername" then
-copy("Tora4172#0")
+copy("Tora4172")
 end
 if cmd == "glitcher" then
 Vortex:CheckError(function()
@@ -9660,15 +9664,8 @@ end)
 end
 if cmd == "legendofspeed" or cmd == "los" then
 Vortex:CheckError(function()
-ToggleNotify("Turtle Hub Or Sync X?","√ = Turtle Hub \nx = Sync X",function(v)
-if v then
-	notify("Injecting...","pls wait..")
-        executeHTTPS("https://pastebin.com/raw/h2CrKA85")
-else
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/LegendOfSpeed/main/.lua")
-end
-end)
 end)
 end
 --[[
