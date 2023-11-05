@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (53x) - final: 100 (JK)
+-- (54x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9247,11 +9247,13 @@ elseif url:find("process") then
 warning("HTTP SPY",url)
 print(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 Vortex:GlobalToast(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
+Vortex:PromptUI(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 _G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 end
 print(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 notify("HTTP SPY",url)
 Vortex:GlobalToast(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
+Vortex:PromptUI(url .. "\nURL sequence: " .. tostring(#_G.UrlList + 1))
 _G.UrlList[#_G.UrlList + 1] = {urlHook = url}
 return old(olgame, url)
 end))
