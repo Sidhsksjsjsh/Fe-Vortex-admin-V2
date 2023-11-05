@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (54x) - final: 100 (JK)
+-- (55x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9668,6 +9668,17 @@ if cmd == "legendofspeed" or cmd == "los" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/LegendOfSpeed/main/.lua")
+end)
+end
+if cmd == "platform" then
+Vortex:CheckError(function()
+	Vortex:MakePlatform({
+               thickness = 0.2,
+               Anchored = true,
+               CanCollide = false,
+               BrickColor = "Bright Blue",
+               Position = Vector3.new(0,-2,0)
+        })
 end)
 end
 --[[
