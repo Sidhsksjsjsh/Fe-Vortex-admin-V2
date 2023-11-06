@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (56x) - final: 100 (JK)
+-- (57x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9380,7 +9380,7 @@ local function CrawlInstances(Inst)
                 SelectedInstance = Instance
                 Properties = GetPropertiesForInstance(Instance)
 		copy(SelectedInstance and SelectedInstance:GetFullName() or "UNKNOWN INSTANCE")
-		notify("Clipboard Assistant","Copied to clipboard!")
+		Vortex:PromptUI("Copied to the clipboard!")
             end
             Iris.End()
         end
@@ -9677,7 +9677,9 @@ Vortex:CheckError(function()
                Anchored = true,
                CanCollide = true,
                BrickColor = "Bright Blue",
-               Position = Vector3.new(0,-3.5,0)
+               Position = Vector3.new(0,-3.5,0),
+	       Shape = Enum.PartType.Cylinder,
+	       Mesh = Instance.new("CylinderMesh")
         })
 end)
 end
