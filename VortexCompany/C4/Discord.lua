@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (57x) - final: 100 (JK)
+-- (58x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9681,6 +9681,12 @@ Vortex:CheckError(function()
 	       Shape = Enum.PartType.Cylinder,
 	       Mesh = Instance.new("CylinderMesh")
         })
+end)
+end
+if cmd == "instantclick" or cmd == "ic" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/InstantClick/main/.lua")
 end)
 end
 --[[
