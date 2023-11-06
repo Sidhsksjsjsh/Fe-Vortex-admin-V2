@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (55x) - final: 100 (JK)
+-- (56x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9673,11 +9673,11 @@ end
 if cmd == "platform" then
 Vortex:CheckError(function()
 	Vortex:MakePlatform({
-               thickness = 0.2,
+               Size = Vector3.new(5,0.5,5),
                Anchored = true,
-               CanCollide = false,
+               CanCollide = true,
                BrickColor = "Bright Blue",
-               Position = Vector3.new(0,-2,0)
+               Position = Vector3.new(0,-3.5,0)
         })
 end)
 end
