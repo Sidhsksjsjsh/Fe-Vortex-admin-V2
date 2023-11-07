@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (61x) - final: 100 (JK)
+-- (62x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9702,6 +9702,12 @@ Vortex:CheckError(function()
 	       Mesh = Instance.new("CylinderMesh"),
 	       Following = false
         })
+end)
+end
+if cmd == "colorblock" or cmd == "cb" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Color-Block/main/.lua")
 end)
 end
 --[[
