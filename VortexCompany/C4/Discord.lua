@@ -21,6 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
+local version = "2.2.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1297,7 +1298,7 @@ Title.Rotation = 90
 Title.TextScaled = false
 Title.Size = UDim2.new(0, 165, 0, 48)
 Title.Font = Enum.Font.SourceSans
-Title.Text = "VORTEX V2.0.0" -- V        O        R        T        E        X
+Title.Text = "FE VORTEX V" .. version -- V        O        R        T        E        X
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 14
 
@@ -9512,12 +9513,12 @@ local dances = {"27789359","30196114","248263260","45834924","33796059","2848825
 	if r15(speaker) then
 		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
 	end
-	local animation = Instance.new("Animation")
-	animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
-	danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
-	danceTrack.Looped = true
-	danceTrack:Play()
-	--speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(tonumber(dances[math.random(1, #dances)]))
+	--local animation = Instance.new("Animation")
+	--animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
+	--danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+	--danceTrack.Looped = true
+	--danceTrack:Play()
+	speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(dances[math.random(1,#dances)])
 end
 if cmd == "undance" then
 danceTrack:Stop()
@@ -10398,13 +10399,11 @@ end)
 
 -- identify_Label_Script
 -- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
-ChangeSizeInterface(Phase1,UDim2.new(0, #identify_Label_Script * 12, 0, 30))
-wait(0.1)
-local dogshitlen = string.len(identify_Label_Script)
-for i=1,dogshitlen do
-    Phase1.Text                    = string.sub(identify_Label_Script,1,i)
-    wait(0.001)
-end
+Vortex:AddLabel("FE Vortex Admin V" .. version,{
+      Position = {0.5,-100,0,workspace.CurrentCamera.ViewportSize.Y - 45},
+      transparen = 1,
+      Size = {0,165,0,48}
+})
 
 Players.PlayerRemoving:Connect(function(Player)
 if ESPenabled or COREGUI:FindFirstChild(tostring(Player) .. '_LC') then
