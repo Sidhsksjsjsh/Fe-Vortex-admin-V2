@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (59x) - final: 100 (JK)
+-- (60x) - final: 100 (JK)
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9677,9 +9677,10 @@ Vortex:CheckError(function()
                Anchored = true,
                CanCollide = true,
                BrickColor = "Bright Blue",
-               Position = Vector3.new(0,-3.5,0),
+               Position = Vector3.new(0,-4,0),
 	       Shape = Enum.PartType.Cylinder,
-	       Mesh = Instance.new("CylinderMesh")
+	       Mesh = Instance.new("CylinderMesh"),
+	       Following = true
         })
 end)
 end
@@ -9687,6 +9688,20 @@ if cmd == "instantclick" or cmd == "ic" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/InstantClick/main/.lua")
+end)
+end
+if cmd == "platform2" then
+Vortex:CheckError(function()
+	Vortex:MakePlatform({
+               Size = Vector3.new(5,0.5,5),
+               Anchored = true,
+               CanCollide = true,
+               BrickColor = "Bright Blue",
+               Position = Vector3.new(0,-4,0),
+	       Shape = Enum.PartType.Cylinder,
+	       Mesh = Instance.new("CylinderMesh"),
+	       Following = false
+        })
 end)
 end
 --[[
@@ -10012,6 +10027,9 @@ cmds[#cmds + 1] = {Text = "[305] " .. tostring(prefix) .. "animedimension / ad",
 cmds[#cmds + 1] = {Text = "[306] " .. tostring(prefix) .. "musclelegends / ml",Title = "Run Muscle Legends Script"}
 cmds[#cmds + 1] = {Text = "[307] " .. tostring(prefix) .. "executor / exploit",Title = "Run Vortex Executor Script"}
 cmds[#cmds + 1] = {Text = "[308] " .. tostring(prefix) .. "legendofspeed / los",Title = "Run Legend Of Speed Script"}
+cmds[#cmds + 1] = {Text = "[309] " .. tostring(prefix) .. "instantclick / ic",Title = "Run Instant Click Script (only support: fireclickdetector(), fireproximityprompt(), firetouchinterest()"}
+cmds[#cmds + 1] = {Text = "[310] " .. tostring(prefix) .. "platform",Title = "A platform appears that can help you float in the air (Player-following version)"}
+cmds[#cmds + 1] = {Text = "[311] " .. tostring(prefix) .. "platform2",Title = "A platform appears that can help you float in the air (version appears where the player is standing)"}
 
 _G.RemoveSymbols = {
    blank = ""
