@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.2" -- reverted version
+local version = "2.2.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9301,9 +9301,9 @@ if cmd == "keypress" then
 local var = string.sub(msg,space+1)
 	if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
 		if (not _G.KeybinList[var]) then
-			vim:SendKeyEvent(true,capitalizeFirstLetter(var),false,game)
+			vim:SendKeyEvent(true,capitalizeFirstLetter(var:gsub(" ","")),false,game)
 		else
-			vim:SendKeyEvent(true,_G.KeybinList[var],false,game)
+			vim:SendKeyEvent(true,_G.KeybinList[var:gsub(" ","")],false,game)
 	end
 		else
 			warning("Only Mobile!","This command is specifically for mobile device users.")
@@ -9510,6 +9510,7 @@ end)
 end
 if cmd == "dance" then
 local dances = {"27789359","30196114","248263260","45834924","33796059","28488254","52155728"}
+Vortex:CheckError(function()
 	if r15(speaker) then
 		--dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
 		dances = {3333432454,4555808220,4049037604,4555782893,10214311282,10714010337,10713981723,10714372526,10714076981,10714392151,11444443576}
@@ -9521,12 +9522,7 @@ local dances = {"27789359","30196114","248263260","45834924","33796059","2848825
 	        danceTrack.Looped = true
 	        danceTrack:Play()
 	end
-	--local animation = Instance.new("Animation")
-	--animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
-	--danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
-	--danceTrack.Looped = true
-	--danceTrack:Play()
-	speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(dances[math.random(1,#dances)])
+    end)
 end
 if cmd == "undance" then
 danceTrack:Stop()
@@ -10445,8 +10441,8 @@ end
 game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
         child:Destroy()
-	warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
-	warning("Disconnected","Client Disconnected, Rejoining... (please wait 1 sec)")
+	Vortex:PromptUI("Successfully removed the GUI with the name 'ErrorPrompt'.")
+	Vortex:PromptUI("Client Disconnected, Rejoining... (please wait 1 sec)")
 	wait(1)
         RejoinServer()
     end
