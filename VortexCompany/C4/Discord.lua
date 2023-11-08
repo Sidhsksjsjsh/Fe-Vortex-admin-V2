@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.1" -- reverted version
+local version = "2.2.2" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9511,7 +9511,15 @@ end
 if cmd == "dance" then
 local dances = {"27789359","30196114","248263260","45834924","33796059","28488254","52155728"}
 	if r15(speaker) then
-		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
+		--dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
+		dances = {3333432454,4555808220,4049037604,4555782893,10214311282,10714010337,10713981723,10714372526,10714076981,10714392151,11444443576}
+		speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(dances[math.random(1,#dances)])
+	else
+		local animation = Instance.new("Animation")
+	        animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
+	        danceTrack = speaker.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(animation)
+	        danceTrack.Looped = true
+	        danceTrack:Play()
 	end
 	--local animation = Instance.new("Animation")
 	--animation.AnimationId = "rbxassetid://" .. dances[math.random(1, #dances)]
@@ -10399,10 +10407,11 @@ end)
 
 -- identify_Label_Script
 -- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
-Vortex:AddLabel("FE Vortex Admin V" .. version,{
+Vortex:AddLabel("FE Vortex Admin V" .. version .. " | Public Mode",{
       Position = {0.5,-100,0,15},
       transparen = 1,
-      Size = {0,165,0,48}
+      Size = {0,165,0,48},
+      TextSize = 14
 })
 
 Players.PlayerRemoving:Connect(function(Player)
@@ -10432,7 +10441,8 @@ if COREGUI:FindFirstChild("BubbleChat") then
    end)
 end
 ]]
---[[getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+--[[getgenv().rejoin =]]
+game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
         child:Destroy()
 	warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
@@ -10440,14 +10450,14 @@ end
 	wait(1)
         RejoinServer()
     end
-end)]]
+end)
 
-game:GetService("GuiService").ErrorMessageChanged:Connect(function()
+--[[game:GetService("GuiService").ErrorMessageChanged:Connect(function()
 	--warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
 	warning("Disconnected","Client Disconnected, Rejoining... (please wait 1 sec)")
 	wait(1)
         RejoinServer()
-end)
+end)]]
 
 Vortex:ScriptLoaded()
 
