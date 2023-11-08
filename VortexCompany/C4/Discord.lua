@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.4" -- reverted version
+local version = "2.2.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10403,13 +10403,12 @@ end)
 
 -- identify_Label_Script
 -- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
-Vortex:AddLabel("FE Vortex Admin V" .. version .. "",{
+Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer(),{
       Position = {0.5,-100,0,15},
       transparen = 1,
       Size = {0,165,0,48},
       TextSize = 14,
-      TextColor = {0,0,0},
-      RGB = true
+      TextColor = {1,1,1}
 })
 
 Players.PlayerRemoving:Connect(function(Player)
