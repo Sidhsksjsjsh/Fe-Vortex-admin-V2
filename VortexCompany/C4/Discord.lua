@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.5" -- reverted version
+local version = "2.2.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -4774,10 +4774,10 @@ function r15(plr)
 	end
 end
 
-local ServerSize_A777 = "(0/0)"
+local ServerSize_A777 = "(0/0)" -- HttpGetAsync
 function Serverhop()
     local x = {}
-    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
         if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
             x[#x + 1] = v.id
         end
@@ -4792,7 +4792,7 @@ end
 function CheckServers()
     -- local respon, result = pcall(function()
     local x = {}
-    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
+    for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
         if type(v) == "table" and v.maxPlayers > v.playing and v.id ~= game.JobId then
             x[#x + 1] = v.id
 		ServerSize_A777 = "(" .. tostring(v.playing) .. "/" .. tostring(v.maxPlayers) .. ")"
@@ -10401,16 +10401,6 @@ info("Friend Joined","Your friend " .. tostring(Player) .. " has joined the game
 end
 end)
 
--- identify_Label_Script
--- Phase1.Text                    = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
-Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer(),{
-      Position = {0.5,-100,0,15},
-      transparen = 1,
-      Size = {0,165,0,48},
-      TextSize = 14,
-      TextColor = {1,1,1}
-})
-
 Players.PlayerRemoving:Connect(function(Player)
 if ESPenabled or COREGUI:FindFirstChild(tostring(Player) .. '_LC') then
 		for i,v in pairs(COREGUI:GetChildren()) do
@@ -10449,13 +10439,6 @@ game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(func
     end
 end)
 
---[[game:GetService("GuiService").ErrorMessageChanged:Connect(function()
-	--warning("ErrorPrompt GUI","Successfully removed the GUI with the name 'ErrorPrompt'.")
-	warning("Disconnected","Client Disconnected, Rejoining... (please wait 1 sec)")
-	wait(1)
-        RejoinServer()
-end)]]
-
 Vortex:ScriptLoaded()
 
 if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
@@ -10464,20 +10447,10 @@ else
    _G.Settings.device = "PC"
 end
 
---Alert("Lua Injection | Banwaves","Roblox has officially started their banwaves, I recommend you use VPN and alt accounts \n• Currently every other Android cheat is detected\n• join our discord server for the latest updates on anti-cheat bypass","👍🏻👌🏻",true)
-
-
---[[
-
-local _L = {}
-_L.timestamp = tick()
-
-function onScriptLoaded()
-    info("Loaded!","Loaded in " .. string.format("%.5f", tick() - _L.timestamp) .. " seconds.")
-end
-
-if game:IsLoaded() then
-    onScriptLoaded()
-end
---]]
--- Anticheat_Bypass()
+Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST(),{
+      Position = {0.5,-100,0,15},
+      transparen = 1,
+      Size = {0,165,0,48},
+      TextSize = 14,
+      TextColor = {0,255,0}
+})
