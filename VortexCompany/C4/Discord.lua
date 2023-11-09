@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.7" -- reverted version
+local version = "2.2.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10449,7 +10449,7 @@ end
 
 Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST(),{
       Position = {0.5,-100,0,15},
-      transparen = 0.5,
+      transparen = 1,
       Size = {0,165,0,48},
       TextSize = 14,
       TextColor = {0,255,0},
