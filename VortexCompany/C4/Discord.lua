@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.2.8" -- reverted version
+local version = "2.2.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9715,6 +9715,12 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Color-Block/main/.lua")
 end)
 end
+if cmd == "megahideandseek" or cmd == "mhas" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Mega-Hide-And-Seek/main/.lua")
+end)
+end
 --[[
 limit 
 ]]
@@ -10041,6 +10047,7 @@ cmds[#cmds + 1] = {Text = "[308] " .. tostring(prefix) .. "legendofspeed / los",
 cmds[#cmds + 1] = {Text = "[309] " .. tostring(prefix) .. "instantclick / ic",Title = "Run Instant Click Script (only support: fireclickdetector(), fireproximityprompt(), firetouchinterest()"}
 cmds[#cmds + 1] = {Text = "[310] " .. tostring(prefix) .. "platform",Title = "A platform appears that can help you float in the air (Player-following version)"}
 cmds[#cmds + 1] = {Text = "[311] " .. tostring(prefix) .. "platform2",Title = "A platform appears that can help you float in the air (version appears where the player is standing)"}
+cmds[#cmds + 1] = {Text = "[312] " .. tostring(prefix) .. "megahideandseek / mhas",Title = "Run Mega Hide And Seek Script"}
 
 _G.RemoveSymbols = {
    blank = ""
