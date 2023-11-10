@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.3.2" -- reverted version
+local version = "2.3.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9512,10 +9512,10 @@ if cmd == "dance" then -- shitty command
 local dances = {"27789359","30196114","248263260","45834924","33796059","28488254","52155728"}
 Vortex:CheckError(function()
 	if r15(speaker) then
-		dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
-		--dances = {3333432454,4555808220,4049037604,4555782893,10214311282,10714010337,10713981723,10714372526,10714076981,10714392151,11444443576}
+		--dances = {"3333432454","4555808220","4049037604","4555782893","10214311282","10714010337","10713981723","10714372526","10714076981","10714392151","11444443576"}
+		dances = {3333432454,4555808220,4049037604,4555782893,10214311282,10714010337,10713981723,10714372526,10714076981,10714392151,11444443576}
 		--speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(dances[math.random(1,#dances)])
-		local emoteAsset = MarketplaceService:GetProductInfo(dances[math.random(1,#dances)])
+		local emoteAsset = game:GetService("MarketplaceService"):GetProductInfo(dances[math.random(1,#dances)])
                 if emoteAsset and emoteAsset.AssetTypeId == Enum.AssetType.Emote then
                    speaker.Character.Humanoid:PlayEmote(emoteAsset.AssetId)
                 else
