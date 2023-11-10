@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.3.3" -- reverted version
+local version = "2.3.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1894,7 +1894,7 @@ wait(1)
 SyncTeleportScreen:Destroy()
 end
 
-local replace_Patched = { 
+local replace = { 
       ass = "𐌑á⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥𐌑úm",
       cock = "с𐌑ồс𐌑k",
@@ -2008,7 +2008,7 @@ local replaceCAPS = {
       tiktok = "t𐌑ìkt𐌑ok"
 --]]
 
-local replace = { -- здравствуйте
+local replace_Shit = { -- здравствуйте
       ass = "а⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
@@ -9516,7 +9516,7 @@ Vortex:CheckError(function()
 		dances = {3333432454,4555808220,4049037604,4555782893,10214311282,10714010337,10713981723,10714372526,10714076981,10714392151,11444443576}
 		--speaker.Character.Humanoid:PlayEmoteAndGetAnimTrackById(dances[math.random(1,#dances)])
 		local emoteAsset = game:GetService("MarketplaceService"):GetProductInfo(dances[math.random(1,#dances)])
-                if emoteAsset and emoteAsset.AssetTypeId == Enum.AssetType.Emote then
+                if emoteAsset then
                    speaker.Character.Humanoid:PlayEmote(emoteAsset.AssetId)
                 else
                    Vortex:PromptUI("Invalid ID or not an emote ID.")
