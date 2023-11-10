@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.3.7" -- reverted version
+local version = "2.3.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2067,127 +2067,30 @@ local replace_vs = { -- здравствуйте
       suck = "súсk"
 }
 
-function SyncBypassChat(str)
+--[[function SyncBypassChat(str)
 Vortex:CheckError(function()
 local bypassedWordString = str and str:lower() or ""
 return bypassedWordString:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok):gsub("condom",replace.condom):gsub("suck",replace.suck):gsub("nigger",replace.nigger)
 end)
 end
---[[
-local replaceCAPS = { 
-      ass = "𐌑á⁥⁥⁥⁥ѕѕ",
-      cum = "с⁥⁥⁥𐌑úm",
-      cock = "с𐌑ồс𐌑k",
-      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
-      asshole = "𐌑áѕѕh𐌑ol𐌑e",
-      rape = "r𐌑áр𐌑e",
-      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ ob𐌑s",
-      titties = "Т𐌑ìtt𐌑ìes",
-      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
-      sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
-      hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
-      porn = "р𐌑ồrn",
-      nigga = "n𐌑ìgg⁥𐌑á",
-      penis = "р𐌑еn⁥𐌑ìs",
-      beaner = "𐌑bе𐌑аn⁥е𐌑r",
-      thot = "th𐌑ồt",
-      xxx = "xxx",
-      hentai = "h𐌑ent𐌑ái",
-      bitch = "b𐌑ìtch⁥⁥⁥⁥",
-      bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
-      shit = "sh𐌑ìt",
-      kys = "kys",
-      butthole = "b𐌑útth𐌑ồle",
-      masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e",
-      bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
-      blowjob = "bl𐌑ồwj𐌑ồb",
-      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
-      cs = "с𐌑ồсk s𐌑úсkеr",
-      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
-      dick = "d𐌑ìc𐌑k",
-      dogshit = "d𐌑ồg sh𐌑ìt",
-      tits = "t𐌑ìts",
-      pussy = "p𐌑ússy",
-      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑m",
-      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
-      memek = "m𐌑em𐌑ek",
-      sepong = "s𐌑ep𐌑on𐌑g",
-      kontol = "k𐌑o𐌑nt𐌑ol",
-      ngentot = "ng𐌑en𐌑to𐌑t",
-      jembut = "j𐌑emb𐌑út",
-      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
-      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìsts",
-      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
-      hub = "h𐌑úb",
-      cyka = "c𐌑yk𐌑á",
-      blyat = "bl𐌑y𐌑át",
-      gay = "g𐌑áy",
-      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
-      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e",
-      i = "i",
-      love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
-      you = "yo𐌑ú",
-      tiktok = "t𐌑ìkt𐌑ok"
-}
-
-function CAPS_BYPASS(str)
-local Caps_Chat = str:lower()
-Caps_Chat:gsub("ASS",replaceCAPS.)
-end здравствуйте
-тест
-свинья
-сволочь
-животное
-почему все?
---
-function BP_SyncBypassChat(BypassWord)
-local chat = BypassWord:lower()
-    local tabl = {}
-    for i = 1, #chat do
-        local chara = chat:sub(i,i)
-        if string.lower(chara) == "a" then
-            chara = "а" -- 𐌑á
-        elseif string.lower(chara) == "o" then
-            chara = "о" -- 𐌑ồ
-        elseif string.lower(chara) == "b" then
-            chara = "в" -- 𐌑ì
-        elseif string.lower(chara) == "c" then
-            chara = "с" -- 𐌑ú
-	elseif string.lower(chara) == "e" then
-            chara = "е"
-        end
-        table.insert(tabl, chara)
-    end
-    chat = ""
-    for i,v in pairs(tabl) do
-        chat = chat..v
-    end
-    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(chat, "All")
-end]]
---[[
-local replace = { "𐌑á⁥⁥⁥⁥ѕѕ", "с⁥⁥⁥⁥um", "сосk", "fu𐌑𝖔 ͜ ͣ c𐌑ḳ", "аѕѕһоlе", "rаре", "Вoobs", "Тitties", "s⁥⁥⁥⁥⁥⁥ех", "һое", "рогn", "п⁥iɡ⁥ɡ⁥а", "реп⁥is", "bеаn⁥ег", "ТН⁥⁥⁥⁥⁥ОТ", "ΧΧΧ", "НЕΝТАӀ", "ВI⁥⁥⁥⁥⁥⁥TСН", "ВIT⁥⁥⁥⁥⁥⁥⁥СНEЅ", "ЅНIТ", "К⁥⁥⁥⁥⁥YЅ", "ВUТТ⁥⁥⁥⁥НOLЕ", "МАЅТURВАТЕ", "big black со⁥⁥⁥сk", "Вӏоwjob", "Віtеѕ уоur сосk", "сосk suсkеr", "f⁥аt а⁥ѕѕ һое" }
+]]
 
 function SyncBypassChat(str)
-
-end
---]]
---[[
-function SyncBypassChatTwoMode(text)
-local keywords = { "ass", "cum", "cock", "fuck", "asshole", "rape", "boobs", "titties", "sex", "hoe", "porn", "nigga", "penis", "beaner", "thot", "xxx", "hentai", "bitch", "bitches", "shit", "kys", "butthole", "masturbate", "big black cock", "blowjob", "bites your cock", "cock sucker", "fat ass hoe" } --Keyword
-local replace = { "а⁥⁥⁥⁥ѕѕ", "с⁥⁥⁥⁥um", "сосk", "fu𐌑𝖔 ͜ ͣ c𐌑ḳ", "аѕѕһоlе", "rаре", "Вoobs", "Тitties", "s⁥⁥⁥⁥⁥⁥ех", "һое", "рогn", "п⁥iɡ⁥ɡ⁥а", "реп⁥is", "bеаn⁥ег", "ТН⁥⁥⁥⁥⁥ОТ", "ΧΧΧ", "НЕΝТАӀ", "ВI⁥⁥⁥⁥⁥⁥TСН", "ВIT⁥⁥⁥⁥⁥⁥⁥СНEЅ", "ЅНIТ", "К⁥⁥⁥⁥⁥YЅ", "ВUТТ⁥⁥⁥⁥НOLЕ", "МАЅТURВАТЕ", "big black со⁥⁥⁥сk", "Вӏоwjob", "Віtеѕ уоur сосk", "сосk suсkеr", "f⁥аt а⁥ѕѕ һое" } 
-local message = string.lower(text)
-    for word in string.gmatch(message, "%S+") do
-        for i, key in ipairs(keywords) do
-            if word == string.lower(key) then
-                word = replace[i]
-                break
-            end
-        end
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(word, "All")
-        -- wait(tonumber(delay.Text))
+  Vortex:CheckError(function()
+    local bypassedWordString = str and str:lower() or ""
+    
+    for key,value in pairs(replace) do
+      if type(value) ~= "string" then
+        notify("Debugging Error","Invalid replacement value for key: " .. key)
+      end
+      
+      bypassedWordString = bypassedWordString:gsub(key,value)
     end
+
+    return bypassedWordString
+  end)
 end
---]]
+
 BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
