@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.3.9" -- reverted version
+local version = "2.4.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2067,11 +2067,11 @@ local replace_vs = { -- здравствуйте
       suck = "súсk"
 }
 
-function SyncBypassChat(strInteger)
-Vortex:CheckError(function()
-local FuckError = strInteger and strInteger:lower() or ""
-return FuckError:gsub("ass",replace.ass):gsub("cum",replace.cum):gsub("cock",replace.cock):gsub("fuck",replace.fuck):gsub("asshole",replace.asshole):gsub("rape",replace.rape):gsub("boobs",replace.boobs):gsub("titties",replace.titties):gsub("sex",replace.sex):gsub("hoe",replace.hoe):gsub("porn",replace.porn):gsub("nigga",replace.nigga):gsub("penis",replace.penis):gsub("beaner",replace.beaner):gsub("thot",replace.thot):gsub("xxx",replace.xxx):gsub("hentai",replace.hentai):gsub("bitch",replace.bitch):gsub("bitches",replace.bitches):gsub("shit",replace.shit):gsub("kys",replace.kys):gsub("butthole",replace.butthole):gsub("masturbate",replace.masturbate):gsub("big black cock",replace.bbc):gsub("blowjob",replace.blowjob):gsub("bites your cock",replace.byc):gsub("cock sucker",replace.cs):gsub("fat ass hoe",replace.fah):gsub("dick",replace.dick):gsub("dogshit",replace.dogshit):gsub("tits",replace.tits):gsub("pussy",replace.pussy):gsub("sperm",replace.sperm):gsub("sperma",replace.sperma):gsub("memek",replace.memek):gsub("sepong",replace.sepong):gsub("kontol",replace.kontol):gsub("ngentot",replace.ngentot):gsub("jembut",replace.jembut):gsub("bangsat",replace.bangsat):gsub("discord",replace.discord):gsub("terrorist",replace.terrorist):gsub("hub",replace.hub):gsub("cyka",replace.cyka):gsub("blyat",replace.blyat):gsub("gay",replace.gay):gsub("lesbian",replace.lesbian):gsub("pride",replace.pride):gsub("i",replace.i):gsub("love",replace.love):gsub("you",replace.you):gsub("tiktok",replace.tiktok):gsub("condom",replace.condom):gsub("suck",replace.suck):gsub("nigger",replace.nigger)
-end)
+function SyncBypassChat(str)
+  Vortex:CheckError(function()
+    local bypassedWordString = str and str:lower() or ""
+    return bypassedWordString:gsub("ass", replace.ass):gsub("cum", replace.cum):gsub("cock", replace.cock):gsub("fuck", replace.fuck):gsub("asshole", replace.asshole):gsub("rape", replace.rape):gsub("boobs", replace.boobs):gsub("titties", replace.titties):gsub("sex", replace.sex):gsub("hoe", replace.hoe):gsub("porn", replace.porn):gsub("nigga", replace.nigga):gsub("penis", replace.penis):gsub("beaner", replace.beaner):gsub("thot", replace.thot):gsub("xxx", replace.xxx):gsub("hentai", replace.hentai):gsub("bitch", replace.bitch):gsub("bitches", replace.bitches):gsub("shit", replace.shit):gsub("kys", replace.kys):gsub("butthole", replace.butthole):gsub("masturbate", replace.masturbate):gsub("big black cock", replace.bbc):gsub("blowjob", replace.blowjob):gsub("bites your cock", replace.byc):gsub("cock sucker", replace.cs):gsub("fat ass hoe", replace.fah):gsub("dick", replace.dick):gsub("dogshit", replace.dogshit):gsub("tits", replace.tits):gsub("pussy", replace.pussy):gsub("sperm", replace.sperm):gsub("sperma", replace.sperma):gsub("memek", replace.memek):gsub("sepong", replace.sepong):gsub("kontol", replace.kontol):gsub("ngentot", replace.ngentot):gsub("jembut", replace.jembut):gsub("bangsat", replace.bangsat):gsub("discord", replace.discord):gsub("terrorist", replace.terrorist):gsub("hub", replace.hub):gsub("cyka", replace.cyka):gsub("blyat", replace.blyat):gsub("gay", replace.gay):gsub("lesbian", replace.lesbian):gsub("pride", replace.pride):gsub("i", replace.i):gsub("love", replace.love):gsub("you", replace.you):gsub("tiktok", replace.tiktok):gsub("condom", replace.condom):gsub("suck", replace.suck):gsub("nigger", replace.nigger)
+  end)
 end
 
 
