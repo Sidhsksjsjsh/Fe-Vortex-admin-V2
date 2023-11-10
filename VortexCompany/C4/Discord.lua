@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.2" -- reverted version
+local version = "2.4.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2073,14 +2073,13 @@ function SyncBypassChat(str)
 
     for key, value in pairs(replace) do
       if type(value) == "string" then
-        bypassedWordString = bypassedWordString:gsub(key, value)
+        return bypassedWordString:gsub(key,value)
       else
         ErrorPrompt("Client Debugging Error","Invalid replacement value for key: " .. key .. " (Expected string, got " .. type(value) .. ")")
       end
     end
 
-    return bypassedWordString
-  end)
+    end)
 end
 
 --[[function SyncBypassChat(str)
