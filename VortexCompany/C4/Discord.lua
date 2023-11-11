@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.4" -- reverted version
+local version = "2.4.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1894,7 +1894,7 @@ wait(1)
 SyncTeleportScreen:Destroy()
 end
 
-local replace = { 
+local replace_PATCHED = { 
       ass = "𐌑á⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥𐌑úm",
       cock = "с𐌑ồс𐌑k",
@@ -2008,7 +2008,7 @@ local replaceCAPS = {
       tiktok = "t𐌑ìkt𐌑ok"
 --]]
 
-local replace_vs = { -- здравствуйте
+local replace = { -- здравствуйте
       ass = "а⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
