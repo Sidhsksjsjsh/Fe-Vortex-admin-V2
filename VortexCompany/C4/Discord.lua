@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.1" -- reverted version
+local version = "2.4.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
