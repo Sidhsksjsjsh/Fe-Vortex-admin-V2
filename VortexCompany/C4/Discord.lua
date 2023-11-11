@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.6" -- reverted version
+local version = "2.4.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1897,7 +1897,7 @@ wait(1)
 SyncTeleportScreen:Destroy()
 end
 
-local replace_PATCHED = { 
+local replace = { 
       ass = "𐌑á⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥𐌑úm",
       cock = "с𐌑ồс𐌑k",
@@ -2011,7 +2011,7 @@ local replaceCAPS = {
       tiktok = "t𐌑ìkt𐌑ok"
 --]]
 
-local replace = { -- здравствуйте
+local replace_ass = { -- здравствуйте
       ass = "а⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
@@ -2074,14 +2074,13 @@ function SyncBypassChat(str)
   Vortex:CheckError(function()
     local bypassedWordString = str and str:lower() or ""
 
-    for key, value in pairs(replace) do
+    for key,value in pairs(replace) do
       if type(value) == "string" then
-        return bypassedWordString:gsub("ass", replace.ass):gsub("cum", replace.cum):gsub("cock", replace.cock):gsub("fuck", replace.fuck):gsub("asshole", replace.asshole):gsub("rape", replace.rape):gsub("boobs", replace.boobs):gsub("titties", replace.titties):gsub("sex", replace.sex):gsub("hoe", replace.hoe):gsub("porn", replace.porn):gsub("nigga", replace.nigga):gsub("penis", replace.penis):gsub("beaner", replace.beaner):gsub("thot", replace.thot):gsub("xxx", replace.xxx):gsub("hentai", replace.hentai):gsub("bitch", replace.bitch):gsub("bitches", replace.bitches):gsub("shit", replace.shit):gsub("kys", replace.kys):gsub("butthole", replace.butthole):gsub("masturbate", replace.masturbate):gsub("big black cock", replace.bbc):gsub("blowjob", replace.blowjob):gsub("bites your cock", replace.byc):gsub("cock sucker", replace.cs):gsub("fat ass hoe", replace.fah):gsub("dick", replace.dick):gsub("dogshit", replace.dogshit):gsub("tits", replace.tits):gsub("pussy", replace.pussy):gsub("sperm", replace.sperm):gsub("sperma", replace.sperma):gsub("memek", replace.memek):gsub("sepong", replace.sepong):gsub("kontol", replace.kontol):gsub("ngentot", replace.ngentot):gsub("jembut", replace.jembut):gsub("bangsat", replace.bangsat):gsub("discord", replace.discord):gsub("terrorist", replace.terrorist):gsub("hub", replace.hub):gsub("cyka", replace.cyka):gsub("blyat", replace.blyat):gsub("gay", replace.gay):gsub("lesbian", replace.lesbian):gsub("pride", replace.pride):gsub("i", replace.i):gsub("love", replace.love):gsub("you", replace.you):gsub("tiktok", replace.tiktok):gsub("condom", replace.condom):gsub("suck", replace.suck):gsub("nigger", replace.nigger)
+        return bypassedWordString:gsub(key,replace[bypassedWordString])
       else
         ErrorPrompt("Client Debugging Error","Invalid replacement value for key: " .. key .. " ( " .. type(value) .. " )")
       end
     end
-
     end)
 end
 
