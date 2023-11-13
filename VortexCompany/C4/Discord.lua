@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.4.8" -- reverted version
+local version = "2.4.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10397,6 +10397,7 @@ else
    _G.Settings.device = "PC"
 end
 
+
 Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST(),{
       Position = {0.5,-100,0,15},
       transparen = 1,
@@ -10405,3 +10406,19 @@ Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. 
       TextColor = {0,255,0},
       BackgroundColor = {1,0.85098,0}
 })
+
+Vortex:CheckError(function()
+if not LOCAL_WEB_IP_HOST() == Vortex:FileReader("User-IP.json") or not Vortex:FileReader("User-IP.json") == LOCAL_WEB_IP_HOST() then
+	if Vortex:IsFile("User-IP.json") then
+		print("IP Changer Detected")
+	else
+		Vortex:FileWriter("User-IP.json",LOCAL_WEB_IP_HOST())
+	end
+elseif not GetRegionPlayer() == Vortex:FileReader("User-Region.json") or not Vortex:FileReader("User-Region.json") == GetRegionPlayer() then
+	if Vortex:IsFile("User-Region.json") then
+		print("VPN Changer Detected")
+	else
+		Vortex:FileWriter("User-Region.json",GetRegionPlayer())
+	end
+end
+end
