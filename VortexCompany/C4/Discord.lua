@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.3" -- reverted version
+local version = "2.5.3" -- reverted version v1
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2114,7 +2114,8 @@ BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
               --game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(SyncBypassChat(TextBar.Text),"All")
-		SyncBypassChat(TextBar.Text)
+		--SyncBypassChat(TextBar.Text)
+		Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
 	else
 	   game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(TextBar.Text,"All")
     end
@@ -2126,7 +2127,8 @@ if AutoSendScript == true then
    if EnterText then
 	if BypassWord then
            --game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(SyncBypassChat(TextBar.Text),"All")
-	   SyncBypassChat(TextBar.Text)
+	   --SyncBypassChat(TextBar.Text)
+	Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
 	else
 	   game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(TextBar.Text,"All")
     end
