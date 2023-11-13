@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.0" -- reverted version
+local version = "2.5.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6197,19 +6197,19 @@ ExplodePart(speaker.Character.HumanoidRootPart)
 success("refresh character","Refreshing")
 end
 if cmd == "unrotate" then
-game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
+speaker.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = false
 notify("look vector","Rotate disabled")
 end
 if cmd == "rotate" then
-game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
+speaker.Character:FindFirstChildOfClass('Humanoid').AutoRotate  = true
 notify("look vector","Rotate enabled")
 end
 if cmd == "stun" then
-game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
+speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
 notify("PlatformStand","PlatformStand enabled")
 end
 if cmd == "unstun" then
-game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
+speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
 notify("PlatformStand","PlatformStand disabled")
 end
 if cmd == "kill" then
@@ -9398,24 +9398,27 @@ Vortex:CheckError(function()
         executeHTTPS("https://raw.githubusercontent.com/i4mitty/Peruanito.exe/main/Peruanito.exe.lua")
 end)
 end
-if cmd == "astronaut" or cmd == "nogravity" then
+if cmd == "astronaut" or cmd == "nogravity" or cmd == "nograv" then
 if Astronaut then
 	Astronaut:Disconnect()
 	workspace.Gravity = oldgrav
 	speaker.Character.Humanoid.Sit = false
+	speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
 end
 
 Astronaut = UserInputService.JumpRequest:connect(function()
 		wait()
 		workspace.Gravity = 0
 		speaker.Character.Humanoid.Sit = true
+		speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
 	end)
 end
-if cmd == "unastronaut" or cmd == "gravity" then
+if cmd == "unastronaut" or cmd == "gravity" or cmd == "grav" then
 if Astronaut then
 	Astronaut:Disconnect()
 	workspace.Gravity = oldgrav
 	speaker.Character.Humanoid.Sit = false
+	speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
 end
 end
 if cmd == "chatmath" or cmd == "cm" or cmd == "cmath" then --1
@@ -9963,8 +9966,8 @@ cmds[#cmds + 1] = {Text = "[281] " .. tostring(prefix) .. "scriptview / sv / dex
 cmds[#cmds + 1] = {Text = "[282] " .. tostring(prefix) .. "gameview",Title = "test it"}
 cmds[#cmds + 1] = {Text = "[283] " .. tostring(prefix) .. "invisible",Title = "toggle invisible"}
 cmds[#cmds + 1] = {Text = "[284] " .. tostring(prefix) .. "peruanito",Title = "load peruanito.exe hub"}
-cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity",Title = "Float sit"}
-cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity",Title = "Normal"}
+cmds[#cmds + 1] = {Text = "[285] " .. tostring(prefix) .. "astronaut / nogravity / nograv",Title = "Float sit"}
+cmds[#cmds + 1] = {Text = "[286] " .. tostring(prefix) .. "unastronaut / gravity / grav",Title = "Normal"}
 cmds[#cmds + 1] = {Text = "[287] " .. tostring(prefix) .. "chatmath / cm / cmath [value ex: 5 + 9]",Title = "AI MATHEMATICS 🖕"}
 cmds[#cmds + 1] = {Text = "[288] " .. tostring(prefix) .. "zombieattack / za",Title = "Run Zombie Attack GUI"}
 cmds[#cmds + 1] = {Text = "[289] " .. tostring(prefix) .. "creatorid / ci",Title = "Show Creator ID"}
