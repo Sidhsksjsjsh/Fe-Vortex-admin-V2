@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.3" -- reverted version v1
+local version = "2.5.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1099,14 +1099,14 @@ BarSent.BackgroundTransparency  = 0.5
 BarSent.BackgroundColor         = BrickColor.new('Fossil')
 BarSent.BorderSizePixel         = 0
 BarSent.Position                = UDim2.new(0.5,-100,0,30)
-BarSent.Text                    = "Send [Bypass: AUTO]"
+BarSent.Text                    = "Send [Bypass: 🚫]"
 BarSent.TextColor3              = Color3.new(1,1,1)
 BarSent.TextStrokeTransparency  = 1
 BarSent.TextWrapped             = true
 BarSent.FontSize                = 'Size24'
 BarSent.Font                    = 'SourceSansBold'
 
-local BypassWord = true
+local BypassWord = false
 ToggleBypass.Size                    = UDim2.new(0,200,0,30)
 ToggleBypass.BackgroundTransparency  = 0.5
 ToggleBypass.BackgroundColor         = BrickColor.new('Fossil')
@@ -2117,7 +2117,7 @@ if AutoSendScript == false then
 		--SyncBypassChat(TextBar.Text)
 		Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
 	else
-	   game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(TextBar.Text,"All")
+	   Vortex:SendMessage(TextBar.Text)
     end
   end
 end)
@@ -2130,7 +2130,7 @@ if AutoSendScript == true then
 	   --SyncBypassChat(TextBar.Text)
 	Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
 	else
-	   game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(TextBar.Text,"All")
+	   Vortex:SendMessage(TextBar.Text)
     end
    end
 end
