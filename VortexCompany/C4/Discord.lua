@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.4" -- reverted version
+local version = "2.5.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -441,7 +441,8 @@ local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/SHHHHIIIITTTT/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/asshole/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/asshole/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/scriptviewer/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9666,10 +9667,10 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[1])
 end)
 end
-if cmd == "v2" then
+if cmd == "test" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
-        executeHTTPS(UrlScript[2])
+        executeHTTPS(UrlScript[3])
 end)
 end
 --[[
