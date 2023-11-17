@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 (JK)
+-- (62x) - final: 100
 local version = "2.5.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -6782,10 +6782,10 @@ local R15Part = {
 }
 
 if r15(speaker) then
-speaker.Character[R15Part[var]]:Destroy()
+speaker.Character[R15Part[var:gsub(" ","")]]:Destroy()
 notify("Humanoid Part (R15)","Deleting parts: " .. tostring(R15Part[var]))
 else
-speaker.Character[BodyPart[var]]:Destroy()
+speaker.Character[BodyPart[var:gsub(" ","")]]:Destroy()
 notify("Humanoid Part (R6)","Deleting parts: " .. tostring(BodyPart[var]))
 end
 end
@@ -6815,10 +6815,10 @@ local TextMusic = {
 
 Vortex:CheckError(function()
 if not isNumber(var) then
-music(OfficialMusic[var])
-success("now playing ",tostring(TextMusic[var]) .. " (" .. tostring(OfficialMusic[var]) .. ")")
+music(OfficialMusic[var:gsub(" ","")])
+success("now playing ",tostring(TextMusic[var:gsub(" ","")]) .. " (" .. tostring(OfficialMusic[var:gsub(" ","")]) .. ")")
 else
-music(var)
+music(var:gsub(" ",""))
 success("now playing ",MusicName .. " (" .. var .. ")")
 end
 end)
