@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.6" -- reverted version
+local version = "2.5.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -329,6 +329,7 @@ end
 --]]
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 getgenv().IrisAd = true
 -- local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
@@ -391,6 +392,7 @@ end})
 end
 
 local cmds = {}
+Vortex:CheckError(function()
 local speaker = game.Players.LocalPlayer
 local Players = game.Players
 local GuiService = game:GetService("GuiService")
@@ -436,7 +438,6 @@ local frozenParts = {}
 local stats = game:GetService("Stats")
 local GroupService = game:GetService("GroupService")
 local Lighting = game:GetService("Lighting")
-local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -10437,6 +10438,7 @@ local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. G
       TextColor = {0,255,0},
       BackgroundColor = {1,0.85098,0}
 })
+end)
 
 Vortex:CheckError(function()
 if not LOCAL_WEB_IP_HOST() == Vortex:FileReader("User-IP.json") or not Vortex:FileReader("User-IP.json") == LOCAL_WEB_IP_HOST() then
