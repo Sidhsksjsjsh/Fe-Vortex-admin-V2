@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 (JK)
-local version = "2.5.5" -- reverted version
+local version = "2.5.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6166,6 +6166,28 @@ end
 wait()
 _G.Settings.PastedSources = false
 speaker.Character.HumanoidRootPart.CFrame = LPost
+end)
+
+Vortex:HumanoidDied(function()
+NOFLY()
+U1.Visible = false
+U2.Visible = false
+U3.Visible = false
+U4.Visible = false
+U5.Visible = false
+U6.Visible = false
+end)
+
+Vortex:HumanoidDied(function()
+if Noclipping then
+		Noclipping:Disconnect()
+		for _, child in pairs(speaker.Character:GetDescendants()) do
+                   if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+			child.CanCollide = true
+		end
+	end
+	end
+	Clip = true
 end)
 
 TextBox.FocusLost:Connect(function(Execute) -- prefix disabled
