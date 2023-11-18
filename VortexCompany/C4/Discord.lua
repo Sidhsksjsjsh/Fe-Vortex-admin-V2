@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.5.9" -- reverted version
+local version = "2.6.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -444,7 +444,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/SHHHHIIIITTTT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/asshole/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/scriptviewer/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/FightingLegends/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/FightingLegends/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/ClickSimulator/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9707,6 +9708,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[4])
 end)
 end
+if cmd == "clicksimulator" or cmd == "cs" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[5])
+end)
+end
 --[[
 limit 
 ]]
@@ -10035,6 +10042,7 @@ cmds[#cmds + 1] = {Text = "[310] " .. tostring(prefix) .. "platform",Title = "A 
 cmds[#cmds + 1] = {Text = "[311] " .. tostring(prefix) .. "platform2",Title = "A platform appears that can help you float in the air (version appears where the player is standing)"}
 cmds[#cmds + 1] = {Text = "[312] " .. tostring(prefix) .. "megahideandseek / mhas",Title = "Run Mega Hide And Seek Script"}
 cmds[#cmds + 1] = {Text = "[313] " .. tostring(prefix) .. "fightinglegends / fl",Title = "Run Fighting Legends Script"}
+cmds[#cmds + 1] = {Text = "[314] " .. tostring(prefix) .. "clicksimulator / cs",Title = "Run Click Simulator Script"}
 
 _G.RemoveSymbols = {
    blank = ""
