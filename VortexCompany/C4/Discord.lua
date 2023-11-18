@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.5.8" -- reverted version
+local version = "2.5.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7835,8 +7835,10 @@ if cmd == "animation" then
 local var = string.sub(msg,space+1)
 AnimationExtension(var:gsub(" ",""))
 end
-if cmd == "date" then
-notify("Time",os.date())
+if cmd == "clock" then
+Vortex:CheckError(function()
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/MusicGUI/main/.lua")
+end)
 end
 if cmd == "animationgui" then
 Vortex:CheckError(function()
@@ -9856,7 +9858,7 @@ cmds[#cmds + 1] = {Text = "[134] " .. tostring(prefix) .. "iy",Title = "infinite
 cmds[#cmds + 1] = {Text = "[135] " .. tostring(prefix) .. "config",Title = "real no clickbait😨😱"}
 cmds[#cmds + 1] = {Text = "[136] " .. tostring(prefix) .. "crosshair",Title = "to help you aim at your target opponent"}
 cmds[#cmds + 1] = {Text = "[137] " .. tostring(prefix) .. "animation [patrol, confident, popstar, cowboy, ghost, sneaky, princess]",Title = "flex ur animation🤭"}
-cmds[#cmds + 1] = {Text = "[138] " .. tostring(prefix) .. "date",Title = "i have no idea"}
+cmds[#cmds + 1] = {Text = "[138] " .. tostring(prefix) .. "clock",Title = "brings up the clock UI"}
 cmds[#cmds + 1] = {Text = "[139] " .. tostring(prefix) .. "animationgui",Title = "Change your character's animation style -- script from 0mar#1053"}
 cmds[#cmds + 1] = {Text = "[140] " .. tostring(prefix) .. "snake",Title = "change your character into a demon snake 😨😱 -- script from 0mar#1053"}
 cmds[#cmds + 1] = {Text = "[141] " .. tostring(prefix) .. "loopspeed [number]",Title = "permanent speed"}
