@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.6.0" -- reverted version
+local version = "2.6.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -445,7 +445,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/asshole/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/scriptviewer/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/FightingLegends/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/ClickSimulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/ClickSimulator/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Chest-Hero-Simulator/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9712,6 +9713,12 @@ if cmd == "clicksimulator" or cmd == "cs" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[5])
+end)
+end
+if cmd == "chestherosimulator" or cmd == "chs" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[6])
 end)
 end
 --[[
