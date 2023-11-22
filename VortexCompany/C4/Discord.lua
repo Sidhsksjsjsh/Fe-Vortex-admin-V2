@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.6.3" -- reverted version
+local version = "2.6.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9721,6 +9721,8 @@ if cmd == "chestherosimulator" or cmd == "chs" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[6])
+	Vortex:QueueOnTeleport(UrlScript[6])
+	notify("Auto Execute","Auto Execute Enabled!")
 end)
 end
 if cmd == "animeslashsimulator" or cmd == "ass" then
@@ -9733,6 +9735,7 @@ if cmd == "pubgsim" or cmd == "ps" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[8])
+	--Vortex:QueueOnTeleport(str)
 end)
 end
 --[[
