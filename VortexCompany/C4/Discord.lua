@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100
+-- (62x) - final: 100 int
 local version = "2.6.6" -- reverted version
 
 -- _G.Settings.banwaves
@@ -1733,27 +1733,27 @@ local replace = {
 }
 
 local Bypasserword = {
-	ass = "𐌑á⁥⁥⁥⁥ѕѕ",
-        dick = "d𐌑ìc𐌑k",
-	pussy = "p𐌑ússy",
-	shit = "s𐌑hì𐌑t",
-	fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
-	asshole = "𐌑áѕѕh𐌑ol𐌑e𐌑𝖔 ͜ ͣ ",
-        nigga = "n𐌑ìgg⁥𐌑á",
-	suck = "s𐌑úc𐌑𝖔 ͜ ͣ k",
-	discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
-	tiktok = "t𐌑ìkt𐌑ok",
-	cum = "с⁥⁥⁥𐌑úm",
-	condom = "c𐌑𝖔 ͜ ͣ o𐌑n𐌑do𐌑m",
-	sex = "s⁥⁥⁥⁥⁥⁥𐌑е𐌑𝖔 ͜ ͣ х",
-	sexy = "s⁥⁥⁥⁥⁥⁥𐌑е𐌑𝖔 ͜ ͣ х𐌑y",
-	sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑ms",
-	tits = "t𐌑ìts",
-	boobs = "𐌑B𐌑o𐌑𝖔 ͜ ͣ o𐌑𝖔 ͜ ͣ b𐌑s",
-	penis = "р𐌑еn⁥𐌑ìs"
+	ass = "á⁥⁥⁥⁥ѕѕ",
+        dick = "dìсk",
+	pussy = "pússу",
+	shit = "shìt",
+	fuck = "fúсḳ",
+	asshole = "áѕѕhоle",
+        nigga = "nìggá",
+	suck = "súсk",
+	discord = "dìsсоrd",
+	tiktok = "tìktоk",
+	cum = "с⁥⁥⁥úm",
+	condom = "cоndоm",
+	sex = "s⁥⁥⁥⁥⁥⁥ех",
+	sexy = "s⁥⁥⁥⁥⁥⁥ехy",
+	sperm = "spеrms",
+	tits = "tìts",
+	boobs = "boobs",
+	penis = "реn⁥ìs"
 }
 
-local replace_ass = { -- здравствуйте
+local replace_ass = { -- здравствуйте рот ты прекрасна
       ass = "а⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
