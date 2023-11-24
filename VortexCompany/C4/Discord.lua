@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.6.4" -- reverted version
+local version = "2.6.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -448,7 +448,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ClickSimulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Chest-Hero-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Anime-Slash-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pubg-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pubg-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9738,6 +9739,14 @@ Vortex:CheckError(function()
 	--Vortex:QueueOnTeleport(str)
 end)
 end
+if cmd == "esp3" then
+Vortex:CheckError(function()
+Vortex:OnlyDeveloper(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[9])
+end)
+end)
+end
 --[[
 limit 
 ]]
@@ -10069,6 +10078,7 @@ cmds[#cmds + 1] = {Text = "[313] " .. tostring(prefix) .. "fightinglegends / fl"
 cmds[#cmds + 1] = {Text = "[314] " .. tostring(prefix) .. "clicksimulator / cs",Title = "Run Click Simulator Script"}
 cmds[#cmds + 1] = {Text = "[315] " .. tostring(prefix) .. "animeslashsimulator / ass",Title = "Run Anime Slash Simulator Script"}
 cmds[#cmds + 1] = {Text = "[316] " .. tostring(prefix) .. "pubgsim / ps",Title = "Run Pung Simulator Script"}
+cmds[#cmds + 1] = {Text = "[317] " .. tostring(prefix) .. "esp3",Title = "A highlight esp"}
 
 _G.RemoveSymbols = {
    blank = ""
