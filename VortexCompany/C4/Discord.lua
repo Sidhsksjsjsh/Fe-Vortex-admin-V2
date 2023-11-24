@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100
-local version = "2.6.5" -- reverted version
+local version = "2.6.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1606,229 +1606,7 @@ for i,_ in pairs(InterfaceCoordFunction) do
 end)
 end
 end
---[[
-function RotationData(RDataImg, TitleNameScript)
-local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
-local OBU = Instance.new('ImageLabel', DataAnimate)
-local TitleLoading = Instance.new('TextLabel', DataAnimate)
 
-
-DataAnimate.Name = "><"
-
-
-OBU.Size = UDim2.new(0,150,0,150)
-OBU.BackgroundTransparency = 0.5
-OBU.BackgroundColor = BrickColor.new('Fossil')
-OBU.BorderSizePixel = 0
-OBU.Position = UDim2.new(0.5,-100,0,0)
-OBU.Image = "rbxassetid://" .. RDataImg
-OBU.BackgroundTransparency = 100
-
-TitleLoading.Size                    = UDim2.new(0,200,0,30)
-TitleLoading.BackgroundTransparency  = 0.5
-TitleLoading.BackgroundColor         = BrickColor.new('Fossil')
-TitleLoading.BorderSizePixel         = 0
-TitleLoading.Position                = UDim2.new(0.5,-100,0,30)
-TitleLoading.Text                    = TitleNameScript
-TitleLoading.TextColor3              = Color3.new(1,1,1)
-TitleLoading.TextStrokeTransparency  = 1
-TitleLoading.TextWrapped             = true
-TitleLoading.FontSize                = 'Size24'
-TitleLoading.Font                    = 'SourceSansBold'
-TitleLoading.BackgroundTransparency = 100
-
-local Pos = UDim2.new(0, 380, 0, 60)
-local SizeUI = UDim2.new(0, 150, 0, 150)
-local Pos2 = UDim2.new(0, 360, 0, -300)
-
--- create the Tween
-local tweenService = game:GetService("TweenService")
-local tweenInfo = TweenInfo.new(
-    2, -- duration
-    Enum.EasingStyle.Quint, -- easing style
-    Enum.EasingDirection.Out -- easing direction
-)
-
-local RotationSTART_B1 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 360 -- 360
-}
-
-local RotationSTART_B2 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 720
-}
-
-local RotationSTART_B3 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 1080 -- 360
-}
-
-local RotationSTART_B4 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 1440
-}
-
-local RotationSTOP = {
-    Size = SizeUI,
-    Position = Pos2,
-    Rotation = 1800
-}
-
-local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
-
-local Rotation_A2 = tweenService:Create(OBU, tweenInfo, RotationSTART_B2)
-
-local Rotation_A3 = tweenService:Create(OBU, tweenInfo, RotationSTART_B3)
-
-local Rotation_A4 = tweenService:Create(OBU, tweenInfo, RotationSTART_B4)
-
-local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
-
-Blur.Size = 12
-OBU.Visible = true
-TitleLoading.Visible = true
-Rotation_A1:Play()
-Rotation_A1.Completed:Wait()
-Rotation_A2:Play()
-Rotation_A2.Completed:Wait()
-Rotation_A3:Play()
-Rotation_A3.Completed:Wait()
-Rotation_A4:Play()
-Rotation_A4.Completed:Wait()
-Rotation_Stop:Play()
-TitleLoading:Destroy()
-Rotation_Stop.Completed:Wait()
-Blur.Size = 0
-OBU:Destroy()
-end
-
-function ShakeData(Img)
-local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
-local OBU = Instance.new('ImageLabel', DataAnimate)
-
-
-DataAnimate.Name = "<>"
-
-
-OBU.Size = UDim2.new(0,150,0,150)
-OBU.BackgroundTransparency = 0.5
-OBU.BackgroundColor = BrickColor.new('Fossil')
-OBU.BorderSizePixel = 0
-OBU.Position = UDim2.new(0.5,-100,0,0)
-OBU.Image = "rbxassetid://" .. Img
-OBU.BackgroundTransparency = 100
-
-local Pos = UDim2.new(0, 380, 0, 60)
-local SizeUI = UDim2.new(0, 150, 0, 150)
-local Pos2 = UDim2.new(0, 360, 0, -300)
-
--- create the Tween
-local tweenService = game:GetService("TweenService")
-local tweenInfo = TweenInfo.new(
-    2, -- duration
-    Enum.EasingStyle.Quint, -- easing style
-    Enum.EasingDirection.Out -- easing direction
-)
-
-local RotationSTART_B1 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 30 -- 360
-}
-
-local RotationSTART_B2 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = -30
-}
-
-local RotationSTOP = {
-    Size = SizeUI,
-    Position = Pos2,
-    Rotation = 0
-}
-
-local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
-
-local Rotation_A2 = tweenService:Create(OBU, tweenInfo, RotationSTART_B2)
-
-local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
-
-Blur.Size = 12
-OBU.Visible = true
-Rotation_A1:Play()
-Rotation_A1.Completed:Wait()
-Rotation_A2:Play()
-Rotation_A2.Completed:Wait()
-Rotation_A1:Play()
-Rotation_A1.Completed:Wait()
-Rotation_Stop:Play()
-Rotation_Stop.Completed:Wait()
-Blur.Size = 0
-OBU:Destroy()
-end
-
-function AppearData(DataImgV1)
-local DataAnimate = Instance.new('ScreenGui', game.CoreGui)
-local OBU = Instance.new('ImageLabel', DataAnimate)
-
-
-DataAnimate.Name = "SyncAppearData"
-
-
-OBU.Size = UDim2.new(0,150,0,150)
-OBU.BackgroundTransparency = 0.5
-OBU.BackgroundColor = BrickColor.new('Fossil')
-OBU.BorderSizePixel = 0
-OBU.Position = UDim2.new(0.5,-100,0,0)
-OBU.Image = "rbxassetid://" .. DataImgV1
-OBU.BackgroundTransparency = 100
-
-local Pos = UDim2.new(0, 380, 0, 60)
-local SizeUI = UDim2.new(0, 150, 0, 150)
-local Pos2 = UDim2.new(0, 360, 0, -300)
-
--- create the Tween
-local tweenService = game:GetService("TweenService")
-local tweenInfo = TweenInfo.new(
-    2, -- duration
-    Enum.EasingStyle.Quint, -- easing style
-    Enum.EasingDirection.Out -- easing direction
-)
-
-local RotationSTART_B1 = {
-    Size = SizeUI,
-    Position = Pos,
-    Rotation = 0 -- 360
-}
-
-local RotationSTOP = {
-    Size = SizeUI,
-    Position = Pos2,
-    Rotation = 0
-}
-
-local Rotation_A1 = tweenService:Create(OBU, tweenInfo, RotationSTART_B1)
-
-local Rotation_Stop = tweenService:Create(OBU, tweenInfo, RotationSTOP)
-
-Blur.Size = 12
-OBU.Visible = true
-Rotation_A1:Play()
-Rotation_A1.Completed:Wait()
--- Rotation_Stop:Play()
--- Rotation_Stop.Completed:Wait()
-Blur.Size = 0
-OBU:Destroy()
-end
-
--- RotationData("13030104160","Loading Admin...")
---]]
 function ForceBodyPart()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
 if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
@@ -1839,16 +1617,6 @@ end)
 end
 end
 end
---[[
-function ESPName(toggle)
-if toggle == "disable" then
-_G.Settings.username = false
-end
-if toggle == "enable" then 
-_G.Settings.username = true
-end
-end
-]]
 
 function FindInTable(tbl,val)
 	if tbl == nil then return false end
@@ -1927,7 +1695,7 @@ local replace = {
       hentai = "h𐌑ent𐌑ái",
       bitch = "b𐌑ì𐌑t𐌑c𐌑h⁥⁥⁥⁥",
       bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
-      shit = "s𐌑h𐌑ì𐌑t",
+      shit = "s𐌑hì𐌑t",
       kys = "kys",
       butthole = "b𐌑útth𐌑ồle",
       masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e𐌑𝖔 ͜ ͣ ",
@@ -1963,62 +1731,27 @@ local replace = {
       condom = "c𐌑𝖔 ͜ ͣ o𐌑n𐌑do𐌑m",
       suck = "s𐌑úc𐌑𝖔 ͜ ͣ k"
 }
---[[
-local replaceCAPS = { 
-      ass = "𐌑á⁥⁥⁥⁥ѕѕ",
-      cum = "с⁥⁥⁥𐌑úm",
-      cock = "с𐌑ồс𐌑k",
-      fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
-      asshole = "𐌑áѕѕh𐌑ol𐌑e",
-      rape = "r𐌑áр𐌑e",
-      boobs = "𐌑Bo𐌑𝖔 ͜ ͣ ob𐌑s",
-      titties = "Т𐌑ìtt𐌑ìes",
-      sex = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х",
-      sexy = "s⁥⁥⁥⁥⁥⁥𐌑e𐌑𝖔 ͜ ͣ х𐌑y",
-      hoe = "h𐌑ồ𐌑𝖔 ͜ ͣ е",
-      porn = "р𐌑ồrn",
-      nigga = "n𐌑ìgg⁥𐌑á",
-      penis = "р𐌑еn⁥𐌑ìs",
-      beaner = "𐌑bе𐌑аn⁥е𐌑r",
-      thot = "th𐌑ồt",
-      xxx = "xxx",
-      hentai = "h𐌑ent𐌑ái",
-      bitch = "b𐌑ìtch⁥⁥⁥⁥",
-      bitches = "b𐌑ìtch𐌑es⁥⁥⁥⁥",
-      shit = "sh𐌑ìt",
-      kys = "kys",
-      butthole = "b𐌑útth𐌑ồle",
-      masturbate = "m𐌑ást𐌑úrb𐌑át𐌑e",
-      bbc = "b𐌑ìg bl𐌑áck с𐌑ồ⁥⁥⁥сk",
-      blowjob = "bl𐌑ồwj𐌑ồb",
-      byc = "В𐌑ìt𐌑еѕ уоur с𐌑ồсk",
-      cs = "с𐌑ồсk s𐌑úсkеr",
-      fah = "f⁥𐌑át 𐌑á⁥ss h𐌑ồe",
-      dick = "d𐌑ìc𐌑k",
-      dogshit = "d𐌑ồg sh𐌑ìt",
-      tits = "t𐌑ìts",
-      pussy = "p𐌑ússy",
-      sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑m",
-      sperma = "s𐌑𝖔 ͜ ͣ p𐌑erm𐌑á", -- Indonesian dirty words
-      memek = "m𐌑em𐌑ek",
-      sepong = "s𐌑ep𐌑on𐌑g",
-      kontol = "k𐌑o𐌑nt𐌑ol",
-      ngentot = "ng𐌑en𐌑to𐌑t",
-      jembut = "j𐌑emb𐌑út",
-      bangsat = "b𐌑ángs𐌑át", -- Indonesian bad words
-      terrorist = "t𐌑err𐌑𝖔 ͜ ͣ or𐌑ìsts",
-      discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
-      hub = "h𐌑úb",
-      cyka = "c𐌑yk𐌑á",
-      blyat = "bl𐌑y𐌑át",
-      gay = "g𐌑áy",
-      lesbian = "le𐌑𝖔 ͜ ͣ sb𐌑ì𐌑án",
-      pride = "pr𐌑ìd𐌑𝖔 ͜ ͣ e",
-      i = "i",
-      love = "l𐌑𝖔 ͜ ͣ ov𐌑e",
-      you = "yo𐌑ú",
-      tiktok = "t𐌑ìkt𐌑ok"
---]]
+
+local Bypasserword = {
+	ass = "𐌑á⁥⁥⁥⁥ѕѕ",
+        dick = "d𐌑ìc𐌑k",
+	pussy = "p𐌑ússy",
+	shit = "s𐌑hì𐌑t",
+	fuck = "f𐌑ú𐌑𝖔 ͜ ͣ c𐌑ḳ",
+	asshole = "𐌑áѕѕh𐌑ol𐌑e𐌑𝖔 ͜ ͣ ",
+        nigga = "n𐌑ìgg⁥𐌑á",
+	suck = "s𐌑úc𐌑𝖔 ͜ ͣ k",
+	discord = "𐌑d𐌑ìsc𐌑𝖔 ͜ ͣ or𐌑d",
+	tiktok = "t𐌑ìkt𐌑ok",
+	cum = "с⁥⁥⁥𐌑úm",
+	condom = "c𐌑𝖔 ͜ ͣ o𐌑n𐌑do𐌑m",
+	sex = "s⁥⁥⁥⁥⁥⁥𐌑е𐌑𝖔 ͜ ͣ х",
+	sexy = "s⁥⁥⁥⁥⁥⁥𐌑е𐌑𝖔 ͜ ͣ х𐌑y",
+	sperm = "s𐌑𝖔 ͜ ͣ p𐌑er𐌑ms",
+	tits = "t𐌑ìts",
+	boobs = "𐌑B𐌑o𐌑𝖔 ͜ ͣ o𐌑𝖔 ͜ ͣ b𐌑s",
+	penis = "р𐌑еn⁥𐌑ìs"
+}
 
 local replace_ass = { -- здравствуйте
       ass = "а⁥⁥⁥⁥ѕѕ",
@@ -2079,19 +1812,6 @@ local replace_ass = { -- здравствуйте
       suck = "súсk"
 }
 
---[[function SyncBypassChat(str)
-  Vortex:CheckError(function()
-    local bypassedWordString = str and str:lower() or ""
-
-    for key,value in pairs(replace) do
-      if type(value) == "string" then
-        return bypassedWordString:gsub(key,replace[bypassedWordString])
-      else
-        ErrorPrompt("Client Debugging Error","Invalid replacement value for key: " .. key .. " ( " .. type(value) .. " )")
-      end
-    end
-    end)
-end]]
 
 function SyncBypassChat(str)
   Vortex:CheckError(function()
@@ -2115,17 +1835,15 @@ end
 
     return bypassedWordString
   end)
-end
+end :gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"])
 ]]
 
 BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
-              --game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(SyncBypassChat(TextBar.Text),"All")
-		--SyncBypassChat(TextBar.Text)
-		Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
+              Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
 	else
-	   Vortex:SendMessage(TextBar.Text)
+	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
     end
   end
 end)
@@ -2134,11 +1852,9 @@ TextBar.FocusLost:Connect(function(EnterText)
 if AutoSendScript == true then
    if EnterText then
 	if BypassWord then
-           --game:GetService("ReplicatedStorage")["DefaultChatSystemChatEvents"]["SayMessageRequest"]:FireServer(SyncBypassChat(TextBar.Text),"All")
-	   --SyncBypassChat(TextBar.Text)
-	Vortex:PromptUI(':29763: attempt to index nil with "SendBypassedWordToTheChat"\nfunction API_Send_Bypass')
+           Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
 	else
-	   Vortex:SendMessage(TextBar.Text)
+	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
     end
    end
 end
