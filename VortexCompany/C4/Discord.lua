@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 JSKV3
+-- (62x) - final: 100 JSKV4
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -425,93 +425,6 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua"
 }
-
---[[
-function LyricsMusic(musicname)
-repeat task.wait() until game:IsLoaded()
-
-if not getgenv().executedHi then
-	getgenv().executedHi = true
-else
-	return
-end
-local httprequest = (syn and syn.request) or http and http.request or http_request or (fluxus and fluxus.request) or request
-
-local songName,plr
-local debounce = false
-
-getgenv().stopped = false
-
-local function sendMessage(text)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(text, "All")
-end
-
-
-game:GetService('ReplicatedStorage').DefaultChatSystemChatEvents:WaitForChild('OnMessageDoneFiltering').OnClientEvent:Connect(function(msgdata)
-	if plr ~= nil and (msgdata.FromSpeaker == plr or msgdata.FromSpeaker == game:GetService('Players').LocalPlayer.Name) then
-		if string.lower(msgdata.Message) == '>stop' then
-			getgenv().stopped = true
-			debounce = true
-			task.wait(3)
-			debounce = false
-		end
-	end
-	if debounce or not string.match(msgdata.Message, '>lyrics ') or string.gsub(msgdata.Message, '>lyrics', '') == '' or game:GetService('Players')[msgdata.FromSpeaker] == game:GetService('Players').LocalPlayer then
-		return
-	end
-	debounce = true
-	local speaker = msgdata.FromSpeaker
-	local msg = string.lower(msgdata.Message):gsub('>lyrics ', ''):gsub('"', ''):gsub(' by ','/')
-	local speakerDisplay = game:GetService('Players')[speaker].DisplayName
-	plr = game:GetService('Players')[speaker].Name
-	songName = string.gsub(msg, " ", ""):lower()
-	local response
-    local suc,er = pcall(function()
-	response = httprequest({
-		Url = "https://lyrist.vercel.app/api/" .. songName,
-		Method = "GET",
-	})
-    end)
-    if not suc then
-	notify('Unexpected error','please retry')
-	task.wait(3)
-	debounce = false
-	return
-    end
-	local lyricsData = game:GetService('HttpService'):JSONDecode(response.Body)
-	local lyricsTable = {}
-	if lyricsData.error and lyricsData.error == "Lyrics Not found" then
-		debounce = true
-		sendMessage('Lyrics were not found')
-		task.wait(3)
-		debounce = false
-		return
-	end
-	for line in string.gmatch(lyricsData.lyrics, "[^\n]+") do
-		table.insert(lyricsTable, line)
-	end
-	sendMessage('Fetched lyrics')
-	task.wait(2)
-	notify('Playing song requested by ' .. speakerDisplay .. ','You can stop it by typing "/stop"')
-	task.wait(3)
-	for i, line in ipairs(lyricsTable) do
-		if getgenv().stopped then
-			getgenv().stopped = false
-			break
-		end
-		sendMessage(line)
-		task.wait(4.7)
-	end
-	task.wait(3)
-	debounce = false
-	sendMessage('Ended. You can request songs again.')
-end)
-
-notify("Tutorial",'I am a lyrics bot! Type ">lyrics SongName" and I will sing the song for you!')
-task.wait(2)
-notify("Tutorial",'You can also do ">lyrics SongName by Author"')
-end
-]]
 
 function dragify(Frame)
     dragToggle = nil
@@ -3029,6 +2942,7 @@ Github.Text = ""
 end
 end
 end)
+
 local LastPositionPrimary = nil
 local HumanoidPrimaryPart = speaker.Character.PrimaryPart
 function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
@@ -3990,7 +3904,7 @@ addEventListener(Exit_4,"MouseButton1Down",function()
 	end
 	selectionBox.Adornee = nil
 	selected.Adornee = nil
-	updateText(path,""
+	updateText(path,"")
 	Interface_Visible(Exit_4, false)
         Interface_Visible(CopyPath, false)
         Interface_Visible(ChoosePart, false)
