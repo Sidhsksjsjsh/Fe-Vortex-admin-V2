@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 iiakaka
+-- (62x) - final: 100 JSK
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -703,7 +703,7 @@ function ReturnText(UIname)
 end
 
 local HIVTOGGLER = false
-PV3.MouseButton1Down:Connect(function()
+addEventListener(PV3,"MouseButton1Down",function()
 HIVTOGGLER = not HIVTOGGLER
        while wait() do
 	if HIVTOGGLER == false then break end
@@ -1101,7 +1101,8 @@ ToggleBypass.TextWrapped             = true
 ToggleBypass.FontSize                = 'Size24'
 ToggleBypass.Font                    = 'SourceSansBold'
 ToggleBypass.Visible = false
-ToggleBypass.MouseButton1Down:Connect(function()
+
+addEventListener(ToggleBypass,"MouseButton1Down",function()
 	BypassWord = not BypassWord
 		if BypassWord then
 			BarSent.Text                    = "Send [Bypass: ON]"
@@ -1124,7 +1125,8 @@ ToggleBypassMode.TextStrokeTransparency  = 1
 ToggleBypassMode.TextWrapped             = true
 ToggleBypassMode.FontSize                = 'Size24'
 ToggleBypassMode.Font                    = 'SourceSansBold'
-ToggleBypassMode.MouseButton1Down:Connect(function()
+
+addEventListener(ToggleBypassMode,"MouseButton1Down",function()
 	AutoSendScript = not AutoSendScript
 		if AutoSendScript then
 			ToggleBypassMode.Text                    = "Auto Send: True"
@@ -1383,14 +1385,15 @@ speaker:GetMouse().KeyDown:Connect(function(key)
 	end
 end)
 
-TextBox.FocusLost:Connect(function()
+addEventListener(TextBox,"FocusLost",function()
     TextBox.Text = ''
     Blur.Size = 0
     TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
     TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
 end)
 
-Main.MouseEnter:Connect(function()
+addEventListener(Main,"MouseEnter",function()
+--Main.MouseEnter:Connect(function()
     spawn(function()
         Blur.Size = 7.5
         TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
@@ -1398,7 +1401,8 @@ Main.MouseEnter:Connect(function()
     TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
 end)
 
-Main.MouseLeave:Connect(function()
+addEventListener(Main,"MouseLeave",function()
+--Main.MouseLeave:Connect(function()
     Blur.Size = 0
     TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
     TweenService:Create(Main, TweenInfo.new(0.5), {Position = UDim2.new(0.99, 0, 0.652, 0)}):Play()
@@ -1569,7 +1573,8 @@ for i = 1, #InterfaceCoordFunction do
     BitchLabel.Text = InterfaceCoordFunction[i].NAME
     BitchLabel.Parent = fuckingFrame
 
-BitchLabel.MouseButton1Down:Connect(function()
+addEventListener(BitchLabel,"MouseButton1Down",function()
+--BitchLabel.MouseButton1Down:Connect(function()
 for i,_ in pairs(InterfaceCoordFunction) do
 			if speaker.Character:FindFirstChildOfClass('Humanoid') and speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart then
 					speaker.Character:FindFirstChildOfClass('Humanoid').Sit = false
@@ -1812,7 +1817,8 @@ end
 end :gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"])
 ]]
 
-BarSent.MouseButton1Down:Connect(function()
+addEventListener(BarSent,"MouseButton1Down",function()
+--BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
               Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
@@ -1895,7 +1901,8 @@ local tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = "FLY TOOL \n[ false ]"
 tool.Parent = speaker.Backpack
-tool.Equipped:Connect(function()
+addEventListener(tool,"Equipped",function()
+--tool.Equipped:Connect(function()
 	NOFLY()
 	wait()
 	sFLY()
@@ -1907,7 +1914,8 @@ tool.Equipped:Connect(function()
         U6.Visible = true
 	tool.Name = "FLY TOOL \n[ true ]"
 end)
-tool.Unequipped:Connect(function()
+addEventListener(tool,"Unequipped",function()
+--tool.Unequipped:Connect(function()
 	NOFLY()
         U1.Visible = false
         U2.Visible = false
@@ -1924,13 +1932,15 @@ local tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = "FLY TOOL \n[ false ]"
 tool.Parent = speaker.Backpack
-tool.Equipped:Connect(function()
+addEventListener(tool,"Equipped",function()
+--tool.Equipped:Connect(function()
 	NOFLY()
 	wait()
 	sFLY()
 	tool.Name = "FLY TOOL \n[ true ]"
 end)
-tool.Unequipped:Connect(function()
+addEventListener(tool,"Unequipped",function()
+--tool.Unequipped:Connect(function()
 	NOFLY()
         tool.Name = "FLY TOOL \n[ false ]"
 end)
