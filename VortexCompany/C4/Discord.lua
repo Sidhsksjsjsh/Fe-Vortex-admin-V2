@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 JSKV1
+-- (62x) - final: 100 JSKV2
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -1386,7 +1386,7 @@ speaker:GetMouse().KeyDown:Connect(function(key)
 	end
 end)
 
-addEventListener(TextBox,"FocusLost",function()
+addEventListener(TextBox,"FocusLost",function(p)
     TextBox.Text = ''
     Blur.Size = 0
     TweenService:Create(MainCmdbar, TweenInfo.new(4), {Position = UDim2.new(2, 0, 0.61, 0)}):Play()
@@ -1829,7 +1829,7 @@ if AutoSendScript == false then
   end
 end)
 
-addEventListener(TextBar,"FocusLost", function(EnterText)
+addEventListener(TextBar,"FocusLost",function(EnterText)
 --TextBar.FocusLost:Connect(function(EnterText)
 if AutoSendScript == true then
    if EnterText then
@@ -2220,8 +2220,8 @@ function RandomVectorRange(a, b, c)
 end
 
 local DesyncTypes = {}
-addEventListener(RunService,"Heartbeat",function()
---RunService.Heartbeat:Connect(function()
+--addEventListener(RunService,"Heartbeat",function()
+RunService.Heartbeat:Connect(function()
 	if _G.Settings.PastedSources == true then
 		DesyncTypes[1] = speaker.Character.HumanoidRootPart.CFrame
 		DesyncTypes[2] = speaker.Character.HumanoidRootPart.AssemblyLinearVelocity
@@ -3168,7 +3168,6 @@ end
 end
 
 addEventListener(SaveOMG,"MouseButton1Down",function()
-SaveOMG.MouseButton1Down:Connect(function()
    if isfile(FileName.Text) then -- FileName & InFile
       notify("This file already exists",'file with name "' .. FileName.Text .. '" already exists.')
    else
