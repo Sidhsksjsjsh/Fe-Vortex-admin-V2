@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 JSKV4
+-- (62x) - final: 100 JSKV5
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -3889,7 +3889,7 @@ function selectPart()
 	local function SelectPart()
 		if Mouse.Target ~= nil then
 			selected.Adornee = Mouse.Target
-			updateText(path,getHierarchy(Mouse.Target))
+			updateText(Path,getHierarchy(Mouse.Target))
 		end
 	end
 	ClickSelect = Mouse.Button1Down:Connect(SelectPart)
@@ -3904,7 +3904,7 @@ addEventListener(Exit_4,"MouseButton1Down",function()
 	end
 	selectionBox.Adornee = nil
 	selected.Adornee = nil
-	updateText(path,"")
+	updateText(Path,"")
 	Interface_Visible(Exit_4, false)
         Interface_Visible(CopyPath, false)
         Interface_Visible(ChoosePart, false)
