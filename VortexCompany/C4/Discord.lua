@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 iiakaka
-local version = "2.6.6" -- reverted version
+local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -53,36 +53,7 @@ loadSettings()
 function Interface_Visible(GuiName, toggle_4)
      GuiName.Visible = toggle_4 or false
 end
---[[
-function AntiBypass()
-if game.PlaceId == 277751860 then
-game.Players.LocalPlayer.Character.HumanoidRootPart.ChildAdded:connect(function(child)
-if child.ClassName == "BodyVelocity" or child.ClassName == "BodyGyro" then
-child.Name = "power"
-end
-end)
-else
-local mt = getrawmetatable(game)
-local old = mt.__namecall
-local protect = newcclosure or protect_function
 
-if not protect then
-protect = function(f) return f end
-end
-
-setreadonly(mt, false)
-mt.__namecall = protect(function(self, ...)
-local method = getnamecallmethod()
-if method == "Kick" then
-wait(9e9)
-return
-end
-return old(self, ...)
-end)
-hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() wait(9e9) end))
-end
-end
---]]
 function Pause()
 if _G.Settings.RemovePaused == true then
 game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
@@ -330,6 +301,8 @@ end
 local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
 local NotifyV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
 local Vortex = loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Roblox-Vortex-System/main/System.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Sidhsksjsjsh/Vortex-System-V2/main/JS-VERSION.lua"))()
+
 getgenv().IrisAd = true
 -- local VortexUIUPDATE = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
 
