@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 JSKV2
+-- (62x) - final: 100 JSKV3
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -425,6 +425,7 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua"
 }
+
 --[[
 function LyricsMusic(musicname)
 repeat task.wait() until game:IsLoaded()
@@ -510,7 +511,7 @@ notify("Tutorial",'I am a lyrics bot! Type ">lyrics SongName" and I will sing th
 task.wait(2)
 notify("Tutorial",'You can also do ">lyrics SongName by Author"')
 end
---]]
+]]
 
 function dragify(Frame)
     dragToggle = nil
