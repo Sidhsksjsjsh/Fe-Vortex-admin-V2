@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 int
+-- (62x) - final: 100 iik
 local version = "2.6.6" -- reverted version
 
 -- _G.Settings.banwaves
@@ -449,7 +449,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Chest-Hero-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Anime-Slash-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pubg-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua"
 }
 --[[
 function LyricsMusic(musicname)
@@ -9460,6 +9461,14 @@ Vortex:CheckError(function()
 Vortex:OnlyDeveloper(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[9])
+end)
+end)
+end
+if cmd == "emoteplay" then
+Vortex:CheckError(function()
+Vortex:OnlyDeveloper(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[10])
 end)
 end)
 end
