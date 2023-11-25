@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 iik
+-- (62x) - final: 100 iiakaka
 local version = "2.6.6" -- reverted version
 
 -- _G.Settings.banwaves
@@ -10210,6 +10210,8 @@ else
    _G.Settings.device = "PC"
 end
 
+Vortex:ProtectUsername()
+Vortex:ProtectUID()
 
 local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST(),{
       Position = {0.5,-100,0,15},
