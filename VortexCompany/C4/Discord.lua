@@ -20,7 +20,7 @@ _G.Settings = {
 }
 
 local COREGUI = game:GetService("CoreGui")
--- (62x) - final: 100 JSK
+-- (62x) - final: 100 JSKV1
 local version = "2.6.7" -- reverted version
 
 -- _G.Settings.banwaves
@@ -973,7 +973,8 @@ WhisperPlayer.TextWrapped             = true
 WhisperPlayer.FontSize                = 'Size24'
 WhisperPlayer.Font                    = 'SourceSansBold'
 
-WhisperPlayer.FocusLost:Connect(function(Enter)
+addEventListener(WhisperPlayer,"FocusLost",function(Enter)
+--WhisperPlayer.FocusLost:Connect(function(Enter)
    if Enter then
    for i,v in pairs(game.Players:GetChildren()) do
        if (string.sub(string.lower(v.Name),1,string.len(WhisperPlayer.Text))) == string.lower(WhisperPlayer.Text) then
@@ -1828,7 +1829,8 @@ if AutoSendScript == false then
   end
 end)
 
-TextBar.FocusLost:Connect(function(EnterText)
+addEventListener(TextBar,"FocusLost", function(EnterText)
+--TextBar.FocusLost:Connect(function(EnterText)
 if AutoSendScript == true then
    if EnterText then
 	if BypassWord then
@@ -2218,7 +2220,8 @@ function RandomVectorRange(a, b, c)
 end
 
 local DesyncTypes = {}
-RunService.Heartbeat:Connect(function()
+addEventListener(RunService,"Heartbeat",function()
+--RunService.Heartbeat:Connect(function()
 	if _G.Settings.PastedSources == true then
 		DesyncTypes[1] = speaker.Character.HumanoidRootPart.CFrame
 		DesyncTypes[2] = speaker.Character.HumanoidRootPart.AssemblyLinearVelocity
@@ -2822,7 +2825,8 @@ function MysteriousTool()
 local AddPartTool = Instance.new("Tool")
 AddPartTool.RequiresHandle = false
 AddPartTool.Name = "Add part"
-AddPartTool.Activated:connect(function()
+addEventListener(AddPartTool,"Activated",function()
+--AddPartTool.Activated:connect(function()
 local pos = Mouse.Hit+Vector3.new(0,2.5,0)
 pos = CFrame.new(pos.X,pos.Y,pos.Z)
 -- PartScript
@@ -2851,7 +2855,7 @@ local DescCollide = false
 local ShapePartTool = Instance.new("Tool")
 ShapePartTool.RequiresHandle = false
 ShapePartTool.Name = "Shape: Cylinder"
-ShapePartTool.Activated:connect(function()
+addEventListener(ShapePartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 local randomshape = shapes[math.random(1, #shapes)]
 SetShape("VoxelScriptPart", randomshape)
@@ -2865,7 +2869,7 @@ ShapePartTool.Parent = speaker.Backpack
 local MaterialPartTool = Instance.new("Tool")
 MaterialPartTool.RequiresHandle = false
 MaterialPartTool.Name = "Material: Air"
-MaterialPartTool.Activated:connect(function()
+addEventListener(MaterialPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 local randommaterial = material[math.random(1, #material)]
 SetMaterial("VoxelScriptPart", randommaterial)
@@ -2879,7 +2883,7 @@ MaterialPartTool.Parent = speaker.Backpack
 local CollidePartTool = Instance.new("Tool")
 CollidePartTool.RequiresHandle = false
 CollidePartTool.Name = "CanCollide: false"
-CollidePartTool.Activated:connect(function()
+addEventListener(CollidePartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescCollide = not DescCollide
 FindWorkspacePartName("VoxelScriptPart","Collide",DescCollide)
@@ -2897,7 +2901,7 @@ CollidePartTool.Parent = speaker.Backpack
 local QueryPartTool = Instance.new("Tool")
 QueryPartTool.RequiresHandle = false
 QueryPartTool.Name = "CanQuery: false"
-QueryPartTool.Activated:connect(function()
+addEventListener(QueryPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescQuery = not DescQuery
 FindWorkspacePartName("VoxelScriptPart","Query",DescQuery)
@@ -2915,7 +2919,7 @@ QueryPartTool.Parent = speaker.Backpack
 local TouchPartTool = Instance.new("Tool")
 TouchPartTool.RequiresHandle = false
 TouchPartTool.Name = "CanTouch: false"
-TouchPartTool.Activated:connect(function()
+addEventListener(TouchPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescTouch = not DescTouch
 FindWorkspacePartName("VoxelScriptPart","Touch",DescTouch)
@@ -2933,7 +2937,7 @@ TouchPartTool.Parent = speaker.Backpack
 local MassPartTool = Instance.new("Tool")
 MassPartTool.RequiresHandle = false
 MassPartTool.Name = "Massless: false"
-MassPartTool.Activated:connect(function()
+addEventListener(MassPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescMass = not DescMass
 FindWorkspacePartName("VoxelScriptPart","Massless",DescMass)
@@ -2951,7 +2955,7 @@ MassPartTool.Parent = speaker.Backpack
 local AnchorPartTool = Instance.new("Tool")
 AnchorPartTool.RequiresHandle = false
 AnchorPartTool.Name = "Anchor: false"
-AnchorPartTool.Activated:connect(function()
+addEventListener(AnchorPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescAnchor = not DescAnchor
 FindWorkspacePartName("VoxelScriptPart","Anchor",DescAnchor)
@@ -2969,7 +2973,7 @@ AnchorPartTool.Parent = speaker.Backpack
 local LockedPartTool = Instance.new("Tool")
 LockedPartTool.RequiresHandle = false
 LockedPartTool.Name = "Locked: false"
-LockedPartTool.Activated:connect(function()
+addEventListener(LockedPartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 DescLocked = not DescLocked
 FindWorkspacePartName("VoxelScriptPart","Lock",DescLocked)
@@ -2987,7 +2991,7 @@ LockedPartTool.Parent = speaker.Backpack
 local DeletePartTool = Instance.new("Tool")
 DeletePartTool.RequiresHandle = false
 DeletePartTool.Name = "Delete"
-DeletePartTool.Activated:connect(function()
+addEventListener(DeletePartTool,"Activated",function()
 if game.Workspace:FindFirstChild("VoxelScriptPart") then
 FindWorkspacePartName("VoxelScriptPart","Delete")
 else
@@ -2997,7 +3001,7 @@ end)
 DeletePartTool.Parent = speaker.Backpack
 end
 
-Github.FocusLost:Connect(function(InterfaceEnter)
+addEventListener(Github,"FocusLost",function(InterfaceEnter)
 if InterfaceEnter then
 if Github.Text then
 local username = Github.Text
@@ -3038,7 +3042,7 @@ function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
 	l:Fire()
 end
 
-WeatherApiKey.FocusLost:Connect(function(InterfaceEnterCity)
+addEventListener(WeatherCity,"FocusLost",function(InterfaceEnterCity)
 if InterfaceEnterCity then
 if WeatherApiKey.Text then
 local city = WeatherCity.Text or "New York"
@@ -3117,7 +3121,7 @@ function ExecuteScriptNameFunction(script_name)
 	end
 end
 
-BarButtonExecute.MouseButton1Down:Connect(function()
+addEventListener(BarButtonExecute,"MouseButton1Down",function()
      executeHTTPS(TextBarExecutor.Text)
 end)
 
@@ -3163,6 +3167,7 @@ return hours .. ' Hour(s), ' .. minutes .. ' Minute(s), ' .. seconds .. ' Second
 end
 end
 
+addEventListener(SaveOMG,"MouseButton1Down",function()
 SaveOMG.MouseButton1Down:Connect(function()
    if isfile(FileName.Text) then -- FileName & InFile
       notify("This file already exists",'file with name "' .. FileName.Text .. '" already exists.')
@@ -3248,7 +3253,7 @@ function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
 game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService),"All")
 end
 
-WhisperButton.MouseButton1Down:Connect(function()
+addEventListener(WhisperButton,"MouseButton1Down",function()
    if Players:FindFirstChild(WhisperPlayer.Text) then
     ProtocolWhisperChat(WhisperPlayer.Text, WhisperBox.Text)
     else
@@ -3970,13 +3975,13 @@ function selectPart()
 	local function SelectPart()
 		if Mouse.Target ~= nil then
 			selected.Adornee = Mouse.Target
-			Path.Text = getHierarchy(Mouse.Target)
+			updateText(path,getHierarchy(Mouse.Target))
 		end
 	end
 	ClickSelect = Mouse.Button1Down:Connect(SelectPart)
 end
 
-Exit_4.MouseButton1Click:Connect(function()
+addEventListener(Exit_4,"MouseButton1Down",function()
 	if ActivateHighlight then
 		ActivateHighlight:Disconnect()
 	end
@@ -3985,7 +3990,7 @@ Exit_4.MouseButton1Click:Connect(function()
 	end
 	selectionBox.Adornee = nil
 	selected.Adornee = nil
-	Path.Text = ""
+	updateText(path,""
 	Interface_Visible(Exit_4, false)
         Interface_Visible(CopyPath, false)
         Interface_Visible(ChoosePart, false)
@@ -3993,7 +3998,7 @@ Exit_4.MouseButton1Click:Connect(function()
 	fuckingFrame.Visible = false
 end)
 
-CopyPath.MouseButton1Click:Connect(function()
+addEventListener(CopyPath,"MouseButton1Down",function()
 	if Path.Text ~= "" then
 		copy(Path.Text)
 	else
@@ -4001,7 +4006,7 @@ CopyPath.MouseButton1Click:Connect(function()
 	end
 end)
 
-ChoosePart.MouseButton1Click:Connect(function()
+addEventListener(ChoosePart,"MouseButton1Down",function()
 	if Path.Text ~= "" then
 		local tpNameExt = ''
 		local function handleWpNames()
@@ -4330,7 +4335,7 @@ local TpTool = Instance.new("Tool")
               handle.Anchored = false
               handle.CanCollide = false
               handle.Parent = TpTool
-	TpTool.Activated:Connect(function()
+	addEventListener(TpTool,"Activated",function()
 		local Char = speaker.Character or workspace:FindFirstChild(speaker.Name)
 		local HRP = Char and Char:FindFirstChild("HumanoidRootPart")
 		if not Char or not HRP then
@@ -5842,7 +5847,7 @@ end
 
 local arrow = "> "
 local Arrow_2 = " <"
-TextBox.FocusLost:Connect(function(Enter)
+addEventListener(TextBox,"FocusLost",function(Enter)
    if Enter then
 	CB.BackgroundTransparency = 0.7
         CB.TextTransparency = 0.7
@@ -5854,7 +5859,7 @@ local SPrefix = ""
 
 local Rect = CFrame.new(0, 0, 0)
 
-FT2.MouseButton1Down:Connect(function()
+addEventListener(FT2,"MouseButton1Down",function()
 local variable = getPlayer(FT1.Text, speaker)
 	for i,v in pairs(variable) do
 LPost = CFrame.new(speaker.Character.HumanoidRootPart.Position)
@@ -5897,7 +5902,7 @@ if Noclipping then
 	Clip = true
 end)
 
-TextBox.FocusLost:Connect(function(Execute) -- prefix disabled
+addEventListener(TextBox,"FocusLost",function(Execute)
    if Execute then -- 1
 local msg = TextBox.Text:lower()
 if string.sub(TextBox.Text,1,3) == "/e " then
