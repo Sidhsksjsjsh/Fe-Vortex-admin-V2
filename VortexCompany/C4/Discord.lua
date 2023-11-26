@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.6.7" -- reverted version
+local version = "2.6.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -423,7 +423,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Anime-Slash-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pubg-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Gladiator-Simulator/main/.lua"
 }
 
 function dragify(Frame)
@@ -9372,6 +9373,13 @@ Vortex:OnlyDeveloper(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[10])
 end)
+end)
+end
+if cmd == "gladiatorsim" or cmd == "gl" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[11])
+	--Vortex:QueueOnTeleport(str)
 end)
 end
 --[[
