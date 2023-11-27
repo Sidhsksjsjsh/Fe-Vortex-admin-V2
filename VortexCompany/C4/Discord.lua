@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.0" -- reverted version
+local version = "2.7.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6450,12 +6450,14 @@ success("now playing ",tostring(TextMusic[var:gsub(" ","")]) .. " (" .. tostring
 else
 music(var:gsub(" ",""))
 success("now playing ",MusicName .. " (" .. var .. ")")
+s:ShowMusicPlayer()
 end
 end)
 end
 if cmd == "nomusic" then
 Vortex:CheckError(function()
 game:GetService("SoundService"):FindFirstChild("Sound"):Destroy()
+s:HideMusicPlayer()
 success("Client Music","music disabled")
 end)
 end
