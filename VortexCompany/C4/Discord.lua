@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.1" -- reverted version
+local version = "2.7.2" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -413,7 +413,7 @@ local frozenParts = {}
 local stats = Vortex:Service("Stats")
 local GroupService = Vortex:Service("GroupService")
 local Lighting = Vortex:Service("Lighting")
-local s = Vortex:Connection("Sound.js",true)
+--local s = Vortex:Connection("Sound.js",true)
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -6450,14 +6450,14 @@ success("now playing ",tostring(TextMusic[var:gsub(" ","")]) .. " (" .. tostring
 else
 music(var:gsub(" ",""))
 success("now playing ",MusicName .. " (" .. var .. ")")
-s:ShowMusicPlayer()
+--s:ShowMusicPlayer()
 end
 end)
 end
 if cmd == "nomusic" then
 Vortex:CheckError(function()
 game:GetService("SoundService"):FindFirstChild("Sound"):Destroy()
-s:HideMusicPlayer()
+--s:HideMusicPlayer()
 success("Client Music","music disabled")
 end)
 end
