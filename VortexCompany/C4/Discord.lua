@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.6.8" -- reverted version
+local version = "2.6.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -268,7 +268,8 @@ local function Create(instance, properties, children)
     return obj;
 end
 
-function Alert(title,Message,buttonname,ErrorCode)
+local function Alert(title,Message,buttonname,ErrorCode)
+task.spawn(function()
     if getrenv then
         local ErrorPrompt = getrenv().require(COREGUI:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")) -- File can be located in your roblox folder (C:\Users\%Username%\AppData\Local\Roblox\Versions\whateverversionitis\ExtraContent\scripts\CoreScripts\Modules)
         local prompt = ErrorPrompt.new("Default",{HideErrorCode = ErrorCode or true})
@@ -294,6 +295,7 @@ function Alert(title,Message,buttonname,ErrorCode)
     else
         warn(Message)
     end
+end)
 end
 
 -- ErrorPrompt("Start admin", "Start FE-Vortex admin?", "YES")
@@ -424,7 +426,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pubg-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Gladiator-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Gladiator-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua"
 }
 
 function dragify(Frame)
@@ -9379,7 +9382,12 @@ if cmd == "gladiatorsim" or cmd == "gl" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[11])
-	--Vortex:QueueOnTeleport(str)
+end)
+end
+if cmd == "audiologger" or cmd == "alogger" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[12])
 end)
 end
 --[[
@@ -9714,6 +9722,7 @@ cmds[#cmds + 1] = {Text = "[314] " .. tostring(prefix) .. "clicksimulator / cs",
 cmds[#cmds + 1] = {Text = "[315] " .. tostring(prefix) .. "animeslashsimulator / ass",Title = "Run Anime Slash Simulator Script"}
 cmds[#cmds + 1] = {Text = "[316] " .. tostring(prefix) .. "pubgsim / ps",Title = "Run Pung Simulator Script"}
 cmds[#cmds + 1] = {Text = "[317] " .. tostring(prefix) .. "esp3",Title = "A highlight esp"}
+cmds[#cmds + 1] = {Text = "[318] " .. tostring(prefix) .. "audiologger / alogger",Title = "Audio Logger"}
 
 _G.RemoveSymbols = {
    blank = ""
@@ -10101,12 +10110,15 @@ if COREGUI:FindFirstChild("BubbleChat") then
    end)
 end
 ]]
---[[getgenv().rejoin =]]
-game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+--[[getgenv().rejoin = CoreGui
+COREGUI:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPrompt")
+]]
+COREGUI.RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
-        child:Destroy()
+        COREGUI.RobloxPromptGui.promptOverlay:Destroy()
 	Vortex:PromptUI("Successfully removed the GUI with the name 'ErrorPrompt'.")
-	Vortex:PromptUI("Client Disconnected, Rejoining... (please wait 1 sec)")
+	--Vortex:PromptUI("Client Disconnected, Rejoining... (please wait 1 sec)")
+	Alert("Vortex : Client Disconnected","Client Disconnected\nRejoining... (This takes quite a long time to rejoin)","OK",true)
 	wait(1)
         RejoinServer()
     end
