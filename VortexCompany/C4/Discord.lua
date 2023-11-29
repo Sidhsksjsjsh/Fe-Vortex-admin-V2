@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.2" -- reverted version
+local version = "2.7.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -428,7 +428,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/ESP-HIGHLIGHT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Gladiator-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua"
+	"https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/MAGIC-SIMULATOR/main/.lua"
 }
 
 function dragify(Frame)
@@ -9393,6 +9394,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[12])
 end)
 end
+if cmd == "magicsim" or cmd == "ms" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[13])
+end)
+end
 --[[
 limit 
 ]]
@@ -9726,6 +9733,7 @@ cmds[#cmds + 1] = {Text = "[315] " .. tostring(prefix) .. "animeslashsimulator /
 cmds[#cmds + 1] = {Text = "[316] " .. tostring(prefix) .. "pubgsim / ps",Title = "Run Pung Simulator Script"}
 cmds[#cmds + 1] = {Text = "[317] " .. tostring(prefix) .. "esp3",Title = "A highlight esp"}
 cmds[#cmds + 1] = {Text = "[318] " .. tostring(prefix) .. "audiologger / alogger",Title = "Audio Logger"}
+cmds[#cmds + 1] = {Text = "[319] " .. tostring(prefix) .. "magicsim / ms",Title = "Run MAGIC SIMULATOR Script"}
 
 _G.RemoveSymbols = {
    blank = ""
