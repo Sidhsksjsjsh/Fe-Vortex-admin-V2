@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.3" -- reverted version
+local version = "2.7.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1318,6 +1318,7 @@ addEventListener(Main,"MouseEnter",function()
     spawn(function()
         Blur.Size = 7.5
         TweenService:Create(MainCmdbar, TweenInfo.new(0.50), {Position = UDim2.new(0.885, 0, 0.61, 0)}):Play()
+	TextBox:CaptureFocus()
     end)
     TweenService:Create(Main, TweenInfo.new(0.75), {Position = UDim2.new(0.9, 0, 0.652, 0)}):Play()
 end)
@@ -10126,9 +10127,9 @@ COREGUI:WaitForChild("RobloxGui"):WaitForChild("Modules"):WaitForChild("ErrorPro
 ]]
 COREGUI.RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
     if child.Name == 'ErrorPrompt' or child:FindFirstChild('MessageArea') or child.MessageArea:FindFirstChild("ErrorFrame") then
-        COREGUI.RobloxPromptGui.promptOverlay:Destroy()
+        --COREGUI.RobloxPromptGui.promptOverlay:Destroy()
 	Vortex:PromptUI("Successfully removed the GUI with the name 'ErrorPrompt'.")
-	--Vortex:PromptUI("Client Disconnected, Rejoining... (please wait 1 sec)")
+	--speaker:Kick
 	Alert("Vortex : Client Disconnected","Client Disconnected\nRejoining... (This takes quite a long time to rejoin)","OK",true)
 	wait(1)
         RejoinServer()
@@ -10146,7 +10147,7 @@ end
 Vortex:ProtectUsername()
 Vortex:ProtectUID()
 
-local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST(),{
+local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | ${country} - ${ip}",{
       Position = {0.5,-100,0,15},
       transparen = 1,
       Size = {0,165,0,48},
