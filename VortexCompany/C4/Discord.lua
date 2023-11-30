@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.4" -- reverted version
+local version = "2.7.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7927,7 +7927,9 @@ end)
 end
 if cmd == "emotegui" then
 Vortex:CheckError(function()
-executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
+--executeHTTPS("https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua")
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/Emotes-UI/main/.lua")
+obfuscatedUI()
 notify("Keybind",'press comma')
 end)
 end
@@ -9958,10 +9960,9 @@ end)
 -- ErrorPrompt("ESP name","This feature is only as a trial \nautomatically turns off when time is up \n1787 minutes","OK")
 
 UserInputService.InputBegan:Connect(function(KeyPressed)
---  if KeyPressed.KeyCode == Enum.KeyCode.R or KeyPressed.KeyCode == Enum.KeyCode.E then
---     ErrorPrompt("Bad HTTPS","Error Maintenance")
---  end
-  if KeyPressed.KeyCode == Enum.KeyCode.Q then
+if KeyPressed.KeyCode == Enum.KeyCode.Comma then
+     obfuscatedUI()
+elseif KeyPressed.KeyCode == Enum.KeyCode.Q then
 	wait()
 	TextBox:CaptureFocus()
 	 spawn(function()
