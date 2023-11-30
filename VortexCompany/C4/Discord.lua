@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.5" -- reverted version
+local version = "2.7.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -413,7 +413,7 @@ local frozenParts = {}
 local stats = Vortex:Service("Stats")
 local GroupService = Vortex:Service("GroupService")
 local Lighting = Vortex:Service("Lighting")
---local s = Vortex:Connection("Sound.js",true)
+local loading = Vortex:Connection("Loading-UI.js",true)
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -4458,9 +4458,11 @@ end
 end
 
 function StartServerhop()
+	local titleUI = loading:UILoading("Serverhop","Did you know?\nYou can change your IP and Region by typing 'displayreg [region]' and 'displayip [fake ip]'")
 	local ServerChecker = CheckServers()
 	if ServerChecker == "Protocol:cantfind" then
-	ErrorPrompt("Cant find a server for u","We couldn't find a server")
+	titleUI:ChangeNoticeMsg("We couldn't find a server")
+	titleUI:ChangeLargeMsg("Serverhop : server is unavailable or full")
         OpenCmdBar()
 	end
 	if ServerChecker == "Protocol:found" then
@@ -4470,7 +4472,8 @@ function StartServerhop()
 	wait(1)
 	local Check2 = Serverhop()
 	if Check2 == "Protocol:cantfind" then
-	ErrorPrompt("Cant find a server for u","We couldn't find a server")
+	titleUI:ChangeNoticeMsg("We couldn't find a server")
+	titleUI:ChangeLargeMsg("Serverhop : server is unavailable or full")
         OpenCmdBar()
 	end
 end
@@ -6369,7 +6372,7 @@ Vortex:CheckError(function()
 notify("Rejoin server","Rejoining...")
 wait()
 RejoinServer()
-CloseCmdBar()
+loading:UILoading("Rejoin","REJOINING...")
 if (queue_on_teleport) then
 	if Executor() == "Arceus X" or Executor() == "Hydrogen" then
             queue_on_teleport("loadstring(game.HttpGet(game, \"https://raw.githubusercontent.com/Sidhsksjsjsh/Fe-Vortex-admin-V2/main/VortexCompany/C4/Discord.Lua\"))()");
