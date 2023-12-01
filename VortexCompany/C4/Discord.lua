@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.6" -- reverted version
+local version = "2.7.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -429,7 +429,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/TESTING-SCRIPT/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Gladiator-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/MAGIC-SIMULATOR/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/MAGIC-SIMULATOR/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Punch-Simulator/main/.lua"
 }
 
 function dragify(Frame)
@@ -9404,6 +9405,12 @@ if cmd == "magicsim" or cmd == "ms" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[13])
+end)
+end
+if cmd == "punchsim" or cmd == "??" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[14])
 end)
 end
 --[[
