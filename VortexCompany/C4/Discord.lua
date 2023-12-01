@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.7" -- reverted version
+local version = "2.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1636,26 +1636,28 @@ local replace = {
 
 local Bypasserword = {
 	ass = "á⁥⁥⁥⁥ѕѕ",
-        dick = "dìсk",
+        dick = "dìсḳ",
 	pussy = "pússу",
 	shit = "shìt",
 	fuck = "fúсḳ",
-	asshole = "áѕѕhоle",
+	asshole = "áѕѕhоlё",
         nigga = "nìggá",
+	nigger = "nìggёr",
 	suck = "súсk",
 	discord = "dìsсоrd",
-	tiktok = "tìktоk",
+	tiktok = "tìktок",
 	cum = "с⁥⁥⁥úm",
 	condom = "cоndоm",
 	sex = "s⁥⁥⁥⁥⁥⁥ех",
 	sexy = "s⁥⁥⁥⁥⁥⁥ехy",
-	sperm = "spеrms",
+	sperm = "spёrms",
 	tits = "tìts",
 	boobs = "boobs",
-	penis = "реn⁥ìs"
+	penis = "pen⁥ìs",
+	idga = "ì dont gìve a "
 }
 
-local replace_ass = { -- здравствуйте рот ты прекрасна
+local replace_ass = { -- здравствуйте рот ты прекрасна кор
       ass = "а⁥⁥⁥⁥ѕѕ",
       cum = "с⁥⁥⁥úm",
       cock = "сoсk",
@@ -1744,9 +1746,9 @@ addEventListener(BarSent,"MouseButton1Down",function()
 --BarSent.MouseButton1Down:Connect(function()
 if AutoSendScript == false then
 	if BypassWord then
-              Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
+              Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]):gsub("nigger",Bypasserword["nigger"]):gsub("i dont give a",Bypasserword["idga"]))
 	else
-	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
+	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]):gsub("nigger",Bypasserword["nigger"]):gsub("i dont give a",Bypasserword["idga"]))
     end
   end
 end)
@@ -1756,9 +1758,9 @@ addEventListener(TextBar,"FocusLost",function(EnterText)
 if AutoSendScript == true then
    if EnterText then
 	if BypassWord then
-           Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
+           Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]):gsub("nigger",Bypasserword["nigger"]):gsub("i dont give a",Bypasserword["idga"]))
 	else
-	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]))
+	   Vortex:SendMessage(TextBar.Text:gsub("ass",Bypasserword["ass"]):gsub("dick",Bypasserword["dick"]):gsub("pussy",Bypasserword["pussy"]):gsub("shit",Bypasserword["shit"]):gsub("fuck",Bypasserword["fuck"]):gsub("asshole",Bypasserword["asshole"]):gsub("nigga",Bypasserword["nigga"]):gsub("suck",Bypasserword["suck"]):gsub("discord",Bypasserword["discord"]):gsub("tiktok",Bypasserword["tiktok"]):gsub("cum",Bypasserword["cum"]):gsub("condom",Bypasserword["condom"]):gsub("sex",Bypasserword["sex"]):gsub("sexy",Bypasserword["sexy"]):gsub("sperm",Bypasserword["sperm"]):gsub("tits",Bypasserword["tits"]):gsub("boobs",Bypasserword["boobs"]):gsub("penis",Bypasserword["penis"]):gsub("nigger",Bypasserword["nigger"]):gsub("i dont give a",Bypasserword["idga"]))
     end
    end
 end
