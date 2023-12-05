@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.7.9" -- reverted version
+local version = "2.8.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -431,7 +431,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/infyiff/backup/main/audiologger.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/MAGIC-SIMULATOR/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Punch-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-A-Friends/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-A-Friends/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Possessor/main/.lua"
 }
 
 function dragify(Frame)
@@ -9422,6 +9423,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[15])
 end)
 end
+if cmd == "possessor" or cmd == "pos" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[16])
+end)
+end
 --[[
 limit 
 ]]
@@ -9757,6 +9764,7 @@ cmds[#cmds + 1] = {Text = "[317] " .. tostring(prefix) .. "esp3",Title = "A high
 cmds[#cmds + 1] = {Text = "[318] " .. tostring(prefix) .. "audiologger / alogger",Title = "Audio Logger"}
 cmds[#cmds + 1] = {Text = "[319] " .. tostring(prefix) .. "magicsim / ms",Title = "Run MAGIC SIMULATOR Script"}
 cmds[#cmds + 1] = {Text = "[320] " .. tostring(prefix) .. "shootafriends / saf",Title = "Run Shoot A Friends Script"}
+cmds[#cmds + 1] = {Text = "[321] " .. tostring(prefix) .. "possessor / pos",Title = "Run Possessor Script"}
 
 _G.RemoveSymbols = {
    blank = ""
