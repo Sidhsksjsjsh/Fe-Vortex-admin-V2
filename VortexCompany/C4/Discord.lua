@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.0" -- reverted version
+local version = "2.8.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10176,7 +10176,7 @@ end
 Vortex:ProtectUsername()
 Vortex:ProtectUID()
 
-local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | ${country} - ${ip}",{
+local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | ${date}",{
       Position = {0.5,-100,0,15},
       transparen = 1,
       Size = {0,165,0,48},
