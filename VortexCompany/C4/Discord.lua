@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.2" -- reverted version
+local version = "2.8.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -433,7 +433,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Punch-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-A-Friends/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Possessor/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-Wall-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-Wall-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua"
 }
 
 function dragify(Frame)
@@ -9436,6 +9437,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[17])
 end)
 end
+if cmd == "dragonwarrior" or cmd == "dws" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[18])
+end)
+end
 --[[
 limit 
 ]]
@@ -9773,6 +9780,7 @@ cmds[#cmds + 1] = {Text = "[319] " .. tostring(prefix) .. "magicsim / ms",Title 
 cmds[#cmds + 1] = {Text = "[320] " .. tostring(prefix) .. "shootafriends / saf",Title = "Run Shoot A Friends Script"}
 cmds[#cmds + 1] = {Text = "[321] " .. tostring(prefix) .. "possessor / pos",Title = "Run Possessor Script"}
 cmds[#cmds + 1] = {Text = "[322] " .. tostring(prefix) .. "shootwall / sws",Title = "Run Shoot Wall Simulator Script"}
+cmds[#cmds + 1] = {Text = "[323] " .. tostring(prefix) .. "dragonwarrior / dws",Title = "Run Dragon Warriors Simulator Script"}
 
 _G.RemoveSymbols = {
    blank = ""
