@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.3" -- reverted version
+local version = "2.8.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9443,6 +9443,11 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[18])
 end)
 end
+if cmd == "donate" then
+Vortex:CheckError(function()
+	Vortex:PromptPurchase(108011718)
+end)
+end
 --[[
 limit 
 ]]
@@ -9781,6 +9786,7 @@ cmds[#cmds + 1] = {Text = "[320] " .. tostring(prefix) .. "shootafriends / saf",
 cmds[#cmds + 1] = {Text = "[321] " .. tostring(prefix) .. "possessor / pos",Title = "Run Possessor Script"}
 cmds[#cmds + 1] = {Text = "[322] " .. tostring(prefix) .. "shootwall / sws",Title = "Run Shoot Wall Simulator Script"}
 cmds[#cmds + 1] = {Text = "[323] " .. tostring(prefix) .. "dragonwarrior / dws",Title = "Run Dragon Warriors Simulator Script"}
+cmds[#cmds + 1] = {Text = "[324] " .. tostring(prefix) .. "donate",Title = "Donate me 😭"}
 
 _G.RemoveSymbols = {
    blank = ""
