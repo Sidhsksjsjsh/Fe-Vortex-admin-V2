@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.4" -- reverted version
+local version = "2.8.5 | VortexOS V5.7.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3469,6 +3469,7 @@ function round(num, numDecimalPlaces)
 	return math.floor(num * mult + 0.5) / mult
 end
 
+local floatName = randomString()
 function tools(plr)
 	if plr:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass('Tool') or plr.Character:FindFirstChildOfClass('Tool') then
 		return true
@@ -9448,6 +9449,40 @@ Vortex:CheckError(function()
 	Vortex:PromptPurchase(108011718)
 end)
 end
+if cmd == "freeze" or cmd == "fr" then
+local var = string.sub(msg,space+1)
+Vortex:CheckError(function()
+	local players = getPlayer(var,speaker)
+	if players ~= nil then
+		for i,v in pairs(players) do
+			task.spawn(function()
+				for i, x in next, Players[v].Character:GetDescendants() do
+					if x:IsA("BasePart") and not x.Anchored then
+						x.Anchored = true
+					end
+				end
+			end)
+		end
+	end
+end)
+end
+if cmd == "unfreeze" or cmd == "thaw" or cmd == "unfr" then
+local var = string.sub(msg,space+1)
+Vortex:CheckError(function()
+	local players = getPlayer(var,speaker)
+	if players ~= nil then
+		for i,v in pairs(players) do
+			task.spawn(function()
+				for i, x in next, Players[v].Character:GetDescendants() do
+					if x.Name ~= floatName and x:IsA("BasePart") and x.Anchored then
+						x.Anchored = false
+					end
+				end
+			end)
+		end
+	end
+end)
+end
 --[[
 limit 
 ]]
@@ -9787,6 +9822,8 @@ cmds[#cmds + 1] = {Text = "[321] " .. tostring(prefix) .. "possessor / pos",Titl
 cmds[#cmds + 1] = {Text = "[322] " .. tostring(prefix) .. "shootwall / sws",Title = "Run Shoot Wall Simulator Script"}
 cmds[#cmds + 1] = {Text = "[323] " .. tostring(prefix) .. "dragonwarrior / dws",Title = "Run Dragon Warriors Simulator Script"}
 cmds[#cmds + 1] = {Text = "[324] " .. tostring(prefix) .. "donate",Title = "Donate me 😭"}
+cmds[#cmds + 1] = {Text = "[325] " .. tostring(prefix) .. "freeze / fr [display name]",Title = "Freeze someone character [ Visual ]"}
+cmds[#cmds + 1] = {Text = "[326] " .. tostring(prefix) .. "unfreeze / thaw / unfr",Title = "Unfreeze someone character [ Visual ]"}
 
 _G.RemoveSymbols = {
    blank = ""
