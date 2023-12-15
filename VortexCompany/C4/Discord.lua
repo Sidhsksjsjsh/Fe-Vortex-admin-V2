@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.5 | VortexOS V5.7.6" -- reverted version
+local version = "2.8.6 | VortexOS V5.7.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -434,7 +434,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-A-Friends/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Possessor/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-Wall-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua"
 }
 
 function dragify(Frame)
@@ -9481,6 +9482,12 @@ Vortex:CheckError(function()
 			end)
 		end
 	end
+end)
+end
+if cmd == "zh" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[19])
 end)
 end
 --[[
