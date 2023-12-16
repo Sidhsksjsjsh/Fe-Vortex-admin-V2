@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.6 | VortexOS V5.7.6" -- reverted version
+local version = "2.8.7 | VortexOS V5.7.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -531,6 +531,28 @@ local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
 --local identify_Label_Script = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
 
+local ReportIssuesBox = createElement("TextBox",GUI_MAIN,{
+    Size = UDim2.new(1, 0, 0, 100) --UDim2.new(0, 200, 0, 100),
+    Position = UDim2.new(0, 5, 0.05, 5) --UDim2.new(0.5, -100, 0.5, -50),
+    BackgroundColor = BrickColor.new('Fossil'),
+    ClearTextOnFocus = false,
+    BackgroundTransparency  = 0.5,
+    TextStrokeTransparency  = 1,
+    TextColor3 = Color3.new(1,1,1),
+    BorderSizePixel = 0
+})
+
+local ReportIssuesButton = createElement("TextButton",ReportIssuesBox,{
+    Size = UDim2.new(0, 200, 0, 100),
+    Position = UDim2.new(0.5, -100, 0.5, -50),
+    BackgroundColor = BrickColor.new('Fossil'),
+    Text = "Report",
+    BackgroundTransparency  = 0.5,
+    TextStrokeTransparency  = 1,
+    TextColor3 = Color3.new(1,1,1),
+    BorderSizePixel = 0
+})
+		
 Phase1.Size                    = UDim2.new(0,0,0,30)
 Phase1.BackgroundTransparency  = 1
 Phase1.BackgroundColor         = BrickColor.new('Fossil')
@@ -1769,6 +1791,10 @@ if AutoSendScript == true then
     end
    end
 end
+end) --ReportIssuesButton
+
+addEventListener(ReportIssuesButton,"MouseButton1Down",function()
+	print("9")
 end)
 
 local coreGuiTypeNames = {
