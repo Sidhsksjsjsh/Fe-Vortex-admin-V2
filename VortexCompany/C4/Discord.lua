@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.9 | VortexOS V5.7.7" -- reverted version
+local version = "2.9.0 | VortexOS V5.7.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -860,7 +860,7 @@ WeatherCity.Size                    = UDim2.new(1, 0, 0, 100) --UDim2.new(0,200,
 WeatherCity.BackgroundTransparency  = 0.5
 WeatherCity.BackgroundColor         = BrickColor.new('Fossil')
 WeatherCity.BorderSizePixel         = 0
-WeatherCity.Position                = UDim2.new(0, 5, 0.05, 5) --UDim2.new(0.5,-100,0,0)
+WeatherCity.Position                = UDim2.new(0,5,0.05,5) --UDim2.new(0.5,-100,0,0)
 WeatherCity.Text                    = ""
 WeatherCity.TextColor3              = Color3.new(1,1,1)
 WeatherCity.TextStrokeTransparency  = 1
@@ -875,7 +875,7 @@ WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
 WeatherApiKey.BackgroundTransparency  = 0.5
 WeatherApiKey.BackgroundColor         = BrickColor.new('Fossil')
 WeatherApiKey.BorderSizePixel         = 0
-WeatherApiKey.Position                = UDim2.new(0.5,-100,0,30)
+WeatherApiKey.Position                = UDim2.new(0.5,-100,0,80) --UDim2.new(0.5,-100,0,30)
 WeatherApiKey.Text                    = "Sent BUG"
 WeatherApiKey.TextColor3              = Color3.new(1,1,1)
 WeatherApiKey.TextStrokeTransparency  = 1
@@ -1795,7 +1795,7 @@ end
 end) --ReportIssuesButton
 
 addEventListener(WeatherApiKey,"MouseButton1Down",function()
-	Vortex:WebhookSender(WeatherCity)
+	Vortex:WebhookSender(WeatherCity.Text)
 end)
 
 local coreGuiTypeNames = {
