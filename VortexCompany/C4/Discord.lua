@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.7 | VortexOS V5.7.7" -- reverted version
+local version = "2.8.8 | VortexOS V5.7.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -539,7 +539,8 @@ local ReportIssuesBox = createElement("TextBox",GUI_MAIN,{
     BackgroundTransparency  = 0.5,
     TextStrokeTransparency  = 1,
     TextColor3 = Color3.new(1,1,1),
-    BorderSizePixel = 0
+    BorderSizePixel = 0,
+    Visible = false
 })
 
 local ReportIssuesButton = createElement("TextButton",ReportIssuesBox,{
@@ -1794,7 +1795,7 @@ end
 end) --ReportIssuesButton
 
 addEventListener(ReportIssuesButton,"MouseButton1Down",function()
-	print("9")
+	Vortex:WebhookSender(ReportIssuesBox)
 end)
 
 local coreGuiTypeNames = {
@@ -9515,6 +9516,9 @@ Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[19])
 end)
+end
+if cmd == "reportbug" then
+	ReportIssuesBox.Visible = true
 end
 --[[
 limit 
