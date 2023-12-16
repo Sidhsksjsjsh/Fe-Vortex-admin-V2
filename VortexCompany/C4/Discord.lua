@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.8.8 | VortexOS V5.7.7" -- reverted version
+local version = "2.8.9 | VortexOS V5.7.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -496,7 +496,7 @@ local Exit_4                         = Instance.new('TextButton', Path)
 -- API
 local Github                         = Instance.new('TextBox', GUI_MAIN)
 local WeatherCity                         = Instance.new('TextBox', GUI_MAIN)
-local WeatherApiKey                         = Instance.new('TextBox', WeatherCity)
+local WeatherApiKey                         = Instance.new('TextButton', WeatherCity)
 -- whisper:
 local WhisperBox                         = Instance.new('TextBox', GUI_MAIN)
 local WhisperPlayer                         = Instance.new('TextBox', WhisperBox)
@@ -531,7 +531,7 @@ local Phase1                         = Instance.new('TextLabel', GUI_MAIN)
 
 --local identify_Label_Script = "Vortex Admin | Status: Online | Current version: " .. tostring(SOSKWKWK)
 
-local ReportIssuesBox = createElement("TextBox",GUI_MAIN,{
+--[[local ReportIssuesBox = createElement("TextBox",GUI_MAIN,{
     Size = UDim2.new(1, 0, 0, 100) --UDim2.new(0, 200, 0, 100),
     Position = UDim2.new(0, 5, 0.05, 5) --UDim2.new(0.5, -100, 0.5, -50),
     BackgroundColor = BrickColor.new('Fossil'),
@@ -552,7 +552,7 @@ local ReportIssuesButton = createElement("TextButton",ReportIssuesBox,{
     TextStrokeTransparency  = 1,
     TextColor3 = Color3.new(1,1,1),
     BorderSizePixel = 0
-})
+})]]
 		
 Phase1.Size                    = UDim2.new(0,0,0,30)
 Phase1.BackgroundTransparency  = 1
@@ -856,19 +856,19 @@ Github.Draggable = false
 Github.Name = "GITHUB USERNAME UI"
 -- dragify(Github)
 
-WeatherCity.Size                    = UDim2.new(0,200,0,30)
+WeatherCity.Size                    = UDim2.new(1, 0, 0, 100) --UDim2.new(0,200,0,30)
 WeatherCity.BackgroundTransparency  = 0.5
 WeatherCity.BackgroundColor         = BrickColor.new('Fossil')
 WeatherCity.BorderSizePixel         = 0
-WeatherCity.Position                = UDim2.new(0.5,-100,0,0)
+WeatherCity.Position                = UDim2.new(0, 5, 0.05, 5) --UDim2.new(0.5,-100,0,0)
 WeatherCity.Text                    = ""
 WeatherCity.TextColor3              = Color3.new(1,1,1)
 WeatherCity.TextStrokeTransparency  = 1
 WeatherCity.TextWrapped             = true
 WeatherCity.FontSize                = 'Size24'
 WeatherCity.Font                    = 'SourceSansBold'
-WeatherCity.Draggable = false
-WeatherCity.Name = "CITY NAME UI"
+WeatherCity.ClearTextOnFocus = false
+WeatherCity.Name = "BUG REPORTER UI"
 -- dragify(WeatherCity)
 
 WeatherApiKey.Size                    = UDim2.new(0,200,0,30)
@@ -876,13 +876,13 @@ WeatherApiKey.BackgroundTransparency  = 0.5
 WeatherApiKey.BackgroundColor         = BrickColor.new('Fossil')
 WeatherApiKey.BorderSizePixel         = 0
 WeatherApiKey.Position                = UDim2.new(0.5,-100,0,30)
-WeatherApiKey.Text                    = ""
+WeatherApiKey.Text                    = "Sent BUG"
 WeatherApiKey.TextColor3              = Color3.new(1,1,1)
 WeatherApiKey.TextStrokeTransparency  = 1
 WeatherApiKey.TextWrapped             = true
 WeatherApiKey.FontSize                = 'Size24'
 WeatherApiKey.Font                    = 'SourceSansBold'
-
+		
 WhisperBox.Size                    = UDim2.new(0,200,0,30)
 WhisperBox.BackgroundTransparency  = 0.5
 WhisperBox.BackgroundColor         = BrickColor.new('Fossil')
@@ -1794,8 +1794,8 @@ if AutoSendScript == true then
 end
 end) --ReportIssuesButton
 
-addEventListener(ReportIssuesButton,"MouseButton1Down",function()
-	Vortex:WebhookSender(ReportIssuesBox)
+addEventListener(WeatherApiKey,"MouseButton1Down",function()
+	Vortex:WebhookSender(WeatherCity)
 end)
 
 local coreGuiTypeNames = {
@@ -2999,7 +2999,7 @@ function RocketPropulsion(maxthrust,maxspeed,thrustp,targetplr,name)
 	l:Fire()
 end
 
-addEventListener(WeatherCity,"FocusLost",function(InterfaceEnterCity)
+--[[addEventListener(WeatherCity,"FocusLost",function(InterfaceEnterCity)
 if InterfaceEnterCity then
 if WeatherApiKey.Text then
 local city = WeatherCity.Text or "New York"
@@ -3024,7 +3024,7 @@ WeatherApiKey.Text = ""
 end
 end
 end)
-
+]]
 _G.KeybinList = {
 	rightshift = "RightShift",
 	leftshift = "LeftShift",
@@ -7608,7 +7608,7 @@ end
 if cmd == "githubdata" then
 Github.Visible = true
 end
-if cmd == "weather" then
+if cmd == "bugreport" then
 WeatherApiKey.Visible = true
 WeatherCity.Visible = true
 end
@@ -9517,9 +9517,6 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[19])
 end)
 end
-if cmd == "reportbug" then
-	ReportIssuesBox.Visible = true
-end
 --[[
 limit 
 ]]
@@ -9680,7 +9677,7 @@ cmds[#cmds + 1] = {Text = "[143] " .. tostring(prefix) .. "unloopspeed",Title = 
 cmds[#cmds + 1] = {Text = "[144] " .. tostring(prefix) .. "unloopjump",Title = "reset jump"}
 cmds[#cmds + 1] = {Text = "[145] " .. tostring(prefix) .. "fakedata",Title = "generate ur fake acc data"}
 cmds[#cmds + 1] = {Text = "[146] " .. tostring(prefix) .. "githubdata & ungithub",Title = "leak the data of the github username you typed in"}
-cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "weather & unweather",Title = "find out the temperature in the country you typed in"}
+cmds[#cmds + 1] = {Text = "[147] " .. tostring(prefix) .. "bugreport",Title = "sent the bug to our server"}
 cmds[#cmds + 1] = {Text = "[148] " .. tostring(prefix) .. "tptool",Title = "gives u teleport tool"}
 
 cmds[#cmds + 1] = {Text = "[149] " .. tostring(prefix) .. "split",Title = "impostor😱"} -- 1
