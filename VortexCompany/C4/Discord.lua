@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.2 | VortexOS V5.7.8" -- reverted version
+local version = "2.9.3 | VortexOS V5.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -436,7 +436,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Possessor/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-Wall-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua",
+	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua"
 }
 
 function dragify(Frame)
@@ -1801,8 +1802,7 @@ sp.buttonTrigger(function()
 		game:GetService('TeleportService'):TeleportToPlaceInstance(sp.getTextbox1() or game.PlaceId,sp.getTextbox2() or game.JobId,speaker)
 	end)
 	if not init then
-		titleUI:ChangeNoticeMsg("We couldn't find a server or a game, error: " .. error)
-		titleUI:ChangeLargeMsg("Sniping : server or game is unavailable or full")
+		loading:Cancel("Sniping : server or game is unavailable or full","We couldn't find a server or a game, error: " .. error)
 	end
 end)
 		
