@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.1 | VortexOS V5.7.8" -- reverted version
+local version = "2.9.2 | VortexOS V5.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -9528,6 +9528,15 @@ if cmd == "zh" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[19])
+end)
+end
+if cmd == "snipeai" then
+Vortex:CheckError(function()
+Vortex:OnlyDeveloper(function()
+	notify("Injecting...","pls wait..")
+        sp.showGUI()
+	--sp.hideGUI()
+end)
 end)
 end
 --[[
