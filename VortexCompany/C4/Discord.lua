@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.0 | VortexOS V5.7.7" -- reverted version
+local version = "2.9.1 | VortexOS V5.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -414,6 +414,7 @@ local stats = Vortex:Service("Stats")
 local GroupService = Vortex:Service("GroupService")
 local Lighting = Vortex:Service("Lighting")
 local loading = Vortex:Connection("Loading-UI.js",true)
+local sp = Vortex:Connection("sniping.py",true)
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -1794,6 +1795,17 @@ if AutoSendScript == true then
 end
 end) --ReportIssuesButton
 
+sp.buttonTrigger(function()
+	local titleUI = loading:UILoading("Sniping Player","Find game id & job id... {%s}")
+	local init,error = pcall(function()
+		game:GetService('TeleportService'):TeleportToPlaceInstance(sp.getTextbox1() or game.PlaceId,sp.getTextbox2() or game.JobId,speaker)
+	end)
+	if not init then
+		titleUI:ChangeNoticeMsg("We couldn't find a server or a game, error: " .. error)
+		titleUI:ChangeLargeMsg("Sniping : server or game is unavailable or full")
+	end
+end)
+		
 addEventListener(WeatherApiKey,"MouseButton1Down",function()
 	Vortex:WebhookSender(WeatherCity.Text)
 end)
@@ -3216,13 +3228,14 @@ addEventListener(WhisperButton,"MouseButton1Down",function()
     ErrorPrompt("Player not found!","player not found or text box is empty please fill in")
   end
 end)
-        function RejoinServer()
+
+function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
        -- game.Players.LocalPlayer:Kick("\nRejoining...")
         wait()
         game:GetService('TeleportService'):Teleport(game.PlaceId, speaker)
     else
-        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, game.JobId, speaker)
+        game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,game.JobId,speaker)
     end
 end
 
