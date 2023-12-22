@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.3 | VortexOS V5.7.8" -- reverted version
+local version = "2.9.4 | VortexOS V5.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6483,7 +6483,8 @@ local OfficialMusic = {
        wonderfulday = 1843382633,
        bloodpop = 6823597327,
        sunrise = 1837324500,
-       cintanyaaku = 14417854633
+       cintanyaaku = 14417854633,
+       deepcore = 1837633054
 }
 
 local TextMusic = {
@@ -6494,7 +6495,8 @@ local TextMusic = {
       wonderfulday = "Wonderful Day",
       bloodpop = "BloodPop",
       sunrise = "Sunrise",
-      cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto"
+      cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto",
+      deepcore = "Deepcore"
 }
 
 Vortex:CheckError(function()
