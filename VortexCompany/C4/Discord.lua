@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.4 | VortexOS V5.7.8" -- reverted version
+local version = "2.9.5 | VortexOS V5.7.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -437,7 +437,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Shoot-Wall-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua",
-	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua"
+	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua"
 }
 
 function dragify(Frame)
@@ -9541,6 +9542,18 @@ Vortex:OnlyDeveloper(function()
 end)
 end)
 end
+if cmd == "clicktobuild" or cmd == "ctb" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[21])
+end)
+end
+if cmd == "antilog" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[20])
+end)
+end
 --[[
 limit 
 ]]
@@ -9882,6 +9895,8 @@ cmds[#cmds + 1] = {Text = "[323] " .. tostring(prefix) .. "dragonwarrior / dws",
 cmds[#cmds + 1] = {Text = "[324] " .. tostring(prefix) .. "donate",Title = "Donate me 😭"}
 cmds[#cmds + 1] = {Text = "[325] " .. tostring(prefix) .. "freeze / fr [display name]",Title = "Freeze someone character [ Visual ]"}
 cmds[#cmds + 1] = {Text = "[326] " .. tostring(prefix) .. "unfreeze / thaw / unfr",Title = "Unfreeze someone character [ Visual ]"}
+cmds[#cmds + 1] = {Text = "[327] " .. tostring(prefix) .. "clicktobuild / ctb",Title = "Run Click to build Script"}
+cmds[#cmds + 1] = {Text = "[328] " .. tostring(prefix) .. "antilog",Title = "block all log"}
 
 _G.RemoveSymbols = {
    blank = ""
