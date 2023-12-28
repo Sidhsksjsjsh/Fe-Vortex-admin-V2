@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.7 | VortexOS V5.7.9" -- reverted version
+local version = "2.9.8 | VortexOS V5.7.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -438,7 +438,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/DragonWarriorsSimulator/main/TurtleHub.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua",
 	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua"
 }
 
 function dragify(Frame)
@@ -9556,6 +9557,14 @@ if cmd == "antilog" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[20])
+end)
+end
+if cmd == "gametes" then
+Vortex:CheckError(function()
+Vortex:OnlyDeveloper(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[22])
+end)
 end)
 end
 --[[
