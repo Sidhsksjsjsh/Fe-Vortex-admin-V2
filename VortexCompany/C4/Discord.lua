@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.8 | VortexOS V5.7.9" -- reverted version
+local version = "2.9.9 | VortexOS V5.8.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -439,7 +439,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Zombie-Hunter/main/.lua",
 	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua"
 }
 
 function dragify(Frame)
@@ -9567,6 +9568,12 @@ Vortex:OnlyDeveloper(function()
 end)
 end)
 end
+if cmd == "space" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[23])
+end)
+end
 --[[
 limit 
 ]]
@@ -9910,6 +9917,7 @@ cmds[#cmds + 1] = {Text = "[325] " .. tostring(prefix) .. "freeze / fr [display 
 cmds[#cmds + 1] = {Text = "[326] " .. tostring(prefix) .. "unfreeze / thaw / unfr",Title = "Unfreeze someone character [ Visual ]"}
 cmds[#cmds + 1] = {Text = "[327] " .. tostring(prefix) .. "clicktobuild / ctb",Title = "Run Click to build Script"}
 cmds[#cmds + 1] = {Text = "[328] " .. tostring(prefix) .. "antilog",Title = "block all log"}
+cmds[#cmds + 1] = {Text = "[329] " .. tostring(prefix) .. "space",Title = "Run Launch Into Space Simulator Script"}
 
 _G.RemoveSymbols = {
    blank = ""
