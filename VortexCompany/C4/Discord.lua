@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.9 | VortexOS V5.8.0" -- reverted version
+local version = "2.9.9 | VortexOS V5.8.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3224,13 +3224,13 @@ function LoveRate(player, ratetype)
 end
 --]]
 
-function ProtocolWhisperChat(SyncPlayer, ProtocolWhisperChatService)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService),"All")
+function ProtocolWhisperChat(SyncPlayer,ProtocolWhisperChatService)
+     Vortex:SendMessage("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService),"All")
 end
 
 addEventListener(WhisperButton,"MouseButton1Down",function()
    if Players:FindFirstChild(WhisperPlayer.Text) then
-    ProtocolWhisperChat(WhisperPlayer.Text, WhisperBox.Text)
+    ProtocolWhisperChat(WhisperPlayer.Text,WhisperBox.Text)
     else
     ErrorPrompt("Player not found!","player not found or text box is empty please fill in")
   end
@@ -3240,7 +3240,7 @@ function RejoinServer()
     if #game.Players:GetPlayers() <= 1 then
        -- game.Players.LocalPlayer:Kick("\nRejoining...")
         wait()
-        game:GetService('TeleportService'):Teleport(game.PlaceId, speaker)
+        game:GetService('TeleportService'):Teleport(game.PlaceId,speaker)
     else
         game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId,game.JobId,speaker)
     end
@@ -10031,12 +10031,12 @@ end
         end
         if ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" or ProtocolChat == "" then
             wait(1)
-            ProtocolSendChat("")
+            Vortex:SendMessage("")
         end
         if ProtocolChat == ProtocolDisplayName or ProtocolChat == speaker.Name or ProtocolChat == ProtocolDisplayName:lower() then -- string if they call your name using display or username
             wait(1)
             if _G.Settings.LocalBotChatFunc == true then
-            ProtocolSendChat("hm?") -- roblox chat anti-detect
+            Vortex:SendMessage("hm?") -- roblox chat anti-detect
             else
             warning("Bot is disabled","The bot will not answer if someone calls your name.")
             end
