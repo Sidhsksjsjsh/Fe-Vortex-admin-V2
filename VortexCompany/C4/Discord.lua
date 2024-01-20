@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.9 | VortexOS V5.8.2" -- reverted version
+local version = "-MAX | VortexOS V5.8.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -4939,142 +4939,6 @@ end
 end
 end
 
-
-
-local SourceUITemplate = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Content = Instance.new("Frame")
-local Content_2 = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local Close = Instance.new("ImageButton")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
-local TextLabel = Instance.new("TextLabel")
-local List = Instance.new("TextLabel")
-local UICorner = Instance.new("UICorner")
-
-SourceUITemplate.Name = "SourceUITemplate"
-SourceUITemplate.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-SourceUITemplate.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Frame.Parent = SourceUITemplate
-Frame.BackgroundColor3 = Color3.fromRGB(128, 128, 128)
-Frame.BackgroundTransparency = 0.300
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.425558329, 0, 0.38188976, 0)
-Frame.Size = UDim2.new(0, 300, 0, 300)
-
-Content.Name = "Content"
-Content.Parent = Frame
-Content.AnchorPoint = Vector2.new(0.5, 0.5)
-Content.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Content.BackgroundTransparency = 1.000
-Content.Position = UDim2.new(0.5, 0, 0.5, 0)
-Content.Size = UDim2.new(1, -10, 1, -10)
-
-Content_2.Name = "Content"
-Content_2.Parent = Frame
-Content_2.AnchorPoint = Vector2.new(0.5, 0.5)
-Content_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Content_2.BackgroundTransparency = 1.000
-Content_2.Position = UDim2.new(1, 0, 0, 0)
-Content_2.Size = UDim2.new(1, -10, 0.5, 0)
-
-Title.Name = "Title"
-Title.Parent = Content
-Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundTransparency = 1.000
-Title.Size = UDim2.new(1, 0, 0, 18)
-Title.Font = Enum.Font.SourceSansBold
-Title.Text = "Vortext V:{2} | {ContentError}:{1}"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.TextScaled = true
-Title.TextSize = 14.000
-Title.TextWrapped = true
-Title.TextXAlignment = Enum.TextXAlignment.Left
-Title.TextYAlignment = Enum.TextYAlignment.Top
-
-Close.Name = "Close"
-Close.Parent = Content
-Close.AnchorPoint = Vector2.new(1, 0)
-Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Close.BackgroundTransparency = 1.000
-Close.Position = UDim2.new(1, 0, 0, 0)
-Close.Size = UDim2.new(1, 0, 0, 16)
-
-UIAspectRatioConstraint.Parent = Close
-
-TextLabel.Parent = Close
-TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-TextLabel.Size = UDim2.new(1, 0, 1, 0)
-TextLabel.Font = Enum.Font.GothamBlack
-TextLabel.Text = "X"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextTransparency = 0.500
-TextLabel.TextWrapped = true
-
-UICorner.CornerRadius = UDim.new(0, 5)
-UICorner.Parent = Frame
-
-local function close()
-local script = Instance.new('LocalScript', Close)
-
-script.Parent.MouseButton1Click:Connect(function()
-script.Parent.Parent.Parent.Visible = false
-end)
-
-end
-coroutine.wrap(close)()
-local function drag()
-local script = Instance.new('LocalScript', Frame)
-
-local UserInputService = game:GetService("UserInputService")
-
-local gui = script.Parent
-
-local dragging
-local dragInput
-local dragStart
-local startPos
-
-local function update(input)
-local delta = input.Position - dragStart
-gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-end
-
-gui.InputBegan:Connect(function(input)
-if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-dragging = true
-dragStart = input.Position
-startPos = gui.Position
-
-input.Changed:Connect(function()
-if input.UserInputState == Enum.UserInputState.End then
-dragging = false
-end
-end)
-end
-end)
-
-gui.InputChanged:Connect(function(input)
-if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-dragInput = input
-end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-if input == dragInput and dragging then
-update(input)
-end
-end)
-end
-coroutine.wrap(drag)()
-SourceUITemplate:Destroy()
-
 function Helicopter(mode)
          if mode == "fling" then
          if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
@@ -5861,18 +5725,23 @@ _G.Settings.PastedSources = false
 speaker.Character.HumanoidRootPart.CFrame = LPost
 end)
 
-Vortex:HumanoidDied(function()
-NOFLY()
-U1.Visible = false
-U2.Visible = false
-U3.Visible = false
-U4.Visible = false
-U5.Visible = false
-U6.Visible = false
+local strarray = ""
+Vortex:HumanoidDied(function(eventAdded)
+if eventAdded then
+	AnimationExtension(strarray:gsub(" ",""))
+else
+	NOFLY()
+	U1.Visible = false
+	U2.Visible = false
+	U3.Visible = false
+	U4.Visible = false
+	U5.Visible = false
+	U6.Visible = false
+end
 end)
 
-Vortex:HumanoidDied(function()
-if Noclipping then
+Vortex:HumanoidDied(function(eventAdded)
+if Noclipping and eventAdded then
 		Noclipping:Disconnect()
 		for _, child in pairs(speaker.Character:GetDescendants()) do
                    if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
@@ -7529,6 +7398,7 @@ end
 if cmd == "animation" then
 local var = string.sub(msg,space+1)
 AnimationExtension(var:gsub(" ",""))
+strarray = var:gsub(" ","")
 end
 if cmd == "clock" then
 Vortex:CheckError(function()
