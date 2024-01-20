@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "2.9.9 | VortexOS V5.8.1" -- reverted version
+local version = "2.9.9 | VortexOS V5.8.2" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -440,7 +440,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua"
 }
 
 function dragify(Frame)
@@ -9574,6 +9575,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[23])
 end)
 end
+if cmd == "nds" or cmd == "naturaldisaster" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[24])
+end)
+end
 --[[
 limit 
 ]]
@@ -9918,6 +9925,7 @@ cmds[#cmds + 1] = {Text = "[326] " .. tostring(prefix) .. "unfreeze / thaw / unf
 cmds[#cmds + 1] = {Text = "[327] " .. tostring(prefix) .. "clicktobuild / ctb",Title = "Run Click to build Script"}
 cmds[#cmds + 1] = {Text = "[328] " .. tostring(prefix) .. "antilog",Title = "block all log"}
 cmds[#cmds + 1] = {Text = "[329] " .. tostring(prefix) .. "space",Title = "Run Launch Into Space Simulator Script"}
+cmds[#cmds + 1] = {Text = "[330] " .. tostring(prefix) .. "nds / naturaldisaster",Title = "Run Natural Disaster Script"}
 
 _G.RemoveSymbols = {
    blank = ""
