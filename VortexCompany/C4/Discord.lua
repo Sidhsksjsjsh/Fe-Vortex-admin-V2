@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.3" -- reverted version
+local version = "-MAX | VortexOS V5.8.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -2534,7 +2534,7 @@ for i,v in pairs(game.Workspace:GetDescendants()) do
 end
 
 function capitalizeFirstLetter(str)
-    return str:gsub("(%a)([%w_']*)", function(first, rest)
+    return str:gsub("(%a)([%w_']*)", function(first,rest)
         return first:upper() .. rest:lower()
     end)
 end
@@ -3513,7 +3513,7 @@ else
 	PARENT = Main
 end
 
-function round(num, numDecimalPlaces)
+function round(num,numDecimalPlaces)
 	local mult = 10^(numDecimalPlaces or 0)
 	return math.floor(num * mult + 0.5) / mult
 end
@@ -5725,11 +5725,61 @@ _G.Settings.PastedSources = false
 speaker.Character.HumanoidRootPart.CFrame = LPost
 end)
 
+function VFlyToolForMobile()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "VFLY TOOL \n[ false ]"
+tool.Parent = speaker.Backpack
+addEventListener(tool,"Equipped",function()
+--tool.Equipped:Connect(function()
+	NOFLY()
+	wait()
+	sFLY(true)
+	U1.Visible = true
+        U2.Visible = true
+        U3.Visible = true
+        U4.Visible = true
+        U5.Visible = true
+        U6.Visible = true
+	tool.Name = "VFLY TOOL \n[ true ]"
+end)
+addEventListener(tool,"Unequipped",function()
+--tool.Unequipped:Connect(function()
+	NOFLY()
+        U1.Visible = false
+        U2.Visible = false
+        U3.Visible = false
+        U4.Visible = false
+        U5.Visible = false
+        U6.Visible = false
+	tool.Name = "VFLY TOOL \n[ false ]"
+end)
+end
+
+function VFlyToolForPC()
+local tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "VFLY TOOL \n[ false ]"
+tool.Parent = speaker.Backpack
+addEventListener(tool,"Equipped",function()
+--tool.Equipped:Connect(function()
+	NOFLY()
+	wait()
+	sFLY(true)
+	tool.Name = "VFLY TOOL \n[ true ]"
+end)
+addEventListener(tool,"Unequipped",function()
+--tool.Unequipped:Connect(function()
+	NOFLY()
+        tool.Name = "VFLY TOOL \n[ false ]"
+end)
+end
+
 local strarray = ""
 Vortex:HumanoidDied(function(eventAdded)
-if eventAdded then
-	AnimationExtension(strarray:gsub(" ",""))
-else
+--if eventAdded then
+--	AnimationExtension(strarray:gsub(" ",""))
+--else
 	NOFLY()
 	U1.Visible = false
 	U2.Visible = false
@@ -5737,11 +5787,11 @@ else
 	U4.Visible = false
 	U5.Visible = false
 	U6.Visible = false
-end
+--end
 end)
 
 Vortex:HumanoidDied(function(eventAdded)
-if Noclipping and eventAdded then
+if Noclipping then
 		Noclipping:Disconnect()
 		for _, child in pairs(speaker.Character:GetDescendants()) do
                    if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
@@ -9451,6 +9501,13 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[24])
 end)
 end
+if cmd == "vflytool" then
+if table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform()) then
+   VFlyToolForMobile()
+else
+   VFlyToolForPC()
+end
+end
 --[[
 limit 
 ]]
@@ -9796,6 +9853,7 @@ cmds[#cmds + 1] = {Text = "[327] " .. tostring(prefix) .. "clicktobuild / ctb",T
 cmds[#cmds + 1] = {Text = "[328] " .. tostring(prefix) .. "antilog",Title = "block all log"}
 cmds[#cmds + 1] = {Text = "[329] " .. tostring(prefix) .. "space",Title = "Run Launch Into Space Simulator Script"}
 cmds[#cmds + 1] = {Text = "[330] " .. tostring(prefix) .. "nds / naturaldisaster",Title = "Run Natural Disaster Script"}
+cmds[#cmds + 1] = {Text = "[331] " .. tostring(prefix) .. "vflytool",Title = "VFly but tool version, same as 'flytool'"}
 
 _G.RemoveSymbols = {
    blank = ""
