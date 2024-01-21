@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.5" -- reverted version
+local version = "-MAX | VortexOS V5.8.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -415,6 +415,8 @@ local GroupService = Vortex:Service("GroupService")
 local Lighting = Vortex:Service("Lighting")
 local loading = Vortex:Connection("Loading-UI.js",true)
 local sp = Vortex:Connection("sniping.py",true)
+local AvatarEditorService = game:GetService("AvatarEditorService")
+local vnoclipParts = {}
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -5802,6 +5804,27 @@ if Noclipping then
 	Clip = true
 end)
 
+function promptNewRig(speaker,rig)
+local humanoid = speaker.Character:FindFirstChildWhichIsA("Humanoid")
+if humanoid then
+   AvatarEditorService:PromptSaveAvatar(humanoid.HumanoidDescription,Enum.HumanoidRigType[rig])
+   local result = AvatarEditorService.PromptSaveAvatarCompleted:Wait()
+   if result == Enum.AvatarPromptResult.Success then
+      speaker.Character:BreakJoints()
+   end
+  end
+end
+
+local function NoclipLoop()
+		if Clip == false and speaker.Character ~= nil then
+			for _, child in pairs(speaker.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+		
 addEventListener(TextBox,"FocusLost",function(Execute)
    if Execute then -- 1
 local msg = TextBox.Text:lower()
@@ -9508,6 +9531,46 @@ else
    VFlyToolForPC()
 end
 end
+if cmd == "vnclip" or cmd == "vnoclip" then
+	vnoclipParts = {}
+local seat = speaker.Character:FindFirstChildOfClass('Humanoid').SeatPart
+local vehicleModel = seat.Parent
+repeat
+if vehicleModel.ClassName ~= "Model" then
+vehicleModel = vehicleModel.Parent
+end
+until vehicleModel.ClassName == "Model"
+wait(0.1)
+Clip = false
+forvnclip = RunService.Stepped:Connect(NoclipLoop)
+for i,v in pairs(vehicleModel:GetDescendants()) do
+if v:IsA("BasePart") and v.CanCollide then
+table.insert(vnoclipParts,v)
+v.CanCollide = false
+end
+end
+end
+if cmd == "vclip" then
+	if forvnclip then
+		forvnclip:Disconnect()
+		for _, child in pairs(speaker.Character:GetDescendants()) do
+                   if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+			child.CanCollide = true
+		end
+	end
+	end
+	Clip = true
+for i,v in pairs(vnoclipParts) do
+      v.CanCollide = true
+end
+vnoclipParts = {}
+end
+if cmd == "promptr6" then
+	promptNewRig(speaker,"R6")
+end
+if cmd == "promptr15" then
+	promptNewRig(speaker,"R15")
+end
 --[[
 limit 
 ]]
@@ -9853,7 +9916,11 @@ cmds[#cmds + 1] = {Text = "[327] " .. tostring(prefix) .. "clicktobuild / ctb",T
 cmds[#cmds + 1] = {Text = "[328] " .. tostring(prefix) .. "antilog",Title = "block all log"}
 cmds[#cmds + 1] = {Text = "[329] " .. tostring(prefix) .. "space",Title = "Run Launch Into Space Simulator Script"}
 cmds[#cmds + 1] = {Text = "[330] " .. tostring(prefix) .. "nds / naturaldisaster",Title = "Run Natural Disaster Script"}
-cmds[#cmds + 1] = {Text = "[331] " .. tostring(prefix) .. "vflytool",Title = "VFly but tool version, same as 'flytool'"}
+cmds[#cmds + 1] = {Text = "[331] " .. tostring(prefix) .. "vflytool",Title = "VFly but tool version, same as 'flytool' but this is for car"}
+cmds[#cmds + 1] = {Text = "[332] " .. tostring(prefix) .. "vnoclip / vnclip",Title = "make the car noclipped / through the wall"}
+cmds[#cmds + 1] = {Text = "[333] " .. tostring(prefix) .. "vclip",Title = "Disable vnoclip"}
+cmds[#cmds + 1] = {Text = "[334] " .. tostring(prefix) .. "promptr6",Title = "make the game prompt to switch your rig to R6"}
+cmds[#cmds + 1] = {Text = "[335] " .. tostring(prefix) .. "promptr15",Title = "make the game prompt to switch your rig to R15"}
 
 _G.RemoveSymbols = {
    blank = ""
