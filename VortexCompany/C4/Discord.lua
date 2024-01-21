@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.4" -- reverted version
+local version = "-MAX | VortexOS V5.8.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -933,7 +933,7 @@ addEventListener(WhisperPlayer,"FocusLost",function(Enter)
    if Enter then
    for i,v in pairs(game.Players:GetChildren()) do
        if (string.sub(string.lower(v.Name),1,string.len(WhisperPlayer.Text))) == string.lower(WhisperPlayer.Text) then
-         WhisperPlayer.Text = v.Name
+         WhisperPlayer.Text = v.DisplayName
      end
   end
    end
@@ -9932,20 +9932,6 @@ local content_credit = Developer.Title .. "\n" .. Developer.Rivanda_Cheater .. "
 local ContentCmds = "The command list is in the console."
 
 warn(content_credit)
-
-List.Parent = Content_2
-List.AnchorPoint = Vector2.new(0.5, 0.5)
-List.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-List.BackgroundTransparency = 1.000
-List.Position = UDim2.new(0, 1, 1, 0)
-List.Size = UDim2.new(1, 0, 0, 18)
-List.Font = Enum.Font.GothamBlack
-List.Text = "The command list is in the console. {!}:{}"
-List.TextColor3 = Color3.fromRGB(255, 255, 255)
-List.TextScaled = true
-List.TextSize = 14.000
-List.TextTransparency = 0.500
-List.TextWrapped = true
 
 -- ProtocolSendChat()
 local ProtocolDisplayName = speaker.DisplayName
