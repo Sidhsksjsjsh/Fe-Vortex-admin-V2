@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.7" -- reverted version
+local version = "-MAX | VortexOS V5.8.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -443,7 +443,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/click-to-build/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua"
 }
 
 function dragify(Frame)
@@ -934,7 +935,7 @@ addEventListener(WhisperPlayer,"FocusLost",function(Enter)
 --WhisperPlayer.FocusLost:Connect(function(Enter)
    if Enter then
    for i,v in pairs(game.Players:GetChildren()) do
-       if (string.sub(string.lower(v.Name),1,string.len(WhisperPlayer.Text))) == string.lower(WhisperPlayer.Text) then
+       if (string.sub(string.lower(v.DisplayName),1,string.len(WhisperPlayer.Text))) == string.lower(WhisperPlayer.Text) then
          WhisperPlayer.Text = v.DisplayName
      end
   end
@@ -9570,6 +9571,12 @@ if cmd == "promptr6" then
 end
 if cmd == "promptr15" then
 	promptNewRig(speaker,"R15")
+end
+if cmd == "ai" or cmd == "aitc" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[25])
+end)
 end
 --[[
 limit 
