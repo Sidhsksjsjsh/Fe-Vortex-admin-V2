@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.9" -- reverted version
+local version = "-MAX | VortexOS V5.9.0" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7869,12 +7869,10 @@ if cmd == "bypass" then
 --local var = string.sub(msg,space+1)
 local s,r = pcall(function()
 Vortex:AdonisBypass("V3")
-wait(0.5)
-Anticheat_Bypass()
 end)
 
 if s then
-success("Anti-Cheat bypass is running 🐧","do not run this command again!")
+success("Anti-Cheat bypass is running 🐧","Bypassed adonis all anti-cheat")
 else
 warning("Anti-Cheat Bypass Error 🐧",r)
 end
@@ -9580,6 +9578,18 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[25])
 end)
 end
+if cmd == "antikick" then
+--local var = string.sub(msg,space+1)
+local s,r = pcall(function()
+Anticheat_Bypass()
+end)
+
+if s then
+success("Anti-Cheat bypass is running 🐧","Anti-kick is enabled!")
+else
+warning("Anti-Cheat Bypass Error 🐧",r)
+end
+end
 --[[
 limit 
 ]]
@@ -9769,7 +9779,7 @@ cmds[#cmds + 1] = {Text = "[171] " .. tostring(prefix) .. "fates",Title = "execu
 cmds[#cmds + 1] = {Text = "[172] " .. tostring(prefix) .. "looptime [number]",Title = "Looping"}
 cmds[#cmds + 1] = {Text = "[173] " .. tostring(prefix) .. "unlooptime",Title = "stop looping"}
 cmds[#cmds + 1] = {Text = "[174] " .. tostring(prefix) .. "time [number]",Title = "set world time"}
-cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass [V1 / V2 / V3 / Auto]",Title = "bypass all anti-cheat (including adonis)"}
+cmds[#cmds + 1] = {Text = "[175] " .. tostring(prefix) .. "bypass",Title = "bypass all adonis anti-cheat"}
 cmds[#cmds + 1] = {Text = "[176] " .. tostring(prefix) .. "epicm",Title = "execute epic minigames script"}
 cmds[#cmds + 1] = {Text = "[177] " .. tostring(prefix) .. "oldrspy",Title = "execute old remote spy script"}
 cmds[#cmds + 1] = {Text = "[178] " .. tostring(prefix) .. "fling2",Title = "touch someone"}
@@ -9930,6 +9940,7 @@ cmds[#cmds + 1] = {Text = "[332] " .. tostring(prefix) .. "vnoclip / vnclip",Tit
 cmds[#cmds + 1] = {Text = "[333] " .. tostring(prefix) .. "vclip",Title = "Disable vnoclip"}
 cmds[#cmds + 1] = {Text = "[334] " .. tostring(prefix) .. "promptr6",Title = "make the game prompt to switch your rig to R6"}
 cmds[#cmds + 1] = {Text = "[335] " .. tostring(prefix) .. "promptr15",Title = "make the game prompt to switch your rig to R15"}
+cmds[#cmds + 1] = {Text = "[336] " .. tostring(prefix) .. "antikick",Title = "bypass kick"}
 
 _G.RemoveSymbols = {
    blank = ""
