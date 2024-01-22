@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.8.8" -- reverted version
+local version = "-MAX | VortexOS V5.8.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -3205,7 +3205,7 @@ function IP(country)
 end
 
 function ProtocolSendChat(ProtocolChatService)
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ProtocolChatService,"All")
+	Vortex:SendMessage(ProtocolChatService)
 end
 
 --[[
@@ -3229,15 +3229,17 @@ end
 --]]
 
 function ProtocolWhisperChat(SyncPlayer,ProtocolWhisperChatService)
-     Vortex:SendMessage("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService),"All")
+     Vortex:SendMessage("/w " .. tostring(SyncPlayer) .. " " .. tostring(ProtocolWhisperChatService))
 end
 
 addEventListener(WhisperButton,"MouseButton1Down",function()
-   if Players:FindFirstChild(WhisperPlayer.Text) then
+   Vortex:Player(function(i,v)
+   if v.DisplayName == WhisperPlayer.Text then
     ProtocolWhisperChat(WhisperPlayer.Text,WhisperBox.Text)
     else
     ErrorPrompt("Player not found!","player not found or text box is empty please fill in")
   end
+end)
 end)
 
 function RejoinServer()
