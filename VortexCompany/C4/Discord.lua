@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.0" -- reverted version
+local version = "-MAX | VortexOS V5.9.1" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -444,7 +444,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/wake-up-to-survive-the-bomb/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua"
 }
 
 function dragify(Frame)
@@ -5792,6 +5793,7 @@ Vortex:HumanoidDied(function(eventAdded)
 	U4.Visible = false
 	U5.Visible = false
 	U6.Visible = false
+	ExplodePart(speaker.Character.HumanoidRootPart)
 --end
 end)
 
@@ -5813,7 +5815,9 @@ if humanoid then
    AvatarEditorService:PromptSaveAvatar(humanoid.HumanoidDescription,Enum.HumanoidRigType[rig])
    local result = AvatarEditorService.PromptSaveAvatarCompleted:Wait()
    if result == Enum.AvatarPromptResult.Success then
-      speaker.Character:BreakJoints()
+        speaker.Character:BreakJoints()
+  else
+	ErrorPrompt("Failed to change rig to " .. rig,"There was a problem trying to change your character's rig!")
    end
   end
 end
@@ -9590,6 +9594,12 @@ else
 warning("Anti-Cheat Bypass Error 🐧",r)
 end
 end
+if cmd == "hforugc" or cmd == "ugc" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[26])
+end)
+end
 --[[
 limit 
 ]]
@@ -9941,6 +9951,7 @@ cmds[#cmds + 1] = {Text = "[333] " .. tostring(prefix) .. "vclip",Title = "Disab
 cmds[#cmds + 1] = {Text = "[334] " .. tostring(prefix) .. "promptr6",Title = "make the game prompt to switch your rig to R6"}
 cmds[#cmds + 1] = {Text = "[335] " .. tostring(prefix) .. "promptr15",Title = "make the game prompt to switch your rig to R15"}
 cmds[#cmds + 1] = {Text = "[336] " .. tostring(prefix) .. "antikick",Title = "bypass kick"}
+cmds[#cmds + 1] = {Text = "[337] " .. tostring(prefix) .. "hforugc / ugc",Title = "Run Hatch for UGC Script!"}
 
 _G.RemoveSymbols = {
    blank = ""
