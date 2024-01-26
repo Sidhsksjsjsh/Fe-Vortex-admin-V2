@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.2" -- reverted version
+local version = "-MAX | VortexOS V5.9.3" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1888,6 +1888,7 @@ function partAdded(part)
 		partEspTrigger:Disconnect()
 		partEspTrigger = nil
 		vtagpart:BreakTag()
+		vtagpart = nil
 	end
 end
 
@@ -7261,8 +7262,8 @@ local partEspName = var
 				a.Transparency = 0.3
 				a.Color = BrickColor.new("Lime green")]]
 				vtagpart = Vortex:CreateESPTag({
-					Text = "Part",
-					Part = game.Workspace.nil,
+					Text = v.Name,
+					Part = v,
 					TextSize = 7,
 					TextColor = Color3.new(255, 255, 255),
 					Highlight = true,
@@ -7286,11 +7287,13 @@ if var then
 			table.remove(espParts, GetInTable(espParts, partEspName))
 		end
 		vtagpart:BreakTag()
+		vtagpart = nil
 	else
 		partEspTrigger:Disconnect()
 		partEspTrigger = nil
 		espParts = {}
 		vtagpart:BreakTag()
+		vtagpart = nil
 	end
 end
 if cmd == "gotopart" then
