@@ -415,8 +415,9 @@ local GroupService = Vortex:Service("GroupService")
 local Lighting = Vortex:Service("Lighting")
 local loading = Vortex:Connection("Loading-UI.js",true)
 local sp = Vortex:Connection("sniping.py",true)
-local AvatarEditorService = game:GetService("AvatarEditorService")
+local AvatarEditorService = Vortex:Service("AvatarEditorService")
 local vnoclipParts = {}
+local vtagpart = nil
 local Blur = Instance.new("BlurEffect", Lighting)
 Blur.Size = 0 --12
 local UrlScript = {
@@ -1861,7 +1862,7 @@ local partEspTrigger = nil
 function partAdded(part)
 	if #espParts > 0 then
 		if FindInTable(espParts,part.Name:lower()) then
-			local a = Instance.new("BoxHandleAdornment")
+			--[[local a = Instance.new("BoxHandleAdornment")
 			a.Name = part.Name:lower().."_PESP"
 			a.Parent = part
 			a.Adornee = part
@@ -1869,12 +1870,24 @@ function partAdded(part)
 			a.ZIndex = 0
 			a.Size = part.Size
 			a.Transparency = 0.3
-			a.Color = BrickColor.new("Lime green")
+			a.Color = BrickColor.new("Lime green")]]
+			vtagpart = Vortex:CreateESPTag({
+				Text = part.Name,
+				Part = part,
+				TextSize = 7,
+				TextColor = Color3.new(255,255,255),
+				Highlight = true,
+				Outline = Color3.new(0,1,0),
+				EnableBoxESP = true,
+				BoxColor = Color3.new(1,1,1),
+				TracerColor = Color3.new(1,1,1)
+			})
 			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
 		end
 	else
-		partEspTrigger:Disconnect()
-		partEspTrigger = nil
+		--[[partEspTrigger:Disconnect()
+		partEspTrigger = nil]]
+		vtagpart:BreakTag()
 	end
 end
 
