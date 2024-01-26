@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.1" -- reverted version
+local version = "-MAX | VortexOS V5.9.2" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -1885,8 +1885,8 @@ function partAdded(part)
 			notify("Part Spawned","Part name '"..part.Name:lower().."' has been spawned.")
 		end
 	else
-		--[[partEspTrigger:Disconnect()
-		partEspTrigger = nil]]
+		partEspTrigger:Disconnect()
+		partEspTrigger = nil
 		vtagpart:BreakTag()
 	end
 end
@@ -7249,9 +7249,9 @@ local var = string.sub(msg,space+1)
 local partEspName = var
 	if not FindInTable(espParts,partEspName) then
 		table.insert(espParts,partEspName)
-		for i,v in pairs(workspace:GetDescendants()) do
+		Vortex:Descendants(workspace,function(v)
 			if v:IsA("BasePart") and v.Name:lower() == partEspName then
-				local a = Instance.new("BoxHandleAdornment")
+				--[[local a = Instance.new("BoxHandleAdornment")
 				a.Name = partEspName.."_PESP"
 				a.Parent = v
 				a.Adornee = v
@@ -7259,9 +7259,20 @@ local partEspName = var
 				a.ZIndex = 0
 				a.Size = v.Size
 				a.Transparency = 0.3
-				a.Color = BrickColor.new("Lime green")
+				a.Color = BrickColor.new("Lime green")]]
+				vtagpart = Vortex:CreateESPTag({
+					Text = "Part",
+					Part = game.Workspace.nil,
+					TextSize = 7,
+					TextColor = Color3.new(255, 255, 255),
+					Highlight = true,
+					Outline = Color3.new(0,1,0),
+					EnableBoxESP = true,
+					BoxColor = Color3.new(1,1,1),
+					TracerColor = Color3.new(1,1,1)
+				})
 			end
-		end
+		end)
 	end
 	if partEspTrigger == nil then
 		partEspTrigger = workspace.DescendantAdded:Connect(partAdded)
@@ -7274,20 +7285,12 @@ if var then
 		if FindInTable(espParts,partEspName) then
 			table.remove(espParts, GetInTable(espParts, partEspName))
 		end
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BoxHandleAdornment") and v.Name == partEspName..'_PESP' then
-				v:Destroy()
-			end
-		end
+		vtagpart:BreakTag()
 	else
 		partEspTrigger:Disconnect()
 		partEspTrigger = nil
 		espParts = {}
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BoxHandleAdornment") and v.Name:sub(-5) == '_PESP' then
-				v:Destroy()
-			end
-		end
+		vtagpart:BreakTag()
 	end
 end
 if cmd == "gotopart" then
