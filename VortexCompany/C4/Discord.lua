@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.3" -- reverted version
+local version = "-MAX | VortexOS V5.9.4" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -446,7 +446,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/launch-into-space-simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Animal-Evolution-Simulator/main/.lua"
 }
 
 function dragify(Frame)
@@ -9619,6 +9620,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[26])
 end)
 end
+if cmd == "animalevo" or cmd == "aes" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[27])
+end)
+end
 --[[
 limit 
 ]]
@@ -9971,6 +9978,7 @@ cmds[#cmds + 1] = {Text = "[334] " .. tostring(prefix) .. "promptr6",Title = "ma
 cmds[#cmds + 1] = {Text = "[335] " .. tostring(prefix) .. "promptr15",Title = "make the game prompt to switch your rig to R15"}
 cmds[#cmds + 1] = {Text = "[336] " .. tostring(prefix) .. "antikick",Title = "bypass kick"}
 cmds[#cmds + 1] = {Text = "[337] " .. tostring(prefix) .. "hforugc / ugc",Title = "Run Hatch for UGC Script!"}
+cmds[#cmds + 1] = {Text = "[338] " .. tostring(prefix) .. "animalevo / aes",Title = "Run Animal Evolution Simulator Script!"}
 
 _G.RemoveSymbols = {
    blank = ""
