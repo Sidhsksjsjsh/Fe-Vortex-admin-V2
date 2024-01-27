@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.5" -- reverted version
+local version = "-MAX | VortexOS V5.9.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -447,7 +447,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Natural-Disaster/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Animal-Evolution-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Animal-Evolution-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Fahri-nih-boss/main/.lua"
 }
 
 function dragify(Frame)
@@ -9640,6 +9641,14 @@ if cmd == "animalevo" or cmd == "aes" then
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[27])
+end)
+end
+if cmd == "gmt" then
+Vortex:CheckError(function()
+Vortex:OnlyDeveloper(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[28])
+end)
 end)
 end
 --[[
