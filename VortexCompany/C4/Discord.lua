@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.4" -- reverted version
+local version = "-MAX | VortexOS V5.9.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -6448,27 +6448,43 @@ end
 if cmd == "music" then
 local var = string.sub(msg,space+1)
 local OfficialMusic = {
-       paradisefalls = 1837879082,
-       stadiumrave = 1846368080,
-       crabrave = 5410086218,
-       hijacket = 1842559618,
-       wonderfulday = 1843382633,
-       bloodpop = 6823597327,
-       sunrise = 1837324500,
-       cintanyaaku = 14417854633,
-       deepcore = 1837633054
+        paradisefalls = 1837879082,
+        stadiumrave = 1846368080,
+        crabrave = 5410086218,
+        hijacket = 1842559618,
+        wonderfulday = 1843382633,
+        bloodpop = 6823597327,
+        sunrise = 1837324500,
+        cintanyaaku = 14417854633,
+        deepcore = 1837633054,
+	wisr = 16094229589,
+	blades = 15509665315,
+	society = 16093732603,
+	star2 = 15418187660,
+	mimmr = 16094334230,
+	nb = 16093733029,
+	dreamless = 14489973809,
+	pmi = 14490034883
 }
 
 local TextMusic = {
-      paradisefalls = "Paradise Falls",
-      stadiumrave = "Stadium Rave",
-      crabrave = "Crab Rave",
-      hijacket = "Hijacket",
-      wonderfulday = "Wonderful Day",
-      bloodpop = "BloodPop",
-      sunrise = "Sunrise",
-      cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto",
-      deepcore = "Deepcore"
+        paradisefalls = "Paradise Falls",
+        stadiumrave = "Stadium Rave",
+        crabrave = "Crab Rave",
+        hijacket = "Hijacket",
+        wonderfulday = "Wonderful Day",
+        bloodpop = "BloodPop",
+        sunrise = "Sunrise",
+        cintanyaaku = "Cintanya Aku - Tiara andini and Arsy Widianto",
+        deepcore = "Deepcore",
+	wisr = "I Monster - Who Is She Remix",
+	blades = "Gonzo - Blades",
+	society = "Pathetic - Society Remix",
+	star2 = "Eights - Star2",
+	mimmr = "Kordhell - Murder In My Mind Remix",
+	nb = "Moondeity - Neon Blade Remix",
+	dreamless = "Skylaster - Dreamless",
+	pmi = "Stylaster - Plug Me In"
 }
 
 Vortex:CheckError(function()
