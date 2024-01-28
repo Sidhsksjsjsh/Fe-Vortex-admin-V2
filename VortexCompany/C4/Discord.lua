@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.6" -- reverted version
+local version = "-MAX | VortexOS V5.9.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -448,7 +448,7 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/AI-Task-Completed/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Animal-Evolution-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Sidhsksjsjsh/Fahri-nih-boss/main/.lua"
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Lumberjack-Simulator/main/.lua"
 }
 
 function dragify(Frame)
@@ -9643,12 +9643,10 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[27])
 end)
 end
-if cmd == "gmt" then
+if cmd == "lumberjack" then
 Vortex:CheckError(function()
-Vortex:OnlyDeveloper(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[28])
-end)
 end)
 end
 --[[
@@ -10004,6 +10002,7 @@ cmds[#cmds + 1] = {Text = "[335] " .. tostring(prefix) .. "promptr15",Title = "m
 cmds[#cmds + 1] = {Text = "[336] " .. tostring(prefix) .. "antikick",Title = "bypass kick"}
 cmds[#cmds + 1] = {Text = "[337] " .. tostring(prefix) .. "hforugc / ugc",Title = "Run Hatch for UGC Script!"}
 cmds[#cmds + 1] = {Text = "[338] " .. tostring(prefix) .. "animalevo / aes",Title = "Run Animal Evolution Simulator Script!"}
+cmds[#cmds + 1] = {Text = "[339] " .. tostring(prefix) .. "lumberjack",Title = "Run Lumberjack Simulator Script!"}
 
 _G.RemoveSymbols = {
    blank = ""
