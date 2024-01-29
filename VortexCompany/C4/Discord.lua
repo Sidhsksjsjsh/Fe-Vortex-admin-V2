@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V5.9.8" -- reverted version
+local version = "-MAX | VortexOS V5.9.9" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -449,7 +449,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Hatch-For-UGC/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Animal-Evolution-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Sidhsksjsjsh/Lumberjack-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Turtle-Secure/Shoot-Beam-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Turtle-Secure/Shoot-Beam-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/Turtle-Secure/Anime-Dungeon-Fighters/main/.lua"
 }
 
 function dragify(Frame)
@@ -9656,6 +9657,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[29])
 end)
 end
+if cmd == "adf" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[30])
+end)
+end
 --[[
 limit 
 ]]
@@ -10011,6 +10018,7 @@ cmds[#cmds + 1] = {Text = "[337] " .. tostring(prefix) .. "hforugc / ugc",Title 
 cmds[#cmds + 1] = {Text = "[338] " .. tostring(prefix) .. "animalevo / aes",Title = "Run Animal Evolution Simulator Script!"}
 cmds[#cmds + 1] = {Text = "[339] " .. tostring(prefix) .. "lumberjack",Title = "Run Lumberjack Simulator Script!"}
 cmds[#cmds + 1] = {Text = "[340] " .. tostring(prefix) .. "sbs / shootbeam",Title = "Run Shoot Beam Simulator Script!"}
+cmds[#cmds + 1] = {Text = "[341] " .. tostring(prefix) .. "adf",Title = "Run Anime Dungeon Fighters Script!"}
 
 _G.RemoveSymbols = {
    blank = ""
