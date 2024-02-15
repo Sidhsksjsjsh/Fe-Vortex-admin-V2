@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V6.0.1" -- reverted version
+local version = "-MAX | VortexOS V6.0.2" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -452,7 +452,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Turtle-Secure/Shoot-Beam-Simulator/main/.lua",
 	"https://raw.githubusercontent.com/Turtle-Secure/Anime-Dungeon-Fighters/main/.lua",
 	"https://raw.githubusercontent.com/Turtle-Secure/Gun-Ball/main/.lua",
-	"https://raw.githubusercontent.com/Turtle-Secure/Mowing-Simulator/main/.lua"
+	"https://raw.githubusercontent.com/Turtle-Secure/Mowing-Simulator/main/.lua",
+	"https://raw.githubusercontent.com/Turtle-Secure/Load-all-script-in-one-script/main/.lua"
 }
 
 function dragify(Frame)
@@ -9677,6 +9678,12 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[32])
 end)
 end
+if cmd == "lsc" or cmd == "loadsc" then
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[33])
+end)
+end
 --[[
 limit 
 ]]
@@ -10035,6 +10042,7 @@ cmds[#cmds + 1] = {Text = "[340] " .. tostring(prefix) .. "sbs / shootbeam",Titl
 cmds[#cmds + 1] = {Text = "[341] " .. tostring(prefix) .. "adf",Title = "Run Anime Dungeon Fighters Script!"}
 cmds[#cmds + 1] = {Text = "[342] " .. tostring(prefix) .. "gb / gunball",Title = "Run Gun Ball Script!"}
 cmds[#cmds + 1] = {Text = "[342] " .. tostring(prefix) .. "ms / mowingsim",Title = "Run Mowing Simulator Script!"}
+cmds[#cmds + 1] = {Text = "[343] " .. tostring(prefix) .. "lsc / loadsc",Title = "Run games script by using this command."}
 
 _G.RemoveSymbols = {
    blank = ""
