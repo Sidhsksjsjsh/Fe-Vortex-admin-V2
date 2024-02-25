@@ -191,14 +191,14 @@ end)
 --      RemovePaused = false,
 -- }
 
-UIButton_3.FocusLost:Connect(function(Enter)
+--[[UIButton_3.FocusLost:Connect(function(Enter)
    if Enter then
        _G.Settings.prefix = UIButton_3.Text
        UIButton_3.Text = _G.Settings.prefix
        saveSettings()
    end
 end)
-
+]]
 UIButton_4.FocusLost:Connect(function(EnterInstance)
    if EnterInstance then
        _G.Settings.EspColor = BrickColor.new(UIButton_4.Text)
