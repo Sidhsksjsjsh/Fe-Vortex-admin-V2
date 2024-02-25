@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V6.0.4" -- reverted version
+local version = "-MAX | VortexOS V6.0.5" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -145,14 +145,14 @@ prefixx.TextColor3 = Color3.new(1, 1, 1)
 prefixx.BackgroundTransparency = 1
 prefixx.Parent = mainFrame
 
-UIButton_3 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
+--[[UIButton_3 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
 UIButton_3.Name = "A4"
 UIButton_3.Position = UDim2.new(0.25, 0, 0,90)
 UIButton_3.Size = UDim2.new(0.5, 0, 0, 20)
 UIButton_3.Text = _G.Settings.prefix
 UIButton_3.TextColor3 = Color3.new(1, 1, 1)
 UIButton_3.BackgroundTransparency = 1
-UIButton_3.Parent = mainFrame
+UIButton_3.Parent = mainFrame]]
 
 ESPCOLOR = Instance.new("TextLabel")
 ESPCOLOR.Name = "A3"
