@@ -145,15 +145,6 @@ prefixx.TextColor3 = Color3.new(1, 1, 1)
 prefixx.BackgroundTransparency = 1
 prefixx.Parent = mainFrame
 
---[[UIButton_3 = Instance.new("TextBox") -- pos: 0.25, 0, 0, 140 | Size: 0.5, 0, 0, 20
-UIButton_3.Name = "A4"
-UIButton_3.Position = UDim2.new(0.25, 0, 0,90)
-UIButton_3.Size = UDim2.new(0.5, 0, 0, 20)
-UIButton_3.Text = _G.Settings.prefix
-UIButton_3.TextColor3 = Color3.new(1, 1, 1)
-UIButton_3.BackgroundTransparency = 1
-UIButton_3.Parent = mainFrame]]
-
 ESPCOLOR = Instance.new("TextLabel")
 ESPCOLOR.Name = "A3"
 ESPCOLOR.Position = UDim2.new(0, 20, 0, 110)
