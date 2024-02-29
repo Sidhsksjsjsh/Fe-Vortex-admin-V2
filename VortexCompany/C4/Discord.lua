@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V6.0.5" -- reverted version
+local version = "-MAX | VortexOS V6.0.6" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -10431,31 +10431,4 @@ local VortexLabel = Vortex:AddLabel("FE Vortex Admin V" .. version .. " | ${date
       TextColor = {0,255,0},
       BackgroundColor = {1,0.85098,0}
 })
-end)
-
-Vortex:CheckError(function()
-if not LOCAL_WEB_IP_HOST() == Vortex:FileReader("User-IP.json") or not Vortex:FileReader("User-IP.json") == LOCAL_WEB_IP_HOST() then
-	if Vortex:IsFile("User-IP.json") then
-		VortexLabel:ChangeLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST() .. "\nIP Changer Detected")
-                Vortex:FileWriter("User-IP.json",LOCAL_WEB_IP_HOST())
-	else
-		Vortex:FileWriter("User-IP.json",LOCAL_WEB_IP_HOST())
-	end
-elseif not GetRegionPlayer() == Vortex:FileReader("User-Region.json") or not Vortex:FileReader("User-Region.json") == GetRegionPlayer() then
-	if Vortex:IsFile("User-Region.json") then
-		VortexLabel:ChangeLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST() .. "\nVPN Detected")
-		Vortex:FileWriter("User-Region.json",GetRegionPlayer())
-	else
-		Vortex:FileWriter("User-Region.json",GetRegionPlayer())
-	end
-elseif not GetRegionPlayer() == Vortex:FileReader("User-Region.json") or not Vortex:FileReader("User-Region.json") == GetRegionPlayer() and not LOCAL_WEB_IP_HOST() == Vortex:FileReader("User-IP.json") or not Vortex:FileReader("User-IP.json") == LOCAL_WEB_IP_HOST() then
-	if Vortex:IsFile("User-Region.json") and Vortex:IsFile("User-IP.json") then
-		VortexLabel:ChangeLabel("FE Vortex Admin V" .. version .. " | " .. GetRegionPlayer() .. " - " .. LOCAL_WEB_IP_HOST() .. "\nVPN and IP Changer Detected")
-		Vortex:FileWriter("User-Region.json",GetRegionPlayer())
-		Vortex:FileWriter("User-IP.json",LOCAL_WEB_IP_HOST())
-	else
-		Vortex:FileWriter("User-Region.json",GetRegionPlayer())
-		Vortex:FileWriter("User-IP.json",LOCAL_WEB_IP_HOST())
-	end
-end
 end)
