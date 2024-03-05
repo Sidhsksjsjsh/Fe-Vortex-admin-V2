@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V6.0.6" -- reverted version
+local version = "-MAX | VortexOS V6.0.7" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -7476,7 +7476,8 @@ end)
 end
 if cmd == "rspy" then
 Vortex:CheckError(function()
-executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
+--executeHTTPS("https://pastebin.com/raw/0XkSXRhy")
+executeHTTPS("https://raw.githubusercontent.com/Sidhsksjsjsh/modified-remote-spy/main/.lua")
 end)
 end
 if cmd == "iy" then
