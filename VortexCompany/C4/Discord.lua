@@ -21,7 +21,7 @@ _G.Settings = {
 
 local COREGUI = game:GetService("CoreGui")
 -- (62x) - final: 100 JSKV5
-local version = "-MAX | VortexOS V6.0.7" -- reverted version
+local version = "-MAX | VortexOS V6.0.8" -- reverted version
 
 -- _G.Settings.banwaves
 -- _G.Settings.FreezeFling
@@ -436,7 +436,8 @@ local UrlScript = {
 	"https://raw.githubusercontent.com/Turtle-Secure/Anime-Dungeon-Fighters/main/.lua",
 	"https://raw.githubusercontent.com/Turtle-Secure/Gun-Ball/main/.lua",
 	"https://raw.githubusercontent.com/Turtle-Secure/Mowing-Simulator/main/.lua",
-	"https://raw.githubusercontent.com/Turtle-Secure/Load-all-script-in-one-script/main/.lua"
+	"https://raw.githubusercontent.com/Turtle-Secure/Load-all-script-in-one-script/main/.lua",
+	"https://raw.githubusercontent.com/Sidhsksjsjsh/Pet-Catchers/main/.lua"
 }
 
 function dragify(Frame)
@@ -9662,10 +9663,16 @@ Vortex:CheckError(function()
         executeHTTPS(UrlScript[32])
 end)
 end
-if cmd == "lsc" or cmd == "loadsc" then
+if cmd == "lsc" or cmd == "loadsc" then --
 Vortex:CheckError(function()
 	notify("Injecting...","pls wait..")
         executeHTTPS(UrlScript[33])
+end)
+end
+if cmd == "petc" or cmd == "pc" then --
+Vortex:CheckError(function()
+	notify("Injecting...","pls wait..")
+        executeHTTPS(UrlScript[34])
 end)
 end
 --[[
@@ -10027,6 +10034,7 @@ cmds[#cmds + 1] = {Text = "[341] " .. tostring(prefix) .. "adf",Title = "Run Ani
 cmds[#cmds + 1] = {Text = "[342] " .. tostring(prefix) .. "gb / gunball",Title = "Run Gun Ball Script!"}
 cmds[#cmds + 1] = {Text = "[342] " .. tostring(prefix) .. "ms / mowingsim",Title = "Run Mowing Simulator Script!"}
 cmds[#cmds + 1] = {Text = "[343] " .. tostring(prefix) .. "lsc / loadsc",Title = "Run Games Script"}
+cmds[#cmds + 1] = {Text = "[344] " .. tostring(prefix) .. "petc / pc",Title = "Run Pet Catchers Script"}
 
 _G.RemoveSymbols = {
    blank = ""
