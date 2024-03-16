@@ -30,7 +30,7 @@ local version = "-MAX | VortexOS V6.0.8" -- reverted version
 -- _G.Settings.username
 local a = "Vortex Admin"
 local b = "SettingsFile.lua"
-function saveSettings()
+--[[function saveSettings()
     local c = game:GetService("HttpService")
     local d = c:JSONEncode(_G.Settings)
     if writefile then
@@ -49,6 +49,7 @@ function loadSettings()
     end
 end
 loadSettings()
+]]
 
 function Interface_Visible(GuiName, toggle_4)
      GuiName.Visible = toggle_4 or false
